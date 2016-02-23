@@ -1,6 +1,5 @@
-/NodeVagrant/
-/node_modules/
-/AngularTest/node_modules/
-/AngularTest/typings/
-/angularApp/node_modules/
+/meanApp/AngularTest/node_modules/
+/meanApp/AngularTest/typings/
+/meanApp/angularApp/node_modules/
+/meanApp/node_modules/
 /.idea/
