@@ -10,7 +10,7 @@ In your terminal type :
     vagrant plugin install vagrant-vbguest
 
 If you have problem to localize the plugin : 
-
+    vagrant ssh
     sudo ln -s /opt/VBoxGuestAdditions-4.3.10/lib/VBoxGuestAdditions /usr/lib/VBoxGuestAdditions
 
 

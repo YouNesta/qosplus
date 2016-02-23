@@ -1,2 +1,6 @@
 /NodeVagrant/
 /node_modules/
+/AngularTest/node_modules/
+/AngularTest/typings/
+/angularApp/node_modules/
+/.idea/

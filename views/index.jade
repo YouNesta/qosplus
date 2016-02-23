@@ -1,5 +1,33 @@
-extends layout
+doctype html
+html
+  head
+    base(href="/")
+    title= title
+    link(rel='stylesheet', href='/public/css/style.css')
 
-block content
-  h1= title
-  p Welcome to #{title}
+    // Required polyfill
+    script(src='/lib/es6-shim/es6-shim.min.js')
+    script(src='/lib/systemjs/dist/system-polyfills.js')
+    script(src='/lib/angular2/bundles/angular2-polyfills.js')
+    script(src='/lib/systemjs/dist/system.src.js')
+    script(src='/lib/rxjs/bundles/Rx.js')
+    script(src='/lib/angular2/bundles/angular2.dev.js')
+
+
+    // Angular App
+    script.
+          System.config({
+          packages: {
+          app: {
+          format: 'register',
+          defaultExtension: 'js'
+          }
+          }
+          });
+          System.import('app/main')
+          .then(null, console.error.bind(console));
+
+
+  body
+    my-app loafding...
+    p Welcome to #{title}
