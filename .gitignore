@@ -1,5 +1,2 @@
-/meanApp/AngularTest/node_modules/
-/meanApp/AngularTest/typings/
-/meanApp/angularApp/node_modules/
-/meanApp/node_modules/
 /.idea/
+/.vagrant/

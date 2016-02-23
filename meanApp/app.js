@@ -23,8 +23,8 @@ app.use(cookieParser());
 
 /** Declaration Static Files**/
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'AngularTest')));
-app.use('/lib', express.static(path.join(__dirname, 'angularTest/node_modules')));
+app.use(express.static(path.join(__dirname, 'myApp')));
+app.use('/lib', express.static(path.join(__dirname, 'myApp/node_modules')));
 
 app.use('/', routes);
 app.use('/users', users);
