@@ -1,31 +1,39 @@
 import {Component} from 'angular2/core';
 import {bootstrap}    from 'angular2/platform/browser'
-import {UserComponent}    from './User/user.component'
-import {UserService}    from './User/user.service'
-
 import {
     RouteConfig,
     ROUTER_DIRECTIVES,
     ROUTER_PROVIDERS,
+    RouterLink
     } from 'angular2/router';
 
+import {enableProdMode} from 'angular2/core';
+enableProdMode();
+
+import {HeaderComponent} from "./Layouts/header.component";
+
+import {UserComponent}    from './User/user.component'
+import {HomeComponent}    from './Home/home.component'
 
 
 @Component({
-    selector: "my-app",
-    template: "<h1>LOLOLOL</h1>" +
-    "<router-outlet></router-outlet>" +
-    "<a [routerLink]=\"['User', 'Default']\">Crisis Center</a>",
-    directives: [ROUTER_DIRECTIVES]
+    selector: "app",
+    template:   "<header></header>" +
+                "<router-outlet></router-outlet>" +
+                "<footer>{{title}}</footer>",
+
+    directives: [ROUTER_DIRECTIVES, HeaderComponent]
 })
 
 @RouteConfig([
-    { path: "/", as: "Home", component: UserService },
-    { path: "/user/...", as: "User", component: UserComponent }
+    { path: "/", as: "Home", component: HomeComponent },
+    { path: "/users/...", as: "Users", component: UserComponent }
 ])
 
 
 
-export class App { }
+export class App {
+    title:string;
+}
 
 bootstrap(App, [ROUTER_PROVIDERS]);

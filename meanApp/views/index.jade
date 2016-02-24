@@ -3,9 +3,15 @@ html
   head
     base(href="/")
     title= title
-    link(rel='stylesheet', href='/public/css/style.css')
+    link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin="anonymous")
 
     // Required polyfill
+
+
+
+  body
+    app loading...
+
     script(src='/lib/es6-shim/es6-shim.min.js')
     script(src='/lib/systemjs/dist/system-polyfills.js')
 
@@ -17,9 +23,3 @@ html
 
     script(src='/lib/angular2/bundles/router.dev.js')
     script(src='/config.js')
-
-
-  body
-    my-app loading...
-    router-outlet
-    p Welcome to #{title}
