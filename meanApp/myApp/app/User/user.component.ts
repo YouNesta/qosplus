@@ -1,26 +1,29 @@
 import {Component} from 'angular2/core';
-import {UserService}    from './user.service'
 
 import {
     RouteConfig,
     ROUTER_DIRECTIVES,
     ROUTER_PROVIDERS,
 } from 'angular2/router';
+import {UserLoginComponent} from "./user-login.component";
+import {UserSubscribeComponent} from "./user-subscribe.component";
 
 
 
 @Component({
-    template: "<h1>LOLOLOL</h1>" +
-    "<router-outlet></router-outlet>" +
-    "<a [routerLink]=\"['User', 'Default']\">Crisis Center</a>",
+    template:
+    "<router-outlet></router-outlet>",
     directives: [ROUTER_DIRECTIVES]
 })
 
 @RouteConfig([
-    { path: "/", name: "Default", component: UserService}
+    { path: "/login", name: "Login", component: UserLoginComponent},
+    { path: "/subscribe", name: "Subscribe", component: UserSubscribeComponent}
 ])
 
 
 
-export class UserComponent { }
+export class UserComponent {
+
+}
 
