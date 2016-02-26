@@ -27,10 +27,10 @@ app.use(express.static(path.join(__dirname, 'myApp')));
 app.use('/lib', express.static(path.join(__dirname, 'myApp/node_modules')));
 
 app.use('/', routes);
-app.use('/users', routes);
+app.use('/api/v1/users', users);
 
 
-app.get('*', function(req, res) {    // This is for render always index to the angularApp (Because refresh or manual URL)
+app.get('*', function(req, res) {    // This is for render always index to the angularApp (Because refresh or an
   res.render('index', {});
 });
 

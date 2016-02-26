@@ -1,27 +1,29 @@
-System.register(['../lib/xhr.factory'], function(exports_1) {
-    var xhr_factory_1;
+System.register(["../main"], function(exports_1) {
+    var main_1;
     var UserFactory;
     return {
         setters:[
-            function (xhr_factory_1_1) {
-                xhr_factory_1 = xhr_factory_1_1;
+            function (main_1_1) {
+                main_1 = main_1_1;
             }],
         execute: function() {
             exports_1("UserFactory", UserFactory = {
+                construct: function (http) {
+                },
                 getAll: function () {
-                    return xhr_factory_1.$http.get('/api/v1/users');
+                    return this.http.get('/api/v1/users');
                 },
                 get: function (id) {
-                    return xhr_factory_1.$http.get('/api/v1/user/' + id);
+                    return main_1.App.http('/api/v1/users/' + id);
                 },
                 save: function (user) {
-                    return xhr_factory_1.$http.post('/api/v1/user', user);
+                    return main_1.App.http.post('/api/v1/users/subscribe', user);
                 },
                 update: function (user) {
-                    return xhr_factory_1.$http.put('/api/v1/user/' + user._id, user);
+                    return main_1.App.put('/api/v1/users/' + user._id, user);
                 },
                 delete: function (id) {
-                    return xhr_factory_1.$http.delete('/api/v1/user/' + id);
+                    return main_1.App.delete('/api/v1/users/' + id);
                 }
             });
         }

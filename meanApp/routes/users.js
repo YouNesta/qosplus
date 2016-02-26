@@ -3,8 +3,9 @@ var router = express.Router();
 
 /* GET users listing. */
 
-router.post('/', function(req, res, next) {
-  res.send(200);
+router.post('/subscribe', function(req, res, next) {
+  console.log(req, res);
+  res.sendStatus(200);
 });
 
 module.exports = router;

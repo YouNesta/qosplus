@@ -21,11 +21,15 @@ System.register(['angular2/core', "./user"], function(exports_1) {
         execute: function() {
             UserSubscribeComponent = (function () {
                 function UserSubscribeComponent() {
-                    this.model = new user_1.User(1, 'Younes', 'Nesta');
+                    this.user = new user_1.User(1, 'Younes', 'Nesta');
                 }
-                UserSubscribeComponent.prototype.subscribe = function () {
-                    this.model = new user_1.User(this.model.id + 1, this.model.firstname, this.model.lastname);
-                    console.log(this.model);
+                UserSubscribeComponent.prototype.subscribe = function (http) {
+                    console.log(this.user);
+                    this.user = new user_1.User(this.user.id + 1, this.user.firstname, this.user.lastname);
+                    console.log(this.user);
+                    this.http.save(this.user);
+                    // Subscribe to the observable to get the parsed people object and attach it to the
+                    // component
                 };
                 UserSubscribeComponent = __decorate([
                     core_1.Component({

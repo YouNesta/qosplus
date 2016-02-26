@@ -25,11 +25,9 @@ System.register(['angular2/core', "angular2/router"], function(exports_1) {
                 NavComponent = __decorate([
                     core_1.Component({
                         selector: "nav",
-                        template: "<nav>" +
-                            "<li><a [routerLink]=\"['Home']\">Home</a></li>" +
+                        template: "<li><a [routerLink]=\"['Home']\">Home</a></li>" +
                             "<li><a [routerLink]=\"['Users', 'Login']\">Se connecter</a></li>" +
-                            "<li><a [routerLink]=\"['Users', 'Subscribe']\">S'inscrire</a></li>" +
-                            "</nav>",
+                            "<li><a [routerLink]=\"['Users', 'Subscribe']\">S'inscrire</a></li>",
                         directives: [router_1.ROUTER_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [])

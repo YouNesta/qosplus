@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router', "./Layouts/header.component", './User/user.component', './Home/home.component'], function(exports_1) {
+System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 'angular2/router', "./Layouts/header.component", './User/user.component', './Home/home.component', 'rxjs/Rx'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, browser_1, router_1, core_2, header_component_1, user_component_1, home_component_1;
+    var core_1, browser_1, http_1, router_1, core_2, header_component_1, user_component_1, home_component_1;
     var App;
     return {
         setters:[
@@ -18,6 +18,9 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
             },
             function (browser_1_1) {
                 browser_1 = browser_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -30,11 +33,21 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
             },
             function (home_component_1_1) {
                 home_component_1 = home_component_1_1;
-            }],
+            },
+            function (_1) {}],
         execute: function() {
             core_2.enableProdMode();
             App = (function () {
-                function App() {
+                function App(http) {
+                    this.http = http;
+                    var headers = new http_1.Headers();
+                    headers.append('Content-Type', 'application/json');
+                    this.http.post('/api/v1/users/subscribe', this.title, {
+                        headers: headers
+                    })
+                        .subscribe(function (data) {
+                        console.log(data);
+                    }, function (err) { return console.log(err.json().message); }, function () { return console.log('Authentication Complete'); });
                 }
                 App = __decorate([
                     core_1.Component({
@@ -48,12 +61,12 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/router'
                         { path: "/", as: "Home", component: home_component_1.HomeComponent },
                         { path: "/users/...", as: "Users", component: user_component_1.UserComponent }
                     ]), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], App);
                 return App;
             })();
             exports_1("App", App);
-            browser_1.bootstrap(App, [router_1.ROUTER_PROVIDERS]);
+            browser_1.bootstrap(App, [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS]);
         }
     }
 });
