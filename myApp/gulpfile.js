@@ -43,6 +43,7 @@ gulp.task('sass', function () {
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('./public/css/vendors'));
+    
     return merge(vendors, scss);
 
 });
