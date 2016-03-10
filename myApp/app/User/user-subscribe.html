@@ -51,7 +51,7 @@
                             <label>E-mail</label>
                             <input md-input [(ngModel)]="model.mail" ngControl="mail">
                             <div md-messages="mail" role="alert">
-                                <div md-message>Your email must be between 10 and 100 characters long and look like an e-mail address.</div>
+                                <div md-message>Your mail must be between 10 and 100 characters long and look like an e-mail address.</div>
                             </div>
                         </md-input-container>
                     </div>
@@ -79,7 +79,7 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Code Postal</label>
-                        <input md-input [(ngModel)]="model.shop.zipcode">
+                        <input md-input [(ngModel)]="model.shop.zipCode">
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Numéro de Portable du magasin</label>
@@ -95,8 +95,55 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Email du magasin</label>
-                        <input md-input [(ngModel)]="model.email">
+                        <input md-input [(ngModel)]="model.shop.mail">
                     </md-input-container>
+
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Nom</label>
+                            <input md-input [(ngModel)]="model.director.lastName" ngControl="lastName">
+                            <div md-messages="lastName">
+                                <div md-message="required">Ce champs est obligatoire</div>
+                                <div md-message="maxlength">The name has to be less than 30 characters long.</div>
+                            </div>                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Prénom</label>
+                            <input md-input [(ngModel)]="model.director.firstName" ngControl="firstName">
+                            <div md-messages="firstName">
+                                <div md-message="required">Ce champs est obligatoire</div>
+                                <div md-message="maxlength">The name has to be less than 30 characters long.</div>
+                            </div>
+                        </md-input-container>
+
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Téléphone</label>
+                            <input md-input [(ngModel)]="model.director.phone" ngControl="phone">
+                            <div md-messages="phone" role="alert">
+                                <div md-message="mdNumberRequired">
+                                    Seul les chiffres sont accepté pour un numéro de téléphone
+                                </div>
+                                <!-- <div md-message="mdMin">
+                                     You should charge at least $800 an hour. This job is a big deal... if you mess up,
+                                     everyone dies!
+                                 </div>-->
+                                <div md-message="mdPattern">
+                                    Vous devez entrer un numéro de téléphone fix valide
+                                </div>
+                                <!--<div md-message="mdMax">
+                                   an hour? That's a little ridiculous. I doubt event Bill Clinton could afford that.
+                                </div>-->
+                            </div>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>E-mail</label>
+                            <input md-input [(ngModel)]="model.director.mail" ngControl="mail">
+                            <div md-messages="mail" role="alert">
+                                <div md-message>Your mail must be between 10 and 100 characters long and look like an e-mail address.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
 
 
                     <md-input-container class="md-block" flex-gt-sm>
@@ -137,7 +184,7 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Code Postal</label>
-                        <input md-input [(ngModel)]="model.financialShop.zipcode">
+                        <input md-input [(ngModel)]="model.financialShop.zipCode">
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Numéro de Portable du magasin</label>
@@ -153,7 +200,7 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Email du magasin</label>
-                        <input md-input [(ngModel)]="model.financialShop.email">
+                        <input md-input [(ngModel)]="model.financialShop.mail">
                     </md-input-container>
 
 
@@ -170,7 +217,7 @@
 
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>E-mail de confirmation de prelevement</label>
-                        <input md-input [(ngModel)]="model.fiancialMail">
+                        <input md-input [(ngModel)]="model.financialMail.mail">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex-gt-sm>
@@ -196,7 +243,7 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Code Postal</label>
-                        <input md-input [(ngModel)]="model.deliverShop.zipcode">
+                        <input md-input [(ngModel)]="model.deliverShop.zipCode">
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Numéro de Portable du magasin</label>
@@ -212,7 +259,7 @@
                     </md-input-container>
                     <md-input-container class="md-block">
                         <label>Email</label>
-                        <input md-input [(ngModel)]="model.deliverShop.email">
+                        <input md-input [(ngModel)]="model.deliverShop.mail">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex-gt-sm>

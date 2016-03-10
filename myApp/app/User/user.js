@@ -4,11 +4,12 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             User = (function () {
-                function User(lastname, firstname, mail, phone) {
-                    this._lastname = lastname;
-                    this._firstname = firstname;
-                    this._mail = mail;
-                    this._phone = phone;
+                function User(user) {
+                    this._lastname = user.lastname;
+                    this._firstname = user.firstname;
+                    this._mail = user.mail;
+                    this._phone = user.phone;
+                    this._shop = user.shop;
                 }
                 Object.defineProperty(User.prototype, "id", {
                     get: function () {
@@ -130,7 +131,7 @@ System.register([], function(exports_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(User.prototype, "financialSociety", {
+                Object.defineProperty(User.prototype, "financialShop", {
                     get: function () {
                         return this._financialShop;
                     },

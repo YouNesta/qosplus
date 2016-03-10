@@ -4,16 +4,16 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             Shop = (function () {
-                function Shop(name, adress, adress2, city, zipcode, mobile, phone, fax, email) {
-                    this._name = name;
-                    this._adress = adress;
-                    this._adress2 = adress2;
-                    this._city = city;
-                    this._zipcode = zipcode;
-                    this._mobile = mobile;
-                    this._phone = phone;
-                    this._fax = fax;
-                    this._email = email;
+                function Shop(shop) {
+                    this._name = shop.name;
+                    this._adress = shop.adress;
+                    this._adress2 = shop.adress2;
+                    this._city = shop.city;
+                    this._zipCode = shop.zipCode;
+                    this._mobile = shop.mobile;
+                    this._phone = shop.phone;
+                    this._fax = shop.fax;
+                    this._mail = shop.mail;
                 }
                 Object.defineProperty(Shop.prototype, "name", {
                     get: function () {
@@ -45,12 +45,12 @@ System.register([], function(exports_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(Shop.prototype, "zipcode", {
+                Object.defineProperty(Shop.prototype, "zipCode", {
                     get: function () {
-                        return this._zipcode;
+                        return this._zipCode;
                     },
                     set: function (value) {
-                        this._zipcode = value;
+                        this._zipCode = value;
                     },
                     enumerable: true,
                     configurable: true
@@ -85,12 +85,12 @@ System.register([], function(exports_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(Shop.prototype, "email", {
+                Object.defineProperty(Shop.prototype, "mail", {
                     get: function () {
-                        return this._email;
+                        return this._mail;
                     },
                     set: function (value) {
-                        this._email = value;
+                        this._mail = value;
                     },
                     enumerable: true,
                     configurable: true

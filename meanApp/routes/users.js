@@ -3,10 +3,12 @@ var router = express.Router();
 
 /* GET users listing. */
 
-router.get('/subscribe', function(req, res, next) {
+router.post('/subscribe', function(req, res, next) {
+  console.log(req.body._mail);
   res.json({text: "lala"})
       .sendStatus(200);
-
 });
 
 module.exports = router;
+
+
