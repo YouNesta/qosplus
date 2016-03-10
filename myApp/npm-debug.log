@@ -7,8 +7,8 @@
 6 silly lifecycle angular2-quickstart@1.0.0~prelite: no script for prelite, continuing
 7 info lifecycle angular2-quickstart@1.0.0~lite: angular2-quickstart@1.0.0
 8 verbose lifecycle angular2-quickstart@1.0.0~lite: unsafe-perm in lifecycle true
-9 verbose lifecycle angular2-quickstart@1.0.0~lite: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/home/vagrant/public/myApp/node_modules/.bin:/usr/lib/node_modules/npm/bin/node-gyp-bin:/home/vagrant/public/myApp/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
-10 verbose lifecycle angular2-quickstart@1.0.0~lite: CWD: /home/vagrant/public/myApp
+9 verbose lifecycle angular2-quickstart@1.0.0~lite: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/vagrant/meanApp/myApp/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+10 verbose lifecycle angular2-quickstart@1.0.0~lite: CWD: /vagrant/meanApp/myApp
 11 silly lifecycle angular2-quickstart@1.0.0~lite: Args: [ '-c', 'lite-server' ]
 12 silly lifecycle angular2-quickstart@1.0.0~lite: Returned: code: 1  signal: null
 13 info lifecycle angular2-quickstart@1.0.0~lite: Failed to exec lite script
@@ -23,7 +23,7 @@
 14 verbose stack     at maybeClose (internal/child_process.js:827:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
 15 verbose pkgid angular2-quickstart@1.0.0
-16 verbose cwd /home/vagrant/public/myApp
+16 verbose cwd /vagrant/meanApp/myApp
 17 error Linux 3.16.0-4-amd64
 18 error argv "/usr/bin/nodejs" "/usr/bin/npm" "run" "lite"
 19 error node v5.6.0

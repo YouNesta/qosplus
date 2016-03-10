@@ -5,7 +5,7 @@ import {
     ROUTER_DIRECTIVES,
     ROUTER_PROVIDERS,
 } from 'angular2/router';
-import {UsersService} from "./user.service";
+import {UserFactory} from "./user.factory";
 
 
 
@@ -16,8 +16,9 @@ import {UsersService} from "./user.service";
 })
 
 @RouteConfig([
-    { path: "/", name: "Login", component: UsersService}
+    { path: "/", name: "Login", component: UserFactory}
 ])
+
 
 
 

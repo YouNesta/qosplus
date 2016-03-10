@@ -21,18 +21,41 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(function (req, res, next) {
+
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://192.168.33.10:3000');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  // Pass to next layer of middleware
+  next();
+});
 /** Declaration Static Files**/
+/*
 app.use('/public', express.static(path.join(__dirname, 'public')));
+*/
+/*
 app.use(express.static(path.join(__dirname, 'myApp')));
-app.use('/lib', express.static(path.join(__dirname, 'myApp/node_modules')));
+*/
+/*app.use('/lib', express.static(path.join(__dirname, 'myApp/node_modules')));
+app.use('/lib', express.static(path.join(__dirname, 'myApp/bower_components')));*/
 
 app.use('/', routes);
 app.use('/api/v1/users', users);
 
 
-app.get('*', function(req, res) {    // This is for render always index to the angularApp (Because refresh or an
+/*app.get('*', function(req, res) {    // This is for render always index to the angularApp (Because refresh or an
   res.render('index', {});
-});
+});*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

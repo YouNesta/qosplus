@@ -13,11 +13,9 @@ import {enableProdMode} from 'angular2/core';
 enableProdMode();
 
 import {HeaderComponent} from "./Layouts/header.component";
-
 import {UserComponent}    from './User/user.component'
 import {HomeComponent}    from './Home/home.component'
-import 'rxjs/Rx';
-
+import {UserFactory} from "./User/user.factory";
 
 
 @Component({
@@ -38,24 +36,9 @@ import 'rxjs/Rx';
 
 export class App {
     title:string;
-    constructor(public http: Http) {
-
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-
-        this.http.post('/api/v1/users/subscribe', this.title, {
-                headers: headers
-            })
-            .subscribe(
-                data => {
-                    console.log(data);
-                },
-                err => console.log(err.json().message),
-                () => console.log('Authentication Complete')
-            );
-
+    constructor(){
 
     }
 }
 
-bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS]);
+bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory]);

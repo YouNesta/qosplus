@@ -1,4 +1,4 @@
-System.register(['angular2/core', "./user"], function(exports_1) {
+System.register(['angular2/core', "./user", "./user.factory"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', "./user"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_1;
+    var core_1, user_1, user_factory_1;
     var UserSubscribeComponent;
     return {
         setters:[
@@ -17,25 +17,25 @@ System.register(['angular2/core', "./user"], function(exports_1) {
             },
             function (user_1_1) {
                 user_1 = user_1_1;
+            },
+            function (user_factory_1_1) {
+                user_factory_1 = user_factory_1_1;
             }],
         execute: function() {
             UserSubscribeComponent = (function () {
-                function UserSubscribeComponent() {
-                    this.user = new user_1.User(1, 'Younes', 'Nesta');
+                function UserSubscribeComponent(userFactory) {
+                    this.user = user_1.User;
+                    this.service = userFactory;
                 }
-                UserSubscribeComponent.prototype.subscribe = function (http) {
-                    console.log(this.user);
+                UserSubscribeComponent.prototype.subscribe = function () {
                     this.user = new user_1.User(this.user.id + 1, this.user.firstname, this.user.lastname);
-                    console.log(this.user);
-                    this.http.save(this.user);
-                    // Subscribe to the observable to get the parsed people object and attach it to the
-                    // component
+                    this.service.save(this.user);
                 };
                 UserSubscribeComponent = __decorate([
                     core_1.Component({
                         templateUrl: "app/User/user-subscribe.html"
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [user_factory_1.UserFactory])
                 ], UserSubscribeComponent);
                 return UserSubscribeComponent;
             })();
