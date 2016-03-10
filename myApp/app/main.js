@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 'angular2/router', "./Layouts/header.component", './User/user.component', './Home/home.component', "./User/user.factory"], function(exports_1) {
+System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', "ng2-material/all", 'angular2/router', "./Layouts/header.component", './User/user.component', './Home/home.component', "./User/user.factory"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, browser_1, http_1, router_1, core_2, header_component_1, user_component_1, home_component_1, user_factory_1;
+    var core_1, browser_1, http_1, all_1, router_1, core_2, header_component_1, user_component_1, home_component_1, user_factory_1;
     var App;
     return {
         setters:[
@@ -21,6 +21,9 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (all_1_1) {
+                all_1 = all_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -59,7 +62,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                 return App;
             })();
             exports_1("App", App);
-            browser_1.bootstrap(App, [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, user_factory_1.UserFactory]);
+            browser_1.bootstrap(App, [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, user_factory_1.UserFactory, all_1.MATERIAL_PROVIDERS]);
         }
     }
 });
