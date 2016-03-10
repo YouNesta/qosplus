@@ -7,7 +7,8 @@ import {NavComponent} from "./nav.component";
 @Component({
     selector: "header",
     template:   "<h1>{{title}}</h1>" +
-                "<nav></nav>",
+                "<nav></nav>" +
+    "<div class='wrapper'>",
     directives: [NavComponent]
 })
 
