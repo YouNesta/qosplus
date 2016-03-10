@@ -7,14 +7,7 @@ System.config({
     packages: {
         'app': {
             defaultExtension: 'ts'
-        },
-        'rxjs': {
-            defaultExtension: 'js'
         }
-    },
-    map: {
-        'rxjs':"/node_modules/rxjs"
-
     }
 });
 System.import('app/main')
