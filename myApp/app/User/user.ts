@@ -15,17 +15,18 @@ export class User {
     private _financialShop: Shop;
     private _IBAN: number;
     private _BIC: number;
-    private _fiancialMail: number;
+    private _fiancialMail: string;
     private _paymentDate: boolean;
     private _deliverShop: Shop;
     private _central: string;
 
 
-    constructor(lastname, firstname, mail, phone) {
-        this._lastname = lastname;
-        this._firstname = firstname;
-        this._mail = mail;
-        this._phone = phone;
+    constructor(user) {
+        this._lastname = user.lastname;
+        this._firstname = user.firstname;
+        this._mail = user.mail;
+        this._phone = user.phone;
+        this._shop = user.shop;
     }
 
 
@@ -125,11 +126,11 @@ export class User {
         this._nightBox = value;
     }
 
-    get financialSociety():Shop {
+    get financialShop():Shop {
         return this._financialShop;
     }
 
-    set financialSociety(value:Shop) {
+    set financialShop(value:Shop) {
         this._financialShop = value;
     }
 

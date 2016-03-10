@@ -2,6 +2,7 @@
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 import 'rxjs/Rx';
+import {Headers} from "angular2/http";
 
 @Injectable()
 
@@ -13,13 +14,24 @@ export class UserFactory {
 
     }
 
-    save(){
-        this.http.get(this.apiUrl + 'users/subscribe')
-            .map( (responseData) => responseData.text())
+    save(user){
+       user =  JSON.stringify(user);
+        console.log(user);
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        this.http
+            .post(this.apiUrl + 'users/subscribe',
+                user, {
+                    headers: headers
+                })
+            .map(response => response.json())
             .subscribe(
-                data => console.log(data),
-                err => console.log(err),
-                () => console.log('Random Quote Complete')
+                response => console.log(response),
+                err =>  console.log(err),
+                () => console.log('Authentication Complete')
             );
     }
+
+
 }

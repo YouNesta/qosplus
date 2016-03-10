@@ -35,15 +35,16 @@ export class UserSubscribeComponent {
             adress: "",
             adress2: "",
             city: "",
-            zipcode: "",
+            zipCode: "",
             mobile: "",
             phone: "",
             fax: "",
-            email: ""
+            mail: ""
         },
         director: {
+            same:'',
             lastName: '',
-            fistName: '',
+            firstName: '',
             phone: '',
             mail: '',
         },
@@ -52,30 +53,35 @@ export class UserSubscribeComponent {
         adeli: '',
         nightbox: '',
         financialShop: {
+            same:'',
             name: "",
             adress: "",
             adress2: "",
             city: "",
-            zipcode: "",
+            zipCode: "",
             mobile: "",
             phone: "",
             fax: "",
-            email: ""
+            mail: ""
         },
         IBAN: '',
         BIC: '',
-        financialMail: '',
+        financialMail:{
+            same:'',
+            mail:''
+        },
         paymentDate: '',
         deliverShop: {
-            _name: "",
-            _adress: "",
-            _adress2: "",
-            _city: "",
-            _zipcode: "",
-            _mobile: "",
-            _phone: "",
-            _fax: "",
-            _email: ""
+            same:'',
+            name: "",
+            adress: "",
+            adress2: "",
+            city: "",
+            zipCode: "",
+            mobile: "",
+            phone: "",
+            fax: "",
+            mail: ""
         },
         central: '',
 
@@ -112,25 +118,33 @@ export class UserSubscribeComponent {
     subscribe(){
 
         if(this.subscribeForm.valid){
-            this.shop = new Shop(
-                this.model.shop.name,
-                this.model.shop.adress,
-                this.model.shop.adress2,
-                this.model.shop.city,
-                this.model.shop.zipCode
-            );
-            this.shop.mobile = this.model.shop.mobile;
-            this.shop.phone = this.model.shop.phone;
-            this.shop.fax = this.model.shop.fax;
-            this.shop.email = this.model.shop.email;
-console.log(this.model);
+            this.shop = new Shop(this.model.shop);
+            this.user = new User(this.model);
+            this.user.shop = this.shop;
 
-            this.user = new User(
-                this.model.lastName,
-                this.model.firstName,
-                this.model.mail,
-                this.model.phone
-            );
+            if(!this.model.director.same){
+                this.director = new User(this.model.director);
+            }
+
+            if(!this.model.financialShop.same){
+                this.financialShop = new Shop(this.model.financialShop);
+            }
+
+            if(!this.model.deliverShop.same){
+                this.deliverShop = new Shop(this.model.deliverShop);
+            }
+
+            if(!this.model.financialMail.same){
+                this.model.financialMail.mail = this.shop.mail;
+            }
+
+            this.user.director = this.director;
+            this.user.financialShop = this.financialShop;
+            this.user.deliverShop = this.deliverShop;
+            this.user.fiancialMail = this.model.financialMail.mail;
+
+            this.service.save(this.user);
+
 
         }
 

@@ -47,15 +47,16 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
                             adress: "",
                             adress2: "",
                             city: "",
-                            zipcode: "",
+                            zipCode: "",
                             mobile: "",
                             phone: "",
                             fax: "",
-                            email: ""
+                            mail: ""
                         },
                         director: {
+                            same: '',
                             lastName: '',
-                            fistName: '',
+                            firstName: '',
                             phone: '',
                             mail: '',
                         },
@@ -64,30 +65,35 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
                         adeli: '',
                         nightbox: '',
                         financialShop: {
+                            same: '',
                             name: "",
                             adress: "",
                             adress2: "",
                             city: "",
-                            zipcode: "",
+                            zipCode: "",
                             mobile: "",
                             phone: "",
                             fax: "",
-                            email: ""
+                            mail: ""
                         },
                         IBAN: '',
                         BIC: '',
-                        financialMail: '',
+                        financialMail: {
+                            same: '',
+                            mail: ''
+                        },
                         paymentDate: '',
                         deliverShop: {
-                            _name: "",
-                            _adress: "",
-                            _adress2: "",
-                            _city: "",
-                            _zipcode: "",
-                            _mobile: "",
-                            _phone: "",
-                            _fax: "",
-                            _email: ""
+                            same: '',
+                            name: "",
+                            adress: "",
+                            adress2: "",
+                            city: "",
+                            zipCode: "",
+                            mobile: "",
+                            phone: "",
+                            fax: "",
+                            mail: ""
                         },
                         central: '',
                     };
@@ -101,13 +107,26 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
                 }
                 UserSubscribeComponent.prototype.subscribe = function () {
                     if (this.subscribeForm.valid) {
-                        this.shop = new shop_1.Shop(this.model.shop.name, this.model.shop.adress, this.model.shop.adress2, this.model.shop.city, this.model.shop.zipCode);
-                        this.shop.mobile = this.model.shop.mobile;
-                        this.shop.phone = this.model.shop.phone;
-                        this.shop.fax = this.model.shop.fax;
-                        this.shop.email = this.model.shop.email;
-                        console.log(this.model);
-                        this.user = new user_1.User(this.model.lastName, this.model.firstName, this.model.mail, this.model.phone);
+                        this.shop = new shop_1.Shop(this.model.shop);
+                        this.user = new user_1.User(this.model);
+                        this.user.shop = this.shop;
+                        if (!this.model.director.same) {
+                            this.director = new user_1.User(this.model.director);
+                        }
+                        if (!this.model.financialShop.same) {
+                            this.financialShop = new shop_1.Shop(this.model.financialShop);
+                        }
+                        if (!this.model.deliverShop.same) {
+                            this.deliverShop = new shop_1.Shop(this.model.deliverShop);
+                        }
+                        if (!this.model.financialMail.same) {
+                            this.model.financialMail.mail = this.shop.mail;
+                        }
+                        this.user.director = this.director;
+                        this.user.financialShop = this.financialShop;
+                        this.user.deliverShop = this.deliverShop;
+                        this.user.fiancialMail = this.model.financialMail.mail;
+                        this.service.save(this.user);
                     }
                 };
                 UserSubscribeComponent = __decorate([

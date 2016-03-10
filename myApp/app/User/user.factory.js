@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_1) {
+System.register(['angular2/core', 'angular2/http', 'rxjs/Rx', "angular2/http"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1;
+    var core_1, http_1, http_2;
     var UserFactory;
     return {
         setters:[
@@ -18,7 +18,10 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (_1) {}],
+            function (_1) {},
+            function (http_2_1) {
+                http_2 = http_2_1;
+            }],
         execute: function() {
             UserFactory = (function () {
                 function UserFactory(http) {
@@ -26,10 +29,17 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                     this.apiUrl = "http://192.168.33.10:8080/api/v1/";
                     this.http = http;
                 }
-                UserFactory.prototype.save = function () {
-                    this.http.get(this.apiUrl + 'users/subscribe')
-                        .map(function (responseData) { return responseData.text(); })
-                        .subscribe(function (data) { return console.log(data); }, function (err) { return console.log(err); }, function () { return console.log('Random Quote Complete'); });
+                UserFactory.prototype.save = function (user) {
+                    user = JSON.stringify(user);
+                    console.log(user);
+                    var headers = new http_2.Headers();
+                    headers.append('Content-Type', 'application/json');
+                    this.http
+                        .post(this.apiUrl + 'users/subscribe', user, {
+                        headers: headers
+                    })
+                        .map(function (response) { return response.json(); })
+                        .subscribe(function (response) { return console.log(response); }, function (err) { return console.log(err); }, function () { return console.log('Authentication Complete'); });
                 };
                 UserFactory = __decorate([
                     core_1.Injectable(), 

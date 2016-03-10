@@ -3,22 +3,22 @@ export class Shop {
     private _adress: string;
     private _adress2: string;
     private _city: string;
-    private _zipcode: number;
+    private _zipCode: number;
     private _mobile: number;
     private _phone: number;
     private _fax: number;
-    private _email: string;
+    private _mail: string;
 
-    constructor(name,adress, adress2,city,zipcode,mobile,phone,fax,email) {
-        this._name = name;
-        this._adress = adress;
-        this._adress2 = adress2;
-        this._city = city;
-        this._zipcode = zipcode;
-        this._mobile = mobile;
-        this._phone = phone;
-        this._fax = fax;
-        this._email =email;
+    constructor(shop) {
+        this._name = shop.name;
+        this._adress = shop.adress;
+        this._adress2 = shop.adress2;
+        this._city = shop.city;
+        this._zipCode = shop.zipCode;
+        this._mobile = shop.mobile;
+        this._phone = shop.phone;
+        this._fax = shop.fax;
+        this._mail = shop.mail;
     }
 
 
@@ -46,12 +46,12 @@ export class Shop {
         this._city = value;
     }
 
-    get zipcode():number {
-        return this._zipcode;
+    get zipCode():number {
+        return this._zipCode;
     }
 
-    set zipcode(value:number) {
-        this._zipcode = value;
+    set zipCode(value:number) {
+        this._zipCode = value;
     }
 
     get mobile():number {
@@ -78,11 +78,11 @@ export class Shop {
         this._fax = value;
     }
 
-    get email():string {
-        return this._email;
+    get mail():string {
+        return this._mail;
     }
 
-    set email(value:string) {
-        this._email = value;
+    set mail(value:string) {
+        this._mail = value;
     }
 }
