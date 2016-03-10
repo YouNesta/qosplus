@@ -1,4 +1,4 @@
-System.register(['angular2/core', "./user", "./user.factory"], function(exports_1) {
+System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', "./user", "./user.factory"], function(exports_
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_1, user_factory_1;
+    var core_1, user_1, user_factory_1, all_1;
     var UserSubscribeComponent;
     return {
         setters:[
@@ -20,6 +20,9 @@ System.register(['angular2/core', "./user", "./user.factory"], function(exports_
             },
             function (user_factory_1_1) {
                 user_factory_1 = user_factory_1_1;
+            },
+            function (all_1_1) {
+                all_1 = all_1_1;
             }],
         execute: function() {
             UserSubscribeComponent = (function () {
@@ -33,7 +36,9 @@ System.register(['angular2/core', "./user", "./user.factory"], function(exports_
                 };
                 UserSubscribeComponent = __decorate([
                     core_1.Component({
-                        templateUrl: "app/User/user-subscribe.html"
+                        providers: [],
+                        templateUrl: "app/User/user-subscribe.html",
+                        directives: [all_1.MATERIAL_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [user_factory_1.UserFactory])
                 ], UserSubscribeComponent);

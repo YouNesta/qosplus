@@ -1,9 +1,12 @@
 import {Component} from 'angular2/core';
 import {User} from "./user";
 import {UserFactory} from "./user.factory";
+import {MATERIAL_DIRECTIVES} from "ng2-material/all";
 
 @Component({
-    templateUrl: "app/User/user-subscribe.html"
+    providers: [],
+    templateUrl: "app/User/user-subscribe.html",
+    directives: [MATERIAL_DIRECTIVES]
 })
 
 export class UserSubscribeComponent {

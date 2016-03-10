@@ -1,15 +1,149 @@
 <h1>Subscribe</h1>
 
-<form>
-    <div class="form-group">
-        <label for="firstname">First Name</label>
-        <input type="text" id="firstname" class="form-control" [(ngModel)]="user.firstname" required>
+
+
+    <div layout="column">
+        <md-toolbar class="md-hero" layout="row" layout-align="center center" layout-align-gt-md="end end">
+            <i class="secret-project" md-icon>person</i>
+        </md-toolbar>
+        <md-content layout-padding>
+            <div>
+                <form name="userForm">
+
+
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-xs>
+                            <label>Raison Social (Disabled)</label>
+                            <input md-input [(value)]="user.socialReason" >
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Nom</label>
+                            <input md-input [(value)]="user.lastName">
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Prénom</label>
+                            <input md-input [(value)]="user.firstName">
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>E-mail</label>
+                            <input md-input [(value)]="user.mail">
+                        </md-input-container>
+
+                    </div>
+                    <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date">
+                    </md-datepicker>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>numéro de TVA intracommunautaire</label>
+                        <input md-input [(value)]="user.tva">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Numéro Siret</label>
+                        <input md-input [(value)]="user.siret">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Numéro Adeli</label>
+                        <input md-input [(value)]="user.adeli">
+                    </md-input-container>
+
+
+                    <md-radio-group [(value)]="user.nightBox">
+                        <label>Numéro Siret</label>
+                        <md-radio-button value="true" class="md-primary">Oui</md-radio-button>
+                        <md-radio-button value="false" class="md-warn" checked="true"> Non</md-radio-button>
+                    </md-radio-group>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>IBAN</label>
+                        <input md-input [(value)]="user.iban">
+                    </md-input-container>
+
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>bic</label>
+                        <input md-input [(value)]="user.bic">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>E-mail de confirmation de prelevement</label>
+                        <input md-input [(value)]="user.fiancialMail">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Mise en place du prélévement le :</label>
+                        <input md-input [(value)]="user.paymentDate">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Central ou Enseigne</label>
+                        <input md-input [(value)]="user.paymentDate">
+                    </md-input-container>
+                    <button  type="submit"  (click)="subscribe()" md-fab class="md-fab" aria-label="Enregistrer votre compte">
+                        <i md-icon>verified_user</i>
+                    </button>
+                    <button class="btn btn-default" >Submit</button>
+
+                    public shop: Shop,
+                    public director: User,
+                    public financialSociety: Shop,
+                    public deliverShop: Shop,
+                    public central: string
+                </form>
+
+
+
+                <!--<form >
+                    <md-input-container class="md-block">
+                        <label>Address</label>
+                        <input md-input [(value)]="user.address">
+                    </md-input-container>
+                    <md-input-container md-no-float class="md-block">
+                        <input md-input [(value)]="user.address2" placeholder="Address 2">
+                    </md-input-container>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>City</label>
+                            <input md-input [(value)]="user.city">
+                        </md-input-container>
+                        &lt;!&ndash;<md-input-container class="md-block" flex-gt-sm>
+                            <label>State</label>
+                            <select [(value)]="user.state">
+                                <option *ngFor="#state of states" [value]="state.abbrev">
+                                    {{state.abbrev}}
+                                </option>
+                            </select>
+                        </md-input-container>&ndash;&gt;
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Postal Code</label>
+                            <input md-input ngControl="postalCode" [(value)]="user.postalCode" placeholder="12345"
+                                   required mdPattern="^[0-9]{5}$" #postalCode="ngForm" mdMaxLength="5">
+                            <div [md-messages]="postalCode" role="alert">
+                                <div md-message="required">You must supply a postal code.</div>
+                                <div md-message="mdPattern">That doesn't look like a valid postal code.</div>
+                                <div md-message="mdMaxLength">Don't use the long version silly...we don't need to be that specific...
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <md-input-container class="md-block">
+                        <label>Biography</label>
+                        <textarea md-input [(value)]="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
+                    </md-input-container>
+                </form>-->
+            </div>
+
+
+
+
+
+        </md-content>
+
+
+
     </div>
 
-    <div class="form-group">
-        <label for="firstname">Last Name</label>
-        <input type="text" id="lastname" class="form-control" [(ngModel)]="user.lastname">
-    </div>
 
-    <button type="submit" class="btn btn-default" (click)="subscribe()">Submit</button>
-</form>
