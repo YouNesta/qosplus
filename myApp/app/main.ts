@@ -14,9 +14,11 @@ import {enableProdMode} from 'angular2/core';
 enableProdMode();
 
 import {HeaderComponent} from "./Layouts/header.component";
+import {FooterComponent} from "./Layouts/footer.component";
 import {UserComponent}    from './User/user.component'
 import {HomeComponent}    from './Home/home.component'
 import {UserFactory} from "./User/user.factory";
+import {RegEx} from "./lib/regex";
 
 
 @Component({
@@ -36,10 +38,9 @@ import {UserFactory} from "./User/user.factory";
 
 
 export class App {
-    title:string;
     constructor(){
 
     }
 }
 
-bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory, MATERIAL_PROVIDERS]);
+bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory, MATERIAL_PROVIDERS, RegEx]);

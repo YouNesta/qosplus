@@ -20,10 +20,10 @@ var rename = require('gulp-rename'),
 var paths = {
     vendorsScss: 'assets/scss/vendors/**/*.scss',
     scripts: 'assets/js/**/*.js',
-    scss: ['assets/scss/**/*.scss','nodes_modules/bootstrap-sass/stylesheets/**/*.scss', '!assets/scss/vendors/**.scss' ]
+    scss: ['assets/scss/**/*.scss', '!assets/scss/vendors/**.scss' ]
 };
 
-gulp.task('sass', function () {
+gulp.task('scss', function () {
 
     var scss = gulp.src(paths.scss)
         .pipe(sourcemaps.init())
@@ -43,7 +43,7 @@ gulp.task('sass', function () {
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('./public/css/vendors'));
-    
+
     return merge(vendors, scss);
 
 });
@@ -62,7 +62,7 @@ gulp.task('scripts', function(){
 
 gulp.task('watch', function() {
     gulp.watch(paths.scripts, ['scripts']);
-    gulp.watch(paths.scss, ['scss']);
+    gulp.watch([paths.scss, paths.vendorsScss], ['scss']);
 });
 
 // The default task (called when you run `gulp` from cli)
