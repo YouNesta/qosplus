@@ -1,4 +1,4 @@
-System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all", "../Shop/shop", "angular2/common", "../lib/regex"], function(exports_1) {
+System.register(['angular2/core', "./user", "./user.factory", "../Shop/shop", "angular2/common", "../lib/regex"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_1, user_factory_1, all_1, shop_1, common_1, regex_1;
+    var core_1, user_1, user_factory_1, shop_1, common_1, regex_1;
     var UserSubscribeComponent;
     return {
         setters:[
@@ -20,9 +20,6 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
             },
             function (user_factory_1_1) {
                 user_factory_1 = user_factory_1_1;
-            },
-            function (all_1_1) {
-                all_1 = all_1_1;
             },
             function (shop_1_1) {
                 shop_1 = shop_1_1;
@@ -224,7 +221,6 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
                     core_1.Component({
                         providers: [],
                         templateUrl: "app/User/user-subscribe.html",
-                        directives: [all_1.MATERIAL_DIRECTIVES]
                     }), 
                     __metadata('design:paramtypes', [user_factory_1.UserFactory, common_1.FormBuilder, regex_1.RegEx])
                 ], UserSubscribeComponent);

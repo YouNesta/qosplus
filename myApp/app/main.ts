@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {bootstrap}    from 'angular2/platform/browser';
 import {Http, Headers, HTTP_PROVIDERS} from 'angular2/http';
-import {MATERIAL_PROVIDERS} from "ng2-material/all";
 
 import {
     RouteConfig,
@@ -45,4 +44,4 @@ export class App {
 
 }
 
-bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory, MATERIAL_PROVIDERS, RegEx]);
+bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory, RegEx]);
