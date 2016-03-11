@@ -6,6 +6,7 @@ System.register([], function(exports_1) {
             User = (function () {
                 function User(user) {
                     ((user.id != 'undefined') ? this._id = 0 : this._id = user.id);
+                    this._role = 1;
                     this._lastName = user.lastName;
                     this._firstname = user.firstname;
                     this._mail = user.mail;
@@ -17,6 +18,16 @@ System.register([], function(exports_1) {
                     },
                     set: function (value) {
                         this._id = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(User.prototype, "role", {
+                    get: function () {
+                        return this._role;
+                    },
+                    set: function (value) {
+                        this._role = value;
                     },
                     enumerable: true,
                     configurable: true

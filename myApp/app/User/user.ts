@@ -1,6 +1,7 @@
 import {Shop} from "../Shop/shop";
 export class User {
     private _id: number;
+    private _role: number;
     private _lastName: string;
     private _firstname: string;
     private _phone: number;
@@ -30,8 +31,9 @@ export class User {
     private _central: string;
 
 
-    constructor(user ) {
+    constructor(user) {
         ((user.id != 'undefined') ? this._id = 0: this._id = user.id);
+        this._role = 1;
         this._lastName = user.lastName;
         this._firstname = user.firstname;
         this._mail = user.mail;
@@ -45,6 +47,14 @@ export class User {
 
     set id(value:number) {
         this._id = value;
+    }
+
+    get role():number {
+        return this._role;
+    }
+
+    set role(value:number) {
+        this._role = value;
     }
 
     get socialReason():string {
