@@ -26,9 +26,7 @@ System.register(['angular2/core', "./nav.component"], function(exports_1) {
                 HeaderComponent = __decorate([
                     core_1.Component({
                         selector: "header",
-                        template: "<h1>{{title}}</h1>" +
-                            "<nav></nav>" +
-                            "<div class='wrapper'>",
+                        templateUrl: "app/Layouts/header.html",
                         directives: [nav_component_1.NavComponent]
                     }), 
                     __metadata('design:paramtypes', [])

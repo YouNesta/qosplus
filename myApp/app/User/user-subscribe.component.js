@@ -35,6 +35,76 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
             }],
         execute: function() {
             UserSubscribeComponent = (function () {
+                /*  model = {
+                      lastName: 'Boulkaddid',
+                      firstName: 'Younes',
+                      phone: '06.59.90.12.05',
+                      mail: 'boulkaddid.younes',
+                      socialReason: 'YOUNESTA SARL',
+                      shop: {
+                          name: "Younesta",
+                          adress: "43 rue de malabry",
+                          adress2: "",
+                          city: "Maisse",
+                          zipCode: "91720",
+                          mobile: "06 50 90 12 05",
+                          phone: "01 60 78 37 94",
+                          fax: "01 60 78 37 94",
+                          mail: "younes.boulkaddid@supinternet.fr"
+                      },
+                      director: {
+                          id:true,
+                          lastName: '',
+                          firstName: '',
+                          phone: '',
+                          mail: '',
+                      },
+                      tva: 0.9,
+                      siret: 0987654567890987,
+                      adeli: 876545678987654,
+                      nightBox: true,
+                      transporteur:'Mathieu',
+                      openDay: "Lun-Mer",
+                      openHour: "10h-18h",
+                      associateShop: [75010112],
+                      averageLens: 234567,
+                      providerLens: "Aflelou",
+                      averageGlasses: 234567,
+                      providerGlasses: "Aflelou",
+                      financialShop: {
+                          id:1,
+                          name: "",
+                          adress: "",
+                          adress2: "",
+                          city: "",
+                          zipCode: "",
+                          mobile: "",
+                          phone: "",
+                          fax: "",
+                          mail: ""
+                      },
+                      IBAN: 098765434567890,
+                      BIC: 0987654567890,
+                      financialMail:{
+                          id:1,
+                          mail:''
+                      },
+                      paymentState: true,
+                      deliverShop: {
+                          id:1,
+                          name: "",
+                          adress: "",
+                          adress2: "",
+                          city: "",
+                          zipCode: "",
+                          mobile: "",
+                          phone: "",
+                          fax: "",
+                          mail: ""
+                      },
+                      central: 'Central datatatata',
+                  };
+              */
                 function UserSubscribeComponent(userFactory, fb, regEx) {
                     this.model = {
                         lastName: '',
@@ -54,7 +124,7 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
                             mail: ""
                         },
                         director: {
-                            same: '',
+                            id: '',
                             lastName: '',
                             firstName: '',
                             phone: '',
@@ -63,9 +133,17 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
                         tva: '',
                         siret: '',
                         adeli: '',
-                        nightbox: '',
+                        nightBox: '',
+                        transporteur: '',
+                        openDay: "",
+                        openHour: "",
+                        associateShop: [],
+                        averageLens: "",
+                        providerLens: "",
+                        averageGlasses: "",
+                        providerGlasses: "",
                         financialShop: {
-                            same: '',
+                            id: '',
                             name: "",
                             adress: "",
                             adress2: "",
@@ -79,12 +157,12 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
                         IBAN: '',
                         BIC: '',
                         financialMail: {
-                            same: '',
+                            id: '',
                             mail: ''
                         },
-                        paymentDate: '',
+                        paymentState: '',
                         deliverShop: {
-                            same: '',
+                            id: '',
                             name: "",
                             adress: "",
                             adress2: "",
@@ -107,25 +185,38 @@ System.register(['angular2/core', "./user", "./user.factory", "ng2-material/all"
                 }
                 UserSubscribeComponent.prototype.subscribe = function () {
                     if (this.subscribeForm.valid) {
-                        this.shop = new shop_1.Shop(this.model.shop);
                         this.user = new user_1.User(this.model);
-                        this.user.shop = this.shop;
-                        if (!this.model.director.same) {
-                            this.director = new user_1.User(this.model.director);
+                        this.user.shop = new shop_1.Shop(this.model.shop);
+                        if (!this.model.director.id) {
+                            this.user.director = new user_1.User(this.model.director);
                         }
-                        if (!this.model.financialShop.same) {
-                            this.financialShop = new shop_1.Shop(this.model.financialShop);
+                        if (!this.model.financialShop.id) {
+                            this.user.financialShop = new shop_1.Shop(this.model.financialShop);
                         }
-                        if (!this.model.deliverShop.same) {
-                            this.deliverShop = new shop_1.Shop(this.model.deliverShop);
+                        if (!this.model.deliverShop.id) {
+                            this.user.deliverShop = new shop_1.Shop(this.model.deliverShop);
                         }
-                        if (!this.model.financialMail.same) {
-                            this.model.financialMail.mail = this.shop.mail;
+                        if (!this.model.financialMail.id) {
+                            this.user.financialMail = this.model.financialMail.mail;
                         }
-                        this.user.director = this.director;
-                        this.user.financialShop = this.financialShop;
-                        this.user.deliverShop = this.deliverShop;
-                        this.user.fiancialMail = this.model.financialMail.mail;
+                        else {
+                            this.user.financialMail = this.user.shop.mail;
+                        }
+                        this.user.tva = this.model.tva;
+                        this.user.siret = this.model.siret;
+                        this.user.adeli = this.model.adeli;
+                        this.user.nightBox = this.model.nightBox;
+                        this.user.transporteur = this.model.transporteur;
+                        this.user.openDay = this.model.openDay;
+                        this.user.openHour = this.model.openHour;
+                        this.user.associateShop = this.model.associateShop;
+                        this.user.averageLens = this.model.averageLens;
+                        this.user.providerLens = this.model.providerLens;
+                        this.user.averageGlasses = this.model.averageGlasses;
+                        this.user.providerGlasses = this.model.providerGlasses;
+                        this.user.IBAN = this.model.IBAN;
+                        this.user.BIC = this.model.BIC;
+                        this.user.central = this.model.central;
                         this.service.save(this.user);
                     }
                 };

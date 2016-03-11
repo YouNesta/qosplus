@@ -5,6 +5,7 @@ System.register([], function(exports_1) {
         execute: function() {
             Shop = (function () {
                 function Shop(shop) {
+                    ((shop.id != 'undefined') ? this._id = 0 : this._id = shop.id);
                     this._name = shop.name;
                     this._adress = shop.adress;
                     this._adress2 = shop.adress2;
@@ -15,6 +16,16 @@ System.register([], function(exports_1) {
                     this._fax = shop.fax;
                     this._mail = shop.mail;
                 }
+                Object.defineProperty(Shop.prototype, "id", {
+                    get: function () {
+                        return this._id;
+                    },
+                    set: function (value) {
+                        this._id = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 Object.defineProperty(Shop.prototype, "name", {
                     get: function () {
                         return this._name;
@@ -31,6 +42,16 @@ System.register([], function(exports_1) {
                     },
                     set: function (value) {
                         this._adress = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "adress2", {
+                    get: function () {
+                        return this._adress2;
+                    },
+                    set: function (value) {
+                        this._adress2 = value;
                     },
                     enumerable: true,
                     configurable: true

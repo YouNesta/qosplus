@@ -27,7 +27,7 @@ import {RegEx} from "./lib/regex";
                 "<router-outlet></router-outlet>" +
                 "<footer>{{title}}</footer>",
 
-    directives: [ROUTER_DIRECTIVES, HeaderComponent]
+    directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent]
 })
 
 @RouteConfig([
@@ -38,9 +38,11 @@ import {RegEx} from "./lib/regex";
 
 
 export class App {
+    title = "penis";
     constructor(){
 
     }
+
 }
 
 bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory, MATERIAL_PROVIDERS, RegEx]);

@@ -5,11 +5,11 @@ System.register([], function(exports_1) {
         execute: function() {
             User = (function () {
                 function User(user) {
-                    this._lastname = user.lastname;
+                    ((user.id != 'undefined') ? this._id = 0 : this._id = user.id);
+                    this._lastName = user.lastName;
                     this._firstname = user.firstname;
                     this._mail = user.mail;
                     this._phone = user.phone;
-                    this._shop = user.shop;
                 }
                 Object.defineProperty(User.prototype, "id", {
                     get: function () {
@@ -41,12 +41,12 @@ System.register([], function(exports_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(User.prototype, "lastname", {
+                Object.defineProperty(User.prototype, "lastName", {
                     get: function () {
-                        return this._lastname;
+                        return this._lastName;
                     },
                     set: function (value) {
-                        this._lastname = value;
+                        this._lastName = value;
                     },
                     enumerable: true,
                     configurable: true
@@ -131,6 +131,96 @@ System.register([], function(exports_1) {
                     enumerable: true,
                     configurable: true
                 });
+                Object.defineProperty(User.prototype, "transporteur", {
+                    get: function () {
+                        return this._transporteur;
+                    },
+                    set: function (value) {
+                        this._transporteur = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(User.prototype, "openDay", {
+                    get: function () {
+                        return this._openDay;
+                    },
+                    set: function (value) {
+                        this._openDay = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(User.prototype, "openHour", {
+                    get: function () {
+                        return this._openHour;
+                    },
+                    set: function (value) {
+                        this._openHour = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(User.prototype, "associateShop", {
+                    get: function () {
+                        return this._associateShop;
+                    },
+                    set: function (value) {
+                        this._associateShop = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(User.prototype, "averageLens", {
+                    get: function () {
+                        return this._averageLens;
+                    },
+                    set: function (value) {
+                        this._averageLens = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(User.prototype, "providerLens", {
+                    get: function () {
+                        return this._providerLens;
+                    },
+                    set: function (value) {
+                        this._providerLens = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(User.prototype, "averageGlasses", {
+                    get: function () {
+                        return this._averageGlasses;
+                    },
+                    set: function (value) {
+                        this._averageGlasses = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(User.prototype, "providerGlasses", {
+                    get: function () {
+                        return this._providerGlasses;
+                    },
+                    set: function (value) {
+                        this._providerGlasses = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(User.prototype, "commercial", {
+                    get: function () {
+                        return this._commercial;
+                    },
+                    set: function (value) {
+                        this._commercial = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 Object.defineProperty(User.prototype, "financialShop", {
                     get: function () {
                         return this._financialShop;
@@ -161,22 +251,22 @@ System.register([], function(exports_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(User.prototype, "fiancialMail", {
+                Object.defineProperty(User.prototype, "financialMail", {
                     get: function () {
-                        return this._fiancialMail;
+                        return this._financialMail;
                     },
                     set: function (value) {
-                        this._fiancialMail = value;
+                        this._financialMail = value;
                     },
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(User.prototype, "paymentDate", {
+                Object.defineProperty(User.prototype, "paymentState", {
                     get: function () {
-                        return this._paymentDate;
+                        return this._paymentState;
                     },
                     set: function (value) {
-                        this._paymentDate = value;
+                        this._paymentState = value;
                     },
                     enumerable: true,
                     configurable: true

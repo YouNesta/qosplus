@@ -1,7 +1,7 @@
 import {Shop} from "../Shop/shop";
 export class User {
     private _id: number;
-    private _lastname: string;
+    private _lastName: string;
     private _firstname: string;
     private _phone: number;
     private _mail: string;
@@ -12,21 +12,30 @@ export class User {
     private _siret: number;
     private _adeli: number;
     private _nightBox: boolean;
+    private _transporteur: string;
+    private _openDay: string ;
+    private _openHour: string ;
+    private _associateShop: Array<number> ;
+    private _averageLens: number ;
+    private _providerLens: string ;
+    private _averageGlasses: number ;
+    private _providerGlasses: string ;
+    private _commercial: string;
     private _financialShop: Shop;
     private _IBAN: number;
     private _BIC: number;
-    private _fiancialMail: string;
-    private _paymentDate: boolean;
+    private _financialMail: string;
+    private _paymentState: boolean;
     private _deliverShop: Shop;
     private _central: string;
 
 
-    constructor(user) {
-        this._lastname = user.lastname;
+    constructor(user ) {
+        ((user.id != 'undefined') ? this._id = 0: this._id = user.id);
+        this._lastName = user.lastName;
         this._firstname = user.firstname;
         this._mail = user.mail;
         this._phone = user.phone;
-        this._shop = user.shop;
     }
 
 
@@ -54,12 +63,12 @@ export class User {
         this._mail = value;
     }
 
-    get lastname():string {
-        return this._lastname;
+    get lastName():string {
+        return this._lastName;
     }
 
-    set lastname(value:string) {
-        this._lastname = value;
+    set lastName(value:string) {
+        this._lastName = value;
     }
 
     get firstname():string {
@@ -126,6 +135,79 @@ export class User {
         this._nightBox = value;
     }
 
+
+    get transporteur():string {
+        return this._transporteur;
+    }
+
+    set transporteur(value:string) {
+        this._transporteur = value;
+    }
+
+    get openDay():string {
+        return this._openDay;
+    }
+
+    set openDay(value:string) {
+        this._openDay = value;
+    }
+
+    get openHour():string {
+        return this._openHour;
+    }
+
+    set openHour(value:string) {
+        this._openHour = value;
+    }
+
+    get associateShop():Array<number> {
+        return this._associateShop;
+    }
+
+    set associateShop(value:Array<number>) {
+        this._associateShop = value;
+    }
+
+    get averageLens():number {
+        return this._averageLens;
+    }
+
+    set averageLens(value:number) {
+        this._averageLens = value;
+    }
+
+    get providerLens():string {
+        return this._providerLens;
+    }
+
+    set providerLens(value:string) {
+        this._providerLens = value;
+    }
+
+    get averageGlasses():number {
+        return this._averageGlasses;
+    }
+
+    set averageGlasses(value:number) {
+        this._averageGlasses = value;
+    }
+
+    get providerGlasses():string {
+        return this._providerGlasses;
+    }
+
+    set providerGlasses(value:string) {
+        this._providerGlasses = value;
+    }
+
+    get commercial():string {
+        return this._commercial;
+    }
+
+    set commercial(value:string) {
+        this._commercial = value;
+    }
+
     get financialShop():Shop {
         return this._financialShop;
     }
@@ -150,20 +232,20 @@ export class User {
         this._BIC = value;
     }
 
-    get fiancialMail():number {
-        return this._fiancialMail;
+    get financialMail():string {
+        return this._financialMail;
     }
 
-    set fiancialMail(value:number) {
-        this._fiancialMail = value;
+    set financialMail(value:string) {
+        this._financialMail = value;
     }
 
-    get paymentDate():boolean {
-        return this._paymentDate;
+    get paymentState():boolean {
+        return this._paymentState;
     }
 
-    set paymentDate(value:boolean) {
-        this._paymentDate = value;
+    set paymentState(value:boolean) {
+        this._paymentState = value;
     }
 
     get deliverShop():Shop {

@@ -1,4 +1,5 @@
 export class Shop {
+    private _id: number;
     private _name: string;
     private _adress: string;
     private _adress2: string;
@@ -10,6 +11,7 @@ export class Shop {
     private _mail: string;
 
     constructor(shop) {
+        ((shop.id != 'undefined') ?  this._id = 0: this._id = shop.id);
         this._name = shop.name;
         this._adress = shop.adress;
         this._adress2 = shop.adress2;
@@ -21,6 +23,14 @@ export class Shop {
         this._mail = shop.mail;
     }
 
+
+    get id():number {
+        return this._id;
+    }
+
+    set id(value:number) {
+        this._id = value;
+    }
 
     get name():string {
         return this._name;
@@ -36,6 +46,14 @@ export class Shop {
 
     set adress(value:string) {
         this._adress = value;
+    }
+
+    get adress2():string {
+        return this._adress2;
+    }
+
+    set adress2(value:string) {
+        this._adress2 = value;
     }
 
     get city():string {
