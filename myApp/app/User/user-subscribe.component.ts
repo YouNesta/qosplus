@@ -1,17 +1,14 @@
 import {Component} from 'angular2/core';
 import {User} from "./user";
 import {UserFactory} from "./user.factory";
-import {MATERIAL_DIRECTIVES} from "ng2-material/all";
 import {Shop} from "../Shop/shop";
 import {FormBuilder, Validators} from "angular2/common";
-import {MdNumberRequiredValidator, MdMinValueValidator, MdPatternValidator, MdMaxValueValidator} from "ng2-material/components/form/validators";
 import {ControlGroup} from "angular2/common";
 import {RegEx} from "../lib/regex";
 
 @Component({
     providers: [],
     templateUrl: "app/User/user-subscribe.html",
-    directives: [MATERIAL_DIRECTIVES]
 })
 
 export class UserSubscribeComponent {
@@ -175,15 +172,12 @@ export class UserSubscribeComponent {
                 Validators.maxLength(30)*/
             ])],
             'mail': ['', Validators.compose([
-               /* MdPatternValidator.inline(regEx.Email),
+               /*
                 Validators.required,
                 Validators.minLength(10),
                 Validators.maxLength(100)*/
             ])],
             'phone': ['', Validators.compose([
-                /*MdPatternValidator.inline(regEx.Phone['french']['fix']),
-                //MdMinValueValidator.inline(800),
-                //MdMaxValueValidator.inline(4999)*/
             ])]
         });
     }
@@ -194,7 +188,6 @@ export class UserSubscribeComponent {
         if(this.subscribeForm.valid){
             this.user = new User(this.model);
             this.user.shop = new Shop(this.model.shop);
-
             if(!this.model.director.id){
                 this.user.director = new User(this.model.director);
             }

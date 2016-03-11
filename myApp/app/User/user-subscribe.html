@@ -1,36 +1,32 @@
-<h1 class="md-toolbar-tools">Subscribe</h1>
+<h1>Subscribe</h1>
 
 
 
     <div layout="column">
-        <md-toolbar class="md-hero" layout="row" layout-align="center center" layout-align-gt-md="end end">
-            <i class="secret-project" md-icon>person</i>
-        </md-toolbar>
-        <md-content layout-padding>
             <div>
                 <form [ngFormModel]="subscribeForm" novalidate>
                     <div layout="row">
-                        <md-input-container class="md-block" flex>
+
                             <label>Nom</label>
-                            <input md-input [(ngModel)]="model.lastName" ngControl="lastName">
+                            <input  [(ngModel)]="model.lastName" ngControl="lastName">
                             <div md-messages="lastName">
                                 <div md-message="required">Ce champs est obligatoire</div>
                                 <div md-message="maxlength">The name has to be less than 30 characters long.</div>
-                            </div>                        </md-input-container>
-                        <md-input-container class="md-block" flex>
+                            </div>
+
                             <label>Prénom</label>
-                            <input md-input [(ngModel)]="model.firstName" ngControl="firstName">
+                            <input  [(ngModel)]="model.firstName" ngControl="firstName">
                             <div md-messages="firstName">
                                 <div md-message="required">Ce champs est obligatoire</div>
                                 <div md-message="maxlength">The name has to be less than 30 characters long.</div>
                             </div>
-                        </md-input-container>
+
 
                     </div>
                     <div layout="row">
-                        <md-input-container class="md-block" flex>
+
                             <label>Téléphone</label>
-                            <input md-input [(ngModel)]="model.phone" ngControl="phone">
+                            <input  [(ngModel)]="model.phone" ngControl="phone">
                             <div md-messages="phone" role="alert">
                                 <div md-message="mdNumberRequired">
                                     Seul les chiffres sont accepté pour un numéro de téléphone
@@ -46,80 +42,60 @@
                                    an hour? That's a little ridiculous. I doubt event Bill Clinton could afford that.
                                 </div>-->
                             </div>
-                        </md-input-container>
-                        <md-input-container class="md-block" flex>
+
+
                             <label>E-mail</label>
-                            <input md-input [(ngModel)]="model.mail" ngControl="mail">
+                            <input  [(ngModel)]="model.mail" ngControl="mail">
                             <div md-messages="mail" role="alert">
                                 <div md-message>Your mail must be between 10 and 100 characters long and look like an e-mail address.</div>
                             </div>
-                        </md-input-container>
+
                     </div>
 
-                    <md-input-container class="md-block" flex-gt-xs>
                         <label>Raison Social (Disabled)</label>
-                        <input md-input [(ngModel)]="model.socialReason" >
-                    </md-input-container>
+                        <input  [(ngModel)]="model.socialReason" >
 
 
-                    <md-input-container class="md-block">
                         <label>Nom du magasin</label>
-                        <input md-input [(ngModel)]="model.shop.name">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.shop.name">
                         <label>Adresse du magasin</label>
-                        <input md-input [(ngModel)]="model.shop.adress">
-                    </md-input-container>
-                    <md-input-container md-no-float class="md-block">
-                        <input md-input [(ngModel)]="model.shop.adress2" placeholder="Address 2">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.shop.adress">
+                        <input  [(ngModel)]="model.shop.adress2" placeholder="Address 2">
                         <label>Ville</label>
-                        <input md-input [(ngModel)]="model.financialShop.city">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.financialShop.city">
                         <label>Code Postal</label>
-                        <input md-input [(ngModel)]="model.shop.zipCode">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.shop.zipCode">
                         <label>Numéro de Portable du magasin</label>
-                        <input md-input [(ngModel)]="model.shop.mobile">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.shop.mobile">
                         <label>Numéro de Téléphone Fix</label>
-                        <input md-input [(ngModel)]="model.shop.phone">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.shop.phone">
                         <label>Numéro de Fax</label>
-                        <input md-input [(ngModel)]="model.shop.fax">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.shop.fax">
                         <label>Email du magasin</label>
-                        <input md-input [(ngModel)]="model.shop.mail">
-                    </md-input-container>
+                        <input  [(ngModel)]="model.shop.mail">
 
                     <div layout="row">
-                        <md-input-container class="md-block" flex>
+
                             <label>Nom</label>
-                            <input md-input [(ngModel)]="model.director.lastName" ngControl="lastName">
+                            <input  [(ngModel)]="model.director.lastName" ngControl="lastName">
                             <div md-messages="lastName">
                                 <div md-message="required">Ce champs est obligatoire</div>
                                 <div md-message="maxlength">The name has to be less than 30 characters long.</div>
-                            </div>                        </md-input-container>
-                        <md-input-container class="md-block" flex>
+                            </div>
+
                             <label>Prénom</label>
-                            <input md-input [(ngModel)]="model.director.firstName" ngControl="firstName">
+                            <input  [(ngModel)]="model.director.firstName" ngControl="firstName">
                             <div md-messages="firstName">
                                 <div md-message="required">Ce champs est obligatoire</div>
                                 <div md-message="maxlength">The name has to be less than 30 characters long.</div>
                             </div>
-                        </md-input-container>
+
 
                     </div>
                     <div layout="row">
-                        <md-input-container class="md-block" flex>
+
                             <label>Téléphone</label>
-                            <input md-input [(ngModel)]="model.director.phone" ngControl="phone">
+                            <input  [(ngModel)]="model.director.phone" ngControl="phone">
                             <div md-messages="phone" role="alert">
                                 <div md-message="mdNumberRequired">
                                     Seul les chiffres sont accepté pour un numéro de téléphone
@@ -128,172 +104,105 @@
                                     Vous devez entrer un numéro de téléphone fix valide
                                 </div>
                             </div>
-                        </md-input-container>
 
-                        <md-input-container class="md-block" flex>
+
+
                             <label>E-mail</label>
-                            <input md-input [(ngModel)]="model.director.mail" ngControl="mail">
+                            <input  [(ngModel)]="model.director.mail" ngControl="mail">
                             <div md-messages="mail" role="alert">
                                 <div md-message>Your mail must be between 10 and 100 characters long and look like an e-mail address.</div>
                             </div>
-                        </md-input-container>
+
                     </div>
 
 
-                    <md-input-container class="md-block" flex>
                         <label>numéro de TVA intracommunautaire</label>
-                        <input md-input [(ngModel)]="model.tva">
-                    </md-input-container>
+                        <input  [(ngModel)]="model.tva">
 
-                    <md-input-container class="md-block" flex>
                         <label>Numéro Siret</label>
-                        <input md-input [(ngModel)]="model.siret">
-                    </md-input-container>
+                        <input  [(ngModel)]="model.siret">
 
-                    <md-input-container class="md-block" flex>
                         <label>Numéro Adeli</label>
-                        <input md-input [(ngModel)]="model.adeli">
-                    </md-input-container>
+                        <input  [(ngModel)]="model.adeli">
 
-                    <md-radio-group [(value)]="model.nightBox">
-                        <label>Coffre de Nuit</label>
-                        <md-radio-button value="true" class="md-primary">Oui</md-radio-button>
-                        <md-radio-button value="false" class="md-warn" checked="true"> Non</md-radio-button>
-                    </md-radio-group>
+                    <div class="radio">
+                        <label><input type="radio" value="true" [(value)]="model.nightBox">Option 1</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" value="false" [(value)]="model.nightBox">Option 2</label>
+                    </div>
 
 
 
-                    <md-input-container class="md-block">
                         <label>transporteur</label>
-                        <input md-input [(ngModel)]="model.transporteur">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.transporteur">
                         <label>Jours d'ouverture</label>
-                        <input md-input [(ngModel)]="model.opendDay">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.opendDay">
                         <label>Heure d'ouverture</label>
-                        <input md-input [(ngModel)]="model.openHour">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.openHour">
                         <label>Shop Associé</label>
-                        <input md-input [(ngModel)]="model.associateShop">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.associateShop">
                         <label>Potentiel moyen HT d'achat de lentilles</label>
-                        <input md-input [(ngModel)]="model.averageLens">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.averageLens">
                         <label>Fournisseur Lentilles</label>
-                        <input md-input [(ngModel)]="model.providerLens">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.providerLens">
                         <label>Potentiel moyen HT d'achat de verres</label>
-                        <input md-input [(ngModel)]="model.averageGlasses">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.averageGlasses">
                         <label>Fournisseur Verres</label>
-                        <input md-input [(ngModel)]="model.providerGlasses">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.providerGlasses">
                         <label>Nom du magasin</label>
-                        <input md-input [(ngModel)]="model.financialShop.name">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.financialShop.name">
                         <label>Adresse du magasin</label>
-                        <input md-input [(ngModel)]="model.financialShop.adress">
-                    </md-input-container>
-                    <md-input-container md-no-float class="md-block">
-                        <input md-input [(ngModel)]="model.financialShop.adress2" placeholder="Address 2">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.financialShop.adress">
+                        <input  [(ngModel)]="model.financialShop.adress2" placeholder="Address 2">
                         <label>Ville</label>
-                        <input md-input [(ngModel)]="model.financialShop.city">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.financialShop.city">
                         <label>Code Postal</label>
-                        <input md-input [(ngModel)]="model.financialShop.zipCode">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.financialShop.zipCode">
                         <label>Numéro de Portable du magasin</label>
-                        <input md-input [(ngModel)]="model.financialShop.mobile">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.financialShop.mobile">
                         <label>Numéro de Téléphone Fix</label>
-                        <input md-input [(ngModel)]="model.financialShop.phone">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.financialShop.phone">
                         <label>Numéro de Fax</label>
-                        <input md-input [(ngModel)]="model.financialShop.fax">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.financialShop.fax">
                         <label>Email du magasin</label>
-                        <input md-input [(ngModel)]="model.financialShop.mail">
-                    </md-input-container>
+                        <input  [(ngModel)]="model.financialShop.mail">
 
 
-                    <md-input-container class="md-block" flex>
                         <label>IBAN</label>
-                        <input md-input [(ngModel)]="model.IBAN">
-                    </md-input-container>
+                        <input  [(ngModel)]="model.IBAN">
 
 
-                    <md-input-container class="md-block" flex>
                         <label>bic</label>
-                        <input md-input [(ngModel)]="model.BIC">
-                    </md-input-container>
+                        <input  [(ngModel)]="model.BIC">
 
-                    <md-input-container class="md-block" flex>
                         <label>E-mail de confirmation de prelevement</label>
-                        <input md-input [(ngModel)]="model.financialMail.mail">
-                    </md-input-container>
+                        <input  [(ngModel)]="model.financialMail.mail">
 
-                    <md-input-container class="md-block" flex>
                         <label>Mise en place du prélévement le :</label>
-                        <input md-input [(ngModel)]="model.paymentState">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.paymentState">
                         <label>Nom du magasin</label>
-                        <input md-input [(ngModel)]="model.deliverShop.name">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.deliverShop.name">
                         <label>Adresse du magasin</label>
-                        <input md-input [(ngModel)]="model.deliverShop.adress">
-                    </md-input-container>
-                    <md-input-container md-no-float class="md-block">
-                        <input md-input [(ngModel)]="model.deliverShop.adress2" placeholder="Address 2">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.deliverShop.adress">
+                        <input  [(ngModel)]="model.deliverShop.adress2" placeholder="Address 2">
                         <label>Ville</label>
-                        <input md-input [(ngModel)]="model.deliverShop.city">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.deliverShop.city">
                         <label>Code Postal</label>
-                        <input md-input [(ngModel)]="model.deliverShop.zipCode">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.deliverShop.zipCode">
                         <label>Numéro de Portable du magasin</label>
-                        <input md-input [(ngModel)]="model.deliverShop.mobile">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.deliverShop.mobile">
                         <label>Numéro de Téléphone Fix</label>
-                        <input md-input [(ngModel)]="model.deliverShop.phone">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.deliverShop.phone">
                         <label>Numéro de Fax</label>
-                        <input md-input [(ngModel)]="model.deliverShop.fax">
-                    </md-input-container>
-                    <md-input-container class="md-block">
+                        <input  [(ngModel)]="model.deliverShop.fax">
                         <label>Email</label>
-                        <input md-input [(ngModel)]="model.deliverShop.mail">
-                    </md-input-container>
+                        <input  [(ngModel)]="model.deliverShop.mail">
 
-                    <md-input-container class="md-block" flex>
                         <label>Central ou Enseigne</label>
-                        <input md-input [(ngModel)]="model.central">
-                    </md-input-container>
-                    <button  type="submit"  (click)="subscribe()" md-fab class="md-fab" aria-label="Enregistrer votre compte">
-                        <i md-icon>verified_user</i>
+                        <input  [(ngModel)]="model.central">
+                    <button  type="submit"  (click)="subscribe()">
+                        YAYAYAYA
                     </button>
 
                     public shop: Shop,
@@ -305,29 +214,25 @@
 
 
                 <!--<form >
-                    <md-input-container class="md-block">
                         <label>Address</label>
-                        <input md-input [(ngModel)]="user.address">
-                    </md-input-container>
-                    <md-input-container md-no-float class="md-block">
-                        <input md-input [(ngModel)]="user.address2" placeholder="Address 2">
-                    </md-input-container>
+                        <input  [(ngModel)]="user.address">
+                        <input  [(ngModel)]="user.address2" placeholder="Address 2">
                     <div layout="row">
-                        <md-input-container class="md-block" flex>
+
                             <label>City</label>
-                            <input md-input [(ngModel)]="user.city">
-                        </md-input-container>
-                        &lt;!&ndash;<md-input-container class="md-block" flex>
+                            <input  [(ngModel)]="user.city">
+
+                        &lt;!&ndash;<-container class="md-block" flex>
                             <label>State</label>
                             <select [(ngModel)]="user.state">
                                 <option *ngFor="#state of states" [ngModel]="state.abbrev">
                                     {{state.abbrev}}
                                 </option>
                             </select>
-                        </md-input-container>&ndash;&gt;
-                        <md-input-container class="md-block" flex>
+&ndash;&gt;
+
                             <label>Postal Code</label>
-                            <input md-input ngControl="postalCode" [(ngModel)]="user.postalCode" placeholder="12345"
+                            <input  ngControl="postalCode" [(ngModel)]="user.postalCode" placeholder="12345"
                                    required mdPattern="^[0-9]{5}$" #postalCode="ngForm" mdMaxLength="5">
                             <div [md-messages]="postalCode" role="alert">
                                 <div md-message="required">You must supply a postal code.</div>
@@ -335,12 +240,10 @@
                                 <div md-message="mdMaxLength">Don't use the long version silly...we don't need to be that specific...
                                 </div>
                             </div>
-                        </md-input-container>
+
                     </div>
-                    <md-input-container class="md-block">
                         <label>Biography</label>
-                        <textarea md-input [(ngModel)]="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
-                    </md-input-container>
+                        <textarea  [(ngModel)]="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
                 </form>-->
             </div>
 
@@ -348,7 +251,6 @@
 
 
 
-        </md-content>
 
 
 
