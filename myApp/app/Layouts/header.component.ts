@@ -6,9 +6,7 @@ import {NavComponent} from "./nav.component";
 
 @Component({
     selector: "header",
-    template:   "<h1>{{title}}</h1>" +
-                "<nav></nav>" +
-    "<div class='wrapper'>",
+    templateUrl: "app/Layouts/header.html",
     directives: [NavComponent]
 })
 

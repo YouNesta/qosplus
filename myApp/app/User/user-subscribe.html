@@ -1,4 +1,4 @@
-<h1>Subscribe</h1>
+<h1 class="md-toolbar-tools">Subscribe</h1>
 
 
 
@@ -9,15 +9,15 @@
         <md-content layout-padding>
             <div>
                 <form [ngFormModel]="subscribeForm" novalidate>
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
+                    <div layout="row">
+                        <md-input-container class="md-block" flex>
                             <label>Nom</label>
                             <input md-input [(ngModel)]="model.lastName" ngControl="lastName">
                             <div md-messages="lastName">
                                 <div md-message="required">Ce champs est obligatoire</div>
                                 <div md-message="maxlength">The name has to be less than 30 characters long.</div>
                             </div>                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
+                        <md-input-container class="md-block" flex>
                             <label>Prénom</label>
                             <input md-input [(ngModel)]="model.firstName" ngControl="firstName">
                             <div md-messages="firstName">
@@ -27,8 +27,8 @@
                         </md-input-container>
 
                     </div>
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
+                    <div layout="row">
+                        <md-input-container class="md-block" flex>
                             <label>Téléphone</label>
                             <input md-input [(ngModel)]="model.phone" ngControl="phone">
                             <div md-messages="phone" role="alert">
@@ -47,7 +47,7 @@
                                 </div>-->
                             </div>
                         </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
+                        <md-input-container class="md-block" flex>
                             <label>E-mail</label>
                             <input md-input [(ngModel)]="model.mail" ngControl="mail">
                             <div md-messages="mail" role="alert">
@@ -98,15 +98,15 @@
                         <input md-input [(ngModel)]="model.shop.mail">
                     </md-input-container>
 
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
+                    <div layout="row">
+                        <md-input-container class="md-block" flex>
                             <label>Nom</label>
                             <input md-input [(ngModel)]="model.director.lastName" ngControl="lastName">
                             <div md-messages="lastName">
                                 <div md-message="required">Ce champs est obligatoire</div>
                                 <div md-message="maxlength">The name has to be less than 30 characters long.</div>
                             </div>                        </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
+                        <md-input-container class="md-block" flex>
                             <label>Prénom</label>
                             <input md-input [(ngModel)]="model.director.firstName" ngControl="firstName">
                             <div md-messages="firstName">
@@ -116,27 +116,21 @@
                         </md-input-container>
 
                     </div>
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
+                    <div layout="row">
+                        <md-input-container class="md-block" flex>
                             <label>Téléphone</label>
                             <input md-input [(ngModel)]="model.director.phone" ngControl="phone">
                             <div md-messages="phone" role="alert">
                                 <div md-message="mdNumberRequired">
                                     Seul les chiffres sont accepté pour un numéro de téléphone
                                 </div>
-                                <!-- <div md-message="mdMin">
-                                     You should charge at least $800 an hour. This job is a big deal... if you mess up,
-                                     everyone dies!
-                                 </div>-->
                                 <div md-message="mdPattern">
                                     Vous devez entrer un numéro de téléphone fix valide
                                 </div>
-                                <!--<div md-message="mdMax">
-                                   an hour? That's a little ridiculous. I doubt event Bill Clinton could afford that.
-                                </div>-->
                             </div>
                         </md-input-container>
-                        <md-input-container class="md-block" flex-gt-sm>
+
+                        <md-input-container class="md-block" flex>
                             <label>E-mail</label>
                             <input md-input [(ngModel)]="model.director.mail" ngControl="mail">
                             <div md-messages="mail" role="alert">
@@ -146,17 +140,17 @@
                     </div>
 
 
-                    <md-input-container class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block" flex>
                         <label>numéro de TVA intracommunautaire</label>
                         <input md-input [(ngModel)]="model.tva">
                     </md-input-container>
 
-                    <md-input-container class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block" flex>
                         <label>Numéro Siret</label>
                         <input md-input [(ngModel)]="model.siret">
                     </md-input-container>
 
-                    <md-input-container class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block" flex>
                         <label>Numéro Adeli</label>
                         <input md-input [(ngModel)]="model.adeli">
                     </md-input-container>
@@ -167,6 +161,40 @@
                         <md-radio-button value="false" class="md-warn" checked="true"> Non</md-radio-button>
                     </md-radio-group>
 
+
+
+                    <md-input-container class="md-block">
+                        <label>transporteur</label>
+                        <input md-input [(ngModel)]="model.transporteur">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Jours d'ouverture</label>
+                        <input md-input [(ngModel)]="model.opendDay">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Heure d'ouverture</label>
+                        <input md-input [(ngModel)]="model.openHour">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Shop Associé</label>
+                        <input md-input [(ngModel)]="model.associateShop">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Potentiel moyen HT d'achat de lentilles</label>
+                        <input md-input [(ngModel)]="model.averageLens">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Fournisseur Lentilles</label>
+                        <input md-input [(ngModel)]="model.providerLens">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Potentiel moyen HT d'achat de verres</label>
+                        <input md-input [(ngModel)]="model.averageGlasses">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Fournisseur Verres</label>
+                        <input md-input [(ngModel)]="model.providerGlasses">
+                    </md-input-container>
                     <md-input-container class="md-block">
                         <label>Nom du magasin</label>
                         <input md-input [(ngModel)]="model.financialShop.name">
@@ -204,28 +232,26 @@
                     </md-input-container>
 
 
-                    <md-input-container class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block" flex>
                         <label>IBAN</label>
                         <input md-input [(ngModel)]="model.IBAN">
                     </md-input-container>
 
 
-                    <md-input-container class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block" flex>
                         <label>bic</label>
                         <input md-input [(ngModel)]="model.BIC">
                     </md-input-container>
 
-                    <md-input-container class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block" flex>
                         <label>E-mail de confirmation de prelevement</label>
                         <input md-input [(ngModel)]="model.financialMail.mail">
                     </md-input-container>
 
-                    <md-input-container class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block" flex>
                         <label>Mise en place du prélévement le :</label>
-                        <input md-input [(ngModel)]="model.paymentDate">
+                        <input md-input [(ngModel)]="model.paymentState">
                     </md-input-container>
-
-
                     <md-input-container class="md-block">
                         <label>Nom du magasin</label>
                         <input md-input [(ngModel)]="model.deliverShop.name">
@@ -262,7 +288,7 @@
                         <input md-input [(ngModel)]="model.deliverShop.mail">
                     </md-input-container>
 
-                    <md-input-container class="md-block" flex-gt-sm>
+                    <md-input-container class="md-block" flex>
                         <label>Central ou Enseigne</label>
                         <input md-input [(ngModel)]="model.central">
                     </md-input-container>
@@ -286,12 +312,12 @@
                     <md-input-container md-no-float class="md-block">
                         <input md-input [(ngModel)]="user.address2" placeholder="Address 2">
                     </md-input-container>
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm>
+                    <div layout="row">
+                        <md-input-container class="md-block" flex>
                             <label>City</label>
                             <input md-input [(ngModel)]="user.city">
                         </md-input-container>
-                        &lt;!&ndash;<md-input-container class="md-block" flex-gt-sm>
+                        &lt;!&ndash;<md-input-container class="md-block" flex>
                             <label>State</label>
                             <select [(ngModel)]="user.state">
                                 <option *ngFor="#state of states" [ngModel]="state.abbrev">
@@ -299,7 +325,7 @@
                                 </option>
                             </select>
                         </md-input-container>&ndash;&gt;
-                        <md-input-container class="md-block" flex-gt-sm>
+                        <md-input-container class="md-block" flex>
                             <label>Postal Code</label>
                             <input md-input ngControl="postalCode" [(ngModel)]="user.postalCode" placeholder="12345"
                                    required mdPattern="^[0-9]{5}$" #postalCode="ngForm" mdMaxLength="5">

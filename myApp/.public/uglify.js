@@ -1,2 +1,0 @@
-console.log("lala"),console.log("lala"),console.log("lala"),console.log("lala"),console.log("lala"),console.log("lala"),console.log("lala"),console.log("lala"),console.log("lala"),console.log("lala"),console.log("lala"),console.log("lala"),console.log("lala"),angular.module("myApp").directive("headerDirective",["usersEntity","socket","$location","$translate",function(l,o,a,e){return{restrict:"E",replace:!0,templateUrl:"header",link:function(l,a,n){o.on("connexion",function(l){console.log(l)}),l.setLang=function(l){e.use(l)}}}}]);
-//# sourceMappingURL=uglify.js.map
