@@ -1,4 +1,4 @@
-System.register(['angular2/core', "./nav.component"], function(exports_1) {
+System.register(['angular2/core', "./nav-user.component", "angular2/router", "../Config/route-auth"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,28 +8,76 @@ System.register(['angular2/core', "./nav.component"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, nav_component_1;
+    var core_1, nav_user_component_1, router_1, route_auth_1;
     var HeaderComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (nav_component_1_1) {
-                nav_component_1 = nav_component_1_1;
+            function (nav_user_component_1_1) {
+                nav_user_component_1 = nav_user_component_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (route_auth_1_1) {
+                route_auth_1 = route_auth_1_1;
             }],
         execute: function() {
             HeaderComponent = (function () {
-                function HeaderComponent() {
+                function HeaderComponent(router, routeAuth) {
+                    var _this = this;
+                    this.router = router;
+                    this.location = {
+                        base: '',
+                        name: ' ',
+                        auth: false
+                    };
                     this.title = "QosPlus";
+                    router.subscribe(function (val) {
+                        _this.location.base = " ";
+                        _this.location.name = "/";
+                        if (val.indexOf("/") != -1 && val != "") {
+                            var base = val.split("/");
+                            _this.location.base = base[0];
+                            _this.location.name = base[1];
+                        }
+                        else if (val.indexOf("/") == 0) {
+                            var base = val.split("/");
+                            _this.location.name = base[1];
+                        }
+                        var $this = _this;
+                        if (val.indexOf("/") > 0) {
+                            routeAuth.route[_this.location.base].forEach(function (item, e) {
+                                if ($this.location.name == item.route) {
+                                    $this.location.auth = item.auth;
+                                }
+                            });
+                        }
+                        else if (val.indexOf("/") == -1) {
+                            routeAuth.route[_this.location.base].forEach(function (item, e) {
+                                if ($this.location.name == item.route) {
+                                    $this.location.auth = item.auth;
+                                }
+                            });
+                        }
+                        else {
+                            routeAuth.route[" "].forEach(function (item, e) {
+                                if ($this.location.name == item.route) {
+                                    $this.location.auth = item.auth;
+                                }
+                            });
+                        }
+                    });
                 }
                 HeaderComponent = __decorate([
                     core_1.Component({
                         selector: "header",
                         templateUrl: "app/Layouts/header.html",
-                        directives: [nav_component_1.NavComponent]
+                        directives: [nav_user_component_1.NavUserComponent]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.Router, route_auth_1.RouteAuth])
                 ], HeaderComponent);
                 return HeaderComponent;
             })();

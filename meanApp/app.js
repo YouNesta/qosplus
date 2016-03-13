@@ -58,7 +58,7 @@ app.use(cookieParser());
 app.set('view engine', 'jade');
 
 app.use('/', routes);
-app.use('/api/v1/users', users);
+app.use('/api/v1/client/users', users);
 
 
 // Create the database connection

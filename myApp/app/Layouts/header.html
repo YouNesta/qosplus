@@ -1,4 +1,5 @@
-    {{title}}
-    <nav></nav>
+{{title}}
+<nav-user *ngIf="location.auth == false"></nav-user>
+<nav-admin *ngIf="location.auth && location.base == 'admin'"></nav-admin>
 <div layout="column">
 </div>

@@ -26,7 +26,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx', "angular2/http"], 
             UserFactory = (function () {
                 function UserFactory(http) {
                     this.http = null;
-                    this.apiUrl = "http://192.168.33.10:8080/api/v1/";
+                    this.apiUrl = "http://192.168.33.10:8080/api/v1/client/";
                     this.http = http;
                 }
                 UserFactory.prototype.save = function (user, shop, option) {

@@ -1,10 +1,11 @@
 import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from "angular2/router";
+import {OnInit} from "angular2/core";
 
 
 
 @Component({
-    selector: "nav",
+    selector: "nav-user",
     template: "<li><a [routerLink]=\"['Home', 'Homepage']\">Home</a></li>" +
     "<li><a [routerLink]=\"['Home', 'About']\">À propos de nous</a></li>" +
     "<li><a [routerLink]=\"['Home', 'Products']\">Nos Produits</a></li>" +
@@ -14,7 +15,9 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
     directives: [ROUTER_DIRECTIVES]
 })
 
-export class NavComponent {
+export class NavUserComponent  implements OnInit {
+
+
 
 }
 
