@@ -5,7 +5,6 @@ System.register([], function(exports_1) {
         execute: function() {
             Shop = (function () {
                 function Shop(shop) {
-                    ((shop.id != 'undefined') ? this._id = 0 : this._id = shop.id);
                     this._name = shop.name;
                     this._adress = shop.adress;
                     this._adress2 = shop.adress2;
@@ -32,6 +31,16 @@ System.register([], function(exports_1) {
                     },
                     set: function (value) {
                         this._name = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "socialReason", {
+                    get: function () {
+                        return this._socialReason;
+                    },
+                    set: function (value) {
+                        this._socialReason = value;
                     },
                     enumerable: true,
                     configurable: true
@@ -112,6 +121,96 @@ System.register([], function(exports_1) {
                     },
                     set: function (value) {
                         this._mail = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "tva", {
+                    get: function () {
+                        return this._tva;
+                    },
+                    set: function (value) {
+                        this._tva = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "siret", {
+                    get: function () {
+                        return this._siret;
+                    },
+                    set: function (value) {
+                        this._siret = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "adeli", {
+                    get: function () {
+                        return this._adeli;
+                    },
+                    set: function (value) {
+                        this._adeli = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "nightBox", {
+                    get: function () {
+                        return this._nightBox;
+                    },
+                    set: function (value) {
+                        this._nightBox = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "transporteur", {
+                    get: function () {
+                        return this._transporteur;
+                    },
+                    set: function (value) {
+                        this._transporteur = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "openDay", {
+                    get: function () {
+                        return this._openDay;
+                    },
+                    set: function (value) {
+                        this._openDay = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "closeDay", {
+                    get: function () {
+                        return this._closeDay;
+                    },
+                    set: function (value) {
+                        this._closeDay = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "openHour", {
+                    get: function () {
+                        return this._openHour;
+                    },
+                    set: function (value) {
+                        this._openHour = value;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(Shop.prototype, "closeHour", {
+                    get: function () {
+                        return this._closeHour;
+                    },
+                    set: function (value) {
+                        this._closeHour = value;
                     },
                     enumerable: true,
                     configurable: true

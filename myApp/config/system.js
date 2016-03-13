@@ -7,14 +7,7 @@ System.config({
     packages: {
         'app': {
             defaultExtension: 'ts'
-        },
-        'ng2-material': {
-            defaultExtension: 'js'
         }
-    },
-    map: {
-        'ng2-material':"/node_modules/ng2-material"
-
     }
 });
 System.import('app/main')

@@ -29,13 +29,12 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx', "angular2/http"], 
                     this.apiUrl = "http://192.168.33.10:8080/api/v1/";
                     this.http = http;
                 }
-                UserFactory.prototype.save = function (user) {
-                    user = JSON.stringify(user);
-                    console.log(user);
+                UserFactory.prototype.save = function (user, shop, option) {
+                    var data = JSON.stringify({ user: user, shop: shop, option: option });
                     var headers = new http_2.Headers();
                     headers.append('Content-Type', 'application/json');
                     this.http
-                        .post(this.apiUrl + 'users/subscribe', user, {
+                        .post(this.apiUrl + 'users/subscribe', data, {
                         headers: headers
                     })
                         .map(function (response) { return response.json(); })

@@ -5,10 +5,9 @@ System.register([], function(exports_1) {
         execute: function() {
             User = (function () {
                 function User(user) {
-                    ((user.id != 'undefined') ? this._id = 0 : this._id = user.id);
                     this._role = 1;
                     this._lastName = user.lastName;
-                    this._firstname = user.firstname;
+                    this._firstName = user.firstName;
                     this._mail = user.mail;
                     this._phone = user.phone;
                 }
@@ -28,16 +27,6 @@ System.register([], function(exports_1) {
                     },
                     set: function (value) {
                         this._role = value;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(User.prototype, "socialReason", {
-                    get: function () {
-                        return this._socialReason;
-                    },
-                    set: function (value) {
-                        this._socialReason = value;
                     },
                     enumerable: true,
                     configurable: true
@@ -62,12 +51,12 @@ System.register([], function(exports_1) {
                     enumerable: true,
                     configurable: true
                 });
-                Object.defineProperty(User.prototype, "firstname", {
+                Object.defineProperty(User.prototype, "firstName", {
                     get: function () {
-                        return this._firstname;
+                        return this._firstName;
                     },
                     set: function (value) {
-                        this._firstname = value;
+                        this._firstName = value;
                     },
                     enumerable: true,
                     configurable: true
@@ -98,76 +87,6 @@ System.register([], function(exports_1) {
                     },
                     set: function (value) {
                         this._director = value;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(User.prototype, "tva", {
-                    get: function () {
-                        return this._tva;
-                    },
-                    set: function (value) {
-                        this._tva = value;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(User.prototype, "siret", {
-                    get: function () {
-                        return this._siret;
-                    },
-                    set: function (value) {
-                        this._siret = value;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(User.prototype, "adeli", {
-                    get: function () {
-                        return this._adeli;
-                    },
-                    set: function (value) {
-                        this._adeli = value;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(User.prototype, "nightBox", {
-                    get: function () {
-                        return this._nightBox;
-                    },
-                    set: function (value) {
-                        this._nightBox = value;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(User.prototype, "transporteur", {
-                    get: function () {
-                        return this._transporteur;
-                    },
-                    set: function (value) {
-                        this._transporteur = value;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(User.prototype, "openDay", {
-                    get: function () {
-                        return this._openDay;
-                    },
-                    set: function (value) {
-                        this._openDay = value;
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(User.prototype, "openHour", {
-                    get: function () {
-                        return this._openHour;
-                    },
-                    set: function (value) {
-                        this._openHour = value;
                     },
                     enumerable: true,
                     configurable: true

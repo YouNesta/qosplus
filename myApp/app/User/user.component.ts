@@ -18,6 +18,7 @@ import {UserSubscribeComponent} from "./user-subscribe.component";
 
 @RouteConfig([
     { path: "/login", name: "Login", component: UserLoginComponent},
+    { path: "/", name: "Login", component: UserLoginComponent},
     { path: "/subscribe", name: "Subscribe", component: UserSubscribeComponent}
 ])
 

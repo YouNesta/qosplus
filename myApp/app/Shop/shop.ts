@@ -1,6 +1,7 @@
 export class Shop {
     private _id: number;
     private _name: string;
+    private _socialReason: string;
     private _adress: string;
     private _adress2: string;
     private _city: string;
@@ -9,9 +10,17 @@ export class Shop {
     private _phone: number;
     private _fax: number;
     private _mail: string;
+    private _tva: number;
+    private _siret: number;
+    private _adeli: number;
+    private _nightBox: boolean;
+    private _transporteur: string;
+    private _openDay: string ;
+    private _closeDay: string ;
+    private _openHour: string ;
+    private _closeHour: string ;
 
     constructor(shop) {
-        ((shop.id != 'undefined') ?  this._id = 0: this._id = shop.id);
         this._name = shop.name;
         this._adress = shop.adress;
         this._adress2 = shop.adress2;
@@ -38,6 +47,14 @@ export class Shop {
 
     set name(value:string) {
         this._name = value;
+    }
+
+    get socialReason():string {
+        return this._socialReason;
+    }
+
+    set socialReason(value:string) {
+        this._socialReason = value;
     }
 
     get adress():string {
@@ -102,5 +119,79 @@ export class Shop {
 
     set mail(value:string) {
         this._mail = value;
+    }
+
+    get tva():number {
+        return this._tva;
+    }
+
+    set tva(value:number) {
+        this._tva = value;
+    }
+
+    get siret():number {
+        return this._siret;
+    }
+
+    set siret(value:number) {
+        this._siret = value;
+    }
+
+    get adeli():number {
+        return this._adeli;
+    }
+
+    set adeli(value:number) {
+        this._adeli = value;
+    }
+
+    get nightBox():boolean {
+        return this._nightBox;
+    }
+
+    set nightBox(value:boolean) {
+        this._nightBox = value;
+    }
+
+    get transporteur():string {
+        return this._transporteur;
+    }
+
+    set transporteur(value:string) {
+        this._transporteur = value;
+    }
+
+    get openDay():string {
+        return this._openDay;
+    }
+
+    set openDay(value:string) {
+        this._openDay = value;
+    }
+
+
+    get closeDay():string {
+        return this._closeDay;
+    }
+
+    set closeDay(value:string) {
+        this._closeDay = value;
+    }
+
+    get openHour():string {
+        return this._openHour;
+    }
+
+    set openHour(value:string) {
+        this._openHour = value;
+    }
+
+
+    get closeHour():string {
+        return this._closeHour;
+    }
+
+    set closeHour(value:string) {
+        this._closeHour = value;
     }
 }
