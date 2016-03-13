@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 'angular2/router', "./Layouts/header.component", "./Layouts/footer.component", './User/user.component', './Home/home.component', "./User/user.factory", "./lib/regex", "./Config/route-auth"], function(exports_1) {
+System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 'angular2/router', "./Layouts/header.component", "./Layouts/footer.component", './User/user.component', './Home/home.component', "./User/user.factory", "./lib/regex", "./Config/route-auth", "./Admin/admin.component", "./Admin/admin.factory"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, browser_1, http_1, router_1, core_2, header_component_1, footer_component_1, user_component_1, home_component_1, user_factory_1, regex_1, route_auth_1;
+    var core_1, browser_1, http_1, router_1, core_2, header_component_1, footer_component_1, user_component_1, home_component_1, user_factory_1, regex_1, route_auth_1, admin_component_1, admin_factory_1;
     var App;
     return {
         setters:[
@@ -45,6 +45,12 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
             },
             function (route_auth_1_1) {
                 route_auth_1 = route_auth_1_1;
+            },
+            function (admin_component_1_1) {
+                admin_component_1 = admin_component_1_1;
+            },
+            function (admin_factory_1_1) {
+                admin_factory_1 = admin_factory_1_1;
             }],
         execute: function() {
             core_2.enableProdMode();
@@ -62,14 +68,15 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                     }),
                     router_1.RouteConfig([
                         { path: "/...", as: "Home", component: home_component_1.HomeComponent, useAsDefault: true },
-                        { path: "/users/...", as: "Users", component: user_component_1.UserComponent }
+                        { path: "/users/...", as: "Users", component: user_component_1.UserComponent },
+                        { path: "/admin/...", as: "Admin", component: admin_component_1.AdminComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], App);
                 return App;
             })();
             exports_1("App", App);
-            browser_1.bootstrap(App, [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, user_factory_1.UserFactory, regex_1.RegEx, route_auth_1.RouteAuth]);
+            browser_1.bootstrap(App, [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, user_factory_1.UserFactory, regex_1.RegEx, route_auth_1.RouteAuth, admin_factory_1.AdminFactory]);
         }
     }
 });

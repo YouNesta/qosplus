@@ -19,6 +19,8 @@ import {HomeComponent}    from './Home/home.component'
 import {UserFactory} from "./User/user.factory";
 import {RegEx} from "./lib/regex";
 import {RouteAuth} from "./Config/route-auth";
+import {AdminComponent} from "./Admin/admin.component";
+import {AdminFactory} from "./Admin/admin.factory";
 
 
 @Component({
@@ -32,7 +34,8 @@ import {RouteAuth} from "./Config/route-auth";
 
 @RouteConfig([
     { path: "/...", as: "Home", component: HomeComponent, useAsDefault: true },
-    { path: "/users/...", as: "Users", component: UserComponent }
+    { path: "/users/...", as: "Users", component: UserComponent },
+    { path: "/admin/...", as: "Admin", component: AdminComponent}
 ])
 
 
@@ -45,4 +48,4 @@ export class App {
 
 }
 
-bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory, RegEx, RouteAuth]);
+bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory, RegEx, RouteAuth, AdminFactory]);

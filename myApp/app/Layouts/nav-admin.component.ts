@@ -6,7 +6,8 @@ import {OnInit} from "angular2/core";
 
 @Component({
     selector: "nav-admin",
-    template: "<li><a [routerLink]=\"['Home', 'Homepage']\">Home</a></li>",
+    template: "<li><a [routerLink]=\"['Home', 'Homepage']\">Home</a></li>" +
+    "<li><a [routerLink]=\"['Admin', 'Subscribe']\">Subscribe</a></li>",
     directives: [ROUTER_DIRECTIVES]
 })
 
