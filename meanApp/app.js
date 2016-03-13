@@ -13,8 +13,13 @@ var users = require('./routes/users');
 
 
 
+// Admin Routes
+var admin = require('./routes/admin/admin');
+var aUsers = require('./routes/admin/users');
+
+
+
 var mongoose = require('mongoose');
-var config = require('./config/config');
 var logger = require('winston');
 
 
@@ -59,6 +64,8 @@ app.set('view engine', 'jade');
 
 app.use('/', routes);
 app.use('/api/v1/client/users', users);
+app.use('/api/v1/admin', admin);
+app.use('/api/v1/admin/users', aUsers);
 
 
 // Create the database connection
