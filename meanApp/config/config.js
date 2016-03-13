@@ -3,7 +3,7 @@ var config = {};
 config.env = "DEV";
 
 config.DB_URL =  "localhost";
-config.DB_NAME = "quosPlus";
+config.DB_NAME = "qosPlus";
 config.DB_PORT = 27017;
 config.DB_USERNAME = "quosPlus";
 config.DB_PASSWORD = "quosPlus";

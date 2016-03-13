@@ -14,15 +14,14 @@ export class UserFactory {
 
     }
 
-    save(user){
-       user =  JSON.stringify(user);
-        console.log(user);
+    save(user, shop, option){
+      var data =  JSON.stringify({user, shop, option});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
         this.http
             .post(this.apiUrl + 'users/subscribe',
-                user, {
+                data, {
                     headers: headers
                 })
             .map(response => response.json())
