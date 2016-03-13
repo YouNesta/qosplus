@@ -19,7 +19,8 @@ constructor() {
             { "route": "products", "auth": false }
         ],
         "admin": [
-            { "route": "/", "auth": true }
+            { "route": "/", "auth": true },
+            { "route": "subscribe", "auth": true }
         ],
 
         "users": [
