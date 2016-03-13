@@ -8,7 +8,7 @@ import {Headers} from "angular2/http";
 
 export class UserFactory {
     http = null;
-    apiUrl = "http://192.168.33.10:8080/api/v1/";
+    apiUrl = "http://192.168.33.10:8080/api/v1/client/";
     constructor(http:Http) {
         this.http = http
 

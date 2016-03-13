@@ -18,6 +18,7 @@ import {UserComponent}    from './User/user.component'
 import {HomeComponent}    from './Home/home.component'
 import {UserFactory} from "./User/user.factory";
 import {RegEx} from "./lib/regex";
+import {RouteAuth} from "./Config/route-auth";
 
 
 @Component({
@@ -44,4 +45,4 @@ export class App {
 
 }
 
-bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory, RegEx]);
+bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory, RegEx, RouteAuth]);
