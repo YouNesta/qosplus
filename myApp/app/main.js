@@ -58,7 +58,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                         directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent, footer_component_1.FooterComponent]
                     }),
                     router_1.RouteConfig([
-                        { path: "/", as: "Home", component: home_component_1.HomeComponent },
+                        { path: "/...", as: "Home", component: home_component_1.HomeComponent, useAsDefault: true },
                         { path: "/users/...", as: "Users", component: user_component_1.UserComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
