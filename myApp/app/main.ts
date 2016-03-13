@@ -30,7 +30,7 @@ import {RegEx} from "./lib/regex";
 })
 
 @RouteConfig([
-    { path: "/", as: "Home", component: HomeComponent },
+    { path: "/...", as: "Home", component: HomeComponent, useAsDefault: true },
     { path: "/users/...", as: "Users", component: UserComponent }
 ])
 

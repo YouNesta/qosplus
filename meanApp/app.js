@@ -7,8 +7,7 @@ var cors = require('cors');
 var fs = require('fs');
 
 
-
-
+var config = require('./config/config');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
