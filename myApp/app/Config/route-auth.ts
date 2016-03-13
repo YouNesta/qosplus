@@ -14,7 +14,7 @@ constructor() {
     this.route = {
         " ": [
             { "route": "/", "auth": false },
-            { "route": "contact", "auth": false },
+            { "route": "contact", "auth": true },
             { "route": "about", "auth": false },
             { "route": "products", "auth": false }
         ],
