@@ -29,46 +29,10 @@ System.register(['angular2/core', "./nav-user.component", "angular2/router", "..
                 function HeaderComponent(router, routeAuth) {
                     var _this = this;
                     this.router = router;
-                    this.location = {
-                        base: '',
-                        name: ' ',
-                        auth: false
-                    };
+                    this.routeAuth = '';
                     this.title = "QosPlus";
                     router.subscribe(function (val) {
-                        _this.location.base = " ";
-                        _this.location.name = "/";
-                        if (val.indexOf("/") != -1 && val != "") {
-                            var base = val.split("/");
-                            _this.location.base = base[0];
-                            _this.location.name = base[1];
-                        }
-                        else if (val.indexOf("/") == 0) {
-                            var base = val.split("/");
-                            _this.location.name = base[1];
-                        }
-                        var $this = _this;
-                        if (val.indexOf("/") > 0) {
-                            routeAuth.route[_this.location.base].forEach(function (item, e) {
-                                if ($this.location.name == item.route) {
-                                    $this.location.auth = item.auth;
-                                }
-                            });
-                        }
-                        else if (val.indexOf("/") == -1) {
-                            routeAuth.route[_this.location.base].forEach(function (item, e) {
-                                if ($this.location.name == item.route) {
-                                    $this.location.auth = item.auth;
-                                }
-                            });
-                        }
-                        else {
-                            routeAuth.route[" "].forEach(function (item, e) {
-                                if ($this.location.name == item.route) {
-                                    $this.location.auth = item.auth;
-                                }
-                            });
-                        }
+                        _this.routeAuth = routeAuth.routeAuth(val);
                     });
                 }
                 HeaderComponent = __decorate([
