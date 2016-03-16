@@ -29,6 +29,8 @@ gulp.task('scss', function () {
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./public/css'))
+        .pipe(concat('all.css'))
+        .pipe(gulp.dest('./public/css'))
         .pipe(rename('all.min.css'))
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(sourcemaps.write('./maps'))
