@@ -6,15 +6,17 @@ var jwt    = require('jsonwebtoken');
 
 
 var Admin = require("../../models/admin/admin.js").Admin;
+var User = require("../../models/user.js").User;
+var Shop = require("../../models/shop.js").Shop;
 var Token    = require('../../modules/jsonwebtoken/module');
-var users    = require('../../modules/user');
+var UserModule    = require('../../modules/user');
 
 
 
 
 router.post('/subscribe',function(req, res) {
   if(req.body != 'undefined'){
-     var crypted  = users.generatePassword(req.body.admin.password);
+     var crypted  = UserModule.generatePassword(req.body.admin.password);
      req.body.admin.password = crypted.password;
      req.body.admin.hash = crypted.hash;
      req.body.admin.role = 1;
@@ -48,19 +50,51 @@ router.post('/subscribe',function(req, res) {
 });
 
 
-
-
-
-router.get('/', function(req, res, next) {
-  Admin.find({}, function(err, users) {
+router.get('/unvalidate', function(req, res, next) {
+  console.log('lalala');
+  User.find({state: 0}, function(err, users) {
     if(err){
       console.log(err);
       logger.log('error', err);
-      res.res.json({success: false, message:error});
+     // res.res.json({success: false, message:error});
     }
-    res.json({success: true, message:"User List Find with success", data: users});
+    var i = 0;
+    getUsers(users, i);
+
+   // UserModule.getShop();
+
+ //   res.json({success: true, message:"Unvalidate User List Find with success", data: users});
   });
+
+  function getUsers(users, i){
+    if(i < users.length){
+      var user = users[i];
+      Shop.find({
+        '_id': { $in: user.associateShop}
+      }, function(err, shops){
+        users[i].associateShop = shops;
+        console.log(users);
+        i++;
+        getUsers(users, i);
+      });
+    }else{
+      res.json({success: true, message:"User List Find with success", data: users});
+    }
+  }
+
+  router.get('/', function(req, res, next) {
+    Admin.find({}, function(err, users) {
+      if(err){
+        console.log(err);
+        logger.log('error', err);
+        res.res.json({success: false, message:error});
+      }
+      res.json({success: true, message:"User List Find with success", data: users});
+    });
+  });
+
 });
+
 
 
 

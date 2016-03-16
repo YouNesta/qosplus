@@ -45,4 +45,10 @@ export class AdminFactory {
                 () => console.log('Subscription Complete')
             );
     };
+
+    getUnvalidateUser(){
+        return  this.authHttp
+            .get(this.apiUrl+'unvalidate')
+            .map(response => response.json())
+    };
 }

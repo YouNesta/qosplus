@@ -1,5 +1,8 @@
 
 import {Injectable} from 'angular2/core';
+import {UserFactory} from "../User/user.factory";
+import {tokenNotExpired} from "angular2-jwt";
+import {Router} from "angular2/router";
 
 @Injectable()
 
@@ -10,7 +13,7 @@ export class RouteAuth {
         auth: false
     };
 
-constructor() {
+constructor(public service: UserFactory, public router: Router) {
     this.route = {
         " ": [
             { "route": "/", "auth": false },
@@ -74,5 +77,18 @@ console.log(this.location);
     }
          return this.location;
 }
+
+    redirect(){
+        if(this.service.isConnected() && tokenNotExpired('token')){
+            var user = this.service.user();
+            console.log(user);
+            if(user.role > 0){
+                this.router.navigateByUrl('/admin');
+            }else{
+                console.log(345678);
+                this.router.navigateByUrl('/user');
+            }
+        }
+    }
 
 }

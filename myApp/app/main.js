@@ -72,8 +72,9 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                     this.title = "penis";
                 }
                 App.prototype.ngOnInit = function () {
-                    if (this.service.isConnected())
-                        this.service.getUser();
+                    if (this.service.isConnected() && angular2_jwt_1.tokenNotExpired('token')) {
+                        this.service.user();
+                    }
                 };
                 App = __decorate([
                     core_1.Component({

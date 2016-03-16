@@ -61,8 +61,10 @@ export class App implements OnInit{
 
 
     ngOnInit(){
-        if(this.service.isConnected())
-            this.service.getUser();
+        if(this.service.isConnected() && tokenNotExpired('token')){
+            this.service.user()
+
+        }
     }
 
 }

@@ -57,7 +57,6 @@ System.register(['angular2/core', 'rxjs/Rx', "angular2/http", 'angular2-jwt', "a
                                 localStorage.setItem("user", user);
                                 localStorage.setItem('token', res.token);
                                 if (res.data.role > 0) {
-                                    console.log(1456789);
                                     _this.router.navigateByUrl('/admin');
                                 }
                                 else {
@@ -72,8 +71,8 @@ System.register(['angular2/core', 'rxjs/Rx', "angular2/http", 'angular2-jwt', "a
                         }, function () { return console.log('Authentification'); });
                     };
                 }
-                UserFactory.prototype.save = function (user, shop, option) {
-                    var data = JSON.stringify({ user: user, shop: shop, option: option });
+                UserFactory.prototype.save = function (user, shops, director, option) {
+                    var data = JSON.stringify({ user: user, shops: shops, director: director, option: option });
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/json');
                     this.authHttp
@@ -84,11 +83,24 @@ System.register(['angular2/core', 'rxjs/Rx', "angular2/http", 'angular2-jwt', "a
                         .subscribe(function (response) { return console.log(response); }, function (err) { return console.log(err); }, function () { return console.log('Authentication Complete'); });
                 };
                 UserFactory.prototype.user = function () {
+                    if (localStorage.getItem('user')) {
+                        return JSON.parse(localStorage.getItem('user'));
+                    }
+                    else {
+                        this.getUser()
+                            .subscribe(function (res) {
+                            return JSON.parse(localStorage.getItem('user'));
+                        }, function (err) { return console.log(err); });
+                    }
+                };
+                UserFactory.prototype.getUser = function () {
                     return this.authHttp
-                        .get(this.apiUrl)
+                        .get(this.apiUrl + 'get')
                         .map(function (response) { return response.json(); })
                         .map(function (response) {
                         if (response) {
+                            var user = JSON.stringify(response.data);
+                            localStorage.setItem("user", user);
                             return response;
                         }
                         else {
@@ -116,18 +128,6 @@ System.register(['angular2/core', 'rxjs/Rx', "angular2/http", 'angular2-jwt', "a
                         return user.role;
                     }
                     return 0;
-                };
-                UserFactory.prototype.getUser = function () {
-                    if (localStorage.getItem('user')) {
-                        return localStorage.getItem('user');
-                    }
-                    else {
-                        this.user()
-                            .subscribe(function (res) {
-                            var user = JSON.stringify(res.data);
-                            localStorage.setItem("user", user);
-                        }, function (err) { return console.log(err); });
-                    }
                 };
                 UserFactory = __decorate([
                     core_1.Injectable(), 

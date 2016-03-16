@@ -12,12 +12,12 @@ config.secret = "4815-darma-162342";
 
 config.corsOptions = {
     origin: 'http://192.168.33.10:3000',
-    methods: ['GET', 'PUT', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 };
 
 
-config.freeRoutes = ['/api/v1/client/user/login', '/api/v1/client/user'];
+config.freeRoutes = ['/api/v1/client/user/login', '/api/v1/client/user/subscribe'];
 
 module.exports = config;

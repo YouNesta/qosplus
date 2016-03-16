@@ -27,98 +27,34 @@ System.register(['angular2/core', "./user.factory", "angular2/common", "../lib/r
         execute: function() {
             UserSubscribeComponent = (function () {
                 function UserSubscribeComponent(userFactory, fb, regEx) {
-                    /* shopModel ={
-                         name: "",
-                         socialReason: '',
-                         adress: "",
-                         adress2: "",
-                         city: "",
-                         zipCode: "",
-                         mobile: "",
-                         phone: "",
-                         fax: "",
-                         mail: "",
-                         tva: '',
-                         siret: '',
-                         adeli: '',
-                         nightBox: '',
-                         transporteur:'',
-                         openDay: "",
-                         openHour: ""
-                     };
-                     */
-                    /*
-                        model = {
-                            lastName: '',
-                            firstName: '',
-                            phone: '',
-                            mail: '',
-                            director: {
-                                id:'',
-                                lastName: '',
-                                firstName: '',
-                                phone: '',
-                                mail: '',
-                            },
-                            associateShop: [],
-                            averageLens: "",
-                            providerLens: "",
-                            averageGlasses: "",
-                            providerGlasses: "",
-                            financialShop: {
-                                id:'',
-                                name: "",
-                                adress: "",
-                                adress2: "",
-                                city: "",
-                                zipCode: "",
-                                mobile: "",
-                                phone: "",
-                                fax: "",
-                                mail: ""
-                            },
-                            IBAN: '',
-                            BIC: '',
-                            financialMail:{
-                                id:'',
-                                mail:''
-                            },
-                            paymentState: '',
-                            deliverShop: {
-                                id:'',
-                                name: "",
-                                adress: "",
-                                adress2: "",
-                                city: "",
-                                zipCode: "",
-                                mobile: "",
-                                phone: "",
-                                fax: "",
-                                mail: ""
-                            },
-                            central: '',
-                        };
-                    */
-                    this.shopModel = {
-                        name: "Younesta",
-                        socialReason: 'YOUNESTA SARL',
-                        adress: "43 rue de malabry",
-                        adress2: "",
-                        city: "Maisse",
-                        zipCode: "91720",
-                        mobile: "06 50 90 12 05",
-                        phone: "01 60 78 37 94",
-                        fax: "01 60 78 37 94",
-                        mail: "younes.boulkaddid@supinternet.fr",
-                        tva: 0.9,
-                        siret: 0987654567890987,
-                        adeli: 876545678987654,
-                        nightBox: true,
-                        transporteur: 'Mathieu',
-                        openDay: "Lun",
-                        closeDay: "Lun",
-                        openHour: "10:30",
-                        closeHour: "10h:11",
+                    this.associateShop = [
+                        {
+                            name: "Younesta",
+                            socialReason: 'YOUNESTA SARL',
+                            adress: "43 rue de malabry",
+                            adress2: "",
+                            city: "Maisse",
+                            zipCode: "91720",
+                            mobile: "06 50 90 12 05",
+                            phone: "01 60 78 37 94",
+                            fax: "01 60 78 37 94",
+                            mail: "younes.boulkaddid@supinternet.fr",
+                            tva: 0.9,
+                            siret: 0987654567890987,
+                            adeli: 876545678987654,
+                            nightBox: true,
+                            transporteur: 'Mathieu',
+                            openDay: "Lun",
+                            closeDay: "Lun",
+                            openHour: "10:30",
+                            closeHour: "10:11"
+                        }
+                    ];
+                    this.director = {
+                        lastName: 'ezd,c',
+                        firstName: 'ezlkd,',
+                        phone: 'dk,q',
+                        mail: 'd,qs;',
                     };
                     this.model = {
                         role: 1,
@@ -126,43 +62,16 @@ System.register(['angular2/core', "./user.factory", "angular2/common", "../lib/r
                         firstName: 'Younes',
                         phone: '06.59.90.12.05',
                         mail: 'younes.boulkaddid@supinternet.fr',
-                        director: {
-                            lastName: 'Baptiste',
-                            firstName: 'Ferenbach',
-                            phone: '0657',
-                            mail: 'YJU',
-                        },
-                        associateShop: [75010112],
                         averageLens: 234567,
                         providerLens: "Aflelou",
                         averageGlasses: 234567,
                         providerGlasses: "Aflelou",
-                        financialShop: {
-                            name: "efsdc",
-                            adress: "ezqd",
-                            adress2: "",
-                            city: "98765",
-                            zipCode: "9876",
-                            mobile: "efzqc",
-                            phone: "jhfg",
-                            fax: "deklqjs",
-                            mail: "cjk"
-                        },
+                        financialShop: "rknfds,l",
                         IBAN: 098765434567890,
                         BIC: 0987654567890,
                         financialMail: 'cacacacacacacaca',
                         paymentState: true,
-                        deliverShop: {
-                            name: "ygerfuhsdk",
-                            adress: "hefjzbdskn",
-                            adress2: "zhjeqdkc",
-                            city: "ehbfjcs",
-                            zipCode: 9977,
-                            mobile: "ezfqc",
-                            phone: "efzcd",
-                            fax: "ezcd",
-                            mail: "ezcd"
-                        },
+                        deliverShop: "rkjfnedls,",
                         central: 'Central datatatata',
                     };
                     this.isSame = {
@@ -184,24 +93,41 @@ System.register(['angular2/core', "./user.factory", "angular2/common", "../lib/r
                     if (this.subscribeForm.valid) {
                         this.user = this.model;
                         this.user.role = 1;
-                        this.shop = this.shopModel;
-                        if (!this.isSame.director) {
-                            this.user.director = this.model.director;
-                        }
-                        if (!this.isSame.financialShop) {
-                            this.user.financialShop = this.model.financialShop;
-                        }
-                        if (!this.isSame.deliverShop) {
-                            this.user.deliverShop = this.model.deliverShop;
-                        }
                         if (!this.isSame.financialMail) {
                             this.user.financialMail = this.model.financialMail;
                         }
                         else {
-                            this.user.financialMail = this.shop.mail;
+                            this.user.financialMail = this.associateShop[0].mail;
                         }
-                        this.service.save(this.user, this.shop, this.isSame);
+                        this.service.save(this.user, this.associateShop, this.director, this.isSame);
                     }
+                };
+                UserSubscribeComponent.prototype.addShop = function () {
+                    this.associateShop.push({
+                        name: "Younesta",
+                        socialReason: 'YOUNESTA SARL',
+                        adress: "43 rue de malabry",
+                        adress2: "",
+                        city: "Maisse",
+                        zipCode: "91720",
+                        mobile: "06 50 90 12 05",
+                        phone: "01 60 78 37 94",
+                        fax: "01 60 78 37 94",
+                        mail: "younes.boulkaddid@supinternet.fr",
+                        tva: 0.9,
+                        siret: 0987654567890987,
+                        adeli: 876545678987654,
+                        nightBox: true,
+                        transporteur: 'Mathieu',
+                        openDay: "Lun",
+                        closeDay: "Lun",
+                        openHour: "10:30",
+                        closeHour: "10:11"
+                    });
+                };
+                UserSubscribeComponent.prototype.removeShop = function () {
+                    if (this.model.associateShop.length > 1)
+                        this.model.associateShop.pop();
                 };
                 UserSubscribeComponent = __decorate([
                     core_1.Component({

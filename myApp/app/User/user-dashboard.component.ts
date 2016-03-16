@@ -11,7 +11,7 @@ import {CanActivate} from "angular2/router";
 
 
 
-export class UserDashBoardComponent {
+export class UserDashboardComponent {
 
 }
 
