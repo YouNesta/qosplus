@@ -1,406 +1,315 @@
 <h1>Subscribe</h1>
-
-
-
     <div class="container-fluid">
-                <form [ngFormModel]="subscribeForm" novalidate>
-                    <div class="row user">
-                       <div class="col-xs-12 col-md-6 col-sm-6">
-                           <div class="form-group ">
-                               <label for="lastName">Nom</label>
-                               <input  [(ngModel)]="model.lastName" ngControl="name" id="lastName" class="form-control">
-                           </div>
-                           <div class="form-group">
-                               <label for="firstName">Prénom</label>
-                               <input  [(ngModel)]="model.firstName" ngControl="name" id="firstName" class="form-control">
-                           </div>
-                       </div>
+        <form [ngFormModel]="subscribeForm" novalidate>
+            <div class="row user">
+               <div class="col-xs-12 col-md-6 col-sm-6">
+                   <div class="form-group ">
+                       <label for="lastName">Nom</label>
+                       <input  [(ngModel)]="model.lastName" ngControl="name" id="lastName" class="form-control">
+                   </div>
+                   <div class="form-group">
+                       <label for="firstName">Prénom</label>
+                       <input  [(ngModel)]="model.firstName" ngControl="name" id="firstName" class="form-control">
+                   </div>
+               </div>
 
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="phone">Téléphone</label>
-                                <input  [(ngModel)]="model.phone" ngControl="phone" id="phone" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="mail">E-mail</label>
-                                <input  [(ngModel)]="model.mail" ngControl="mail" id="mail" class="form-control">
-                            </div>
+                <div class="col-xs-12 col-md-6 col-sm-6">
+                    <div class="form-group ">
+                        <label for="phone">Téléphone</label>
+                        <input  [(ngModel)]="model.phone" ngControl="phone" id="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="mail">E-mail</label>
+                        <input  [(ngModel)]="model.mail" ngControl="mail" id="mail" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row user director">
+                <div class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" [(ngModel)]="isSame.director"> Les informations sont les mêmes que le magasins principale
+                        </label>
+                    </div>
+                </div>
+                <div *ngIf="isSame.director == false" class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group ">
+                            <label for="directorLastName">Nom</label>
+                            <input  [(ngModel)]="model.director.lastName" ngControl="name" id="directorLastName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="directorFirstName">Prénom</label>
+                            <input  [(ngModel)]="model.director.firstName" ngControl="name" id="directorFirstName" class="form-control">
                         </div>
                     </div>
-
-                    <div class="row user director">
-
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" [(ngModel)]="isSame.director"> Les informations sont les mêmes que le magasins principale
-                                </label>
-                            </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group ">
+                            <label for="directorPhone">Téléphone</label>
+                            <input  [(ngModel)]="model.director.phone" ngControl="phone" id="directorPhone" class="form-control">
                         </div>
-
-                        <div *ngIf="isSame.director == true" class="col-xs-12 col-md-12 col-sm-12">
-                            <div class="col-xs-12 col-md-6 col-sm-6">
-                                <div class="form-group ">
-                                    <label for="directorLastName">Nom</label>
-                                    <input  [(ngModel)]="model.director.lastName" ngControl="name" id="directorLastName" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="directorFirstName">Prénom</label>
-                                    <input  [(ngModel)]="model.director.firstName" ngControl="name" id="directorFirstName" class="form-control">
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="col-xs-12 col-md-6 col-sm-6">
-
-                                <div class="form-group ">
-                                    <label for="directorPhone">Téléphone</label>
-                                    <input  [(ngModel)]="model.director.phone" ngControl="phone" id="directorPhone" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="directorMail">E-mail</label>
-                                    <input  [(ngModel)]="model.director.mail" ngControl="mail" id="directorMail" class="form-control">
-                                </div>
-
-                            </div>
+                        <div class="form-group">
+                            <label for="directorMail">E-mail</label>
+                            <input  [(ngModel)]="model.director.mail" ngControl="mail" id="directorMail" class="form-control">
                         </div>
                     </div>
-
-                    <div class="row shop">
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <div class="form-group ">
-                                <label for="socialReason">Raison Social</label>
-                                <input  [(ngModel)]="shopModel.socialReason"  id="socialReason" class="form-control">
-                            </div>
-
-                            <div class="form-group ">
-                                <label for="shopName">Nom du magasin</label>
-                                <input  [(ngModel)]="shopModel.name" ngControl="name" id="shopName" class="form-control">
-                            </div>
-
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-
-                            <div class="form-group ">
-                                <label for="shopAdress">Adresse</label>
-                                <input  [(ngModel)]="shopModel.adress" id="shopAdress" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="shopAdress2">Adresse 2</label>
-                                <input  [(ngModel)]="shopModel.adress2" id="shopAdress2" class="form-control">
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="shopCity">Ville</label>
-                                <input  [(ngModel)]="shopModel.city" id="shopCity" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="shopZipCode">Code Postal</label>
-                                <input  [(ngModel)]="shopModel.zipCode" ngControl="mail" id="shopZipCode" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-
-                            <div class="form-group ">
-                                <label for="shopMobile">Numéro de Portable du magasin</label>
-                                <input  [(ngModel)]="shopModel.mobile" ngControl="mobile" id="shopMobile" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="shopPhone">Numéro de Téléphone Fix</label>
-                                <input  [(ngModel)]="shopModel.phone" ngControl="phone" id="shopPhone" class="form-control">
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="shopFax">Numéro de Fax</label>
-                                <input  [(ngModel)]="shopModel.fax" id="shopFax" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="shopMail">Email du magasin</label>
-                                <input  [(ngModel)]="shopModel.mail" ngControl="mail" id="shopMail" class="form-control">
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="row shop">
+                <div class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="form-group ">
+                        <label for="socialReason">Raison Social</label>
+                        <input  [(ngModel)]="shopModel.socialReason"  id="socialReason" class="form-control">
                     </div>
 
-                    <div class="row associateShop">
-                        <div class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="form-group ">
+                        <label for="shopName">Nom du magasin</label>
+                        <input  [(ngModel)]="shopModel.name" ngControl="name" id="shopName" class="form-control">
+                    </div>
 
-                            <div class="form-group ">
-                                <label for="associateShop">Magasins Associés</label>
-                                <input  [(ngModel)]="model.associateShop" id="associateShop" class="form-control">
+                </div>
+                <div class="col-xs-12 col-md-6 col-sm-6">
 
-                            </div>
+                    <div class="form-group ">
+                        <label for="shopAdress">Adresse</label>
+                        <input  [(ngModel)]="shopModel.adress" id="shopAdress" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="shopAdress2">Adresse 2</label>
+                        <input  [(ngModel)]="shopModel.adress2" id="shopAdress2" class="form-control">
+                    </div>
 
-                        </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-sm-6">
+                    <div class="form-group ">
+                        <label for="shopCity">Ville</label>
+                        <input  [(ngModel)]="shopModel.city" id="shopCity" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="shopZipCode">Code Postal</label>
+                        <input  [(ngModel)]="shopModel.zipCode" ngControl="mail" id="shopZipCode" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-sm-6">
+                    <div class="form-group ">
+                        <label for="shopMobile">Numéro de Portable du magasin</label>
+                        <input  [(ngModel)]="shopModel.mobile" ngControl="mobile" id="shopMobile" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="shopPhone">Numéro de Téléphone Fix</label>
+                        <input  [(ngModel)]="shopModel.phone" ngControl="phone" id="shopPhone" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-sm-6">
+                    <div class="form-group ">
+                        <label for="shopFax">Numéro de Fax</label>
+                        <input  [(ngModel)]="shopModel.fax" id="shopFax" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="shopMail">Email du magasin</label>
+                        <input  [(ngModel)]="shopModel.mail" ngControl="mail" id="shopMail" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row associateShop">
+                <div class="col-xs-12 col-md-12 col-sm-12">
 
-
-
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="averageLens">Potentiel moyen HT d'achat de lentilles</label>
-                                <input  [(ngModel)]="model.averageLens" id="averageLens" class="form-control">
-                            </div>
-                            <div class="form-group ">
-                                <label for="providerLens">Fournisseur Lentilles</label>
-                                <input  [(ngModel)]="model.providerLens" id="providerLens" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="averageGlasses">Potentiel moyen HT d'achat de verres</label>
-                                <input  [(ngModel)]="model.averageGlasses" id="averageGlasses" class="form-control">
-                            </div>
-                            <div class="form-group ">
-                                <label for="providerGlasses">Fournisseur Verres</label>
-                                <input  [(ngModel)]="model.providerGlasses" id="providerGlasses" class="form-control">
-                            </div>
-                        </div>
+                    <div class="form-group ">
+                        <label for="associateShop">Magasins Associés</label>
+                        <input  [(ngModel)]="model.associateShop" id="associateShop" class="form-control">
 
                     </div>
 
-                    <div class="row shop fShop">
-
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" [(ngModel)]="isSame.financialShop"> Les informations sont les mêmes que le magasins principale
-                                </label>
-                            </div>
-                        </div>
-
-
-                        <div *ngIf="isSame.financialShop == true" class="col-xs-12 col-md-12 col-sm-12">
-                            <div class="col-xs-12 col-md-12 col-sm-12">
-                                <div class="form-group ">
-                                    <label for="fShopName">Nom du magasin</label>
-                                    <input  [(ngModel)]="model.financialShop.name" ngControl="name" id="fShopName" class="form-control">
-                                </div>
-
-                            </div>
-                            <div  class="col-xs-12 col-md-6 col-sm-6">
-
-                                <div class="form-group ">
-                                    <label for="fShopAdress">Adresse</label>
-                                    <input  [(ngModel)]="model.financialShop.adress" id="fShopAdress" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="fShopAdress2">Adresse 2</label>
-                                    <input  [(ngModel)]="model.financialShop.adress2" id="fShopAdress2" class="form-control">
-                                </div>
-
-                            </div>
+                </div>
 
 
 
-                            <div class="col-xs-12 col-md-6 col-sm-6">
-                                <div class="form-group ">
-                                    <label for="fShopCity">Ville</label>
-                                    <input  [(ngModel)]="model.financialShop.city" id="fShopCity" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="fShopZipCode">Code Postal</label>
-                                    <input  [(ngModel)]="model.financialShop.zipCode" ngControl="mail" id="fShopZipCode" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="col-xs-12 col-md-6 col-sm-6">
+                    <div class="form-group ">
+                        <label for="averageLens">Potentiel moyen HT d'achat de lentilles</label>
+                        <input  [(ngModel)]="model.averageLens" id="averageLens" class="form-control">
+                    </div>
+                    <div class="form-group ">
+                        <label for="providerLens">Fournisseur Lentilles</label>
+                        <input  [(ngModel)]="model.providerLens" id="providerLens" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-sm-6">
+                    <div class="form-group ">
+                        <label for="averageGlasses">Potentiel moyen HT d'achat de verres</label>
+                        <input  [(ngModel)]="model.averageGlasses" id="averageGlasses" class="form-control">
+                    </div>
+                    <div class="form-group ">
+                        <label for="providerGlasses">Fournisseur Verres</label>
+                        <input  [(ngModel)]="model.providerGlasses" id="providerGlasses" class="form-control">
+                    </div>
+                </div>
 
-                                <div class="form-group ">
-                                    <label for="fShopMobile">Numéro de Portable du magasin</label>
-                                    <input  [(ngModel)]="model.financialShop.mobile" ngControl="mobile" id="fShopMobile" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="fShopPhone">Numéro de Téléphone Fix</label>
-                                    <input  [(ngModel)]="model.financialShop.phone" ngControl="phone" id="fShopPhone" class="form-control">
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="col-xs-12 col-md-6 col-sm-6">
-                                <div class="form-group ">
-                                    <label for="fShopFax">Numéro de Fax</label>
-                                    <input  [(ngModel)]="model.financialShop.fax" id="fShopFax" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="fShopMail">Email du magasin</label>
-                                    <input  [(ngModel)]="model.financialShop.mail" ngControl="mail" id="fShopMail" class="form-control">
-                                </div>
-                            </div>
+            </div>
+            <div class="row shop fShop">
+                <div class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" [(ngModel)]="isSame.financialShop"> Les informations sont les mêmes que le magasins principale
+                        </label>
+                    </div>
+                </div>
+                <div *ngIf="isSame.financialShop == false" class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <div class="form-group ">
+                            <label for="fShopName">Nom du magasin</label>
+                            <input  [(ngModel)]="model.financialShop.name" ngControl="name" id="fShopName" class="form-control">
                         </div>
                     </div>
-
-                    <div class="row bankInfo">
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="iban">IBAN</label>
-                                <input  [(ngModel)]="model.IBAN" id="iban" class="form-control">
-                            </div>
+                    <div  class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group ">
+                            <label for="fShopAdress">Adresse</label>
+                            <input  [(ngModel)]="model.financialShop.adress" id="fShopAdress" class="form-control">
                         </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="bic">BIC</label>
-                                <input  [(ngModel)]="model.BIC" id="bic" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" [(ngModel)]="isSame.financialMail"> Les informations sont les mêmes que le magasins principale
-                                </label>
-                            </div>
-                            <div class="form-group " *ngIf="isSame.financialMail == true">
-                                <label for="financialMail">BIC</label>
-                                <input  [(ngModel)]="model.financialMail" id="financialMail" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="checkbox ">
-                                <label for="paymentState"><input id="paymentState" type="checkbox" [(ngModel)]="model.paymentState"> Metre en place le paiement</label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row shop dShop">
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                           <div class="checkbox">
-                               <label>
-                                   <input type="checkbox" [(ngModel)]="isSame.deliverShop"> Les informations sont les mêmes que le magasins principale
-                               </label>
-                           </div>
-                       </div>
-                        <div *ngIf="isSame.deliverShop == true" class="col-xs-12 col-md-12 col-sm-12">
-                            <div class="col-xs-12 col-md-12 col-sm-12">
-                                <div class="form-group ">
-                                    <label for="dShopName">Nom du magasin</label>
-                                    <input  [(ngModel)]="model.deliverShop.name" ngControl="name" id="dShopName" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-6 col-sm-6">
-                                <div class="form-group ">
-                                    <label for="dShopAdress">Adresse</label>
-                                    <input  [(ngModel)]="model.deliverShop.adress" id="dShopAdress" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dShopAdress2">Adresse 2</label>
-                                    <input  [(ngModel)]="model.deliverShop.adress2" id="dShopAdress2" class="form-control">
-                                </div>
-
-                            </div>
-                            <div class="col-xs-12 col-md-6 col-sm-6">
-                                <div class="form-group ">
-                                    <label for="dShopCity">Ville</label>
-                                    <input  [(ngModel)]="model.deliverShop.city" id="dShopCity" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dShopZipCode">Code Postal</label>
-                                    <input  [(ngModel)]="model.deliverShop.zipCode" id="dShopZipCode" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-6 col-sm-6">
-
-                                <div class="form-group ">
-                                    <label for="dShopMobile">Numéro de Portable du magasin</label>
-                                    <input  [(ngModel)]="model.deliverShop.mobile" ngControl="mobile" id="dShopMobile" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dShopPhone">Numéro de Téléphone Fix</label>
-                                    <input  [(ngModel)]="model.deliverShop.phone" ngControl="phone" id="dShopPhone" class="form-control">
-                                </div>
-
-                            </div>
-                            <div class="col-xs-12 col-md-6 col-sm-6">
-                                <div class="form-group ">
-                                    <label for="dShopFax">Numéro de Fax</label>
-                                    <input  [(ngModel)]="model.deliverShop.fax" id="dShopFax" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dShopMail">Email du magasin</label>
-                                    <input  [(ngModel)]="model.deliverShop.mail" ngControl="mail" id="dShopMail" class="form-control">
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="fShopAdress2">Adresse 2</label>
+                            <input  [(ngModel)]="model.financialShop.adress2" id="fShopAdress2" class="form-control">
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <div class="form-group ">
-                                <label for="central">Central ou Enseigne</label>
-                                <input  [(ngModel)]="model.central" ngControl="name" id="central" class="form-control">
-                            </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group ">
+                            <label for="fShopCity">Ville</label>
+                            <input  [(ngModel)]="model.financialShop.city" id="fShopCity" class="form-control">
                         </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <div class="form-group ">
-                                <label for="comment">Commentaire</label>
-                                <input  [(ngModel)]="model.central" ngControl="name" id="comment" class="form-control">
-                            </div>
+                        <div class="form-group">
+                            <label for="fShopZipCode">Code Postal</label>
+                            <input  [(ngModel)]="model.financialShop.zipCode" ngControl="mail" id="fShopZipCode" class="form-control">
                         </div>
                     </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
 
-                    <button class="btn btn-primary" (click)="subscribe()" type="button">Envoyé</button>
-
-
-
-                </form>
-
-
-
-                <!--<form >
-                        <label>Address</label>
-                        <input  [(ngModel)]="user.address">
-                        <input  [(ngModel)]="user.address2" placeholder="Address 2">
-                    <div layout="row">
-
-                            <label>City</label>
-                            <input  [(ngModel)]="user.city">
-
-                        &lt;!&ndash;<-container class="md-block" flex>
-                            <label>State</label>
-                            <select [(ngModel)]="user.state">
-                                <option *ngFor="#state of states" [ngModel]="state.abbrev">
-                                    {{state.abbrev}}
-                                </option>
-                            </select>
-&ndash;&gt;
-
-                            <label>Postal Code</label>
-                            <input  ngControl="postalCode" [(ngModel)]="user.postalCode" placeholder="12345"
-                                   required mdPattern="^[0-9]{5}$" #postalCode="ngForm" mdMaxLength="5">
-                            <div [md-messages]="postalCode" role="alert">
-                                <div md-message="required">You must supply a postal code.</div>
-                                <div md-message="mdPattern">That doesn't look like a valid postal code.</div>
-                                <div md-message="mdMaxLength">Don't use the long version silly...we don't need to be that specific...
-                                </div>
-                            </div>
-
+                        <div class="form-group ">
+                            <label for="fShopMobile">Numéro de Portable du magasin</label>
+                            <input  [(ngModel)]="model.financialShop.mobile" ngControl="mobile" id="fShopMobile" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="fShopPhone">Numéro de Téléphone Fix</label>
+                            <input  [(ngModel)]="model.financialShop.phone" ngControl="phone" id="fShopPhone" class="form-control">
+                        </div>
                     </div>
-                        <label>Biography</label>
-                        <textarea  [(ngModel)]="user.biography" columns="1" md-maxlength="150" rows="5"></textarea>
-                </form>-->
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group ">
+                            <label for="fShopFax">Numéro de Fax</label>
+                            <input  [(ngModel)]="model.financialShop.fax" id="fShopFax" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="fShopMail">Email du magasin</label>
+                            <input  [(ngModel)]="model.financialShop.mail" ngControl="mail" id="fShopMail" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-
-
-
-
-
-
-
+            <div class="row bankInfo">
+                <div class="col-xs-12 col-md-6 col-sm-6">
+                    <div class="form-group ">
+                        <label for="iban">IBAN</label>
+                        <input  [(ngModel)]="model.IBAN" id="iban" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-sm-6">
+                    <div class="form-group ">
+                        <label for="bic">BIC</label>
+                        <input  [(ngModel)]="model.BIC" id="bic" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-sm-6">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" [(ngModel)]="isSame.financialMail"> Les informations sont les mêmes que le magasins principale
+                        </label>
+                    </div>
+                    <div class="form-group " *ngIf="isSame.financialMail == false">
+                        <label for="financialMail">BIC</label>
+                        <input  [(ngModel)]="model.financialMail" id="financialMail" class="form-control">
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-sm-6">
+                    <div class="checkbox ">
+                        <label for="paymentState"><input id="paymentState" type="checkbox" [(ngModel)]="model.paymentState"> Metre en place le paiement</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row shop dShop">
+                <div class="col-xs-12 col-md-12 col-sm-12">
+                   <div class="checkbox">
+                       <label>
+                           <input type="checkbox" [(ngModel)]="isSame.deliverShop"> Les informations sont les mêmes que le magasins principale
+                       </label>
+                   </div>
+               </div>
+                <div *ngIf="isSame.deliverShop == false" class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="col-xs-12 col-md-12 col-sm-12">
+                        <div class="form-group ">
+                            <label for="dShopName">Nom du magasin</label>
+                            <input  [(ngModel)]="model.deliverShop.name" ngControl="name" id="dShopName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group ">
+                            <label for="dShopAdress">Adresse</label>
+                            <input  [(ngModel)]="model.deliverShop.adress" id="dShopAdress" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="dShopAdress2">Adresse 2</label>
+                            <input  [(ngModel)]="model.deliverShop.adress2" id="dShopAdress2" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group ">
+                            <label for="dShopCity">Ville</label>
+                            <input  [(ngModel)]="model.deliverShop.city" id="dShopCity" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="dShopZipCode">Code Postal</label>
+                            <input  [(ngModel)]="model.deliverShop.zipCode" id="dShopZipCode" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group ">
+                            <label for="dShopMobile">Numéro de Portable du magasin</label>
+                            <input  [(ngModel)]="model.deliverShop.mobile" ngControl="mobile" id="dShopMobile" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="dShopPhone">Numéro de Téléphone Fix</label>
+                            <input  [(ngModel)]="model.deliverShop.phone" ngControl="phone" id="dShopPhone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 col-sm-6">
+                        <div class="form-group ">
+                            <label for="dShopFax">Numéro de Fax</label>
+                            <input  [(ngModel)]="model.deliverShop.fax" id="dShopFax" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="dShopMail">Email du magasin</label>
+                            <input  [(ngModel)]="model.deliverShop.mail" ngControl="mail" id="dShopMail" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="form-group ">
+                        <label for="central">Central ou Enseigne</label>
+                        <input  [(ngModel)]="model.central" ngControl="name" id="central" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 col-sm-12">
+                    <div class="form-group ">
+                        <label for="comment">Commentaire</label>
+                        <input  [(ngModel)]="model.central" ngControl="name" id="comment" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" (click)="subscribe()" type="button">Envoyé</button>
+        </form>
     </div>
 
 

@@ -11,7 +11,6 @@ var Admin = require("../../models/admin/admin.js").Admin;
 
 router.post('/subscribe', function(req, res, next) {
 
-  Admin
   if(req.body != 'undefined'){
     console.log(req.body);
     res.send(200, req.body);

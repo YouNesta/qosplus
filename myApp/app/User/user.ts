@@ -24,7 +24,7 @@ export class User {
 
 
     constructor(user) {
-        this._role = 1;
+        this._role = user.role;
         this._lastName = user.lastName;
         this._firstName = user.firstName;
         this._mail = user.mail;

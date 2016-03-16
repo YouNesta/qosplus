@@ -2,10 +2,11 @@ import {Component} from 'angular2/core';
 import {FormBuilder, Validators} from "angular2/common";
 import {RegEx} from "../lib/regex";
 import {AdminFactory} from "./admin.factory";
-import {Admin} from "./user";
+import {Admin} from "./admin";
 import {ControlGroup} from "angular2/common";
-
-
+import {tokenNotExpired} from 'angular2-jwt';
+import {CanActivate} from "angular2/router";
+@CanActivate(() => tokenNotExpired('token'))
 @Component({
     templateUrl: "app/Admin/admin-subscribe.html",
 })
@@ -56,13 +57,7 @@ export class AdminSubscribeComponent {
 
     subscribe(){
         if(this.subscribeForm.valid){
-            this.admin = new Admin(this.model);
-            this.admin.password = this.model.password;
-            this.service.save(this.admin);
-
-
+            this.service.save(this.model);
         }
-
-
     }
 }

@@ -1,102 +1,51 @@
 var express = require('express');
 var app = express();
+var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var fs = require('fs');
+var expressJWT = require('express-jwt');
 
-
+//Config Files
 var config = require('./config/config');
+//Create Log Folder and Initiate LogFile
+var logFolder = require('./modules/logs').logFolder();
+
+var Admin = require("./models/admin/admin.js").Admin;
+
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({extended: false}));
+  app.use(cookieParser());
+  app.set('view engine', 'jade');
+
+//Add Option for HTTP Request
+app.use(cors(config.corsOptions));
+
+
+//Connect to BDD
+var mongooseModule = require('./modules/mongoose/module');
+mongooseModule.connect();
+mongooseModule.event();
+
+
+// User Routes
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var user = require('./routes/user');
 
 
 
 // Admin Routes
 var admin = require('./routes/admin/admin');
-var aUsers = require('./routes/admin/users');
+var aUser = require('./routes/admin/user');
 
 
 
-var mongoose = require('mongoose');
-var logger = require('winston');
-
-
-
-
-function LogFolder(){
-  var dir = './logs';
-  var y = new Date();
-  var param = [y.getFullYear(), y.getMonth(),y.getDate(), y.getHours()];
-  var lastItem = null;
-  param.forEach(function(item, e) {
-    if(lastItem == param[e - 1]){
-      dir+= "/"+item;
-      if (!fs.existsSync(dir)){
-        fs.mkdirSync(dir);
-        lastItem = item;
-      }
-    }else{
-      if (!fs.existsSync(dir)){
-        fs.mkdirSync(dir);
-        lastItem = item;
-      }
-    }
-  });
-
-  return dir;
-}
-
-LogFolder();
-
-var y = new Date();
-var dir = "logs/"+y.getFullYear()+"/"+y.getMonth()+"/"+y.getDate()+"/"+ y.getHours()+"/";
-logger.add(logger.transports.File, { filename: dir+'logs.log' });
-
-app.use(cors(config.corsOptions));
-
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.set('view engine', 'jade');
-
+//Routing
 app.use('/', routes);
-app.use('/api/v1/client/users', users);
+app.use('/api/v1/client/user', user);
 app.use('/api/v1/admin', admin);
-app.use('/api/v1/admin/users', aUsers);
-
-
-// Create the database connection
-mongoose.connect('mongodb://'+config.DB_URL+':27017/'+config.DB_NAME);
-
-// CONNECTION EVENTS
-// When successfully connected
-mongoose.connection.on('connected', function () {
-  logger.log('info','Mongoose default connection open to ' + config.DB_NAME);
-});
-
-// If the connection throws an error
-mongoose.connection.on('error',function (err) {
-  logger.log('error','Mongoose default connection error: ' + err);
-});
-
-// When the connection is disconnected
-mongoose.connection.on('disconnected', function () {
-  logger.log('warn','Mongoose default connection disconnected');
-});
-
-// If the Node process ends, close the Mongoose connection
-process.on('SIGINT', function() {
-  mongoose.connection.close(function () {
-    logger.log('info', 'Mongoose default connection disconnected through app termination');
-    process.exit(0);
-  });
-});
-
-
-
+app.use('/api/v1/admin/user', aUser);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
