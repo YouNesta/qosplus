@@ -5,26 +5,19 @@ import {
     ROUTER_DIRECTIVES,
     ROUTER_PROVIDERS,
 } from 'angular2/router';
-import {UserFactory} from "./user.factory";
+import {AdminSubscribeComponent} from "./admin-subscribe.component";
 import {tokenNotExpired} from 'angular2-jwt';
 import {CanActivate} from "angular2/router";
 @CanActivate(() => tokenNotExpired('token'))
 
 
 @Component({
-    template: "<h1>LOLOLOL</h1>" +
-    "<router-outlet></router-outlet>",
-    directives: [ROUTER_DIRECTIVES]
+    templateUrl: "app/Admin/admin-dashboard.html",
 })
 
-@RouteConfig([
-    { path: "/", name: "Login", component: UserFactory}
-])
 
 
-
-
-export class UserListComponent {
+export class AdminValidationComponent {
 
 }
 

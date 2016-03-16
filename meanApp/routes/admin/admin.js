@@ -2,47 +2,65 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var logger = require('winston');
+var jwt    = require('jsonwebtoken');
+
+
 var Admin = require("../../models/admin/admin.js").Admin;
-var crypto = require('crypto');
+var Token    = require('../../modules/jsonwebtoken/module');
+var users    = require('../../modules/user');
 
 
 
 
-
-router.post('/subscribe', function(req, res, next) {
+router.post('/subscribe',function(req, res) {
   if(req.body != 'undefined'){
-
-    var admin = new Admin(req.body.admin);
-    var buf = crypto.randomBytes(16);
-    var txt = buf.toString('hex');
-
-
-    var SHA256 = require("crypto-js/sha256");
-    var hash =  SHA256(req.body.admin._password+txt);
-    admin._password = hash.toString();
-    admin._hash = txt;
-
-    admin.save( function(error) {
-      if(error){
+     var crypted  = users.generatePassword(req.body.admin.password);
+     req.body.admin.password = crypted.password;
+     req.body.admin.hash = crypted.hash;
+     req.body.admin.role = 1;
+     var admin = new Admin(req.body.admin);
+    Admin.findOne({
+      mail: req.body.admin.mail
+    }, function(err, user) {
+      if(err){
         console.log(error);
         logger.log('error', error);
+        res.res.json({success: false, message:error});
       }
-
+      if (!user) {
+        admin.save( function(error) {
+          if(error){
+            console.log(error);
+            logger.log('error', error);
+            res.res.json({success: false, message:error});
+          }
+          delete req.body.admin.password;
+          var data = req.body.admin;
+          res.json({success: true, message:"Subscribe success", data: data});
+        });
+      } else if (user) {
+        res.json({ success: false, message: 'Subscribe failed. User Already exist.' });
+      }
     });
-    res.status(200).send(admin);
-  }else{
-    res.sendStatus(500);
-  }
+   }else{
+     res.sendStatus(500);
+   }
 });
 
 
 
 
 
-
-
-
-
+router.get('/', function(req, res, next) {
+  Admin.find({}, function(err, users) {
+    if(err){
+      console.log(err);
+      logger.log('error', err);
+      res.res.json({success: false, message:error});
+    }
+    res.json({success: true, message:"User List Find with success", data: users});
+  });
+});
 
 
 

@@ -4,95 +4,95 @@
 var mongoose = require("mongoose");
 
 var UserSchema = new mongoose.Schema({
-    _state:{
+    state:{
         type: Number,
         required : false
     },
-    _role:{
+    role:{
         type: Number,
         required : false
     },
-    _lastName:{
+    lastName:{
         type: String,
         index: true,
         required : true
     },
-    _firstName:{
+    firstName:{
         type: String,
         required : true
     },
-    _phone:{
-        type: String,
-        index: true,
-        required : true
-    },
-    _mail:{
+    phone:{
         type: String,
         index: true,
         required : true
     },
-    _shop:{
+    mail:{
+        type: String,
+        index: true,
+        required : true
+    },
+    shop:{
         type: String,
         required : false
 
     },
-    _director: {
+    director: {
         type: String,
         required : false
     },
-    _associateShop: {
+    associateShop: {
         type: Array,
         required : false
     },
-    _averageLens: {
+    averageLens: {
         type: Number,
         required : false
     },
-    _providerLens: {
+    providerLens: {
         type: String,
         required : false
     },
-    _averageGlasses: {
+    averageGlasses: {
         type: Number,
         required : false
     },
-    _providerGlasses: {
+    providerGlasses: {
         type: String,
         required : false
     },
-    _commercial:{
+    commercial:{
         type: String,
         required : false,
         index: true
     },
-    _financialShop:{
+    financialShop:{
         type: String,
         required : false,
         index: true
     },
-    _IBAN:{
+    IBAN:{
         type: Number,
         required : false
     },
-    _BIC:{
+    BIC:{
         type: Number,
         required : false
 
     },
-    _financialMail:{
+    financialMail:{
         type: String,
         index: true,
         required : false
     },
-    _paymentState: {
+    paymentState: {
         type: Boolean,
         required : false
     },
-    _deliverShop: {
+    deliverShop: {
         type: String,
         required : false
     },
-    _central:{
+    central:{
         type: String,
         required : false,
         index: true

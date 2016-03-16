@@ -4,34 +4,33 @@
 var mongoose = require("mongoose");
 
 var AdminSchema = new mongoose.Schema({
-    _role:{
+    role:{
         type: Number,
         required : false
     },
-    _lastName:{
+    lastName:{
+        type: String,
+        required : true
+    },
+    firstName:{
+        type: String,
+        required : true
+    },
+    phone:{
         type: String,
         index: true,
         required : true
     },
-    _firstName:{
-        type: String,
-        required : true
-    },
-    _phone:{
+    mail:{
         type: String,
         index: true,
         required : true
     },
-    _mail:{
-        type: String,
-        index: true,
-        required : true
-    },
-    _password:{
+    password:{
         type: String,
         required : true
     },
-    _hash:{
+    hash:{
         type: String,
         required : true
     }

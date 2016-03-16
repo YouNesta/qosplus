@@ -1,13 +1,14 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {bootstrap}    from 'angular2/platform/browser';
 import {Http, Headers, HTTP_PROVIDERS} from 'angular2/http';
+import {AuthHttp, AuthConfig, tokenNotExpired, JwtHelper} from 'angular2-jwt';
+
 
 import {
     RouteConfig,
     ROUTER_DIRECTIVES,
     ROUTER_PROVIDERS,
-    RouterLink
-    } from 'angular2/router';
+    RouterLink, Router} from 'angular2/router';
 
 import {enableProdMode} from 'angular2/core';
 enableProdMode();
@@ -21,11 +22,16 @@ import {RegEx} from "./lib/regex";
 import {RouteAuth} from "./Config/route-auth";
 import {AdminComponent} from "./Admin/admin.component";
 import {AdminFactory} from "./Admin/admin.factory";
+import {PageNotFoundComponent} from "./Page/page-not-found.component";
+import {provide} from "angular2/core";
+import {APP_BASE_HREF} from "angular2/router";
+import {User} from "./User/user";
+import {Admin} from "./Admin/admin";
 
 
 @Component({
     selector: "app",
-    template:   "<header></header>" +
+    template:   "<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>" +
                 "<router-outlet></router-outlet>" +
                 "<footer>{{title}}</footer>",
 
@@ -33,19 +39,49 @@ import {AdminFactory} from "./Admin/admin.factory";
 })
 
 @RouteConfig([
-    { path: "/...", as: "Home", component: HomeComponent, useAsDefault: true },
-    { path: "/users/...", as: "Users", component: UserComponent },
-    { path: "/admin/...", as: "Admin", component: AdminComponent}
+    { path: "/...", as: "Home", component: HomeComponent},
+    { path: "/user/...", as: "User", component: UserComponent },
+    { path: "/admin/...", as: "Admin", component: AdminComponent},
+    { path: '/404', name: '404', component: PageNotFoundComponent },
+    { path: '/*path', redirectTo:['404'] }
 ])
 
 
 
-export class App {
+export class App implements OnInit{
     title = "penis";
-    constructor(){
+    user: any;
 
+    constructor(public service: UserFactory){
+
+    }
+
+
+
+
+
+    ngOnInit(){
+        if(this.service.isConnected())
+            this.service.getUser();
     }
 
 }
 
-bootstrap(App, [ROUTER_PROVIDERS, HTTP_PROVIDERS, UserFactory, RegEx, RouteAuth, AdminFactory]);
+bootstrap(App, [
+    ROUTER_PROVIDERS,
+    HTTP_PROVIDERS,
+    UserFactory,
+    RegEx,
+    RouteAuth,
+    AdminFactory,
+    provide(AuthHttp, {
+        useFactory: (http) => {
+            return new AuthHttp(new AuthConfig({headerName:'Authorization',    tokenName: "token",    tokenGetter: function(){
+                return localStorage.getItem("token")
+            }, noJwtError: true}), http);
+        },
+        deps: [Http]
+    }),
+    provide(APP_BASE_HREF, {useValue:'/'})
+]);
+

@@ -1,0 +1,7 @@
+header nav-user li {
+  display: inline-block;
+  padding: 0 15px; }
+
+header nav-admin li {
+  display: inline-block;
+  padding: 0 15px; }

@@ -36,8 +36,25 @@ System.register(['angular2/core', "./nav-user.component", "./nav-admin.component
                     this.title = "QosPlus";
                     router.subscribe(function (val) {
                         _this.routeAuth = routeAuth.routeAuth(val);
+                        console.log(_this.routeAuth);
                     });
                 }
+                HeaderComponent.prototype.ngOnChanges = function (changes) {
+                    if (changes['admin']) {
+                        this.admin = changes['admin'].currentValue;
+                    }
+                    if (changes['connected']) {
+                        this.connected = changes['connected'].currentValue;
+                    }
+                };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Boolean)
+                ], HeaderComponent.prototype, "connected", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Number)
+                ], HeaderComponent.prototype, "admin", void 0);
                 HeaderComponent = __decorate([
                     core_1.Component({
                         selector: "header",

@@ -7,6 +7,7 @@ import {
 } from 'angular2/router';
 import {UserLoginComponent} from "./user-login.component";
 import {UserSubscribeComponent} from "./user-subscribe.component";
+import {UserDashBoardComponent} from "./user-dashboard.component";
 
 
 
@@ -18,8 +19,8 @@ import {UserSubscribeComponent} from "./user-subscribe.component";
 
 @RouteConfig([
     { path: "/login", name: "Login", component: UserLoginComponent},
-    { path: "/", name: "Login", component: UserLoginComponent},
-    { path: "/subscribe", name: "Subscribe", component: UserSubscribeComponent}
+    { path: "/subscribe", name: "Subscribe", component: UserSubscribeComponent},
+    { path: "/", name: "Dashboard", component: UserDashBoardComponent}
 ])
 
 

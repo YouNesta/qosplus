@@ -5,108 +5,93 @@ var mongoose = require("mongoose");
 
 var ShopSchema = new mongoose.Schema({
 
-    _name: {
+    name: {
         type: String,
         index: true,
         required : true
     },
-        _socialReason: {
+    socialReason: {
         type: String,
         index: true,
         required : false
     },
-        _adress: {
-        type: String,
-        index: true,
-        required : true
-    },
-        _adress2: {
-        type: String,
-        required : false
-    },
-        _city: {
+    adress: {
         type: String,
         index: true,
         required : true
     },
-        _zipCode: {
-        type: Number,
-            index: true,
-
-            required : true
-
-    },
-        _mobile: {
+    adress2: {
         type: String,
-            index: true,
-
-            required : true
-
+        required : false
     },
-        _phone: {
-        type: String,
-            index: true,
-
-            required : false
-
-    },
-        _fax: {
-        type: String,
-            index: true,
-
-            required : false
-
-    },
-        _mail: {
+    city: {
         type: String,
         index: true,
         required : true
     },
-        _tva: {
+    zipCode: {
         type: Number,
-
-        required : false
-
+        index: true,
+        required : true
     },
-        _siret: {
-        type: Number,
-            index: true,
-
-            required : false
-
+    mobile: {
+        type: String,
+        index: true,
+        required : true
     },
-        _adeli: {
-        type: Number,
-            index: true,
-            required : false
-
-    },
-        _nightBox:  {
-            type: Boolean,
-            required : false
-        },
-        _transporteur: {
+    phone: {
         type: String,
         index: true,
         required : false
     },
-
-    _openDay:  {
+    fax: {
+        type: String,
+        index: true,
+        required : false
+    },
+    mail: {
+        type: String,
+        index: true,
+        required : true
+    },
+    tva: {
+        type: Number,
+        required : false
+    },
+    siret: {
+        type: Number,
+        index: true,
+        required : false
+    },
+    adeli: {
+        type: Number,
+        index: true,
+        required : false
+    },
+    nightBox:  {
+        type: Boolean,
+        required : false
+    },
+    transporteur: {
         type: String,
         required : false
     },
-    _closeDay:  {
+    openDay:  {
         type: String,
         required : false
     },
-        _openHour:  {
-            type: Date,
-            required : false
-        },
-        _closeHour:  {
-            type: Date,
-            required : false
-        }
+    closeDay:  {
+        type: String,
+        required : false
+    },
+    openHour:  {
+        type: Date,
+        required : false
+    },
+    closeHour:  {
+        type: Date,
+        required : false
+    }
 });
 
 var Shop = mongoose.model('Shop', ShopSchema);
