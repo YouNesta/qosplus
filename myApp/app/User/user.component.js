@@ -39,7 +39,7 @@ System.register(['angular2/core', 'angular2/router', "./user-login.component", "
                     router_1.RouteConfig([
                         { path: "/login", name: "Login", component: user_login_component_1.UserLoginComponent },
                         { path: "/subscribe", name: "Subscribe", component: user_subscribe_component_1.UserSubscribeComponent },
-                        { path: "/", name: "Dashboard", component: user_dashboard_component_1.UserDashBoardComponent }
+                        { path: "/", name: "Dashboard", component: user_dashboard_component_1.UserDashboardComponent }
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], UserComponent);

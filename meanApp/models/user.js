@@ -6,11 +6,11 @@ var mongoose = require("mongoose");
 var UserSchema = new mongoose.Schema({
     state:{
         type: Number,
-        required : false
+        required : true
     },
     role:{
         type: Number,
-        required : false
+        required : true
     },
     lastName:{
         type: String,
@@ -30,11 +30,6 @@ var UserSchema = new mongoose.Schema({
         type: String,
         index: true,
         required : true
-    },
-    shop:{
-        type: String,
-        required : false
-
     },
     director: {
         type: String,
@@ -65,11 +60,6 @@ var UserSchema = new mongoose.Schema({
         required : false,
         index: true
     },
-    financialShop:{
-        type: String,
-        required : false,
-        index: true
-    },
     IBAN:{
         type: Number,
         required : false
@@ -86,10 +76,6 @@ var UserSchema = new mongoose.Schema({
     },
     paymentState: {
         type: Boolean,
-        required : false
-    },
-    deliverShop: {
-        type: String,
         required : false
     },
     central:{

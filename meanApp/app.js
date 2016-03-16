@@ -5,7 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors = require('cors');
-var expressJWT = require('express-jwt');
+var jwt = require('express-jwt');
 
 //Config Files
 var config = require('./config/config');
@@ -13,6 +13,10 @@ var config = require('./config/config');
 var logFolder = require('./modules/logs').logFolder();
 
 var Admin = require("./models/admin/admin.js").Admin;
+
+
+
+app.use(jwt({ secret: config.secret}).unless({path: config.freeRoutes}));
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: false}));

@@ -16,8 +16,8 @@ export class UserFactory {
 
     }
 
-    save(user, shop, option){
-      var data =  JSON.stringify({user, shop, option});
+    save(user, shops, director, option){
+      var data =  JSON.stringify({user, shops, director, option});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -35,11 +35,27 @@ export class UserFactory {
     }
 
     user(){
+
+        if(localStorage.getItem('user')){
+            return JSON.parse(localStorage.getItem('user'))
+        }else {
+            this.getUser()
+                .subscribe(res => {
+                        return JSON.parse(localStorage.getItem('user'))
+                    },
+                    err => console.log(err));
+        }
+
+
+    }
+    getUser(){
         return this.authHttp
-            .get(this.apiUrl)
+            .get(this.apiUrl+ 'get')
             .map( (response) => response.json())
             .map(response => {
                 if (response) {
+                    var user = JSON.stringify(response.data);
+                    localStorage.setItem("user", user)
                     return response
                 }else{
                     console.log("Error")
@@ -70,18 +86,6 @@ export class UserFactory {
         return 0;
     }
 
-    getUser(){
-        if(localStorage.getItem('user')){
-            return localStorage.getItem('user')
-        }else {
-            this.user()
-                .subscribe(res => {
-                        var user = JSON.stringify(res.data);
-                        localStorage.setItem("user", user)
-                    },
-                    err => console.log(err));
-        }
-    }
 
     login = function(user) {
         var data =  JSON.stringify({user});
@@ -109,7 +113,6 @@ export class UserFactory {
                         localStorage.setItem("user", user);
                         localStorage.setItem('token',res.token);
                         if(res.data.role > 0){
-                            console.log(1456789);
                             this.router.navigateByUrl('/admin');
                         }else{
                             console.log(345678);

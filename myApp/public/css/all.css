@@ -43,11 +43,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-header nav-user li {
-  display: inline-block;
-  padding: 0 15px; }
-
-header nav-admin li {
+header nav li, header nav-user li, header nav-admin li {
   display: inline-block;
   padding: 0 15px; }
 

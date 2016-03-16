@@ -1,4 +1,4 @@
-System.register(['angular2/core', "./nav-user.component", "./nav-admin.component", "angular2/router", "../Config/route-auth"], function(exports_1) {
+System.register(['angular2/core', "./nav.component", "./nav-admin.component", "angular2/router", "../Config/route-auth"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,15 +8,15 @@ System.register(['angular2/core', "./nav-user.component", "./nav-admin.component
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, nav_user_component_1, nav_admin_component_1, router_1, route_auth_1;
+    var core_1, nav_component_1, nav_admin_component_1, router_1, route_auth_1;
     var HeaderComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (nav_user_component_1_1) {
-                nav_user_component_1 = nav_user_component_1_1;
+            function (nav_component_1_1) {
+                nav_component_1 = nav_component_1_1;
             },
             function (nav_admin_component_1_1) {
                 nav_admin_component_1 = nav_admin_component_1_1;
@@ -59,7 +59,7 @@ System.register(['angular2/core', "./nav-user.component", "./nav-admin.component
                     core_1.Component({
                         selector: "header",
                         templateUrl: "app/Layouts/header.html",
-                        directives: [nav_user_component_1.NavUserComponent, nav_admin_component_1.NavAdminComponent]
+                        directives: [nav_component_1.NavComponent, nav_admin_component_1.NavAdminComponent]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, route_auth_1.RouteAuth])
                 ], HeaderComponent);
