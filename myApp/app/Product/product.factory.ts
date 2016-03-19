@@ -22,7 +22,7 @@ export class ProductFactory {
         headers.append('Content-Type', 'application/json');
 
         this.authHttp
-            .post(this.apiUrl + 'create',
+            .post(this.apiUrl + 'add',
                 data, {
                     headers: headers
                 })

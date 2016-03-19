@@ -88,6 +88,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                         { path: "/...", as: "Home", component: home_component_1.HomeComponent },
                         { path: "/user/...", as: "User", component: user_component_1.UserComponent },
                         { path: "/admin/...", as: "Admin", component: admin_component_1.AdminComponent },
+                        { path: "/product/...", as: "Product", component: product_component_1.ProductComponent },
                         { path: '/404', name: '404', component: page_not_found_component_1.PageNotFoundComponent },
                         { path: '/*path', redirectTo: ['404'] }
                     ]), 
