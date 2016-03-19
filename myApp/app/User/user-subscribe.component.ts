@@ -141,7 +141,7 @@ export class UserSubscribeComponent {
         });
     }
     removeShop(){
-        if(this.model.associateShop.length > 1)
-            this.model.associateShop.pop();
+        if(this.associateShop.length > 1)
+            this.associateShop.pop();
     }
 }

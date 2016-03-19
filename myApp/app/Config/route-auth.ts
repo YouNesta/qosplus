@@ -19,18 +19,23 @@ constructor(public service: UserFactory, public router: Router) {
             { "route": "/", "auth": false },
             { "route": "contact", "auth": false },
             { "route": "about", "auth": false },
-            { "route": "products", "auth": false }
         ],
+
         "admin": [
             { "route": "/", "auth": true },
-            { "route": "subscribe", "auth": true }
+            { "route": "subscribe", "auth": true },
         ],
 
         "user": [
             { "route": "/", "auth": false },
             { "route": "subscribe", "auth": false },
             { "route": "login", "auth": false },
-        ]
+        ],
+
+        "products": [
+            { "route": "/list", "auth": false },
+            { "route": "/add", "auth": false },
+        ],
     }
 
 
