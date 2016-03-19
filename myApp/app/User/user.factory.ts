@@ -77,6 +77,7 @@ export class UserFactory {
         }
         return false;
     }
+
     isAdmin(){
         if(localStorage.getItem('user')){
             var user = localStorage.getItem('user')

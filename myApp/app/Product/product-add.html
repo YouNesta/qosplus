@@ -1,0 +1,61 @@
+<h1>Subscribe</h1>
+<div class="container-fluid">
+    <form [ngFormModel]="subscribeForm" novalidate>
+        <div class="row product">
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="name">Nom</label>
+                    <input  [(ngModel)]="model.name" ngControl="name" id="name" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="hydrophily">Hydrophilie</label>
+                    <input  [(ngModel)]="model.hydrophily" ngControl="hydrophily" id="hydrophily" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row product">
+            <div class="col-xs-12 col-md-§ col-sm-6">
+                <div class="form-group ">
+                    <select class="form-control" id="material" [(ngModel)]="model.material">
+                        <option value="0">Verre</option>
+                        <option value="1">Plexiglass</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-§ col-sm-6">
+                <div class="form-group ">
+                    <select class="form-control" id="color" [(ngModel)]="model.color">
+                        <option value="0">Transparent</option>
+                        <option value="1">Bleu</option>
+                        <option value="2">Vert</option>
+                        <option value="3">Marron</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row product">
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="radius">Rayon</label>
+                    <input  [(ngModel)]="model.radius" ngControl="radius" id="radius" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="diameter">Diamètre</label>
+                    <input  [(ngModel)]="model.diameter" ngControl="diameter" id="diameter" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row product">
+
+        </div>
+
+        <button class="btn btn-primary" (click)="subscribe()" type="button">Envoyé</button>
+    </form>
+</div>
+
