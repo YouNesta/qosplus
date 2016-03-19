@@ -1,4 +1,4 @@
-<h1>Subscribe</h1>
+<h1>Add a product</h1>
 <div class="container-fluid">
     <form [ngFormModel]="subscribeForm" novalidate>
         <div class="row product">
@@ -40,14 +40,14 @@
             <div class="col-xs-12 col-md-6 col-sm-6">
                 <div class="form-group ">
                     <label for="radius">Rayon</label>
-                    <input  [(ngModel)]="model.radius" ngControl="radius" id="radius" class="form-control">
+                    <input  [(ngModel)]="model.radius[0]" ngControl="radius" id="radius" class="form-control">
                 </div>
             </div>
 
             <div class="col-xs-12 col-md-6 col-sm-6">
                 <div class="form-group ">
                     <label for="diameter">Diamètre</label>
-                    <input  [(ngModel)]="model.diameter" ngControl="diameter" id="diameter" class="form-control">
+                    <input  [(ngModel)]="model.diameter[0]" ngControl="diameter" id="diameter" class="form-control">
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
 
         </div>
 
-        <button class="btn btn-primary" (click)="subscribe()" type="button">Envoyé</button>
+        <button class="btn btn-primary" (click)="subscribe()" type="button">Envoyer</button>
     </form>
 </div>
 
