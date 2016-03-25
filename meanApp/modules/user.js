@@ -39,7 +39,7 @@ module.exports = {
             if (user) {
                 if (req.body.option.director) {
                     //Is director
-                    User.findOneAndUpdate({_id: user._id}, {$set: {director: user._id}}, function (error, data) {
+                    User.findOneAndUpdate({_id: user._id}, {$set: {director: user._id}}, function (error, user) {
                         if (error) {
                             console.log(error);
                             logger.log('error', error);
@@ -76,8 +76,6 @@ module.exports = {
         })
         function setShop(user, shops){
             if(shops.length >= 1){
-                shops[0].openHour = new Date(shops[0].openHour);
-                shops[0].closeHour = new Date(shops[0].closeHour);
                 var shop = new Shop(shops[0]);
                 shop.save(function(error, shop){
                     if(error){

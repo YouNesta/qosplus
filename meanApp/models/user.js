@@ -6,11 +6,11 @@ var mongoose = require("mongoose");
 var UserSchema = new mongoose.Schema({
     state:{
         type: Number,
-        required : true
+        required : false
     },
     role:{
         type: Number,
-        required : true
+        required : false
     },
     lastName:{
         type: String,
@@ -32,7 +32,7 @@ var UserSchema = new mongoose.Schema({
         required : true
     },
     director: {
-        type: String,
+        type: Array,
         required : false
     },
     associateShop: {
@@ -82,6 +82,10 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required : false,
         index: true
+    },
+    comment: {
+        type: String,
+        required : false
     }
 });
 

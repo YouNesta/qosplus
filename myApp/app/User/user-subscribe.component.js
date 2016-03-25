@@ -73,6 +73,7 @@ System.register(['angular2/core', "./user.factory", "angular2/common", "../lib/r
                         paymentState: true,
                         deliverShop: "rkjfnedls,",
                         central: 'Central datatatata',
+                        comment: 'ehrjsvdfksx'
                     };
                     this.isSame = {
                         director: 1,
@@ -126,8 +127,8 @@ System.register(['angular2/core', "./user.factory", "angular2/common", "../lib/r
                     });
                 };
                 UserSubscribeComponent.prototype.removeShop = function () {
-                    if (this.model.associateShop.length > 1)
-                        this.model.associateShop.pop();
+                    if (this.associateShop.length > 1)
+                        this.associateShop.pop();
                 };
                 UserSubscribeComponent = __decorate([
                     core_1.Component({

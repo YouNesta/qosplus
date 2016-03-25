@@ -51,4 +51,23 @@ export class AdminFactory {
             .get(this.apiUrl+'unvalidate')
             .map(response => response.json())
     };
+
+    validateUser = function(user) {
+
+        var data =  JSON.stringify({user});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'validate',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .subscribe(
+                response => console.log(response),
+                err =>  console.log(err),
+                () => console.log('Validation Complete')
+            );
+    };
 }

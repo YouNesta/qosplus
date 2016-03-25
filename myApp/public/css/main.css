@@ -1,0 +1,5 @@
+.panel {
+  margin: 30px; }
+  .panel .panel-body {
+    height: 300px;
+    overflow: scroll; }

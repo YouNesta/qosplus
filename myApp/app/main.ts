@@ -27,12 +27,14 @@ import {provide} from "angular2/core";
 import {APP_BASE_HREF} from "angular2/router";
 import {User} from "./User/user";
 import {Admin} from "./Admin/admin";
+import {FormValidator} from "./Config/form-validator";
+
 
 
 @Component({
     selector: "app",
     template:   "<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>" +
-                "<router-outlet></router-outlet>" +
+                "<div class='content'><router-outlet></router-outlet></div>" +
                 "<footer>{{title}}</footer>",
 
     directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent]
@@ -48,24 +50,17 @@ import {Admin} from "./Admin/admin";
 
 
 
-export class App implements OnInit{
+export class App {
     title = "penis";
-    user: any;
 
     constructor(public service: UserFactory){
-
-    }
-
-
-
-
-
-    ngOnInit(){
         if(this.service.isConnected() && tokenNotExpired('token')){
             this.service.user()
 
         }
     }
+
+
 
 }
 
@@ -84,6 +79,7 @@ bootstrap(App, [
         },
         deps: [Http]
     }),
-    provide(APP_BASE_HREF, {useValue:'/'})
+    provide(APP_BASE_HREF, {useValue:'/'}),
+    FormValidator
 ]);
 

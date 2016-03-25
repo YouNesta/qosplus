@@ -85,11 +85,11 @@ var ShopSchema = new mongoose.Schema({
         required : false
     },
     openHour:  {
-        type: Date,
+        type: String,
         required : false
     },
     closeHour:  {
-        type: Date,
+        type: String,
         required : false
     }
 });
