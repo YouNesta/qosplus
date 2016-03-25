@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 'angular2-jwt', 'angular2/router', "./Layouts/header.component", "./Layouts/footer.component", './User/user.component', './Home/home.component', "./User/user.factory", "./lib/regex", "./Config/route-auth", "./Admin/admin.component", "./Admin/admin.factory", "./Page/page-not-found.component", "angular2/core", "angular2/router"], function(exports_1) {
+System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 'angular2-jwt', 'angular2/router', "./Layouts/header.component", "./Layouts/footer.component", './User/user.component', './Home/home.component', "./User/user.factory", "./lib/regex", "./Config/route-auth", "./Admin/admin.component", "./Admin/admin.factory", "./Page/page-not-found.component", "angular2/core", "angular2/router", "./Config/form-validator"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, browser_1, http_1, angular2_jwt_1, router_1, core_2, header_component_1, footer_component_1, user_component_1, home_component_1, user_factory_1, regex_1, route_auth_1, admin_component_1, admin_factory_1, page_not_found_component_1, core_3, router_2;
+    var core_1, browser_1, http_1, angular2_jwt_1, router_1, core_2, header_component_1, footer_component_1, user_component_1, home_component_1, user_factory_1, regex_1, route_auth_1, admin_component_1, admin_factory_1, page_not_found_component_1, core_3, router_2, form_validator_1;
     var App;
     return {
         setters:[
@@ -63,6 +63,9 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
             },
             function (router_2_1) {
                 router_2 = router_2_1;
+            },
+            function (form_validator_1_1) {
+                form_validator_1 = form_validator_1_1;
             }],
         execute: function() {
             core_2.enableProdMode();
@@ -70,17 +73,15 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                 function App(service) {
                     this.service = service;
                     this.title = "penis";
-                }
-                App.prototype.ngOnInit = function () {
                     if (this.service.isConnected() && angular2_jwt_1.tokenNotExpired('token')) {
                         this.service.user();
                     }
-                };
+                }
                 App = __decorate([
                     core_1.Component({
                         selector: "app",
                         template: "<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>" +
-                            "<router-outlet></router-outlet>" +
+                            "<div class='content'><router-outlet></router-outlet></div>" +
                             "<footer>{{title}}</footer>",
                         directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent, footer_component_1.FooterComponent]
                     }),
@@ -111,7 +112,8 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                     },
                     deps: [http_1.Http]
                 }),
-                core_3.provide(router_2.APP_BASE_HREF, { useValue: '/' })
+                core_3.provide(router_2.APP_BASE_HREF, { useValue: '/' }),
+                form_validator_1.FormValidator
             ]);
         }
     }

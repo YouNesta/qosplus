@@ -49,9 +49,16 @@ router.post('/subscribe',function(req, res) {
    }
 });
 
+router.post('/validate',function(req, res) {
+  if(req.body != 'undefined'){
+  console.log(req.body.user);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
 
 router.get('/unvalidate', function(req, res, next) {
-  console.log('lalala');
   User.find({state: 0}, function(err, users) {
     if(err){
       console.log(err);
@@ -69,14 +76,34 @@ router.get('/unvalidate', function(req, res, next) {
   function getUsers(users, i){
     if(i < users.length){
       var user = users[i];
-      Shop.find({
-        '_id': { $in: user.associateShop}
-      }, function(err, shops){
-        users[i].associateShop = shops;
-        console.log(users);
-        i++;
-        getUsers(users, i);
-      });
+
+      if(user.director != user._id){
+        User.findOne({_id: user.director}, function(err, director) {
+          if(err){
+            console.log(err);
+            logger.log('error', err);
+            // res.res.json({success: false, message:error});
+          }
+          users[i].director = director;
+          Shop.find({
+            '_id': { $in: user.associateShop}
+          }, function(err, shops){
+            users[i].associateShop = shops;
+            i++;
+            getUsers(users, i);
+          });
+
+        });
+      }else{
+        Shop.find({
+          '_id': { $in: user.associateShop}
+        }, function(err, shops){
+          users[i].associateShop = shops;
+          i++;
+          getUsers(users, i);
+        });
+      }
+
     }else{
       res.json({success: true, message:"User List Find with success", data: users});
     }

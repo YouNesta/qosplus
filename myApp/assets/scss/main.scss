@@ -1,0 +1,14 @@
+.panel{
+  margin: 30px ;
+   .panel-body{
+     height:300px;
+     overflow: scroll;
+     .userInfo{
+       .well{
+       text-overflow:ellipsis;
+         overflow:hidden;
+       }
+     }
+
+   }
+}

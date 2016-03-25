@@ -13,6 +13,8 @@ export class RouteAuth {
         auth: false
     };
 
+    route = {};
+
 constructor(public service: UserFactory, public router: Router) {
     this.route = {
         " ": [
@@ -53,7 +55,6 @@ constructor(public service: UserFactory, public router: Router) {
     var $this = this ;
 
     if( val.indexOf("/") > 0){
-console.log(this.location);
         this.route[this.location.base].forEach(function(item, e) {
             if($this.location.name == item.route){
                 $this.location.auth = item.auth
@@ -81,11 +82,9 @@ console.log(this.location);
     redirect(){
         if(this.service.isConnected() && tokenNotExpired('token')){
             var user = this.service.user();
-            console.log(user);
             if(user.role > 0){
                 this.router.navigateByUrl('/admin');
             }else{
-                console.log(345678);
                 this.router.navigateByUrl('/user');
             }
         }

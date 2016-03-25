@@ -12,12 +12,11 @@ import {Input} from "angular2/core";
     directives: [ROUTER_DIRECTIVES]
 })
 
-export class NavAdminComponent  implements OnInit {
+export class NavAdminComponent  {
     @Input() connected: boolean;
     @Input() admin: number;
 
     constructor(public service: UserFactory){
-        console.log(admin);
     }
 
 }

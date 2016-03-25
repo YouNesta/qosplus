@@ -55,9 +55,6 @@
                     </div>
                 </div>
             </div>
-
-
-
             <div class="row bankInfo">
                 <div class="col-xs-12 col-md-6 col-sm-6">
                     <div class="form-group ">
@@ -100,11 +97,10 @@
                 <div class="col-xs-12 col-md-12 col-sm-12">
                     <div class="form-group ">
                         <label for="comment">Commentaire</label>
-                        <input  [(ngModel)]="model.central" ngControl="name" id="comment" class="form-control">
+                        <input  [(ngModel)]="model.comment" ngControl="name" id="comment" class="form-control">
                     </div>
                 </div>
             </div>
-
             <div class="row associateShop" >
                 <div class="row shop" *ngFor="#shop of associateShop">
                     <div class="col-xs-12 col-md-12 col-sm-12">
@@ -222,74 +218,8 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <button class="btn btn-primary" (click)="addShop()" type="button">Ajouter un magasin</button>
             <button class="btn btn-primary" (click)="removeShop()" type="button">Supprimer un magasin</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <button class="btn btn-primary" (click)="subscribe()" type="button">Envoyé</button>
         </form>
     </div>

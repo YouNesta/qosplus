@@ -14,7 +14,7 @@ import {Input} from "angular2/core";
     directives: [ROUTER_DIRECTIVES]
 })
 
-export class NavAdminComponent  implements OnInit {
+export class NavAdminComponent  {
 
 
     constructor(public service: UserFactory){

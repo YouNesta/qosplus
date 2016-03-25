@@ -2,7 +2,7 @@ var config = {};
 
 config.env = "DEV";
 
-config.DB_URL =  "localhost";
+config.DB_URL =  "127.0.0.1";
 config.DB_NAME = "qosPlus";
 config.DB_PORT = 27017;
 config.DB_USERNAME = "quosPlus";

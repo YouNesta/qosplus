@@ -20,7 +20,6 @@ router.get('/get', function(req, res) {   // Get user
     model = Admin;
   }
     model.findOne({_id: data._id} ,function(err, user) {
-
       if(err){
         console.log(error);
         logger.log('error', error);

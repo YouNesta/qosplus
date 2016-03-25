@@ -3,7 +3,10 @@
  */
 System.config({
     transpiler: 'typescript',
-    typescriptOptions: { emitDecoratorMetadata: true },
+    typescriptOptions: {
+        emitDecoratorMetadata: true,
+        experimentalDecorators: true
+    },
     packages: {
         'app': {
             defaultExtension: 'ts'
@@ -13,8 +16,10 @@ System.config({
         }
     },
     map: {
-    "angular2-jwt": "node_modules/angular2-jwt/angular2-jwt.js"
-}
+        "angular2-jwt": "node_modules/angular2-jwt/angular2-jwt.js",
+        moment: 'node_modules/moment/moment.js'
+    }
+
 });
 System.import('app/main')
     .then(null, console.error.bind(console));

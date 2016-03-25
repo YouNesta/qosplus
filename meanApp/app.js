@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -42,8 +41,6 @@ var user = require('./routes/user');
 // Admin Routes
 var admin = require('./routes/admin/admin');
 var aUser = require('./routes/admin/user');
-
-
 
 //Routing
 app.use('/', routes);
