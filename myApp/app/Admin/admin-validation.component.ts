@@ -14,6 +14,7 @@ import {FormBuilder, Validators} from "angular2/common";
 import {ControlGroup} from "angular2/common";
 import {FormValidator} from "../Config/form-validator";
 import {MODAL_DIRECTIVES, ModalComponent} from "ng2-bs3-modal/ng2-bs3-modal";
+import {UserFactory} from "../User/user.factory";
 
 @CanActivate(() => tokenNotExpired('token'))
 
@@ -98,8 +99,8 @@ export class AdminValidationComponent {
     };
     validateForm: ControlGroup;
     modal: ModalComponent;
-    constructor(public service: AdminFactory, fb: FormBuilder, formValidator: FormValidator){
-       this.service.getUnvalidateUser()
+    constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator){
+       this.adminService.getUnvalidateUser()
            .subscribe(
            response => {
                if(response.success){
@@ -107,10 +108,21 @@ export class AdminValidationComponent {
                    this.form = [];
                    var $this = this;
                    response.data.forEach(function(item, i){
-                       $this.users[i].director = $this.users[i].director[0];
+                       try
+                       {
+                           var director = JSON.parse( $this.users[i].director);
+                           $this.users[i].director = director;
+                           console.log(director);
+
+                       }
+                       catch(e)
+                       {
+                           $this.users[i].director = $this.users[i].director;
+
+                       }
                        $this.users[i].isCollapsed = true;
                    });
-
+console.log(this.users);
 
                }else{
                    console.log(response);
@@ -148,7 +160,7 @@ export class AdminValidationComponent {
         this.model = this.users[i];
     }
     validateUser(){
-        this.service.validateUser(this.model);
+        this.service.updateUser(this.model);
     }
 
 }

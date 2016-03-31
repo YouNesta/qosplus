@@ -59,10 +59,39 @@ System.register(['angular2/core', 'rxjs/Rx', "angular2/http", 'angular2-jwt', "a
                                 if (res.data.role > 0) {
                                     _this.router.navigateByUrl('/admin');
                                 }
-                                else {
-                                    console.log(345678);
+                                else if (res.data.role == 0) {
                                     _this.router.navigateByUrl('/user');
                                 }
+                            }
+                            else {
+                                console.log(res);
+                            }
+                        }, function (err) {
+                            console.log(err);
+                        }, function () { return console.log('Authentification'); });
+                    };
+                    this.updateUser = function (user) {
+                        console.log(user);
+                        var data = JSON.stringify({ user: user });
+                        var headers = new http_1.Headers();
+                        headers.append('Content-Type', 'application/json');
+                        return this.authHttp
+                            .put(this.apiUrl, data, {
+                            headers: headers
+                        })
+                            .map(function (response) { return response.json(); })
+                            .map(function (response) {
+                            if (response) {
+                                return response;
+                            }
+                            else {
+                                console.log("Error");
+                            }
+                            return response;
+                        })
+                            .subscribe(function (res) {
+                            if (res.success) {
+                                console.log(res);
                             }
                             else {
                             }

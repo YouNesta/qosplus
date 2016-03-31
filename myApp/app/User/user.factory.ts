@@ -114,10 +114,47 @@ export class UserFactory {
                         localStorage.setItem('token',res.token);
                         if(res.data.role > 0){
                             this.router.navigateByUrl('/admin');
-                        }else{
-                            console.log(345678);
+                        }else if(res.data.role == 0){
                             this.router.navigateByUrl('/user');
                         }
+                    }else{
+                        console.log(res)
+                    }
+                },
+                err => {
+                    console.log(err);
+                },
+                () => console.log('Authentification')
+            );
+
+    };
+
+
+
+    updateUser = function(user) {
+        console.log(user);
+        var data =  JSON.stringify({user});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .put(this.apiUrl,
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .map(response => {
+                if (response) {
+                    return response
+                }else{
+                    console.log("Error")
+                }
+                return response;
+            })
+            .subscribe(
+                res => {
+                    if(res.success){
+                      console.log(res);
                     }else{
                     }
                 },

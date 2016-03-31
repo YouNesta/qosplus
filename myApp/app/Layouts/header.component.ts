@@ -5,13 +5,14 @@ import {NavAdminComponent} from "./nav-admin.component";
 import {Router} from "angular2/router";
 import {RouteAuth} from "../Config/route-auth";
 import {SimpleChange} from "angular2/core";
+import {NavUserComponent} from "./nav-user.component";
 
 
 
 @Component({
     selector: "header",
     templateUrl: "app/Layouts/header.html",
-    directives: [NavComponent, NavAdminComponent]
+    directives: [NavComponent, NavAdminComponent, NavUserComponent]
 })
 
 export class HeaderComponent implements OnChanges{
@@ -26,6 +27,8 @@ export class HeaderComponent implements OnChanges{
         router.subscribe((val) => {
             this.routeAuth =  routeAuth.routeAuth(val);
             console.log( this.routeAuth);
+            console.log(this.admin);
+
         });
     }
 
