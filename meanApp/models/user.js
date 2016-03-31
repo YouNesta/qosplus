@@ -32,7 +32,7 @@ var UserSchema = new mongoose.Schema({
         required : true
     },
     director: {
-        type: Array,
+        type: String,
         required : false
     },
     associateShop: {
@@ -84,6 +84,15 @@ var UserSchema = new mongoose.Schema({
         index: true
     },
     comment: {
+        type: String,
+        required : false
+    },
+    password:{
+        type: String,
+        required : false,
+        index: true
+    },
+    hash: {
         type: String,
         required : false
     }

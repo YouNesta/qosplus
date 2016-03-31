@@ -56,7 +56,6 @@ export class App {
     constructor(public service: UserFactory){
         if(this.service.isConnected() && tokenNotExpired('token')){
             this.service.user()
-
         }
     }
 

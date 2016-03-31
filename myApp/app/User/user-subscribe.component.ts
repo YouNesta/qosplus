@@ -27,7 +27,7 @@ export class UserSubscribeComponent {
             mobile: "06 50 90 12 05",
             phone: "01 60 78 37 94",
             fax: "01 60 78 37 94",
-            mail: "younes.boulkaddid@supinternet.fr",
+            mail: "younes@supinternet.fr",
             tva: 0.9,
             siret: 0987654567890987,
             adeli: 876545678987654,
@@ -49,11 +49,11 @@ export class UserSubscribeComponent {
     };
 
     model = {
-        role: 1,
+        role: 0,
         lastName: 'Boulkaddid',
         firstName: 'Younes',
         phone: '06.59.90.12.05',
-        mail: 'younes.boulkaddid@supinternet.fr',
+        mail: 'younes@supinternet.fr',
         averageLens: 234567,
         providerLens: "Aflelou",
         averageGlasses: 234567,
@@ -104,7 +104,7 @@ export class UserSubscribeComponent {
     subscribe(){
         if(this.subscribeForm.valid){
             this.user = this.model;
-            this.user.role = 1;
+            this.user.role = 0;
 
             if(!this.isSame.financialMail){
                 this.user.financialMail = this.model.financialMail;

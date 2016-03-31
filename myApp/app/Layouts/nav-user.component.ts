@@ -7,14 +7,13 @@ import {Input} from "angular2/core";
 
 
 @Component({
-    selector: "nav-admin",
-    template: "<li><a [routerLink]=\"['Home', 'Homepage']\">Home</a></li>",
+    selector: "nav-user",
+    template: "<li><a [routerLink]=\"['Home', 'Homepage']\">Home</a></li>" +
+    "<button class='btn btn-primary' (click)='service.logout()' type='button'>Logout</button>",
     directives: [ROUTER_DIRECTIVES]
 })
 
-export class NavAdminComponent  {
-    @Input() connected: boolean;
-    @Input() admin: number;
+export class NavUserComponent  {
 
     constructor(public service: UserFactory){
     }

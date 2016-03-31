@@ -29,7 +29,7 @@ constructor(public service: UserFactory, public router: Router) {
         ],
 
         "user": [
-            { "route": "/", "auth": false },
+            { "route": "/", "auth": true },
             { "route": "subscribe", "auth": false },
             { "route": "login", "auth": false },
         ]

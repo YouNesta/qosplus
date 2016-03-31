@@ -56,7 +56,6 @@ router.post('/login', function(req, res) {   // Login
         res.res.json({success: false, message:error});
       }
       if (!user) {
-
         User.findOne({
           mail: req.body.user.mail
         }, function(err, user) {
@@ -69,8 +68,6 @@ router.post('/login', function(req, res) {   // Login
             res.json({ success: false, message: 'Authentication failed. User not found.' });
           } else if (user) {
             if (users.isValidPassword(user, req.body.user.password)){
-              res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-            } else {
               var token = Token.setData(user);
               res.json({
                 success: true,
@@ -78,6 +75,10 @@ router.post('/login', function(req, res) {   // Login
                 token: token,
                 data: user
               });
+            } else {
+              res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+
+
             }
           }
         });
@@ -85,8 +86,6 @@ router.post('/login', function(req, res) {   // Login
       } else if (user) {
 
         if (users.isValidPassword(user, req.body.user.password)){
-          res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-        } else {
           var token = Token.setData(user);
           res.json({
             success: true,
@@ -94,6 +93,10 @@ router.post('/login', function(req, res) {   // Login
             token: token,
             data: user
           });
+        } else {
+          res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+
+
         }
       }
     });
@@ -106,6 +109,14 @@ router.post('/login', function(req, res) {   // Login
 router.post('/subscribe', function(req, res, next) {
   if(req.body != 'undefined'){
     users.setUser(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
+router.put('/', function(req, res, next) {
+  if(req.body != 'undefined'){
+    users.update(req, res);
   }else{
     res.sendStatus(500);
   }
