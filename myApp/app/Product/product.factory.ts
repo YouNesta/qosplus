@@ -33,19 +33,10 @@ export class ProductFactory {
                 () => console.log('Product Added')
             );
     }
+
     getProduct(){
-        return this.authHttp
-            .get(this.apiUrl+ 'get')
-            .map( (response) => response.json())
-            .map(response => {
-                if (response) {
-                    var product = JSON.stringify(response.data);
-                    localStorage.setItem("product", product)
-                    return response
-                }else{
-                    console.log("Error")
-                }
-                return response;
-            })
+        return  this.authHttp
+            .get(this.apiUrl+'list')
+            .map(response => response.json())
     }
 }

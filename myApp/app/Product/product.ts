@@ -4,13 +4,7 @@ export class Product {
     private _material:number;
     private _color:number;
     private _hydrophily:number;
-    private _diameter:Array<number>;
-    private _radius:Array<number>;
-    private _sphere:Array<number>;
-    private _cylinder:Array<number>;
-    private _axis:Array<number>;
-    private _addition:Array<number>;
-    private _stock:Array<number>;
+    private _products:Array<Array>;
 
 
     constructor(product) {
@@ -18,13 +12,7 @@ export class Product {
         this._material = product.material;
         this._color = product.color;
         this._hydrophily = product.hydrophily;
-        this._diameter = product.diameter;
-        this._radius = product.radius;
-        this._sphere = product.sphere;
-        this._cylinder = product.cylinder;
-        this._axis = product.axis;
-        this._addition = product.addition;
-        this._stock = product.stock;
+        this._products = product.products;
     }
 
 
@@ -68,59 +56,12 @@ export class Product {
         this._hydrophily = value;
     }
 
-    get diameter():Array<number> {
-        return this._diameter;
+    get products():Array<Array> {
+        return this._products;
     }
 
-    set diameter(value:Array<number>) {
-        this._diameter = value;
+    set products(value:Array<Array>) {
+        this._products = value;
     }
 
-    get radius():Array<number> {
-        return this._radius;
-    }
-
-    set radius(value:Array<number>) {
-        this._radius = value;
-    }
-
-    get sphere():Array<number> {
-        return this._sphere;
-    }
-
-    set sphere(value:Array<number>) {
-        this._sphere = value;
-    }
-
-    get addition():Array<number> {
-        return this._addition;
-    }
-
-    set addition(value:Array<number>) {
-        this._addition = value;
-    }
-
-    get axis():Array<number> {
-        return this._axis;
-    }
-
-    set axis(value:Array<number>) {
-        this._axis = value;
-    }
-
-    get cylinder():Array<number> {
-        return this._cylinder;
-    }
-
-    set cylinder(value:Array<number>) {
-        this._cylinder = value;
-    }
-
-    get stock():Array<number> {
-        return this._stock;
-    }
-
-    set stock(value:Array<number>) {
-        this._stock = value;
-    }
 }
