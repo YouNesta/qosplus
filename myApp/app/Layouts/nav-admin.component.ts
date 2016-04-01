@@ -8,9 +8,7 @@ import {Input} from "angular2/core";
 
 @Component({
     selector: "nav-admin",
-    template: "<li><a [routerLink]=\"['Admin', 'Subscribe']\">Ajouter un Employé</a></li>"+
-    "<li><a [routerLink]=\"['Admin', 'Validation']\">Valider un utilisateur</a></li>"+
-    "<button class='btn btn-primary' (click)='service.logout()' type='button'>Logout</button>",
+    templateUrl: "app/Layouts/nav-admin.html",
     directives: [ROUTER_DIRECTIVES]
 })
 
@@ -18,6 +16,8 @@ export class NavAdminComponent  {
 
 
     constructor(public service: UserFactory){
+        this.title = "QosPlus";
+
     }
 
 }

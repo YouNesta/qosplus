@@ -1,14 +1,33 @@
-.panel{
-  margin: 30px ;
-   .panel-body{
-     height:300px;
-     overflow: scroll;
-     .userInfo{
-       .well{
-       text-overflow:ellipsis;
-         overflow:hidden;
-       }
-     }
+@import './components/theme_variables';
+body{
+  font-family: $font-family;
 
-   }
+
+
+
+
+
+.admin{
+  &.content{
+    position: fixed;
+    left: 250px;
+    right: 0;
+    bottom: 0;
+    top: 60px;
+    .panel{
+      margin: 30px ;
+      .panel-body{
+        height:300px;
+        overflow: scroll;
+        .userInfo{
+          .well{
+            text-overflow:ellipsis;
+            overflow:hidden;
+          }
+        }
+
+      }
+    }
+  }
+}
 }

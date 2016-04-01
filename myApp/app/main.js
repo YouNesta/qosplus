@@ -70,18 +70,28 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
         execute: function() {
             core_2.enableProdMode();
             App = (function () {
-                function App(service) {
+                function App(service, router, routeAuth) {
+                    var _this = this;
                     this.service = service;
+                    this.router = router;
                     this.title = "penis";
+                    this.routeAuth = {
+                        base: " ",
+                        name: " ",
+                        auth: "false"
+                    };
                     if (this.service.isConnected() && angular2_jwt_1.tokenNotExpired('token')) {
                         this.service.user();
                     }
+                    router.subscribe(function (val) {
+                        _this.routeAuth = routeAuth.routeAuth(val);
+                    });
                 }
                 App = __decorate([
                     core_1.Component({
                         selector: "app",
                         template: "<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>" +
-                            "<div class='content'><router-outlet></router-outlet></div>" +
+                            "<div class='content {{routeAuth.base}}'><router-outlet></router-outlet></div>" +
                             "<footer>{{title}}</footer>",
                         directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent, footer_component_1.FooterComponent]
                     }),
@@ -92,7 +102,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                         { path: '/404', name: '404', component: page_not_found_component_1.PageNotFoundComponent },
                         { path: '/*path', redirectTo: ['404'] }
                     ]), 
-                    __metadata('design:paramtypes', [user_factory_1.UserFactory])
+                    __metadata('design:paramtypes', [user_factory_1.UserFactory, router_1.Router, route_auth_1.RouteAuth])
                 ], App);
                 return App;
             })();

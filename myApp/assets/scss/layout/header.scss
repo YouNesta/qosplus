@@ -1,8 +1,75 @@
 header{
-  nav, nav-user, nav-admin{
+  nav, nav-user{
     li{
       display: inline-block;
       padding: 0 15px;
+    }
+  }
+
+  nav-admin{
+    #sidebar-wrapper {
+      z-index: 1000;
+      position: fixed;
+      left: 250px;
+      top:0;
+      width: 0;
+      height: 100%;
+      margin-left: -250px;
+      overflow-y: auto;
+      background: #000;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+      .sidebar-nav {
+        background: #2b303b;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+          text-indent: 20px;
+          line-height: 40px;
+          a {
+            display: block;
+            text-decoration: none;
+            color: #999999;
+            &:hover {
+              text-decoration: none;
+              color: #fff;
+              background: rgba(255,255,255,0.2);
+            }
+            &:active,&:focus{
+              text-decoration: none;
+            }
+          }
+        }
+        .sidebar-brand {
+          height: 60px;
+          a {
+            font-size: 16px;
+            line-height: 18px;
+            color: #9eacb5;
+
+            &:hover {
+              color: #fff;
+              background: none;
+            }
+          }
+        }
+      }
+
+    }
+    @media(min-width:768px) {
+
+      #sidebar-wrapper {
+        width: 250px;
+      }
+
     }
   }
 }
