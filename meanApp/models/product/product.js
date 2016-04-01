@@ -22,31 +22,11 @@ var ProductSchema = new mongoose.Schema({
         type: Number, 
         required : true 
     },
-    diameter: {
-        type: Number,
+    price:{ 
+        type: Number, 
         required : true 
     },
-    radius: { 
-        type: Number, 
-        required : true
-    }, 
-    sphere: {
-        type: Array,
-        required : false 
-    },
-    addition: { 
-        type: Array,
-        required : false 
-    },
-    axis: { 
-        type: Array,
-        required : false 
-    },
-    cylinder: {
-        type: Array, 
-        required : false
-    },
-    stock: { 
+    product: { 
         type: Array,
         required : false
     }

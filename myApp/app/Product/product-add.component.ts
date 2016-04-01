@@ -21,14 +21,43 @@ export class ProductAddComponent {
         material: 1,
         color: 2,
         hydrophily: 69,
-        diameter: [7.7],
-        radius: [50],
-        sphere: [-7.5, -7, -6.5],
-        cylinder: [],
-        axis: [],
-        addition: [],
-        stock: [2, 2, 4],
+        price: 10,
+        product: []
     };
+
+    //va stocker les valeurs renseignées par le min/max/pas
+    value = {
+        diameter: [0],
+        addition: [0],
+        cylinder: [0],
+        radius: [0],
+        axis: [0],
+        sphere: [0],
+    };
+
+    //savoir quels ids récupérer
+    ids = {
+        axis: {
+            min: "#axis",
+            max: "#axis-max",
+            inter: "#axis-interval"
+        },
+        addition: {
+            min: "#addition",
+            max: "#addition-max",
+            inter: "#addition-interval"
+        },
+        cylindre: {
+            min: "#cylindre",
+            max: "#cylindre-max",
+            inter: "#cylindre-interval"
+        },
+        sphere: {
+            min: "#sphere",
+            max: "#sphere-max",
+            inter: "#sphere-interval"
+        },
+    }
 
 
     constructor(productFactory: ProductFactory, fb: FormBuilder, regEx: RegEx){
@@ -41,14 +70,51 @@ export class ProductAddComponent {
         });
     }
 
+    //stock all the value (calculated with max, min and interval) in an array with name
+    addValue(name) {
+        var min:string = (<HTMLInputElement> document.getElementById(this.ids["name"].min).value);
+        var max:string = (<HTMLInputElement> document.getElementById(this.ids["name"].max).value);
+        var inter:string = (<HTMLInputElement> document.getElementById(this.ids["name"].inter).value);
 
-    subscribe(){
-        if(this.subscribeForm.valid){
-            this.product = this.model;
+        if (min != "" && max != "" && inter != "") {
+            if (this.value[name] == [0]) this.value[name] = [];
 
-            this.service.save(this.product);
+            for (var i = min; i <= max; i += inter) {
+                this.value[name].push(i);
+            }
         }
 
+    }
 
+    add(){
+        if(this.subscribeForm.valid){
+
+            //récupère toutes les valeurs et crée un produit avec chacune d'entre elle
+            for (var diameter of this.value.diameter) {
+                for (var addition of this.value.addition) {
+                    for (var cylinder of this.value.cylinder) {
+                        for (var radius of this.value.radius) {
+                            for (var axis of this.value.axis) {
+                                for (var sphere of this.value.sphere) {
+                                    this.model.product.push({
+                                        diameter: diameter,
+                                        addition: addition,
+                                        cylinder: cylinder,
+                                        radius: radius,
+                                        axis: axis,
+                                        sphere: sphere,
+                                        stock: -1
+                                    });
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            this.product = this.model;
+            console.log(this.model);
+            this.service.save(this.product);
+        }
     }
 }

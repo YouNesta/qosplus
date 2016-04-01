@@ -6,6 +6,7 @@ import {
     ROUTER_PROVIDERS,
 } from 'angular2/router';
 import {ProductAddComponent} from "./product-add.component";
+import {ProductListComponent} from "./product-list.component";
 
 
 
@@ -16,7 +17,8 @@ import {ProductAddComponent} from "./product-add.component";
 })
 
 @RouteConfig([
-    { path: "/add", name: "Add", component: ProductAddComponent},
+    { path: "/list", name: "List", component: ProductListComponent},
+    { path: "/add", name: "Add", component: ProductAddComponent}
 ])
 
 
