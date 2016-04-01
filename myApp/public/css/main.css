@@ -1,5 +1,20 @@
-.panel {
-  margin: 30px; }
-  .panel .panel-body {
-    height: 300px;
-    overflow: scroll; }
+@font-face {
+  font-family: OpenSans;
+  src: url("./fonts/open-sans/OpenSans-Regular.ttf"); }
+
+body {
+  font-family: OpenSans, Helvetica, sans-serif; }
+  body .admin.content {
+    position: fixed;
+    left: 250px;
+    right: 0;
+    bottom: 0;
+    top: 60px; }
+    body .admin.content .panel {
+      margin: 30px; }
+      body .admin.content .panel .panel-body {
+        height: 300px;
+        overflow: scroll; }
+        body .admin.content .panel .panel-body .userInfo .well {
+          text-overflow: ellipsis;
+          overflow: hidden; }

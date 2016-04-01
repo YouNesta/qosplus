@@ -34,7 +34,7 @@ import {FormValidator} from "./Config/form-validator";
 @Component({
     selector: "app",
     template:   "<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>" +
-                "<div class='content'><router-outlet></router-outlet></div>" +
+                "<div class='content {{routeAuth.base}}'><router-outlet></router-outlet></div>" +
                 "<footer>{{title}}</footer>",
 
     directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent]
@@ -52,11 +52,19 @@ import {FormValidator} from "./Config/form-validator";
 
 export class App {
     title = "penis";
+    routeAuth = {
+        base: " ",
+        name: " ",
+        auth: "false";
+    }
 
-    constructor(public service: UserFactory){
+    constructor(public service: UserFactory, private router: Router, routeAuth: RouteAuth ){
         if(this.service.isConnected() && tokenNotExpired('token')){
             this.service.user()
         }
+        router.subscribe((val) => {
+            this.routeAuth =  routeAuth.routeAuth(val);
+        });
     }
 
 

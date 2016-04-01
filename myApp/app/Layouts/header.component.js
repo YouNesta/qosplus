@@ -36,7 +36,6 @@ System.register(['angular2/core', "./nav.component", "./nav-admin.component", "a
                     var _this = this;
                     this.router = router;
                     this.routeAuth = '';
-                    this.title = "QosPlus";
                     router.subscribe(function (val) {
                         _this.routeAuth = routeAuth.routeAuth(val);
                         console.log(_this.routeAuth);

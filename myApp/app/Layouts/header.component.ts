@@ -23,7 +23,6 @@ export class HeaderComponent implements OnChanges{
     @Input() admin: number;
 
     constructor(private router: Router, routeAuth: RouteAuth){
-        this.title = "QosPlus";
         router.subscribe((val) => {
             this.routeAuth =  routeAuth.routeAuth(val);
             console.log( this.routeAuth);
