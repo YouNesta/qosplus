@@ -38,8 +38,7 @@ System.register(['angular2/core', "./nav.component", "./nav-admin.component", "a
                     this.routeAuth = '';
                     router.subscribe(function (val) {
                         _this.routeAuth = routeAuth.routeAuth(val);
-                        console.log(_this.routeAuth);
-                        console.log(_this.admin);
+                        console.log(router.isRouteActive(router.generate(['Admin', 'Subscribe'])));
                     });
                 }
                 HeaderComponent.prototype.ngOnChanges = function (changes) {

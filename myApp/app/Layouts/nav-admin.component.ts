@@ -3,6 +3,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 import {OnInit} from "angular2/core";
 import {UserFactory} from "../User/user.factory";
 import {Input} from "angular2/core";
+import {Router} from "angular2/router";
 
 
 
@@ -15,9 +16,8 @@ import {Input} from "angular2/core";
 export class NavAdminComponent  {
 
 
-    constructor(public service: UserFactory){
+    constructor(public service: UserFactory, public router: Router){
         this.title = "QosPlus";
-
     }
 
 }

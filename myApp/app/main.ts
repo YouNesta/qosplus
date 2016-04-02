@@ -15,6 +15,7 @@ enableProdMode();
 
 import {HeaderComponent} from "./Layouts/header.component";
 import {FooterComponent} from "./Layouts/footer.component";
+import {ToolsComponent} from "./Tools/tools.component";
 import {UserComponent}    from './User/user.component'
 import {HomeComponent}    from './Home/home.component'
 import {UserFactory} from "./User/user.factory";
@@ -34,10 +35,10 @@ import {FormValidator} from "./Config/form-validator";
 @Component({
     selector: "app",
     template:   "<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>" +
-                "<div class='content {{routeAuth.base}}'><router-outlet></router-outlet></div>" +
+                "<div class='wrapper {{routeAuth.base}}'><tools *ngIf='routeAuth.auth == true '></tools><router-outlet></router-outlet></div>" +
                 "<footer>{{title}}</footer>",
 
-    directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent]
+    directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent, ToolsComponent]
 })
 
 @RouteConfig([
@@ -51,17 +52,15 @@ import {FormValidator} from "./Config/form-validator";
 
 
 export class App {
-    title = "penis";
+    title = "QosPlus";
+    user = [];
     routeAuth = {
         base: " ",
         name: " ",
-        auth: "false";
-    }
+        auth: false
+    };
 
     constructor(public service: UserFactory, private router: Router, routeAuth: RouteAuth ){
-        if(this.service.isConnected() && tokenNotExpired('token')){
-            this.service.user()
-        }
         router.subscribe((val) => {
             this.routeAuth =  routeAuth.routeAuth(val);
         });
