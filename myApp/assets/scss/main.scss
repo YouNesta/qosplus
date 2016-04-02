@@ -8,12 +8,15 @@ body{
 
 
 .admin{
-  &.content{
+  &.wrapper{
     position: fixed;
     left: 250px;
     right: 0;
     bottom: 0;
-    top: 60px;
+    top: 0px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background: #f1f1f1;
     .panel{
       margin: 30px ;
       .panel-body{
@@ -30,4 +33,13 @@ body{
     }
   }
 }
+
+
+
+
+
+
+
+  // Form Component
+
 }
