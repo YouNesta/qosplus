@@ -5,32 +5,22 @@ header nav li, header nav-user li {
 header nav-admin #sidebar-wrapper {
   z-index: 1000;
   position: fixed;
-  left: 250px;
   top: 0;
-  width: 0;
-  height: 100%;
-  margin-left: -250px;
-  overflow-y: auto;
-  background: #000;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease; }
+  width: 250px;
+  bottom: 0;
+  background: #000; }
   header nav-admin #sidebar-wrapper .sidebar-nav {
     background: #2b303b;
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 250px;
-    margin: 0;
-    padding: 0;
-    list-style: none; }
+    left: 0;
+    right: 0;
+    color: rgba(120, 129, 149, 0.92); }
     header nav-admin #sidebar-wrapper .sidebar-nav li {
-      text-indent: 20px;
       line-height: 40px; }
       header nav-admin #sidebar-wrapper .sidebar-nav li a {
         display: block;
-        text-decoration: none;
         color: #999999; }
         header nav-admin #sidebar-wrapper .sidebar-nav li a:hover {
           text-decoration: none;
@@ -38,16 +28,30 @@ header nav-admin #sidebar-wrapper {
           background: rgba(255, 255, 255, 0.2); }
         header nav-admin #sidebar-wrapper .sidebar-nav li a:active, header nav-admin #sidebar-wrapper .sidebar-nav li a:focus {
           text-decoration: none; }
+      header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) {
+        margin-bottom: 30px; }
+        header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a {
+          padding-left: 20px; }
+          header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a.active {
+            color: white; }
+          header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background: #21252d;
+            color: rgba(120, 129, 149, 0.92);
+            font-size: 18px;
+            position: absolute;
+            right: 30px; }
     header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand {
-      height: 60px; }
+      height: 60px;
+      margin-bottom: 30px; }
       header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a {
+        text-align: center;
         font-size: 16px;
-        line-height: 18px;
+        line-height: 60px;
+        background-color: #242731;
         color: #9eacb5; }
         header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover {
-          color: #fff;
-          background: none; }
-
-@media (min-width: 768px) {
-  header nav-admin #sidebar-wrapper {
-    width: 250px; } }
+          color: #fff; }

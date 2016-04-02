@@ -7,13 +7,18 @@
             </a>
         </li>
         <li>
-            <a [routerLink]="['Admin', 'Subscribe']">Ajouter un Employé</a>
+            <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Subscribe']))"
+                    [routerLink]="['Admin', 'Subscribe']">Ajouter un Employé
+                <i class="fa fa-user fa-fw"></i>
+            </a>
         </li>
         <li>
-            <a [routerLink]="['Admin', 'Validation']">Valider un utilisateur</a>
-        </li>
-        <li>
-            <button class='btn btn-primary' (click)='service.logout()' type='button'>Logout</button>
+            <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Validation']))"
+                    [routerLink]="['Admin', 'Validation']">Ajouter un client
+                <i class="fa fa-user-plus fa-fw"></i>
+
+
+            </a>
         </li>
     </ul>
 </div>

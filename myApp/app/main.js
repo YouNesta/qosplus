@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 'angular2-jwt', 'angular2/router', "./Layouts/header.component", "./Layouts/footer.component", './User/user.component', './Home/home.component', "./User/user.factory", "./lib/regex", "./Config/route-auth", "./Admin/admin.component", "./Admin/admin.factory", "./Page/page-not-found.component", "angular2/core", "angular2/router", "./Config/form-validator"], function(exports_1) {
+System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 'angular2-jwt', 'angular2/router', "./Layouts/header.component", "./Layouts/footer.component", "./Tools/tools.component", './User/user.component', './Home/home.component', "./User/user.factory", "./lib/regex", "./Config/route-auth", "./Admin/admin.component", "./Admin/admin.factory", "./Page/page-not-found.component", "angular2/core", "angular2/router", "./Config/form-validator"], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, browser_1, http_1, angular2_jwt_1, router_1, core_2, header_component_1, footer_component_1, user_component_1, home_component_1, user_factory_1, regex_1, route_auth_1, admin_component_1, admin_factory_1, page_not_found_component_1, core_3, router_2, form_validator_1;
+    var core_1, browser_1, http_1, angular2_jwt_1, router_1, core_2, header_component_1, footer_component_1, tools_component_1, user_component_1, home_component_1, user_factory_1, regex_1, route_auth_1, admin_component_1, admin_factory_1, page_not_found_component_1, core_3, router_2, form_validator_1;
     var App;
     return {
         setters:[
@@ -33,6 +33,9 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
             },
             function (footer_component_1_1) {
                 footer_component_1 = footer_component_1_1;
+            },
+            function (tools_component_1_1) {
+                tools_component_1 = tools_component_1_1;
             },
             function (user_component_1_1) {
                 user_component_1 = user_component_1_1;
@@ -74,15 +77,13 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                     var _this = this;
                     this.service = service;
                     this.router = router;
-                    this.title = "penis";
+                    this.title = "QosPlus";
+                    this.user = [];
                     this.routeAuth = {
                         base: " ",
                         name: " ",
-                        auth: "false"
+                        auth: false
                     };
-                    if (this.service.isConnected() && angular2_jwt_1.tokenNotExpired('token')) {
-                        this.service.user();
-                    }
                     router.subscribe(function (val) {
                         _this.routeAuth = routeAuth.routeAuth(val);
                     });
@@ -91,9 +92,9 @@ System.register(['angular2/core', 'angular2/platform/browser', 'angular2/http', 
                     core_1.Component({
                         selector: "app",
                         template: "<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>" +
-                            "<div class='content {{routeAuth.base}}'><router-outlet></router-outlet></div>" +
+                            "<div class='wrapper {{routeAuth.base}}'><tools *ngIf='routeAuth.auth == true '></tools><router-outlet></router-outlet></div>" +
                             "<footer>{{title}}</footer>",
-                        directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent, footer_component_1.FooterComponent]
+                        directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent, footer_component_1.FooterComponent, tools_component_1.ToolsComponent]
                     }),
                     router_1.RouteConfig([
                         { path: "/...", as: "Home", component: home_component_1.HomeComponent },

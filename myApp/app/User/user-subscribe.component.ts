@@ -16,67 +16,86 @@ export class UserSubscribeComponent {
     service: UserFactory ;
     subscribeForm: ControlGroup;
 
-    associateShop = [
-        {
-            name: "Younesta",
-            socialReason: 'YOUNESTA SARL',
-            adress: "43 rue de malabry",
-            adress2: "",
-            city: "Maisse",
-            zipCode: "91720",
-            mobile: "06 50 90 12 05",
-            phone: "01 60 78 37 94",
-            fax: "01 60 78 37 94",
-            mail: "younes@supinternet.fr",
-            tva: 0.9,
-            siret: 0987654567890987,
-            adeli: 876545678987654,
-            nightBox: true,
-            transporteur:'Mathieu',
-            openDay: "Lun",
-            closeDay: "Lun",
-            openHour: "10:30",
-            closeHour: "10:11"
-        }
-    ];
+    associateShop = [{
+        name: "",
+        socialReason: '',
+        adress: "",
+        adress2: "",
+        city: "",
+        zipCode: "",
+        mobile: "",
+        phone: "",
+        fax: "",
+        mail: "",
+        tva: 0,
+        siret: 0,
+        adeli: 0,
+        nightBox: true,
+        transporteur:'',
+        openDay: "",
+        closeDay: "",
+        openHour: "",
+        closeHour: ""
+    }];
+    director = {
 
-
-    director=  {
         lastName: 'ezd,c',
         firstName: 'ezlkd,',
         phone: 'dk,q',
         mail: 'd,qs;',
-    };
 
+    };
     model = {
         role: 0,
-        lastName: 'Boulkaddid',
-        firstName: 'Younes',
-        phone: '06.59.90.12.05',
-        mail: 'younes@supinternet.fr',
-        averageLens: 234567,
-        providerLens: "Aflelou",
-        averageGlasses: 234567,
-        providerGlasses: "Aflelou",
-        financialShop: "rknfds,l",
-        IBAN: 098765434567890,
-        BIC: 0987654567890,
-        financialMail:'cacacacacacacaca',
+        lastName: '',
+        firstName: '',
+        phone: '',
+        mail: '',
+        averageLens: 0,
+        providerLens: "",
+        averageGlasses: 0,
+        providerGlasses: "",
+        financialShop: "",
+        IBAN: 0,
+        BIC: 0,
+        financialMail:'',
         paymentState: true,
-        deliverShop: "rkjfnedls,",
-        central: 'Central datatatata',
-        comment: 'ehrjsvdfksx'
+        deliverShop: "",
+        central: '',
+        comment: ''
     };
     isSame =  {
         director: 1,
         deliverShop: false,
         financialMail: 1,
         financialShop:1
-
+    };
+    user =  {
+        role: 0,
+        lastName: '',
+        firstName: '',
+        phone: '',
+        mail: '',
+        averageLens: 0,
+        providerLens: "",
+        averageGlasses: 0,
+        providerGlasses: "",
+        financialShop: "",
+        IBAN: 0,
+        BIC: 0,
+        financialMail:'',
+        paymentState: true,
+        deliverShop: "",
+        central: '',
+        comment: ''
     };
 
-
     constructor(userFactory: UserFactory, fb: FormBuilder, regEx: RegEx){
+
+
+
+
+
         this.service = userFactory;
         this.subscribeForm = fb.group({
             'name': ['', Validators.compose([
@@ -119,25 +138,25 @@ export class UserSubscribeComponent {
 
     addShop(){
         this.associateShop.push({
-            name: "Younesta",
-            socialReason: 'YOUNESTA SARL',
-            adress: "43 rue de malabry",
+            name: "",
+            socialReason: '',
+            adress: "",
             adress2: "",
-            city: "Maisse",
-            zipCode: "91720",
-            mobile: "06 50 90 12 05",
-            phone: "01 60 78 37 94",
-            fax: "01 60 78 37 94",
-            mail: "younes.boulkaddid@supinternet.fr",
-            tva: 0.9,
-            siret: 0987654567890987,
-            adeli: 876545678987654,
+            city: "",
+            zipCode: "",
+            mobile: "",
+            phone: "",
+            fax: "",
+            mail: "",
+            tva: 0 ,
+            siret: 0,
+            adeli: 0,
             nightBox: true,
-            transporteur:'Mathieu',
-            openDay: "Lun",
-            closeDay: "Lun",
-            openHour: "10:30",
-            closeHour: "10:11"
+            transporteur:'',
+            openDay: "",
+            closeDay: "",
+            openHour: "",
+            closeHour: ""
         });
     }
     removeShop(){
