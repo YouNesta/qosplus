@@ -8,14 +8,14 @@ import {
     RouteConfig,
     ROUTER_DIRECTIVES,
     ROUTER_PROVIDERS,
-    RouterLink, Router} from 'angular2/router';
+    RouterLink, Router, Location} from 'angular2/router';
 
 import {enableProdMode} from 'angular2/core';
 enableProdMode();
 
 import {HeaderComponent} from "./Layouts/header.component";
 import {FooterComponent} from "./Layouts/footer.component";
-import {ToolsComponent} from "./Tools/tools.component";
+import {SearchComponent} from "./Tools/search.component";
 import {UserComponent}    from './User/user.component'
 import {HomeComponent}    from './Home/home.component'
 import {UserFactory} from "./User/user.factory";
@@ -29,16 +29,18 @@ import {APP_BASE_HREF} from "angular2/router";
 import {User} from "./User/user";
 import {Admin} from "./Admin/admin";
 import {FormValidator} from "./Config/form-validator";
+import {AlertComponent} from "./Tools/alert.component";
+import {AlertService} from "./Tools/alert";
 
 
 
 @Component({
     selector: "app",
     template:   "<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>" +
-                "<div class='wrapper {{routeAuth.base}}'><tools *ngIf='routeAuth.auth == true '></tools><router-outlet></router-outlet></div>" +
+                "<div class='wrapper {{routeAuth.base}}'><search *ngIf='routeAuth.auth == true'></search><alert></alert><router-outlet></router-outlet></div>" +
                 "<footer>{{title}}</footer>",
 
-    directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent, ToolsComponent]
+    directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent, SearchComponent, AlertComponent]
 })
 
 @RouteConfig([
@@ -51,7 +53,7 @@ import {FormValidator} from "./Config/form-validator";
 
 
 
-export class App {
+export class App  implements OnInit{
     title = "QosPlus";
     user = [];
     routeAuth = {
@@ -60,13 +62,19 @@ export class App {
         auth: false
     };
 
-    constructor(public service: UserFactory, private router: Router, routeAuth: RouteAuth ){
-        router.subscribe((val) => {
-            this.routeAuth =  routeAuth.routeAuth(val);
+    constructor(private service: UserFactory, private router: Router, private routerAuth: RouteAuth , location: Location){
+        this.routeAuth =  this.routerAuth.routeAuth(location.path());
+
+
+    }
+    getName () {
+        return "Angular 2";
+    }
+    ngOnInit(){
+        this.router.subscribe((val) => {
+            this.routeAuth =  this.routerAuth.routeAuth(val);
         });
     }
-
-
 
 }
 
@@ -86,6 +94,8 @@ bootstrap(App, [
         deps: [Http]
     }),
     provide(APP_BASE_HREF, {useValue:'/'}),
-    FormValidator
+    FormValidator,
+    AlertComponent,
+    AlertService
 ]);
 

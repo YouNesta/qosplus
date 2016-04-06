@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, forwardRef, Inject} from 'angular2/core';
 import {FormBuilder, Validators} from "angular2/common";
 import {RegEx} from "../lib/regex";
 import {AdminFactory} from "./admin.factory";
@@ -6,6 +6,9 @@ import {Admin} from "./admin";
 import {ControlGroup} from "angular2/common";
 import {tokenNotExpired} from 'angular2-jwt';
 import {CanActivate} from "angular2/router";
+import {AlertComponent} from "../Tools/alert.component";
+import {Input} from "angular2/core";
+import {AlertService} from "../Tools/alert";
 @CanActivate(() => tokenNotExpired('token'))
 @Component({
     templateUrl: "app/Admin/admin-subscribe.html",
@@ -15,6 +18,7 @@ export class AdminSubscribeComponent {
     service: AdminFactory ;
     admin: Admin;
     subscribeForm: ControlGroup;
+    alertService: AlertService;
 
     model = {
         lastName: 'Boulkaddid',
@@ -25,8 +29,10 @@ export class AdminSubscribeComponent {
         passwordCheck: '12345678',
     };
 
-    constructor(fb: FormBuilder, regEx: RegEx, adminFactory: AdminFactory){
+    constructor(fb: FormBuilder, regEx: RegEx, adminFactory: AdminFactory, @Inject(forwardRef(() => AlertService)) alertService){
+        this.alertService = alertService;
         this.service = adminFactory;
+
 
         this.subscribeForm = fb.group({
             'name': ['', Validators.compose([
@@ -56,8 +62,22 @@ export class AdminSubscribeComponent {
 
 
     subscribe(){
+
         if(this.subscribeForm.valid){
-            this.service.save(this.model);
+            this.service.save(this.model)
+                .subscribe(
+                    response => {
+                        if(response.success == true){
+                            this.alertService.addAlert('success', response.message);
+                        }else{
+                            this.alertService.addAlert('warning', response.message);
+                        }
+                    },
+                    err =>  {
+                        this.alertService.addAlert('warning', 500);
+                    },
+                    () => console.log('Subscription Complete')
+                );
         }
     }
 }

@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, forwardRef, Inject} from 'angular2/core';
 
 import {
     RouteConfig,
@@ -15,6 +15,7 @@ import {ControlGroup} from "angular2/common";
 import {FormValidator} from "../Config/form-validator";
 import {MODAL_DIRECTIVES, ModalComponent} from "ng2-bs3-modal/ng2-bs3-modal";
 import {UserFactory} from "../User/user.factory";
+import {AlertService} from "../Tools/alert";
 
 @CanActivate(() => tokenNotExpired('token'))
 
@@ -99,20 +100,23 @@ export class AdminValidationComponent {
     };
     validateForm: ControlGroup;
     modal: ModalComponent;
-    constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator){
-       this.adminService.getUnvalidateUser()
+    alertService: AlertService;
+    users: Array<Object>;
+
+
+    constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService){
+       this.alertService = alertService;
+        this.adminService.getUnvalidateUser()
            .subscribe(
            response => {
                if(response.success){
                    this.users = response.data;
-                   this.form = [];
                    var $this = this;
                    response.data.forEach(function(item, i){
                        try
                        {
                            var director = JSON.parse( $this.users[i].director);
                            $this.users[i].director = director;
-                           console.log(director);
 
                        }
                        catch(e)
@@ -122,13 +126,14 @@ export class AdminValidationComponent {
                        }
                        $this.users[i].isCollapsed = true;
                    });
-console.log(this.users);
 
                }else{
                    console.log(response);
                }
            },
-           err =>  console.log(err),
+           err =>  {
+               alertService.addAlert('danger', 500);
+           },
            () => console.log('get user list Complete')
        );
 
@@ -160,7 +165,22 @@ console.log(this.users);
         this.model = this.users[i];
     }
     validateUser(){
-        this.service.updateUser(this.model);
+        this.service.updateUser(this.model)
+            .subscribe(
+                res => {
+                    console.log('lalalala');
+                    if(res.success){
+                        this.alertService.addAlert('success', res.message);
+                    }else{
+                        this.alertService.addAlert('warning', res.message);
+                    }
+                },
+                err => {
+                    this.alertService.addAlert('danger', 500);
+                },
+                () => console.log('Authentification')
+            );
+        
     }
 
 }

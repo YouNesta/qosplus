@@ -27,12 +27,7 @@ export class AdminFactory {
                 data, {
                     headers: headers
                 })
-            .map(response => response.json())
-            .subscribe(
-                response => console.log(response),
-                err =>  console.log(err),
-                () => console.log('Subscription Complete')
-            );
+            .map(response => response.json());
     };
 
     list(){

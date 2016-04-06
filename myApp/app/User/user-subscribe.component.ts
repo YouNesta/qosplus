@@ -27,9 +27,9 @@ export class UserSubscribeComponent {
         phone: "",
         fax: "",
         mail: "",
-        tva: 0,
-        siret: 0,
-        adeli: 0,
+        tva: null,
+        siret: null,
+        adeli: null,
         nightBox: true,
         transporteur:'',
         openDay: "",
@@ -46,18 +46,18 @@ export class UserSubscribeComponent {
 
     };
     model = {
-        role: 0,
+        role: null,
         lastName: '',
         firstName: '',
         phone: '',
         mail: '',
-        averageLens: 0,
+        averageLens: null,
         providerLens: "",
-        averageGlasses: 0,
+        averageGlasses: null,
         providerGlasses: "",
         financialShop: "",
-        IBAN: 0,
-        BIC: 0,
+        IBAN: null,
+        BIC: null,
         financialMail:'',
         paymentState: true,
         deliverShop: "",
@@ -71,24 +71,105 @@ export class UserSubscribeComponent {
         financialShop:1
     };
     user =  {
-        role: 0,
+        role: null,
         lastName: '',
         firstName: '',
         phone: '',
         mail: '',
-        averageLens: 0,
+        averageLens: null,
         providerLens: "",
-        averageGlasses: 0,
+        averageGlasses: null,
         providerGlasses: "",
         financialShop: "",
-        IBAN: 0,
-        BIC: 0,
+        IBAN: null,
+        BIC: null,
         financialMail:'',
         paymentState: true,
         deliverShop: "",
         central: '',
         comment: ''
     };
+
+/*
+
+ associateShop = [
+        {
+            name: "Younesta",
+            socialReason: 'YOUNESTA SARL',
+            adress: "43 rue de malabry",
+            adress2: "",
+            city: "Maisse",
+            zipCode: "91720",
+            mobile: "06 50 90 12 05",
+            phone: "01 60 78 37 94",
+            fax: "01 60 78 37 94",
+            mail: "younes@supinternet.fr",
+            tva: 0.9,
+            siret: 0987654567890987,
+            adeli: 876545678987654,
+            nightBox: true,
+            transporteur:'Mathieu',
+            openDay: "Lun",
+            closeDay: "Lun",
+            openHour: "10:30",
+            closeHour: "10:11"
+        }
+    ];
+
+
+    director=  {
+        lastName: 'ezd,c',
+        firstName: 'ezlkd,',
+        phone: 'dk,q',
+        mail: 'd,qs;',
+    };
+
+    model = {
+        role: 0,
+        lastName: 'Boulkaddid',
+        firstName: 'Younes',
+        phone: '06.59.90.12.05',
+        mail: 'younes@supinternet.fr',
+        averageLens: 234567,
+        providerLens: "Aflelou",
+        averageGlasses: 234567,
+        providerGlasses: "Aflelou",
+        financialShop: "rknfds,l",
+        IBAN: 098765434567890,
+        BIC: 0987654567890,
+        financialMail:'cacacacacacacaca',
+        paymentState: true,
+        deliverShop: "rkjfnedls,",
+        central: 'Central datatatata',
+        comment: 'ehrjsvdfksx'
+    };
+    isSame =  {
+        director: 1,
+        deliverShop: false,
+        financialMail: 1,
+        financialShop:1
+
+    };
+
+    user =  {
+        role: null,
+        lastName: '',
+        firstName: '',
+        phone: '',
+        mail: '',
+        averageLens: null,
+        providerLens: "",
+        averageGlasses: null,
+        providerGlasses: "",
+        financialShop: "",
+        IBAN: null,
+        BIC: null,
+        financialMail:'',
+        paymentState: true,
+        deliverShop: "",
+        central: '',
+        comment: ''
+    };*/
 
     constructor(userFactory: UserFactory, fb: FormBuilder, regEx: RegEx){
 
@@ -148,9 +229,9 @@ export class UserSubscribeComponent {
             phone: "",
             fax: "",
             mail: "",
-            tva: 0 ,
-            siret: 0,
-            adeli: 0,
+            tva: null ,
+            siret: null,
+            adeli: null,
             nightBox: true,
             transporteur:'',
             openDay: "",
