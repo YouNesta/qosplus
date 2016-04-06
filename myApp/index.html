@@ -11,10 +11,15 @@
     <!-- Required polyfill-->
 </head>
 <body>
-<app  class="container-fluid">loading...</app>
+<app  class="container-fluid">
+    <div class="appLoading" style="position: absolute; top: 0; bottom: 0;
+    left:0; right:0; background: #201e1e; text-align: center">"
+        <img src="public/gif/loading.gif" alt="" style="    position: relative;top: 40vh;    height: 20vh;">
+    </div>
+</app>
+
 <script src="node_modules/es6-shim/es6-shim.min.js"></script>
 <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
-
 <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
 <script src="/node_modules/systemjs/dist/system.src.js"></script>
 <script src="/node_modules/typescript/lib/typescript.js"></script>

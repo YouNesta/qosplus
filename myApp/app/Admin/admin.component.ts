@@ -8,6 +8,7 @@ import {
 import {AdminSubscribeComponent} from "./admin-subscribe.component";
 import {AdminDashBoardComponent} from "./admin-dashboard.component";
 import {AdminValidationComponent} from "./admin-validation.component";
+import {Input} from "angular2/core";
 
 
 @Component({
@@ -26,6 +27,5 @@ import {AdminValidationComponent} from "./admin-validation.component";
 
 
 export class AdminComponent {
-
 }
 

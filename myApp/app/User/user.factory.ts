@@ -106,33 +106,12 @@ export class UserFactory {
                 }
                 return response;
             })
-            .subscribe(
-                res => {
-                    if(res.success){
-                        var user = JSON.stringify(res.data);
-                        localStorage.setItem("user", user);
-                        localStorage.setItem('token',res.token);
-                        if(res.data.role > 0){
-                            this.router.navigateByUrl('/admin');
-                        }else if(res.data.role == 0){
-                            this.router.navigateByUrl('/user');
-                        }
-                    }else{
-                        console.log(res)
-                    }
-                },
-                err => {
-                    console.log(err);
-                },
-                () => console.log('Authentification')
-            );
 
     };
 
 
 
     updateUser = function(user) {
-        console.log(user);
         var data =  JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -151,18 +130,7 @@ export class UserFactory {
                 }
                 return response;
             })
-            .subscribe(
-                res => {
-                    if(res.success){
-                      console.log(res);
-                    }else{
-                    }
-                },
-                err => {
-                    console.log(err);
-                },
-                () => console.log('Authentification')
-            );
+
 
     };
 }
