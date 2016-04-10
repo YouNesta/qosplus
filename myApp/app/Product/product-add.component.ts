@@ -35,31 +35,6 @@ export class ProductAddComponent {
         sphere: [0],
     };
 
-    //savoir quels ids récupérer
-    ids = {
-        axis: {
-            min: "#axis",
-            max: "#axis-max",
-            inter: "#axis-interval"
-        },
-        addition: {
-            min: "#addition",
-            max: "#addition-max",
-            inter: "#addition-interval"
-        },
-        cylindre: {
-            min: "#cylindre",
-            max: "#cylindre-max",
-            inter: "#cylindre-interval"
-        },
-        sphere: {
-            min: "#sphere",
-            max: "#sphere-max",
-            inter: "#sphere-interval"
-        },
-    }
-
-
     constructor(productFactory: ProductFactory, fb: FormBuilder, regEx: RegEx){
         this.service = productFactory;
         this.subscribeForm = fb.group({
@@ -70,18 +45,23 @@ export class ProductAddComponent {
         });
     }
 
-    //stock all the value (calculated with max, min and interval) in an array with name
     addValue(name) {
-        var min:string = (<HTMLInputElement> document.getElementById(this.ids["name"].min).value);
-        var max:string = (<HTMLInputElement> document.getElementById(this.ids["name"].max).value);
-        var inter:string = (<HTMLInputElement> document.getElementById(this.ids["name"].inter).value);
+
+        var min:string = (<HTMLInputElement> document.getElementById(name).value);
+        var max:string = (<HTMLInputElement> document.getElementById(name+"-max").value);
+        var inter:string = (<HTMLInputElement> document.getElementById(name+"-interval").value);
 
         if (min != "" && max != "" && inter != "") {
             if (this.value[name] == [0]) this.value[name] = [];
 
-            for (var i = min; i <= max; i += inter) {
+            for (var i = parseFloat(min); i <= parseFloat(max); i += parseFloat(inter)) {
                 this.value[name].push(i);
+                console.log(i);
             }
+
+            document.getElementById(name).value = "";
+            document.getElementById(name+"-max").value = "";
+            document.getElementById(name+"-interval").value = "";
         }
 
     }

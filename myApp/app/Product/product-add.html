@@ -86,13 +86,13 @@
                 <div class="form-group ">
                     <label for="addition">Addition</label><br><br>
                     <div class="col col-md-4">
-                        <input id="addition" class="form-control" placeholder="Min Value">
+                        <input id="addition" (change)="addValue('addition')" class="form-control" placeholder="Min Value">
                     </div>
                     <div class="col col-md-4">
-                        <input id="addition-max" class="form-control" placeholder="Max Value">
+                        <input id="addition-max" (change)="addValue('addition')" class="form-control" placeholder="Max Value">
                     </div>
                     <div class="col col-md-4">
-                        <input id="addition-interval" class="form-control" placeholder="Interval">
+                        <input id="addition-interval" (change)="addValue('addition')" class="form-control" placeholder="Interval">
                     </div>
                 </div>
             </div>
@@ -103,13 +103,13 @@
                 <div class="form-group ">
                     <label for="cylindre">Cylindre</label><br><br>
                     <div class="col col-md-4">
-                        <input id="cylindre" class="form-control" placeholder="Min Value">
+                        <input id="cylindre" (change)="addValue('cylindre')" class="form-control" placeholder="Min Value">
                     </div>
                     <div class="col col-md-4">
-                        <input id="cylindre-max" class="form-control" placeholder="Max Value">
+                        <input id="cylindre-max" (change)="addValue('cylindre')" class="form-control" placeholder="Max Value">
                     </div>
                     <div class="col col-md-4">
-                        <input id="cylindre-interval" class="form-control" placeholder="Interval">
+                        <input id="cylindre-interval" (change)="addValue('cylindre')" class="form-control" placeholder="Interval">
                     </div>
                 </div>
             </div>
@@ -121,13 +121,13 @@
                     <div class="form-group ">
                         <label for="sphere">Sphere</label><br><br>
                         <div class="col col-md-4">
-                            <input id="sphere" class="form-control" placeholder="Min Value">
+                            <input id="sphere" (change)="addValue('sphere')" class="form-control" placeholder="Min Value">
                         </div>
                         <div class="col col-md-4">
-                            <input id="sphere-max" class="form-control" placeholder="Max Value">
+                            <input id="sphere-max" (change)="addValue('sphere')" class="form-control" placeholder="Max Value">
                         </div>
                         <div class="col col-md-4">
-                            <input id="sphere-interval" class="form-control" placeholder="Interval">
+                            <input id="sphere-interval" (change)="addValue('sphere')" class="form-control" placeholder="Interval">
                         </div>
                     </div>
                 </div>
