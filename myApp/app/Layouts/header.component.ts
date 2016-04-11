@@ -25,7 +25,6 @@ export class HeaderComponent implements OnChanges{
     constructor(private router: Router, routeAuth: RouteAuth){
         router.subscribe((val) => {
             this.routeAuth =  routeAuth.routeAuth(val);
-console.log(router.isRouteActive(router.generate(['Admin', 'Subscribe'])));
         });
     }
 

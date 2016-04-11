@@ -23,6 +23,7 @@ import {RegEx} from "./lib/regex";
 import {RouteAuth} from "./Config/route-auth";
 import {AdminComponent} from "./Admin/admin.component";
 import {AdminFactory} from "./Admin/admin.factory";
+import {ProductFactory} from "./Product/product.factory";
 import {PageNotFoundComponent} from "./Page/page-not-found.component";
 import {provide} from "angular2/core";
 import {APP_BASE_HREF} from "angular2/router";
@@ -31,7 +32,7 @@ import {Admin} from "./Admin/admin";
 import {FormValidator} from "./Config/form-validator";
 import {AlertComponent} from "./Tools/alert.component";
 import {AlertService} from "./Tools/alert";
-
+import {Product} from "./Product/product";
 
 
 @Component({
@@ -85,6 +86,7 @@ bootstrap(App, [
     RegEx,
     RouteAuth,
     AdminFactory,
+    ProductFactory,
     provide(AuthHttp, {
         useFactory: (http) => {
             return new AuthHttp(new AuthConfig({headerName:'Authorization',    tokenName: "token",    tokenGetter: function(){
