@@ -1,0 +1,143 @@
+<h1>Add a product</h1>
+<div class="container-fluid">
+    <form [ngFormModel]="subscribeForm" novalidate>
+        <div class="row product">
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="name">Nom</label>
+                    <input  [(ngModel)]="model.name" ngControl="name" id="name" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="hydrophily">Hydrophilie</label>
+                    <input  [(ngModel)]="model.hydrophily" id="hydrophily" class="form-control" placeholder="%">
+                </div>
+            </div>
+        </div>
+        <div class="row product">
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="material">Material</label>
+                    <select class="form-control" id="material" [(ngModel)]="model.material">
+                        <option value="0">Verre</option>
+                        <option value="1">Plexiglass</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="color">Color</label>
+                    <select class="form-control" id="color" [(ngModel)]="model.color">
+                        <option value="0">Transparent</option>
+                        <option value="1">Bleu</option>
+                        <option value="2">Vert</option>
+                        <option value="3">Marron</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row product">
+            <div class="col-xs-12 col-md-§ col-sm-6">
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input [(ngModel)]="model.price" name="price" id="price" class="form-control">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row product">
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="radius">Rayon</label><br><br>
+                    <div class="col col-md-12">
+                        <input id="radius" class="form-control" placeholder="rayon">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="diameter">Diamètre</label><br><br>
+                    <div class="col col-md-12">
+                        <input id="diameter" class="form-control" placeholder="diamètre">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row product">
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="axis">Axe</label><br><br>
+                    <div class="col col-md-4">
+                        <input id="axis" class="form-control" (change)="addValue('axis')" placeholder="Min Value">
+                    </div>
+                    <div class="col col-md-4">
+                        <input id="axis-max" class="form-control" (change)="addValue('axis')" placeholder="Max Value">
+                    </div>
+                    <div class="col col-md-4">
+                        <input id="axis-interval" class="form-control" (change)="addValue('axis')" placeholder="Interval">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="addition">Addition</label><br><br>
+                    <div class="col col-md-4">
+                        <input id="addition" (change)="addValue('addition')" class="form-control" placeholder="Min Value">
+                    </div>
+                    <div class="col col-md-4">
+                        <input id="addition-max" (change)="addValue('addition')" class="form-control" placeholder="Max Value">
+                    </div>
+                    <div class="col col-md-4">
+                        <input id="addition-interval" (change)="addValue('addition')" class="form-control" placeholder="Interval">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row product">
+            <div class="col-xs-12 col-md-6 col-sm-6">
+                <div class="form-group ">
+                    <label for="cylindre">Cylindre</label><br><br>
+                    <div class="col col-md-4">
+                        <input id="cylindre" (change)="addValue('cylindre')" class="form-control" placeholder="Min Value">
+                    </div>
+                    <div class="col col-md-4">
+                        <input id="cylindre-max" (change)="addValue('cylindre')" class="form-control" placeholder="Max Value">
+                    </div>
+                    <div class="col col-md-4">
+                        <input id="cylindre-interval" (change)="addValue('cylindre')" class="form-control" placeholder="Interval">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row product">
+            <div class="form-group">
+                <div class="col col-md-6">
+                    <div class="form-group ">
+                        <label for="sphere">Sphere</label><br><br>
+                        <div class="col col-md-4">
+                            <input id="sphere" (change)="addValue('sphere')" class="form-control" placeholder="Min Value">
+                        </div>
+                        <div class="col col-md-4">
+                            <input id="sphere-max" (change)="addValue('sphere')" class="form-control" placeholder="Max Value">
+                        </div>
+                        <div class="col col-md-4">
+                            <input id="sphere-interval" (change)="addValue('sphere')" class="form-control" placeholder="Interval">
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-6">
+                    <div class="form-group">
+                        <button class="btn btn-primary" (click)="add()" type="button">Envoyer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

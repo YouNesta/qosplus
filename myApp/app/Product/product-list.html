@@ -1,0 +1,101 @@
+<modal #modal>
+    <modal-header>
+        <h4 class="modal-title">I'm a modal!</h4>
+    </modal-header>
+    <modal-body>
+<product-add></product-add>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="modal.close()">Ok</button>
+    </modal-footer>
+</modal>
+
+<h1>Products</h1>
+<button  (click)="modal.open()">Open</button>
+<form>
+
+    <table>
+        <tr style="border: 1px solid #000;">
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Nom
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Couleur
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Hydrophilie
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Prix
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Matériau
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Rayon
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Diamètre
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Axe
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Addition
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Cylindre
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                Sphère
+            </td>
+            <td style="padding: 5px;">
+                Qté.
+            </td>
+        </tr>
+    </table>
+    <!-- Si tu trouves plus efficace je suis preneur, là ça nique tout le "design" -->
+    <!-- Juste que je voyais pas comment faire de double boucle sans ça... -->
+    <table *ngFor="#product of products">
+        <tr style="border: 1px solid #000; border-top: 0;" *ngFor='#prod of product.product'>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ product.name }}
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ product.color }}
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ product.hydrophily }}
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ product.price }}
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ product.material }}
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ prod.radius }}
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ prod.diameter }}
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ prod.axis }}
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ prod.addition }}
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ prod.cylinder }}
+            </td>
+            <td style="border-right: 1px solid #000; padding: 5px;">
+                {{ prod.sphere }}
+            </td>
+            <td style="padding: 5px;">
+                {{ prod.stock }}
+            </td>
+        </tr>
+    </table>
+
+</form>
