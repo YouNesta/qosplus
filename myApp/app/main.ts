@@ -33,6 +33,7 @@ import {FormValidator} from "./Config/form-validator";
 import {AlertComponent} from "./Tools/alert.component";
 import {AlertService} from "./Tools/alert";
 import {Product} from "./Product/product";
+import {NgControl} from "angular2/common";
 
 
 @Component({
@@ -98,6 +99,7 @@ bootstrap(App, [
     provide(APP_BASE_HREF, {useValue:'/'}),
     FormValidator,
     AlertComponent,
-    AlertService
+    AlertService,
+    NgControl
 ]);
 
