@@ -103,39 +103,38 @@ export class AdminValidationComponent {
     alertService: AlertService;
     users: Array<Object>;
 
-
     constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService){
        this.alertService = alertService;
         this.adminService.getUnvalidateUser()
            .subscribe(
-           response => {
-               if(response.success){
-                   this.users = response.data;
-                   var $this = this;
-                   response.data.forEach(function(item, i){
-                       try
-                       {
-                           var director = JSON.parse( $this.users[i].director);
-                           $this.users[i].director = director;
+               response => {
+                   if(response.success){
+                       this.users = response.data;
+                       var $this = this;
+                       response.data.forEach(function(item, i){
+                           try
+                           {
+                               var director = JSON.parse( $this.users[i].director);
+                               $this.users[i].director = director;
 
-                       }
-                       catch(e)
-                       {
-                           $this.users[i].director = $this.users[i].director;
+                           }
+                           catch(e)
+                           {
+                               $this.users[i].director = $this.users[i].director;
 
-                       }
-                       $this.users[i].isCollapsed = true;
-                   });
+                           }
+                           $this.users[i].isCollapsed = true;
+                       });
 
-               }else{
-                   console.log(response);
-               }
-           },
-           err =>  {
-               alertService.addAlert('danger', 500);
-           },
-           () => console.log('get user list Complete')
-       );
+                   }else{
+                       console.log(response);
+                   }
+               },
+               err =>  {
+                   alertService.addAlert('danger', 500);
+               },
+               () => console.log('get user list Complete')
+            );
 
         this.validateForm = fb.group({
             'name': ['', Validators.compose([
@@ -158,8 +157,6 @@ export class AdminValidationComponent {
             ])]
         });
     }
-
-
 
     modifyUser(i){
         this.model = this.users[i];

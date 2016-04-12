@@ -4,35 +4,95 @@ import {ProductFactory} from "./product.factory";
 import {FormBuilder, Validators} from "angular2/common";
 import {ControlGroup} from "angular2/common";
 import {RegEx} from "../lib/regex";
+import {TagInputComponent} from "../lib/tag-input.component";
+
 
 @Component({
     selector: "product-add",
     templateUrl: "app/Product/product-add.html",
+    directives: [TagInputComponent]
 })
 
 
 export class ProductAddComponent {
     service: ProductFactory ;
-
     subscribeForm: ControlGroup;
 
-    model = {
-        name: "MyFirstLens",
-        material: 1,
-        color: 2,
-        hydrophily: 69,
-        price: 10,
-        product: []
+
+    int = {
+        axis : {
+            min: 0,
+            max: 0,
+            int:0
+        },
+        addition : {
+            min: 0,
+            max: 0,
+            int:0
+        },
+        cylinder : {
+            min: 0,
+            max: 0,
+            int:0
+        }
     };
 
-    //va stocker les valeurs renseignées par le min/max/pas
-    value = {
-        diameter: [0],
-        addition: [0],
-        cylinder: [0],
-        radius: [0],
-        axis: [0],
-        sphere: [0],
+    model = {
+        diameter: [],
+        addition: [],
+        cylinder: [],
+        radius: [],
+        axis: [],
+    };
+    materials= [
+        "Verre",
+        "Plexiglass"
+    ];
+
+    colors=[
+        "Transparent",
+        "Bleu",
+        "Vert",
+        "Marron"
+        ];
+    conditions = [
+        "10",
+        "30",
+        "60",
+        "90"
+    ];
+
+
+    products = {
+        name: "Younesta",
+        hydrophily: 56,
+        material: "",
+        color: "",
+        param: {
+            diameter: [],
+            addition: [],
+            cylinder: [],
+            radius: [],
+            axis: [],
+        },
+        item:[
+            {
+                diameter: null,
+                addition: null,
+                cylinder: null,
+                radius: null,
+                axis: null,
+                sphere: {
+                    min: 0,
+                    max: 0,
+                    int: 0
+                }
+                condition:null,
+                stock: null
+                provider: false
+            }
+        ]
+
     };
 
     constructor(productFactory: ProductFactory, fb: FormBuilder, regEx: RegEx){
@@ -45,56 +105,40 @@ export class ProductAddComponent {
         });
     }
 
-    addValue(name) {
-
-        var min:string = (<HTMLInputElement> document.getElementById(name).value);
-        var max:string = (<HTMLInputElement> document.getElementById(name+"-max").value);
-        var inter:string = (<HTMLInputElement> document.getElementById(name+"-interval").value);
-
-        if (min != "" && max != "" && inter != "") {
-            if (this.value[name] == [0]) this.value[name] = [];
-
-            for (var i = parseFloat(min); i <= parseFloat(max); i += parseFloat(inter)) {
-                this.value[name].push(i);
-                console.log(i);
+    addParams(type){
+        if(this.int[type].max != 0 && this.int[type].int != 0) {
+            var i;
+            for (i = this.int[type].min; i <= this.int[type].max;) {
+                if(this.products.param[type].indexOf(i) == -1)
+                    this.products.param[type].push(i);
+                i = i + this.int[type].int;
             }
-
-            document.getElementById(name).value = "";
-            document.getElementById(name+"-max").value = "";
-            document.getElementById(name+"-interval").value = "";
+            for(i in this.int[type]){
+                 this.int[type][i] = 0
+            }
         }
-
     }
 
-    add(){
-        if(this.subscribeForm.valid){
+    addProduct(){
+       this.products.item.push(  {
+           diameter: null,
+           addition: null,
+           cylinder: null,
+           radius: null,
+           axis: null,
+           sphere: {
+               min: 0,
+               max: 0,
+               int: 0
+           }
+           condition:null,
+           stock: null
 
-            //récupère toutes les valeurs et crée un produit avec chacune d'entre elle
-            for (var diameter of this.value.diameter) {
-                for (var addition of this.value.addition) {
-                    for (var cylinder of this.value.cylinder) {
-                        for (var radius of this.value.radius) {
-                            for (var axis of this.value.axis) {
-                                for (var sphere of this.value.sphere) {
-                                    this.model.product.push({
-                                        diameter: diameter,
-                                        addition: addition,
-                                        cylinder: cylinder,
-                                        radius: radius,
-                                        axis: axis,
-                                        sphere: sphere,
-                                        stock: -1
-                                    });
-                                }
-                            }
-                        }
-                    }
-                }
-            }
 
-            this.product = this.model;
-            console.log(this.model);
-            this.service.save(this.product);
-        }
+       })
+    }
+
+    save(){
+        console.log(this.products)
     }
 }
