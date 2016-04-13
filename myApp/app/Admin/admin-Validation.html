@@ -246,7 +246,7 @@
     </modal-footer>
 </modal>
 
-<accordion>
+<accordion [closeOthers]="true">
 
 
     <accordion-group heading="{{i}} - {{user.central}}"  *ngFor='#user of users; #i = index'>
