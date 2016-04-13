@@ -33,6 +33,10 @@ var ProductSchema = new mongoose.Schema({
     item: { 
         type: Array,
         required : false
+    },
+    reference: { 
+        type: String,
+        required : true
     }
 });
 

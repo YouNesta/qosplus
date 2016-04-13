@@ -14,14 +14,7 @@ var product = require("../modules/product.js");
 var Token    = require('../modules/jsonwebtoken/module');
 
 router.get('/list', function(req, res, next) {
-    Product.find({}, function(err, product) {
-        if(err){
-            console.log(err);
-            logger.log('error', err);
-            res.res.json({success: false, message:error});
-        }
-        res.json({success: true, message:"Product List Find with success", data: product});
-    });
+   product.getProducts(req, res);
 });
 
 router.post('/add', function(req, res, next) {

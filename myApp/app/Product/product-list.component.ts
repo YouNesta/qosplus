@@ -14,7 +14,7 @@ import {ProductAddComponent} from "./product-add.component";
 
 export class ProductListComponent {
 
-    products: any;
+    products: Array<Object>;
 
     constructor(public service: ProductFactory){
         this.service.getProduct()
@@ -22,6 +22,7 @@ export class ProductListComponent {
                 response => {
                     if(response.success){
                         this.products = response.data;
+                        console.log(this.products)
                     }else{
                         console.log(response);
                     }
