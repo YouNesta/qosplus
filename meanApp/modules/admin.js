@@ -30,7 +30,7 @@ module.exports = {
                         if(err){
                             console.log(err);
                             logger.log('error', err);
-                             res.res.json({success: false, message:error});
+                             res.json({success: false, message:error});
                         }
                          users[i].director = JSON.stringify(director);
                         console.log(JSON.parse(users[i].director));

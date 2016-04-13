@@ -165,7 +165,6 @@ export class AdminValidationComponent {
         this.service.updateUser(this.model)
             .subscribe(
                 res => {
-                    console.log('lalalala');
                     if(res.success){
                         this.alertService.addAlert('success', res.message);
                     }else{

@@ -1,10 +1,11 @@
-import {Component} from 'angular2/core';
+import {Component, Input, forwardRef, Inject} from 'angular2/core';
 import {Product} from "./product";
 import {ProductFactory} from "./product.factory";
 import {FormBuilder, Validators} from "angular2/common";
 import {ControlGroup} from "angular2/common";
 import {RegEx} from "../lib/regex";
 import {TagInputComponent} from "../lib/tag-input.component";
+import {AlertService} from "../Tools/alert";
 
 
 @Component({
@@ -15,7 +16,7 @@ import {TagInputComponent} from "../lib/tag-input.component";
 
 
 export class ProductAddComponent {
-    service: ProductFactory ;
+    @Input() modal;
     subscribeForm: ControlGroup;
 
 
@@ -37,13 +38,6 @@ export class ProductAddComponent {
         }
     };
 
-    model = {
-        diameter: [],
-        addition: [],
-        cylinder: [],
-        radius: [],
-        axis: [],
-    };
     materials= [
         "Verre",
         "Plexiglass"
@@ -62,41 +56,54 @@ export class ProductAddComponent {
         "90"
     ];
 
+    intervales = [
+        0.25,
+        0.5,
+        1,
+        1.25,
+        1.5,
+        2,
+        2,25,
+        2.5,
+        3
+    ];
 
     products = {
         name: "Younesta",
         hydrophily: 56,
-        material: "",
-        color: "",
+        material: "Verre",
+        color: "Transparent",
+        price: 55,
         param: {
-            diameter: [],
-            addition: [],
-            cylinder: [],
-            radius: [],
-            axis: [],
+            diameter: ["11"],
+            addition: ["+25"],
+            cylinder: ["12"],
+            radius: ["5"],
+            axis: ["5"],
         },
         item:[
             {
+                radius: null,
                 diameter: null,
+                axis: null,
                 addition: null,
                 cylinder: null,
-                radius: null,
-                axis: null,
                 sphere: {
                     min: 0,
                     max: 0,
-                    int: 0
-                }
-                condition:null,
-                stock: null
+                    int: 0.25
+                },
+                condition: "30",
+                stock: 0,
                 provider: false
             }
         ]
 
     };
+    alertService: AlertService;
 
-    constructor(productFactory: ProductFactory, fb: FormBuilder, regEx: RegEx){
-        this.service = productFactory;
+    constructor(public service: ProductFactory, fb: FormBuilder, regEx: RegEx,  @Inject(forwardRef(() => AlertService)) alertService){
+        this.alertService = alertService;
         this.subscribeForm = fb.group({
             'name': ['', Validators.compose([
                 /* Validators.required,
@@ -119,26 +126,46 @@ export class ProductAddComponent {
         }
     }
 
-    addProduct(){
-       this.products.item.push(  {
-           diameter: null,
-           addition: null,
-           cylinder: null,
-           radius: null,
-           axis: null,
-           sphere: {
-               min: 0,
-               max: 0,
-               int: 0
-           }
-           condition:null,
-           stock: null
-
-
-       })
+    addProduct() {
+        this.products.item.push({
+            radius: null,
+            diameter: null,
+            axis: null,
+            addition: null,
+            cylinder: null,
+            sphere: {
+                min: 0,
+                max: 0,
+                int: 0.25
+            },
+            condition: "30",
+            stock: 0,
+            provider: false
+        });
     }
 
-    save(){
-        console.log(this.products)
-    }
+    save() {
+
+            for (var i in this.products.item) {
+                if (this.products.item[i].provider) {
+                    this.products.item[i].stock = -1;
+                }
+            }
+            this.service.save(this.products)
+                .subscribe(
+                    res => {
+                        if(res.success){
+                            this.modal.close()
+                            this.alertService.addAlert('success', res.message);
+                        }else{
+                            this.alertService.addAlert('warning', res.message);
+                        }
+                    },
+                    err => {
+                        this.alertService.addAlert('danger', 500);
+                    },
+                    () => console.log('Product Added')
+                );
+        }
+
 }
