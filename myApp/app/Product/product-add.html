@@ -118,9 +118,19 @@
             <div class="form-group">
                 <div class="col col-md-6">
                     <div class="form-group ">
+                        <div class="col col-md-2">
+                            <select [(ngModel)]="product.radius">
+                                <option *ngFor="#item of products.param.radius; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
                         <div class="col col-md-2 col-md-offset-1">
                             <select [(ngModel)]="product.diameter">
                                 <option *ngFor="#item of products.param.diameter; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col col-md-2">
+                            <select [(ngModel)]="product.axis">
+                                <option *ngFor="#item of products.param.axis; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                         <div class="col col-md-2">
@@ -131,16 +141,6 @@
                         <div class="col col-md-2">
                             <select [(ngModel)]="product.cylinder">
                                 <option *ngFor="#item of products.param.cylinder; #i = index" [value]="item">{{item}}</option>
-                            </select>
-                        </div>
-                        <div class="col col-md-2">
-                            <select [(ngModel)]="product.radius">
-                                <option *ngFor="#item of products.param.radius; #i = index" [value]="item">{{item}}</option>
-                            </select>
-                        </div>
-                        <div class="col col-md-2">
-                            <select [(ngModel)]="product.axis">
-                                <option *ngFor="#item of products.param.axis; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                     </div>
@@ -155,7 +155,9 @@
                             <input type="number" id="sphere-max" [(ngModel)]="product.sphere.max" class="form-control" placeholder="Max Value">
                         </div>
                         <div class="col col-md-4">
-                            <input type="number"  id="sphere-interval" [(ngModel)]="product.sphere.int" class="form-control" placeholder="Interval">
+                            <select [(ngModel)]="product.sphere.int">
+                                <option *ngFor="#intervale of intervales; #i = index" [value]="intervale">{{intervale}}</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -163,7 +165,7 @@
                     <label for="addition">Stock</label>
                     <div class="col col-md-6">
                         <input type="checkbox" [(ngModel)]="product.provider">
-                        <input [disabled]="product.provider" id="stock" [(ngModel)]="product.stock" class="form-control" placeholder="Min Value">
+                        <input [disabled]="product.provider" type="number" id="stock" [(ngModel)]="product.stock" class="form-control" placeholder="Min Value">
                     </div>
 
                     <label for="addition">Condition</label><br><br>

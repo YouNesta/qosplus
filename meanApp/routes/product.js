@@ -26,11 +26,7 @@ router.get('/list', function(req, res, next) {
 
 router.post('/add', function(req, res, next) {
     if(req.body.product != 'undefined'){
-        product.setProduct(req, res);
-        res.json({
-           product: req.body.product
-        });
-        res.sendStatus(200);
+        product.addProduct(req, res);
     } else {
         res.sendStatus(500);
     }

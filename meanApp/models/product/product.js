@@ -11,11 +11,11 @@ var ProductSchema = new mongoose.Schema({
         index: true
     },
     material:{
-        type: Number,
+        type: String,
         required : true 
     },
     color:{ 
-        type: Number, 
+        type: String, 
         required : true 
     },
     hydrophily:{ 
@@ -26,7 +26,11 @@ var ProductSchema = new mongoose.Schema({
         type: Number, 
         required : true 
     },
-    product: { 
+    param: { 
+        type: Array,
+        required : false
+    },
+    item: { 
         type: Array,
         required : false
     }
