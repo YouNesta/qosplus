@@ -16,12 +16,16 @@ System.config({
         },
         "angular2-tag-input": {
             "defaultExtension": "ts"
+        },
+        "node_modules/ng2-bootstrap": {
+            "defaultExtension": "js"
         }
     },
     map: {
         "angular2-jwt": "node_modules/angular2-jwt/angular2-jwt.js",
         "angular2-tag-input": "node_modules/angular2-tag-input/dist/tag-input.component.d.ts",
-        moment: 'node_modules/moment/moment.js'
+        moment: 'node_modules/moment/moment.js',
+        "ng2-bootstrap/ng2-bootstrap":   "node_modules/ng2-bootstrap/ng2-bootstrap"
     }
 
 });
