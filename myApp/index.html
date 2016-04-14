@@ -18,7 +18,7 @@
     </div>
 </app>
 
-<script src="node_modules/es6-shim/es6-shim.min.js"></script>
+<script src="/node_modules/es6-shim/es6-shim.min.js"></script>
 <script src="/node_modules/systemjs/dist/system-polyfills.js"></script>
 <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
 <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
@@ -31,9 +31,12 @@
 <script src="/config/system.js"></script>
 <script src="/node_modules/jquery/dist/jquery.js"></script>
 <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-<script src="/node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng2-bootstrap/1.0.0/ng2-bootstrap.js"></script>
 <script src="node_modules/ng2-bs3-modal/bundles/ng2-bs3-modal.js"></script>
 <script src="public/js/all.min.js"></script>
-
+<script>
+    System.import('app/main')
+            .then(null, console.error.bind(console));
+</script>
 </body>
 </html>
