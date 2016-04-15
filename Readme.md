@@ -45,8 +45,7 @@ vagrant ssh;
 
 ```bash
 cd /vagrant/meanApp;
-mongorestore dump/;
-cp config.js.old config.js;
+cp config/config.js.old config/config.js;
 npm install;
 ```
 
