@@ -4,3 +4,4 @@
 /bower_components/
 /jspm_packages/
 .DS_Store
+app/Config/api.ts
