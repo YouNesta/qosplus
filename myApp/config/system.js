@@ -19,13 +19,17 @@ System.config({
         },
         "node_modules/ng2-bootstrap": {
             "defaultExtension": "js"
+        },
+        "node_modules/ng2-bs3-modal": {
+            "defaultExtension": "js"
         }
     },
     map: {
         "angular2-jwt": "node_modules/angular2-jwt/angular2-jwt.js",
         "angular2-tag-input": "node_modules/angular2-tag-input/dist/tag-input.component.d.ts",
         moment: 'node_modules/moment/moment.js',
-        "ng2-bootstrap/ng2-bootstrap":   "node_modules/ng2-bootstrap/ng2-bootstrap"
+        "ng2-bootstrap/ng2-bootstrap":   "node_modules/ng2-bootstrap/ng2-bootstrap",
+        "ng2-bs3-modal/ng2-bs3-modal":   "node_modules/ng2-bs3-modal/ng2-bs3-modal"
     }
 
 });

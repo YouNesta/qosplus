@@ -13,7 +13,7 @@ import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 import {FormBuilder, Validators} from "angular2/common";
 import {ControlGroup} from "angular2/common";
 import {FormValidator} from "../Config/form-validator";
-import {MODAL_DIRECTIVES, ModalComponent} from "ng2-bs3-modal/ng2-bs3-modal";
+import {MODAL_DIRECTIVES,} from "ng2-bs3-modal/ng2-bs3-modal";
 import {UserFactory} from "../User/user.factory";
 import {AlertService} from "../Tools/alert";
 
@@ -99,7 +99,6 @@ export class AdminValidationComponent {
         "isCollapsed":false
     };
     validateForm: ControlGroup;
-    modal: ModalComponent;
     alertService: AlertService;
     users = [];
 
