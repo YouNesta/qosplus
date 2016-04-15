@@ -12,7 +12,7 @@ import {CanActivate} from "angular2/router";
 
 
 @Component({
-    templateUrl: "app/Admin/admin-dashboard.html",
+    templateUrl: "admin-dashboard.html",
 })
 
 

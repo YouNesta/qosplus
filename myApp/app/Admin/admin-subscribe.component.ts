@@ -11,7 +11,7 @@ import {Input} from "angular2/core";
 import {AlertService} from "../Tools/alert";
 @CanActivate(() => tokenNotExpired('token'))
 @Component({
-    templateUrl: "app/Admin/admin-subscribe.html",
+    templateUrl: "admin-subscribe.html",
 })
 
 export class AdminSubscribeComponent {
