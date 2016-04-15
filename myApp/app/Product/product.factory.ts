@@ -4,14 +4,15 @@ import 'rxjs/Rx';
 import {Headers} from "angular2/http";
 import {AuthHttp} from 'angular2-jwt';
 import {Router} from "angular2/router";
+import {API} from "../Config/api";
 
 @Injectable()
 
 export class ProductFactory {
     http = null;
     apiUrl = "http://192.168.33.10:8080/api/v1/product/";
-    constructor(public authHttp: AuthHttp, public router : Router) {
-
+    constructor(public authHttp: AuthHttp, public router : Router, api : API) {
+        this.apiUrl = api.url+api.product;
 
     }
 

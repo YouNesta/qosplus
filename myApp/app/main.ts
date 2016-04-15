@@ -34,6 +34,7 @@ import {AlertComponent} from "./Tools/alert.component";
 import {AlertService} from "./Tools/alert";
 import {Product} from "./Product/product";
 import {NgControl} from "angular2/common";
+import {API} from "./Config/api";
 
 
 @Component({
@@ -100,6 +101,7 @@ bootstrap(App, [
     FormValidator,
     AlertComponent,
     AlertService,
-    NgControl
+    NgControl,
+    API
 ]);
 
