@@ -46,7 +46,7 @@ vagrant ssh;
 ```bash
 cd /vagrant/meanApp;
 mongorestore dump/;
-cp config.old.js config.js;
+cp config.js.old config.js;
 npm install;
 ```
 
@@ -61,14 +61,28 @@ OR
 pm2 start /vagrant/meanApp/bin/www;
 
 ```
+* Access API at  [http://192.168.33.10:8080/][4]
+
 
 * Install Angular App 
 
 ```bash
-cd /vagrant/myApp
+cd /vagrant/myApp;
+cp app/Config/api.ts.old app/Config/api.ts;
 jspm install;
 npm install;
 typings install;
+```
+
+* Run Angular App 
+
+```bash
+cd /vagrant/myApp;
+lite-server;
+
+OR
+
+pm2 start /vagrant/myApp/app.js;
 ```
 
 * Access Your Project at  [http://192.168.33.10:3000/][4]
@@ -95,6 +109,7 @@ vagrant destroy
 ```bash
 vagrant ssh
 ```
+
 
 
 
