@@ -101,7 +101,7 @@ export class AdminValidationComponent {
     validateForm: ControlGroup;
     modal: ModalComponent;
     alertService: AlertService;
-    users: Array<Object>;
+    users = [];
 
     constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService){
        this.alertService = alertService;
