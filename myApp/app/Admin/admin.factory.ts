@@ -32,7 +32,7 @@ export class AdminFactory {
 
     list(){
       return  this.authHttp
-            .get(this.apiUrl)
+            .get(this.apiUrl+'')
             .map(response => response.json())
             .subscribe(
                 response => console.log(response),

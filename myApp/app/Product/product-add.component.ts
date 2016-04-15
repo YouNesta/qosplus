@@ -4,7 +4,7 @@ import {ProductFactory} from "./product.factory";
 import {FormBuilder, Validators} from "angular2/common";
 import {ControlGroup} from "angular2/common";
 import {RegEx} from "../lib/regex";
-import {TagInputComponent} from "../lib/tag-input.component";
+import {TagInputComponent} from "angular2-tag-input";
 import {AlertService} from "../Tools/alert";
 
 

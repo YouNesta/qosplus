@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {ProductFactory} from "./product.factory";
-import {MODAL_DIRECTIVES} from "ng2-bs3-modal/ng2-bs3-modal";
-import {ACCORDION_DIRECTIVES} from "ng2-bootstrap/ng2-bootstrap";
+import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
+import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
 import {ProductAddComponent} from "./product-add.component";
 
 
