@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 header {
   nav, nav-user, nav-admin {
     li {
+=======
+header{
+  nav, nav-user{
+    li{
+>>>>>>> origin/dev
       display: inline-block;
       float: right;
     }
@@ -58,6 +64,77 @@ header {
     li:first-child {
       border: 0;
       margin-right: 20px;
+    }
+  }
+
+  nav-admin{
+    #sidebar-wrapper {
+      z-index: 1000;
+      position: fixed;
+      top:0;
+      width: 250px;
+      bottom:0;
+      background: #000;
+      .sidebar-nav {
+        background: #2b303b;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        color: rgba(120, 129, 149, 0.92);
+        li {
+          line-height: 40px;
+          a {
+            display: block;
+            color: #999999;
+            &:hover {
+              text-decoration: none;
+              color: #fff;
+              background: rgba(255,255,255,0.2);
+            }
+            &:active,&:focus{
+              text-decoration: none;
+            }
+          }
+          &:not(.sidebar-brand) {
+            margin-bottom: 30px;
+            a{
+              padding-left: 20px;
+              &.active{
+                color: white;
+              }
+            .fa{
+              width: 40px;
+              height: 40px;
+              text-align: center;
+              line-height: 40px;
+              background: #21252d;
+              color: rgba(120, 129, 149, 0.92);
+              font-size: 18px;
+              position: absolute;
+              right: 30px;
+            }
+            }
+          }
+        }
+        .sidebar-brand {
+          height: 60px;
+          margin-bottom: 30px;
+          a {
+            text-align: center;
+            font-size: 16px;
+            line-height: 60px;
+            background-color: #242731;
+            color: #9eacb5;
+
+            &:hover {
+              color: #fff;
+            }
+          }
+        }
+      }
+
     }
   }
 }

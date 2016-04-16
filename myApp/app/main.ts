@@ -8,13 +8,14 @@ import {
     RouteConfig,
     ROUTER_DIRECTIVES,
     ROUTER_PROVIDERS,
-    RouterLink, Router} from 'angular2/router';
+    RouterLink, Router, Location} from 'angular2/router';
 
 import {enableProdMode} from 'angular2/core';
 enableProdMode();
 
 import {HeaderComponent} from "./Layouts/header.component";
 import {FooterComponent} from "./Layouts/footer.component";
+import {SearchComponent} from "./Tools/search.component";
 import {UserComponent}    from './User/user.component'
 import {HomeComponent}    from './Home/home.component'
 import {UserFactory} from "./User/user.factory";
@@ -22,20 +23,27 @@ import {RegEx} from "./lib/regex";
 import {RouteAuth} from "./Config/route-auth";
 import {AdminComponent} from "./Admin/admin.component";
 import {AdminFactory} from "./Admin/admin.factory";
+import {ProductFactory} from "./Product/product.factory";
 import {PageNotFoundComponent} from "./Page/page-not-found.component";
 import {provide} from "angular2/core";
 import {APP_BASE_HREF} from "angular2/router";
 import {User} from "./User/user";
 import {Admin} from "./Admin/admin";
+import {FormValidator} from "./Config/form-validator";
+import {AlertComponent} from "./Tools/alert.component";
+import {AlertService} from "./Tools/alert";
+import {Product} from "./Product/product";
+import {NgControl} from "angular2/common";
+import {API} from "./Config/api";
 
 
 @Component({
     selector: "app",
     template:   "<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>" +
-                "<router-outlet></router-outlet>" +
+                "<div class='wrapper {{routeAuth.base}}'><search *ngIf='routeAuth.auth == true'></search><alert></alert><router-outlet></router-outlet></div>" +
                 "<footer>{{title}}</footer>",
 
-    directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent]
+    directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent, SearchComponent, AlertComponent]
 })
 
 @RouteConfig([
@@ -48,23 +56,27 @@ import {Admin} from "./Admin/admin";
 
 
 
-export class App implements OnInit{
-    title = "penis";
-    user: any;
+export class App  implements OnInit{
+    title = "QosPlus";
+    user = [];
+    routeAuth = {
+        base: " ",
+        name: " ",
+        auth: false
+    };
 
-    constructor(public service: UserFactory){
+    constructor(private service: UserFactory, private router: Router, private routerAuth: RouteAuth , location: Location){
+        this.routeAuth =  this.routerAuth.routeAuth(location.path());
+
 
     }
-
-
-
-
-
+    getName () {
+        return "Angular 2";
+    }
     ngOnInit(){
-        if(this.service.isConnected() && tokenNotExpired('token')){
-            this.service.user()
-
-        }
+        this.router.subscribe((val) => {
+            this.routeAuth =  this.routerAuth.routeAuth(val);
+        });
     }
 
 }
@@ -76,6 +88,7 @@ bootstrap(App, [
     RegEx,
     RouteAuth,
     AdminFactory,
+    ProductFactory,
     provide(AuthHttp, {
         useFactory: (http) => {
             return new AuthHttp(new AuthConfig({headerName:'Authorization',    tokenName: "token",    tokenGetter: function(){
@@ -84,6 +97,11 @@ bootstrap(App, [
         },
         deps: [Http]
     }),
-    provide(APP_BASE_HREF, {useValue:'/'})
+    provide(APP_BASE_HREF, {useValue:'/'}),
+    FormValidator,
+    AlertComponent,
+    AlertService,
+    NgControl,
+    API
 ]);
 

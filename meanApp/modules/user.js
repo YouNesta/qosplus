@@ -6,25 +6,26 @@ var SHA256 = require("crypto-js/sha256");
 var User = require("../models/user.js").User;
 var Shop = require("../models/shop.js").Shop;
 var logger = require('winston');
+var generatePassword = require('password-generator');
+
 
 module.exports = {
 
-    generatePassword: function(_password){
+    generatePassword: function(password){
         var buf = crypto.randomBytes(16);
         var txt = buf.toString('hex');
         var hash =  SHA256(password+txt);
         var password = hash.toString();
-        var hash = txt;
         return {
             password: password,
-            hash: hash
+            hash: txt
         };
     },
 
     isValidPassword: function(user, password){
-        var hash =  SHA256(password+user._hash);
+        var hash =  SHA256(password+user.hash);
         var _password = hash.toString();
-        return user._password == _password;
+        return user.password == _password;
     },
 
     setUser: function(req, res){
@@ -39,7 +40,7 @@ module.exports = {
             if (user) {
                 if (req.body.option.director) {
                     //Is director
-                    User.findOneAndUpdate({_id: user._id}, {$set: {director: user._id}}, function (error, data) {
+                    User.findOneAndUpdate({_id: user._id}, {$set: {director: user._id}}, function (error, user) {
                         if (error) {
                             console.log(error);
                             logger.log('error', error);
@@ -73,11 +74,9 @@ module.exports = {
                 }
             }
 
-        })
+        });
         function setShop(user, shops){
             if(shops.length >= 1){
-                shops[0].openHour = new Date(shops[0].openHour);
-                shops[0].closeHour = new Date(shops[0].closeHour);
                 var shop = new Shop(shops[0]);
                 shop.save(function(error, shop){
                     if(error){
@@ -103,9 +102,70 @@ module.exports = {
 
     },
 
-    getShop: function(user, shops){
-        if(shops.length >=1){
-            console.log(shops)
+    update: function(req, res){
+        var i = 0;
+
+        if(req.body.user.state == 0){
+            var password = generatePassword(6, false);
+            var crypted  = this.generatePassword(password);
+            req.body.user.password = crypted.password;
+            req.body.user.hash = crypted.hash;
+            req.body.user.state = 1;
+            console.log(password);
         }
-    }
+
+        updateShop(req.body.user, i);
+        function updateUser(user, i){
+            if(user._id == user.director._id){
+                user.director = user.director._id;
+                User.findOneAndUpdate({_id: user._id}, {$set: user }, { 'new': true },  function(error, data){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({ success: false, message: "Subscribe Failed", data:error});
+                    }
+                });
+            }else{
+
+                delete user.director.__v;
+                User.findOneAndUpdate({_id: user.director._id}, user.director, { 'new': true },  function(error, data){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({ success: false, message: "Subscribe Failed", data:error});
+                    }
+                    User.findOneAndUpdate({_id: user._id}, {$set: user }, { 'new': true },  function(error, data){
+                        if(error){
+                            console.log(error);
+                            logger.log('error', error);
+                            res.json({ success: false, message: "Subscribe Failed", data:error});
+                        }
+                    });
+                });
+            }
+        }
+        function updateShop(user, i){
+            if(i < user.associateShop.length) {
+                delete user.associateShop[i].__v;
+
+                Shop.findOneAndUpdate({_id: user.associateShop[i]._id}, {$set: user.associateShop[i] }, { 'new': true },  function(error, shop){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({ success: false, message: "Subscribe Failed", data:error});
+                    }
+                    user.associateShop[i] = shop._id;
+                    console.log(shop);
+                    i++;
+                    updateShop(user, i);
+                });
+
+
+            }else{
+                updateUser(user);
+            }
+        }
+    },
+
+
 };

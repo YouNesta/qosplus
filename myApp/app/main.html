@@ -1,0 +1,7 @@
+<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>
+<div class='wrapper {{routerAuth.base}}'>
+    <search *ngIf='routerAuth.auth == true'></search>
+    <alert [alerts]='alerts' ></alert>
+    <router-outlet></router-outlet>
+</div>
+<footer>{{title}}</footer>
