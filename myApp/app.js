@@ -11,6 +11,6 @@ var params = {
     ignore: 'scss,my/templates', // comma-separated string for paths to ignore
     file: "index.html", // When set, serve this file for every 404 (useful for single-page applications)
     wait: 1000, // Waits for all changes, before reloading. Defaults to 0 sec.
-    mount: [['/components', './node_modules']] // Mount a directory to a route.
+    mount: [['/components', './node_modules', 'jspm_packages']] // Mount a directory to a route.
 };
 liveServer.start(params);
