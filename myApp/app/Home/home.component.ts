@@ -23,7 +23,7 @@ import {RouteAuth} from "../Config/route-auth";
     { path: "/", name: "Homepage", component: HomeHomepageComponent},
     { path: "/about", name: "About", component: HomeAboutComponent},
     { path: "/products", name: "Products", component: HomeProductsComponent},
-    { path: "/contact", name: "Contact", component: HomeContactComponent}
+    { path: "/engagements", name: "Contact", component: HomeContactComponent}
 ])
 
 export class HomeComponent  implements OnInit{

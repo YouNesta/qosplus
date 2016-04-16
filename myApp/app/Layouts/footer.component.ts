@@ -6,8 +6,7 @@ import {NavComponent} from "./nav.component";
 
 @Component({
     selector: "footer",
-    template:
-    "",
+    templateUrl: "app/Layouts/footer.html",
 })
 
 export class FooterComponent {
