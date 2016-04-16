@@ -4,16 +4,16 @@ import {Http} from 'angular2/http';
 import 'rxjs/Rx';
 import {Headers} from "angular2/http";
 import {AuthHttp, JwtHelper} from 'angular2-jwt';
+import {API} from "../Config/api";
 
 
 @Injectable()
 
 export class AdminFactory {
-    apiUrl = "http://192.168.33.10:8080/api/v1/admin/";
+    apiUrl = String;
 
-    constructor(public authHttp: AuthHttp) {
-
-
+    constructor(public authHttp: AuthHttp,  api: API) {
+        this.apiUrl = api.url+api.admin;
     }
 
     save = function(admin) {
@@ -27,17 +27,12 @@ export class AdminFactory {
                 data, {
                     headers: headers
                 })
-            .map(response => response.json())
-            .subscribe(
-                response => console.log(response),
-                err =>  console.log(err),
-                () => console.log('Subscription Complete')
-            );
+            .map(response => response.json());
     };
 
     list(){
       return  this.authHttp
-            .get(this.apiUrl)
+            .get(this.apiUrl+'')
             .map(response => response.json())
             .subscribe(
                 response => console.log(response),
@@ -50,5 +45,24 @@ export class AdminFactory {
         return  this.authHttp
             .get(this.apiUrl+'unvalidate')
             .map(response => response.json())
+    };
+
+    validateUser = function(user) {
+
+        var data =  JSON.stringify({user});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'validate',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .subscribe(
+                response => console.log(response),
+                err =>  console.log(err),
+                () => console.log('Validation Complete')
+            );
     };
 }

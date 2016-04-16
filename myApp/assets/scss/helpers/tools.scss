@@ -1,0 +1,49 @@
+search{
+  .row{
+    background: white;
+    height: 60px;
+    .search{
+      padding: 0;
+      height: 20px;
+      position: relative;
+      top: 20px;
+      font-size: 20px;
+      font-family: HelveticaNeue-Light;
+      .input-group-addon{
+        background: white;
+        border: none;
+        color: #3e5e76;
+        font-size: 20px;
+        padding: 0;
+
+      }
+      input{
+        height: 20px;
+        box-shadow: none;
+        border: none;
+      }
+    }
+    .rightSearch{
+      height: 60px;
+      line-height: 60px;
+      .user{
+        color: #3e5e76;
+        border-right: 3px solid #e0e4ea;
+        padding: 0 20px;
+        margin: 0 20px;
+      }
+      .dropdown-toggle{
+        font-size: 20px;
+        padding: 0;
+        border: 0;
+        background: none;
+        height: 60px;
+      }
+      .open{
+        .dropdown-toggle{
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}

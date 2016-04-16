@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -38,17 +37,19 @@ var routes = require('./routes/index');
 var user = require('./routes/user');
 
 
+//Product Routes
+var product = require('./routes/product');
+
 
 // Admin Routes
 var admin = require('./routes/admin/admin');
 var aUser = require('./routes/admin/user');
 
-
-
 //Routing
 app.use('/', routes);
 app.use('/api/v1/client/user', user);
 app.use('/api/v1/admin', admin);
+app.use('/api/v1/product', product);
 app.use('/api/v1/admin/user', aUser);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

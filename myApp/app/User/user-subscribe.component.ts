@@ -14,10 +14,85 @@ import {RegEx} from "../lib/regex";
 
 export class UserSubscribeComponent {
     service: UserFactory ;
-
     subscribeForm: ControlGroup;
 
-    associateShop = [
+    associateShop = [{
+        name: "",
+        socialReason: '',
+        adress: "",
+        adress2: "",
+        city: "",
+        zipCode: "",
+        mobile: "",
+        phone: "",
+        fax: "",
+        mail: "",
+        tva: null,
+        siret: null,
+        adeli: null,
+        nightBox: true,
+        transporteur:'',
+        openDay: "",
+        closeDay: "",
+        openHour: "",
+        closeHour: ""
+    }];
+    director = {
+
+        lastName: 'ezd,c',
+        firstName: 'ezlkd,',
+        phone: 'dk,q',
+        mail: 'd,qs;',
+
+    };
+    model = {
+        role: null,
+        lastName: '',
+        firstName: '',
+        phone: '',
+        mail: '',
+        averageLens: null,
+        providerLens: "",
+        averageGlasses: null,
+        providerGlasses: "",
+        financialShop: "",
+        IBAN: null,
+        BIC: null,
+        financialMail:'',
+        paymentState: true,
+        deliverShop: "",
+        central: '',
+        comment: ''
+    };
+    isSame =  {
+        director: 1,
+        deliverShop: false,
+        financialMail: 1,
+        financialShop:1
+    };
+    user =  {
+        role: null,
+        lastName: '',
+        firstName: '',
+        phone: '',
+        mail: '',
+        averageLens: null,
+        providerLens: "",
+        averageGlasses: null,
+        providerGlasses: "",
+        financialShop: "",
+        IBAN: null,
+        BIC: null,
+        financialMail:'',
+        paymentState: true,
+        deliverShop: "",
+        central: '',
+        comment: ''
+    };
+
+/*
+
+ associateShop = [
         {
             name: "Younesta",
             socialReason: 'YOUNESTA SARL',
@@ -28,7 +103,7 @@ export class UserSubscribeComponent {
             mobile: "06 50 90 12 05",
             phone: "01 60 78 37 94",
             fax: "01 60 78 37 94",
-            mail: "younes.boulkaddid@supinternet.fr",
+            mail: "younes@supinternet.fr",
             tva: 0.9,
             siret: 0987654567890987,
             adeli: 876545678987654,
@@ -50,11 +125,11 @@ export class UserSubscribeComponent {
     };
 
     model = {
-        role: 1,
+        role: 0,
         lastName: 'Boulkaddid',
         firstName: 'Younes',
         phone: '06.59.90.12.05',
-        mail: 'younes.boulkaddid@supinternet.fr',
+        mail: 'younes@supinternet.fr',
         averageLens: 234567,
         providerLens: "Aflelou",
         averageGlasses: 234567,
@@ -66,6 +141,7 @@ export class UserSubscribeComponent {
         paymentState: true,
         deliverShop: "rkjfnedls,",
         central: 'Central datatatata',
+        comment: 'ehrjsvdfksx'
     };
     isSame =  {
         director: 1,
@@ -75,8 +151,32 @@ export class UserSubscribeComponent {
 
     };
 
+    user =  {
+        role: null,
+        lastName: '',
+        firstName: '',
+        phone: '',
+        mail: '',
+        averageLens: null,
+        providerLens: "",
+        averageGlasses: null,
+        providerGlasses: "",
+        financialShop: "",
+        IBAN: null,
+        BIC: null,
+        financialMail:'',
+        paymentState: true,
+        deliverShop: "",
+        central: '',
+        comment: ''
+    };*/
 
     constructor(userFactory: UserFactory, fb: FormBuilder, regEx: RegEx){
+
+
+
+
+
         this.service = userFactory;
         this.subscribeForm = fb.group({
             'name': ['', Validators.compose([
@@ -104,7 +204,7 @@ export class UserSubscribeComponent {
     subscribe(){
         if(this.subscribeForm.valid){
             this.user = this.model;
-            this.user.role = 1;
+            this.user.role = 0;
 
             if(!this.isSame.financialMail){
                 this.user.financialMail = this.model.financialMail;
@@ -119,29 +219,29 @@ export class UserSubscribeComponent {
 
     addShop(){
         this.associateShop.push({
-            name: "Younesta",
-            socialReason: 'YOUNESTA SARL',
-            adress: "43 rue de malabry",
+            name: "",
+            socialReason: '',
+            adress: "",
             adress2: "",
-            city: "Maisse",
-            zipCode: "91720",
-            mobile: "06 50 90 12 05",
-            phone: "01 60 78 37 94",
-            fax: "01 60 78 37 94",
-            mail: "younes.boulkaddid@supinternet.fr",
-            tva: 0.9,
-            siret: 0987654567890987,
-            adeli: 876545678987654,
+            city: "",
+            zipCode: "",
+            mobile: "",
+            phone: "",
+            fax: "",
+            mail: "",
+            tva: null ,
+            siret: null,
+            adeli: null,
             nightBox: true,
-            transporteur:'Mathieu',
-            openDay: "Lun",
-            closeDay: "Lun",
-            openHour: "10:30",
-            closeHour: "10:11"
+            transporteur:'',
+            openDay: "",
+            closeDay: "",
+            openHour: "",
+            closeHour: ""
         });
     }
     removeShop(){
-        if(this.model.associateShop.length > 1)
-            this.model.associateShop.pop();
+        if(this.associateShop.length > 1)
+            this.associateShop.pop();
     }
 }

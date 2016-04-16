@@ -11,7 +11,9 @@
   },
   "exclude": [
     "node_modules",
+    "jspm_packages",
     "typings/main",
     "typings/main.d.ts"
-  ]
+  ],
+  "compileOnSave": false
 }

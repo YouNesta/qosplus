@@ -1,0 +1,28 @@
+<div id="sidebar-wrapper">
+
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a [routerLink]="['Admin', 'Dashboard']">
+                {{title}}
+            </a>
+        </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Subscribe']))"
+                    [routerLink]="['Admin', 'Subscribe']">Ajouter un Employé
+                <i class="fa fa-user fa-fw"></i>
+            </a>
+        </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Validation']))"
+                    [routerLink]="['Admin', 'Validation']">Ajouter un client
+                <i class="fa fa-user-plus fa-fw"></i>
+            </a>
+        </li>
+        <li>
+           <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Product', 'List']))"
+                   [routerLink]="['Admin', 'Product', 'List']">Nos Produits
+               <i class="fa fa-user-plus fa-fw"></i>
+           </a>
+        </li>
+    </ul>
+</div>
