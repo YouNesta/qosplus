@@ -45,12 +45,16 @@ var product = require('./routes/product');
 var admin = require('./routes/admin/admin');
 var aUser = require('./routes/admin/user');
 
+// Upload Routes
+var upload = require('./routes/upload');
+
 //Routing
 app.use('/', routes);
 app.use('/api/v1/client/user', user);
 app.use('/api/v1/admin', admin);
 app.use('/api/v1/product', product);
 app.use('/api/v1/admin/user', aUser);
+app.use('/api/v1/upload', upload);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
