@@ -101,7 +101,7 @@ export class ProductAddComponent {
 
     };
     alertService: AlertService;
-
+  
     constructor(public service: ProductFactory, fb: FormBuilder, regEx: RegEx,  @Inject(forwardRef(() => AlertService)) alertService){
         this.alertService = alertService;
         this.subscribeForm = fb.group({
@@ -143,7 +143,19 @@ export class ProductAddComponent {
             provider: false
         });
     }
+post($event){
+    this.service.addImage($event.srcElement.files)
+        .subscribe(
+            res => {
 
+                    this.alertService.addAlert('warning', res);
+            },
+            err => {
+                this.alertService.addAlert('danger', 500);
+            },
+            () => console.log('Product Added')
+        );
+}
     save() {
 
             for (var i in this.products.item) {

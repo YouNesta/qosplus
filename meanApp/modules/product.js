@@ -73,7 +73,6 @@ module.exports = {
         });
 
         function getItem(product, i){
-            console.log( product.length, i )
             if(i < product.length){
 
                     Item.find({
@@ -84,9 +83,7 @@ module.exports = {
                             logger.log('error', error);
                             res.json({success: false, message:error});
                         }
-                        console.log(product[i].item);
                         delete product[i].item;
-                        console.log(product[i].item);
                         product[i].item = item;
                         i++;
                         getItem(product, i);
