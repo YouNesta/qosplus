@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 header {
   nav, nav-user, nav-admin {
     li {
-=======
-header{
-  nav, nav-user{
-    li{
->>>>>>> origin/dev
       display: inline-block;
       float: right;
     }
@@ -66,7 +60,6 @@ header{
       margin-right: 20px;
     }
   }
-
   nav-admin{
     #sidebar-wrapper {
       z-index: 1000;
@@ -134,7 +127,10 @@ header{
           }
         }
       }
-
     }
   }
+}
+
+@media screen and (max-width: 991px) {
+
 }

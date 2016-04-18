@@ -21,5 +21,13 @@
     "password-generator": "^2.0.2",
     "serve-favicon": "~2.3.0",
     "winston": "^2.2.0"
+  },
+  "jspm": {
+    "dependencies": {
+      "angular2-polyfill": "npm:angular2-polyfill@^0.0.26"
+    },
+    "devDependencies": {
+      "typescript": "npm:typescript@^1.6.2"
+    }
   }
 }
