@@ -36,7 +36,7 @@ System.config({
     "moment": "npm:moment@2.12.0",
     "ng2-bootstrap": "npm:ng2-bootstrap@1.0.13",
     "ng2-bs3-modal": "npm:ng2-bs3-modal@0.5.1",
-    "ng2-file-upload": "node_modules/ng2-file-upload/ng2-file-upload.js",
+    "ng2-uploader": "node_modules/ng2-uploader/ng2-uploader",
     "reflect-metadata": "npm:reflect-metadata@0.1.3",
     "rxjs": "npm:rxjs@5.0.0-beta.6",
     "systemjs": "npm:systemjs@0.19.26",

@@ -37,6 +37,10 @@ var ProductSchema = new mongoose.Schema({
     reference: { 
         type: String,
         required : true
+    },
+    image: {
+        type: String,
+        required : true
     }
 });
 
