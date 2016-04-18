@@ -10,9 +10,11 @@ import {API} from "../Config/api";
 
 export class ProductFactory {
     http = null;
-    apiUrl = "http://192.168.33.10:8080/api/v1/product/";
+    apiUrl = "";
+    uploadUrl = "";
     constructor(public authHttp: AuthHttp, public router : Router, api : API) {
         this.apiUrl = api.url+api.product;
+        this.uploadUrl = api.url+api.upload+api.product;
 
     }
 
@@ -33,6 +35,17 @@ export class ProductFactory {
     getProduct(){
         return  this.authHttp
             .get(this.apiUrl+'list')
+            .map(response => response.json())
+    }
+
+    addImage(data){
+        var headers = new Headers();
+
+        return  this.authHttp
+            .post(this.uploadUrl,
+                data, {
+                    headers: headers
+                })
             .map(response => response.json())
     }
 }

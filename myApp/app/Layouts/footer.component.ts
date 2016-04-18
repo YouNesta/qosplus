@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
-import {App} from "../main";
-import {NavComponent} from "./nav.component";
+import {RouteAuth} from "../Config/route-auth";
+import {Router} from "angular2/router";
 
 
 
@@ -11,7 +11,11 @@ import {NavComponent} from "./nav.component";
 
 export class FooterComponent {
     title: string;
-    constructor(){
+    routeAuth = '';
+    constructor(private router: Router, routeAuth: RouteAuth){
+        router.subscribe((val) => {
+            this.routeAuth =  routeAuth.routeAuth(val);
+        });
     }
 }
 
