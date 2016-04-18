@@ -62,6 +62,24 @@ pm2 start /vagrant/meanApp/bin/www;
 ```
 * Access API at  [http://192.168.33.10:8080/][4]
 
+* Install Upload Server 
+
+```bash
+cd /vagrant/upload;
+npm install;
+```
+
+* Run Upload Server 
+
+```bash
+cd /vagrant/upload;
+node server.js;
+
+```
+
+* Access Your Project at  [http://192.168.33.10:3000/][4]
+
+
 
 * Install Angular App 
 

@@ -1,4 +1,4 @@
-import {Component, Input, forwardRef, Inject} from 'angular2/core';
+import {Component, Input, forwardRef, Inject, NgZone} from 'angular2/core';
 import {Product} from "./product";
 import {ProductFactory} from "./product.factory";
 import {FormBuilder, Validators} from "angular2/common";
@@ -6,19 +6,33 @@ import {ControlGroup} from "angular2/common";
 import {RegEx} from "../lib/regex";
 import {TagInputComponent} from "angular2-tag-input";
 import {AlertService} from "../Tools/alert";
+import {UPLOAD_DIRECTIVES} from 'ng2-uploader';
 
 
 @Component({
     selector: "product-add",
     templateUrl: "app/Product/product-add.html",
-    directives: [TagInputComponent]
+    directives: [TagInputComponent, UPLOAD_DIRECTIVES]
 })
 
 
 export class ProductAddComponent {
     @Input() modal;
     subscribeForm: ControlGroup;
+    uploadFile: any;
+    uploadProgress: number;
+    uploadResponse: Object;
+    zone: NgZone;
+    options: Object = {
+        url: 'http://192.168.33.10:2028/upload'
+    };
 
+    handleUpload(data): void {
+        if (data && data.response) {
+            data = JSON.parse(data.response);
+            this.uploadFile = data;
+        }
+    }
 
     int = {
         axis : {
@@ -70,6 +84,7 @@ export class ProductAddComponent {
 
     products = {
         name: "Younesta",
+        image: "public/uploads/no_image.png",
         hydrophily: 56,
         material: "Verre",
         color: "Transparent",
@@ -110,6 +125,23 @@ export class ProductAddComponent {
                  Validators.maxLength(30)*/
             ])],
         });
+
+        this.uploadProgress = 0;
+        this.uploadResponse = {};
+        this.zone = new NgZone({ enableLongStackTrace: false });
+    }
+
+    handleUpload(data): void {
+        this.uploadFile = data;
+        this.zone.run(() => {
+            this.uploadProgress = data.progress.percent;
+        });
+        let resp = data.response;
+        if (resp) {
+            resp = JSON.parse(resp);
+            this.uploadResponse = resp;
+            this.products.image = 'public/uploads/'+resp.data[0].generatedName;
+        }
     }
 
     addParams(type){

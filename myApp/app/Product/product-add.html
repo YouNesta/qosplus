@@ -1,12 +1,36 @@
-<div class="row">
-    Add image
-
-    <input type="file" (change)="post($event)" accept="image/">
-</div>
-
 <h1>Add a product</h1>
 <div class="container-fluid">
     <form [ngFormModel]="subscribeForm" novalidate>
+        <div class="row">
+            Add image
+
+            <div>
+                <label for="file-pb" class="ui small black button right icon upload-button">
+                    <i class="ion-document icon"></i>
+                    Choose file
+                </label>
+                <input type="file"
+                       id="file-pb"
+                       style="display:none;"
+                       [ng-file-select]="options"
+                       (onUpload)="handleUpload($event)">
+            </div>
+
+            <div *ngIf="uploadFile">
+                Progress: {{ uploadProgress }}%
+            </div>
+            <img [src]="products.image" alt="product image">
+            <div *ngIf="uploadFile">
+                <div class="ui indicating olive progress">
+                    <div class="bar" [style.width]="uploadProgress + '%'"></div>
+                    <div class="label">Uploading file ({{ uploadProgress }}%)</div>
+                </div>
+            </div>
+
+            <div>
+                Response: <br/>{{ uploadFile | json }}
+            </div>
+        </div>
         <div class="row product">
             <div class="col-xs-12 col-md-6 col-sm-6">
                 <div class="form-group ">
