@@ -5,12 +5,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
     selector: "nav",
-    template:
-    "<li><a [routerLink]=\"['User', 'Login']\">Inscription / Connexion</a></li>" +
-    "<li><a [routerLink]=\"['Home', 'Products']\">Nos Produits</a></li>" +
-    "<li><a [routerLink]=\"['Home', 'Contact']\">Nos Engagements</a></li>" +
-    "<li><a [routerLink]=\"['Home', 'About']\">Qui sommes nous ?</a></li>" +
-    "<li><a [routerLink]=\"['Home', 'Homepage']\">Accueil</a></li>",
+    templateUrl: "app/Layouts/nav.html",
     directives: [ROUTER_DIRECTIVES]
 })
 

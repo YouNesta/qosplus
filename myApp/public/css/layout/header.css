@@ -1,34 +1,33 @@
-header nav li, header nav-user li, header nav-admin li {
+header nav li, header nav-user li {
   display: inline-block;
   float: right; }
 
-.container, .container-fluid {
-  padding: 0 !important; }
-
-.header {
+header nav {
   background-color: #7B19F4;
   color: #FFF;
   font-family: 'Roboto', sans-serif; }
-  .header .logo {
+  header nav .container, header nav .container-fluid {
+    padding: 0 !important; }
+  header nav .logo {
     margin-top: 15px;
     margin-bottom: 15px;
     margin-left: 75px; }
-    .header .logo img {
+    header nav .logo img {
       width: 93px; }
-  .header .header-navbar {
+  header nav .header-navbar {
     height: 93px;
     max-width: 100%; }
-    .header .header-navbar li {
+    header nav .header-navbar li {
       border-right: 1px solid #FFF;
       height: 93px;
       text-transform: uppercase;
       padding: 0;
       animation-duration: 1s;
       font-size: 12px; }
-      .header .header-navbar li.selected a {
+      header nav .header-navbar li.selected a {
         background-color: #CCA6FB;
         color: #000; }
-      .header .header-navbar li a {
+      header nav .header-navbar li a {
         clear: both;
         color: #FFF;
         text-decoration: none;
@@ -38,62 +37,63 @@ header nav li, header nav-user li, header nav-admin li {
         padding: 15px;
         padding-top: 40px;
         vertical-align: middle; }
-      .header .header-navbar li a:hover {
+      header nav .header-navbar li a:hover {
         background-color: #CCA6FB;
         color: #000; }
-    .header .header-navbar li:first-child {
+    header nav .header-navbar li:first-child {
       border: 0;
       margin-right: 20px; }
-  .header nav-admin #sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
+
+header nav-admin #sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  width: 250px;
+  bottom: 0;
+  background: #000; }
+  header nav-admin #sidebar-wrapper .sidebar-nav {
+    background: #2b303b;
+    position: absolute;
     top: 0;
-    width: 250px;
     bottom: 0;
-    background: #000; }
-    .header nav-admin #sidebar-wrapper .sidebar-nav {
-      background: #2b303b;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      color: rgba(120, 129, 149, 0.92); }
-      .header nav-admin #sidebar-wrapper .sidebar-nav li {
-        line-height: 40px; }
-        .header nav-admin #sidebar-wrapper .sidebar-nav li a {
-          display: block;
-          color: #999999; }
-          .header nav-admin #sidebar-wrapper .sidebar-nav li a:hover {
-            text-decoration: none;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.2); }
-          .header nav-admin #sidebar-wrapper .sidebar-nav li a:active, .header nav-admin #sidebar-wrapper .sidebar-nav li a:focus {
-            text-decoration: none; }
-        .header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) {
-          margin-bottom: 30px; }
-          .header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a {
-            padding-left: 20px; }
-            .header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a.active {
-              color: white; }
-            .header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa {
-              width: 40px;
-              height: 40px;
-              text-align: center;
-              line-height: 40px;
-              background: #21252d;
-              color: rgba(120, 129, 149, 0.92);
-              font-size: 18px;
-              position: absolute;
-              right: 30px; }
-      .header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand {
-        height: 60px;
+    left: 0;
+    right: 0;
+    color: rgba(120, 129, 149, 0.92); }
+    header nav-admin #sidebar-wrapper .sidebar-nav li {
+      line-height: 40px; }
+      header nav-admin #sidebar-wrapper .sidebar-nav li a {
+        display: block;
+        color: #999999; }
+        header nav-admin #sidebar-wrapper .sidebar-nav li a:hover {
+          text-decoration: none;
+          color: #fff;
+          background: rgba(255, 255, 255, 0.2); }
+        header nav-admin #sidebar-wrapper .sidebar-nav li a:active, header nav-admin #sidebar-wrapper .sidebar-nav li a:focus {
+          text-decoration: none; }
+      header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) {
         margin-bottom: 30px; }
-        .header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a {
-          text-align: center;
-          font-size: 16px;
-          line-height: 60px;
-          background-color: #242731;
-          color: #9eacb5; }
-          .header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover {
-            color: #fff; }
+        header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a {
+          padding-left: 20px; }
+          header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a.active {
+            color: white; }
+          header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background: #21252d;
+            color: rgba(120, 129, 149, 0.92);
+            font-size: 18px;
+            position: absolute;
+            right: 30px; }
+    header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand {
+      height: 60px;
+      margin-bottom: 30px; }
+      header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a {
+        text-align: center;
+        font-size: 16px;
+        line-height: 60px;
+        background-color: #242731;
+        color: #9eacb5; }
+        header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover {
+          color: #fff; }
