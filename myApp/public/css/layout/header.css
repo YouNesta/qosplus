@@ -97,3 +97,22 @@ header nav-admin #sidebar-wrapper {
         color: #9eacb5; }
         header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover {
           color: #fff; }
+
+@media screen and (max-width: 991px) {
+  header nav li, header nav-user li {
+    float: left; }
+  header nav .logo {
+    margin: 0 !important;
+    text-align: center;
+    padding: 15px; }
+  header nav .header-navbar {
+    display: none; }
+    header nav .header-navbar li {
+      height: 50px !important;
+      width: 100%;
+      text-align: center;
+      margin: 0 !important; }
+      header nav .header-navbar li a {
+        padding: 15px 15px 15px !important;
+        border-top: 1px solid;
+        font-size: 15px; } }

@@ -134,5 +134,32 @@ header {
 
 
 @media screen and (max-width: 991px) {
-
+  header {
+    nav, nav-user {
+      li {
+        float: left;
+      }
+    }
+    nav {
+      .logo {
+        margin: 0 !important;
+        text-align: center;
+        padding: 15px;
+      }
+      .header-navbar {
+        display: none;
+        li {
+          height: 50px !important;
+          width: 100%;
+          text-align: center;
+          margin: 0 !important;
+          a {
+            padding: 15px 15px 15px !important;
+            border-top: 1px solid;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
 }

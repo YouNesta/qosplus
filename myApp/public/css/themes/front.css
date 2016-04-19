@@ -210,6 +210,52 @@
           font-size: 17px; }
         .page.engagement .hero .img-overlay p {
           margin-top: 170px; }
+  .page.register {
+    padding: 10px; }
+    .page.register .page-container h1 {
+      text-align: center;
+      font-weight: bold; }
+    .page.register .page-container form {
+      padding: 20px;
+      position: relative;
+      margin-bottom: 50px;
+      margin-top: 30px; }
+      .page.register .page-container form .form-buttons {
+        z-index: 90;
+        width: 100%;
+        text-align: center; }
+        .page.register .page-container form .form-buttons button {
+          background-color: transparent;
+          border: 0;
+          color: #7B19F4;
+          font-weight: bold; }
+          .page.register .page-container form .form-buttons button span {
+            font-size: 20px;
+            width: 35px;
+            height: 35px;
+            display: inline-block;
+            border-radius: 22px;
+            border: 2px solid; }
+          .page.register .page-container form .form-buttons button:hover {
+            color: rgba(123, 29, 255, 0.53); }
+      .page.register .page-container form:before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        content: "";
+        border-top: 3px solid #000;
+        border-right: 3px solid #000;
+        width: 160px;
+        height: 90px; }
+      .page.register .page-container form:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: "";
+        border-bottom: 3px solid #000;
+        border-left: 3px solid #000;
+        width: 160px;
+        height: 90px; }
 
 @media screen and (max-width: 991px) {
   .page.product .page-container .hero {
