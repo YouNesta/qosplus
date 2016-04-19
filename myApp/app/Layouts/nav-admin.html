@@ -24,5 +24,11 @@
                <i class="fa fa-user-plus fa-fw"></i>
            </a>
         </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Product', 'Price']))"
+               [routerLink]="['Admin', 'Product', 'Price']">Prix
+                <i class="fa fa-user-plus fa-fw"></i>
+            </a>
+        </li>
     </ul>
 </div>

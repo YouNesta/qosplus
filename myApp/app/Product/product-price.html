@@ -1,0 +1,42 @@
+<modal #modal>
+    <modal-header>
+        <h4 class="modal-title">I'm a modal!</h4>
+    </modal-header>
+    <modal-body>
+        <h2>{{model.name}}</h2>
+        <form>
+            <div class="form-group" *ngFor="price in model.price">
+                <label>{{price.name}}</label>
+                <input type="number" class="form-control">
+            </div>
+        </form>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="modal.close()">Ok</button>
+    </modal-footer>
+</modal>
+
+<h1>Price</h1>
+<button  (click)="modal.open()">Open</button>
+
+
+
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Reference</th>
+        <th *ngFor="#price of tableHead"> {{price}}</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr  *ngFor='#product of products; #i = index'>
+            <td>{{product.name}}</td>
+            <td>{{product.reference}}</td>
+            <td *ngFor="#price of product.price"> {{price.price}}</td>
+        </tr>
+    </tbody>
+    </table>

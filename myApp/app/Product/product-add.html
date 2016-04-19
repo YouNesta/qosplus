@@ -66,9 +66,9 @@
         </div>
         <div class="row product">
             <div class="col-xs-12 col-md-§ col-sm-6">
-                <div class="form-group">
-                    <label for="price">Price</label>
-                    <input [(ngModel)]="products.price" name="price" id="price" class="form-control">
+                <div class="form-group" *ngFor="#price of products.price">
+                    <label >Price {{price.name}} </label>
+                    <input [(ngModel)]="price.price" name="price"  class="form-control">
                 </div>
             </div>
         </div>

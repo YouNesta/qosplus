@@ -3,6 +3,7 @@
  */
 
 var Product = require("../models/product/product.js").Product;
+var Type = require("../models/types.js").Type;
 var Item = require("../models/product/item.js").Item;
 var logger = require('winston');
 module.exports = {
@@ -93,6 +94,28 @@ module.exports = {
                 res.json({success: true, message:"User List Find with success", data: product});
             }
         };
+    },
+
+    countPrice: function(req, res){
+        Type.find({},function(err, count) {
+            if(err){
+                console.log(err);
+                logger.log('error', err);
+                res.res.json({success: false, message:error});
+            }
+            res.json({success: true, message:"Product Price Count with success", data: count});
+        });
+    },
+
+    listPrice: function(req, res){
+        Product.find({}, 'name reference price', function(err, product) {
+            if(err){
+                console.log(err);
+                logger.log('error', err);
+                res.res.json({success: false, message:error});
+            }
+            res.json({success: true, message:"Product Price Find with success", data: product});
+        });
     }
 
 };

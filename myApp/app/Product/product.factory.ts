@@ -38,14 +38,15 @@ export class ProductFactory {
             .map(response => response.json())
     }
 
-    addImage(data){
-        var headers = new Headers();
-
+    countProductPrice(){
         return  this.authHttp
-            .post(this.uploadUrl,
-                data, {
-                    headers: headers
-                })
+            .get(this.apiUrl+'price/count')
+            .map(response => response.json())
+    }
+
+    getPrice(){
+        return  this.authHttp
+            .get(this.apiUrl+'price/list')
             .map(response => response.json())
     }
 }

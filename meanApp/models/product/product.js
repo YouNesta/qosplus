@@ -23,8 +23,8 @@ var ProductSchema = new mongoose.Schema({
         required : true 
     },
     price:{ 
-        type: Number, 
-        required : true 
+        type: Array, 
+        required : false 
     },
     param: { 
         type: Array,

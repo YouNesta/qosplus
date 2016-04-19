@@ -18,7 +18,7 @@
 <accordion [closeOthers]="true">
 
 
-    <accordion-group heading="{{product.reference}} - {{product.name}}"  *ngFor='#product of products; #i = index'>
+    <accordion-group heading="{{product.reference}} - {{product.name}}"  *ngFor='#product of products; #i = index '>
         <img [src]="product.image" alt="">
 
         {{product.name}}

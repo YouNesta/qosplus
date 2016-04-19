@@ -25,4 +25,12 @@ router.post('/add', function(req, res, next) {
     }
 });
 
+router.get('/price/count', function(req, res, next) {
+        product.countPrice(req, res);
+});
+
+router.get('/price/list', function(req, res, next) {
+    product.listPrice(req, res);
+});
+
 module.exports = router;

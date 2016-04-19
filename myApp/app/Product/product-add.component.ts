@@ -51,12 +51,10 @@ export class ProductAddComponent {
             int:0
         }
     };
-
     materials= [
         "Verre",
         "Plexiglass"
     ];
-
     colors=[
         "Transparent",
         "Bleu",
@@ -69,7 +67,6 @@ export class ProductAddComponent {
         "60",
         "90"
     ];
-
     intervales = [
         0.25,
         0.5,
@@ -81,14 +78,13 @@ export class ProductAddComponent {
         2.5,
         3
     ];
-
     products = {
         name: "Younesta",
         image: "public/uploads/no_image.png",
         hydrophily: 56,
         material: "Verre",
         color: "Transparent",
-        price: 55,
+        price: [],
         param: {
             diameter: ["11"],
             addition: ["+25"],
@@ -116,7 +112,8 @@ export class ProductAddComponent {
 
     };
     alertService: AlertService;
-  
+    priceSheet = [];
+
     constructor(public service: ProductFactory, fb: FormBuilder, regEx: RegEx,  @Inject(forwardRef(() => AlertService)) alertService){
         this.alertService = alertService;
         this.subscribeForm = fb.group({
@@ -129,6 +126,24 @@ export class ProductAddComponent {
         this.uploadProgress = 0;
         this.uploadResponse = {};
         this.zone = new NgZone({ enableLongStackTrace: false });
+
+         this.service.countProductPrice()
+                            .subscribe(
+                                res => {
+                                    if(res.success){
+                                        for (var i in res.data) {
+                                           this.products.price.push({type: res.data[i].type, name: res.data[i].name, id: res.data[i]._id, price: 0});
+                                        }
+                                        this.priceSheet = res.data;
+                                    }else{
+                                        this.alertService.addAlert('warning', res.message);
+                                    }
+                                },
+                                err => {
+                                    this.alertService.addAlert('danger', 500);
+                                },
+                                () => console.log('Product Price get with success')
+                            );
     }
 
     handleUpload(data): void {
@@ -175,41 +190,30 @@ export class ProductAddComponent {
             provider: false
         });
     }
-post($event){
-    this.service.addImage($event.srcElement.files)
-        .subscribe(
-            res => {
-
-                    this.alertService.addAlert('warning', res);
-            },
-            err => {
-                this.alertService.addAlert('danger', 500);
-            },
-            () => console.log('Product Added')
-        );
-}
     save() {
-
-            for (var i in this.products.item) {
-                if (this.products.item[i].provider) {
-                    this.products.item[i].stock = -1;
-                }
+        for (var i in this.products.item) {
+            if (this.products.item[i].provider) {
+                this.products.item[i].stock = -1;
             }
-            this.service.save(this.products)
-                .subscribe(
-                    res => {
-                        if(res.success){
-                            this.modal.close()
-                            this.alertService.addAlert('success', res.message);
-                        }else{
-                            this.alertService.addAlert('warning', res.message);
-                        }
-                    },
-                    err => {
-                        this.alertService.addAlert('danger', 500);
-                    },
-                    () => console.log('Product Added')
-                );
         }
+        this.service.save(this.products)
+            .subscribe(
+                res => {
+                    if(res.success){
+                        this.modal.close()
+                        this.alertService.addAlert('success', res.message);
+                    }else{
+                        this.alertService.addAlert('warning', res.message);
+                    }
+                },
+                err => {
+                    this.alertService.addAlert('danger', 500);
+                },
+                () => console.log('Product Added')
+            );
+    }
+    
+
+
 
 }
