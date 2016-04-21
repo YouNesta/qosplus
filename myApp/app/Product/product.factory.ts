@@ -49,4 +49,32 @@ export class ProductFactory {
             .get(this.apiUrl+'price/list')
             .map(response => response.json())
     }
+
+    updatePrice(product){
+        var data =  JSON.stringify({product});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return  this.authHttp
+            .post(this.apiUrl + 'price/update',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+
+    }
+
+    createPrice(price){
+        var data =  JSON.stringify({price});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return  this.authHttp
+            .post(this.apiUrl + 'price/create',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+
+    }
 }

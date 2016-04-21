@@ -32,5 +32,20 @@ router.get('/price/count', function(req, res, next) {
 router.get('/price/list', function(req, res, next) {
     product.listPrice(req, res);
 });
+router.post('/price/update', function(req, res, next) {
+    if(req.body.product != 'undefined'){
+        product.updatePrice(req, res);
+    } else {
+        res.sendStatus(500);
+    }
+});
+
+router.post('/price/create', function(req, res, next) {
+    if(req.body.price != 'undefined'){
+        product.createPrice(req, res);
+    } else {
+        res.sendStatus(500);
+    }
+});
 
 module.exports = router;
