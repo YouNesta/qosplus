@@ -132,7 +132,7 @@ export class ProductAddComponent {
                                 res => {
                                     if(res.success){
                                         for (var i in res.data) {
-                                           this.products.price.push({type: res.data[i].type, name: res.data[i].name, id: res.data[i]._id, price: 0});
+                                           this.products.price.push({type: res.data[i].type, name: res.data[i].name, _id: res.data[i]._id, price: 0});
                                         }
                                         this.priceSheet = res.data;
                                     }else{
