@@ -175,19 +175,21 @@ export class ProductAddComponent {
             provider: false
         });
     }
-post($event){
-    this.service.addImage($event.srcElement.files)
-        .subscribe(
-            res => {
 
-                    this.alertService.addAlert('warning', res);
-            },
-            err => {
-                this.alertService.addAlert('danger', 500);
-            },
-            () => console.log('Product Added')
-        );
-}
+    post($event){
+        this.service.addImage($event.srcElement.files)
+            .subscribe(
+                res => {
+
+                        this.alertService.addAlert('warning', res);
+                },
+                err => {
+                    this.alertService.addAlert('danger', 500);
+                },
+                () => console.log('Product Added')
+            );
+    }
+
     save() {
 
             for (var i in this.products.item) {

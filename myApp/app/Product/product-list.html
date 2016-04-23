@@ -11,6 +11,19 @@
     </modal-footer>
 </modal>
 
+<modal #modalCart>
+    <modal-header>
+        <h4 class="modal-title">Add a product to the cart</h4>
+    </modal-header>
+    <modal-body>
+        <product-add-cart [modal]="modalCart"></product-add-cart>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalCart.dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="modalCart.close()">Ok</button>
+    </modal-footer>
+</modal>
+
 <h1>Products</h1>
 <button  (click)="modal.open()">Open</button>
 
@@ -18,7 +31,7 @@
 <accordion [closeOthers]="true">
 
 
-    <accordion-group heading="{{product.reference}} - {{product.name}}"  *ngFor='#product of products; #i = index'>
+    <accordion-group heading="{{product.reference}} - {{product.name}}"  *ngFor='#product of products; #i = index' [product]="product">
         <img [src]="product.image" alt="">
 
         {{product.name}}
@@ -26,18 +39,19 @@
         {{product.color}}
         {{product.hydrophily}}
         {{product.price}}
+        <button (click)="modalCart.open(); loadModalProduct(product);">Cart</button>
 
-       <div *ngFor="#item of product.item">
+        <div *ngFor="#item of product.item">
            {{item.axis}}
            {{item.condition}}
            {{item.cylinder}}
            {{item.diameter}}
            {{item.radius}}
-           <div *ngFor="#sphere of item.sphere">
+            <div *ngFor="#sphere of item.sphere">
                {{sphere.reference}}
                {{sphere.stock}}
                {{sphere.sphere}}
-           </div>
+            </div>
 
-       </div>
+        </div>
     </accordion-group>

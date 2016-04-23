@@ -1,0 +1,48 @@
+<h2>{{ product.name }}</h2>
+<div class="container-fluid">
+    <form [ngFormModel]="subscribeForm" novalidate>
+        <div class="row">
+            <div class="form-group">
+                <div class="col col-md-6">
+                    <div class="form-group ">
+                        <div class="col col-md-2">
+                            <select >
+                                <option *ngFor="#item of product.param.radius; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col col-md-2 ">
+                            <select>
+                                <option *ngFor="#item of product.param.diameter; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col col-md-2">
+                            <select>
+                                <option *ngFor="#item of product.param.axis; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col col-md-2">
+                            <select>
+                                <option *ngFor="#item of product.param.addition; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col col-md-2">
+                            <select>
+                                <option *ngFor="#item of product.param.cylinder; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col col-md-2">
+                            <select>
+                                <option *ngFor="#item of product.param.sphere; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button (click)="addProductToCart()">add</button>
+            </div>
+        </div>
+    </form>
+</div>
