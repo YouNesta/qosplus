@@ -16,9 +16,39 @@ import {TagInputComponent} from "angular2-tag-input";
 
 export class ProductListComponent {
 
-    products: Array<Object>;
+    products: Object = {
+        name: "Younesta",
+        image: "public/uploads/no_image.png",
+        hydrophily: 56,
+        material: "Verre",
+        color: "Transparent",
+        price: 55,
+        param: {
+            diameter: ["11"],
+            addition: ["+25"],
+            cylinder: ["12"],
+            radius: ["5"],
+            axis: ["5"],
+        },
+        item:[
+            {
+                radius: null,
+                diameter: null,
+                axis: null,
+                addition: null,
+                cylinder: null,
+                sphere: {
+                    min: 0,
+                    max: 0,
+                    int: 0.25
+                },
+                condition: "30",
+                stock: 0,
+                provider: false
+            }
+        ]
 
-    @Input() product: Object;
+    };
 
     constructor(public service: ProductFactory){
         this.service.getProduct()

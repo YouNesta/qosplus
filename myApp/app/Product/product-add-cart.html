@@ -1,52 +1,78 @@
-<h2>{{ product.name }}</h2>
+<h2>{{ products.name }} ({{ products.price }}€)</h2>
 <div class="container-fluid">
     <div class="form-control">
-        <form [ngFormModel]="subscribeForm" novalidate>
+        <form novalidate>
             <div class="row">
-                <div class="col col-md-6">
+                <div class="col col-md-12">
                     <div class="form-group ">
-                        <div class="col col-md-2">
-                            <select >
-                                <option *ngFor="#item of product.param.radius; #i = index" [value]="item">{{item}}</option>
-                            </select>
-                        </div>
                         <div class="col col-md-2 ">
-                            <select>
-                                <option *ngFor="#item of product.param.diameter; #i = index" [value]="item">{{item}}</option>
+                            <label for="diameter">
+                                Diamètre
+                            </label>
+                            <select id="diameter" [(ngModel)]="product.diameter">
+                                <option *ngFor="#item of products.param.diameter; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                         <div class="col col-md-2">
-                            <select>
-                                <option *ngFor="#item of product.param.axis; #i = index" [value]="item">{{item}}</option>
+                            <label for="radius">
+                                Rayon
+                            </label>
+                            <select id="radius" [(ngModel)]="product.radius">
+                                <option *ngFor="#item of products.param.radius; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                         <div class="col col-md-2">
-                            <select>
-                                <option *ngFor="#item of product.param.addition; #i = index" [value]="item">{{item}}</option>
+                            <label for="axis">
+                                Axes
+                            </label>
+                            <select id="axis" [(ngModel)]="product.axis">
+                                <option *ngFor="#item of products.param.axis; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                         <div class="col col-md-2">
-                            <select>
-                                <option *ngFor="#item of product.param.cylinder; #i = index" [value]="item">{{item}}</option>
+                            <label for="addition">
+                                Addition
+                            </label>
+                            <select id="addition" [(ngModel)]="product.addition">
+                                <option *ngFor="#item of products.param.addition; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                         <div class="col col-md-2">
-                            <select>
-                                <option *ngFor="#item of product.param.sphere; #i = index" [value]="item">{{item}}</option>
+                            <label for="cylinder">
+                                Cylindre
+                            </label>
+                            <select id="cylinder" [(ngModel)]="product.cylinder">
+                                <option *ngFor="#item of products.param.cylinder; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col col-md-2">
+                            <label for="sphere">
+                                Sphere
+                            </label>
+                            <select id="sphere" [(ngModel)]="product.sphere">
+                                <option *ngFor="#item of products.param.sphere; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <input type="text" placeholder="Client Name" [(ngModel)]="product.client">
+                <div class="col-md-6">
+                    <label for="client">
+                        Client
+                    </label>
+                    <input type="text" id="client" placeholder="Client Name" [(ngModel)]="product.client">
                 </div>
-                <div class="col-md-4">
-                    <input type="number" placeholder="Quantity" [(ngModel)]="product.quantity">
+                <div class="col-md-6">
+                    <label for="quantity">
+                        Quantité
+                    </label>
+                    <input type="number" id="quantity" placeholder="Quantity" [(ngModel)]="product.quantity">
                 </div>
-                <div class="col-md-4">
-                    <button (click)="addProductToCart()">add</button>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4" align="center">
+                    <button class="btn btn-primary" (click)="addProductToCart()">add</button>
                 </div>
             </div>
         </form>
