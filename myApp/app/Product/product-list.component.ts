@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {ProductFactory} from "./product.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
@@ -16,39 +16,11 @@ import {TagInputComponent} from "angular2-tag-input";
 
 export class ProductListComponent {
 
-    products: Object = {
-        name: "Younesta",
-        image: "public/uploads/no_image.png",
-        hydrophily: 56,
-        material: "Verre",
-        color: "Transparent",
-        price: 55,
-        param: {
-            diameter: ["11"],
-            addition: ["+25"],
-            cylinder: ["12"],
-            radius: ["5"],
-            axis: ["5"],
-        },
-        item:[
-            {
-                radius: null,
-                diameter: null,
-                axis: null,
-                addition: null,
-                cylinder: null,
-                sphere: {
-                    min: 0,
-                    max: 0,
-                    int: 0.25
-                },
-                condition: "30",
-                stock: 0,
-                provider: false
-            }
-        ]
+    products: Object ;
 
-    };
+    @Input('product') modalProduct;
+
+    @Output() loadProduct: EventEmitter = new EventEmitter();
 
     constructor(public service: ProductFactory){
         this.service.getProduct()
@@ -67,8 +39,8 @@ export class ProductListComponent {
     }
 
     loadModalProduct(product) {
-        this.product = product;
-        console.log(this.product);
+        localStorage.setItem("product", JSON.stringify(product));
+        this.loadProduct.emit("event");
     }
 
 }
