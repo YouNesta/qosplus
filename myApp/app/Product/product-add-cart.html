@@ -1,8 +1,8 @@
 <h2>{{ product.name }}</h2>
 <div class="container-fluid">
-    <form [ngFormModel]="subscribeForm" novalidate>
-        <div class="row">
-            <div class="form-group">
+    <div class="form-control">
+        <form [ngFormModel]="subscribeForm" novalidate>
+            <div class="row">
                 <div class="col col-md-6">
                     <div class="form-group ">
                         <div class="col col-md-2">
@@ -38,11 +38,17 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <button (click)="addProductToCart()">add</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" placeholder="Client Name" [(ngModel)]="product.client">
+                </div>
+                <div class="col-md-4">
+                    <input type="number" placeholder="Quantity" [(ngModel)]="product.quantity">
+                </div>
+                <div class="col-md-4">
+                    <button (click)="addProductToCart()">add</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

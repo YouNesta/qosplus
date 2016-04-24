@@ -1,0 +1,19 @@
+<h1>Cart</h1>
+
+
+<accordion [closeOthers]="true">
+
+
+    <accordion-group heading="{{product.reference}} - {{product.name}}"  *ngFor='#product of products; #i = index' [product]="product">
+        {{product.name}}
+        {{product.material}}
+        {{product.color}}
+        {{product.hydrophily}}
+        {{product.price}}
+        {{product.client}}
+        {{product.quantity}}
+    </accordion-group>
+
+</accordion>
+
+<button class="btn btn-default">Valider le panier</button>

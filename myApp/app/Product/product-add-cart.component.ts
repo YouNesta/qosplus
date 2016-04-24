@@ -17,6 +17,7 @@ import {AlertService} from "../Tools/alert";
 
 export class ProductAddCartComponent {
     @Input() modalCart;
+    @Input() product: Object;
     subscribeForm: ControlGroup;
 
     int = {
@@ -60,24 +61,10 @@ export class ProductAddCartComponent {
             cylinder: ["12"],
             radius: ["5"],
             axis: ["5"],
+            sphere: ["2"]
         },
-        item:[
-            {
-                radius: null,
-                diameter: null,
-                axis: null,
-                addition: null,
-                cylinder: null,
-                sphere: {
-                    min: 0,
-                    max: 0.5,
-                    int: 0.25
-                },
-                condition: "30",
-                stock: 3,
-                provider: false
-            }
-        ]
+        client: "Younes Nesta",
+        quantity: 1
 
     };
 
@@ -98,13 +85,10 @@ export class ProductAddCartComponent {
     }
 
     addProductToCart() {
-
-        console.log(this.product);
-
         var cart = [];
         var local = JSON.parse(localStorage.getItem("cart"));
         if (local != null) {cart = local;}
-        //cart.push(product);
+        cart.push(this.product);
         localStorage.setItem("cart", JSON.stringify(cart));
         return "Product added in cart";
     }
