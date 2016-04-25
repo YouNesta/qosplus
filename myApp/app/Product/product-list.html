@@ -16,7 +16,7 @@
         <h4 class="modal-title">Add a product to the cart</h4>
     </modal-header>
     <modal-body>
-        <product-add-cart [modal]="modalCart"></product-add-cart>
+        <product-add-cart [modal]="modalCart" [productCart]="productCart"></product-add-cart>
     </modal-body>
     <modal-footer>
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalCart.dismiss()">Cancel</button>
@@ -39,7 +39,7 @@
         {{product.color}}
         {{product.hydrophily}}
         {{product.price}}
-        <button (click)="modalCart.open(); loadModalProduct(product);">Cart</button>
+        <button (click)="loadModalProduct(product, modalCart);">Cart</button>
 
         <div *ngFor="#item of product.item">
            {{item.axis}}
