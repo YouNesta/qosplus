@@ -1,10 +1,9 @@
-import {Component, Input, OnChanges} from 'angular2/core';
+import {Component, Input, OnChanges, SimpleChange} from 'angular2/core';
 import {App} from "../main";
 import {NavComponent} from "./nav.component";
 import {NavAdminComponent} from "./nav-admin.component";
 import {Router} from "angular2/router";
 import {RouteAuth} from "../Config/route-auth";
-import {SimpleChange} from "angular2/core";
 import {NavUserComponent} from "./nav-user.component";
 
 
