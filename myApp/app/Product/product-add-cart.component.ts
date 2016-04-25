@@ -1,5 +1,4 @@
-import {Component, Input, Output, forwardRef, Inject, NgZone} from 'angular2/core';
-import {Product} from "./product";
+import {Component, Input, forwardRef, Inject,  OnChanges, SimpleChange} from 'angular2/core';
 import {ProductFactory} from "./product.factory";
 import {FormBuilder, Validators} from "angular2/common";
 import {ControlGroup} from "angular2/common";
@@ -15,8 +14,9 @@ import {AlertService} from "../Tools/alert";
 })
 
 
-export class ProductAddCartComponent {
+export class ProductAddCartComponent  implements  OnChanges{
     @Input() modalCart;
+    @Input() productCart;
 
     subscribeForm: ControlGroup;
 
@@ -117,4 +117,14 @@ export class ProductAddCartComponent {
         return "Product added in cart";
     }
 
+
+
+    ngOnChanges(changes: {[productCart: string]: SimpleChange}) {
+        if(changes['productCart']){
+            if (typeof changes['productCart'].currentValue !== "undefined" && changes['productCart'].currentValue !== "undefined") {
+                this.product = JSON.parse(changes['productCart'].currentValue);
+            }
+
+        }
+    }
 }

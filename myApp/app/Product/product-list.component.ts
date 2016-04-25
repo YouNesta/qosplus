@@ -17,10 +17,8 @@ import {TagInputComponent} from "angular2-tag-input";
 export class ProductListComponent {
 
     products: Object ;
+    productCart: String;
 
-    @Input('product') modalProduct;
-
-    @Output() loadProduct: EventEmitter = new EventEmitter();
 
     constructor(public service: ProductFactory){
         this.service.getProduct()
@@ -38,9 +36,9 @@ export class ProductListComponent {
             );
     }
 
-    loadModalProduct(product) {
-        localStorage.setItem("product", JSON.stringify(product));
-        this.loadProduct.emit("event");
+    loadModalProduct(product, modal) {
+        modal.open();
+        this.productCart = JSON.stringify(product);
     }
 
 }
