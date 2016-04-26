@@ -96,35 +96,60 @@ module.exports = {
             }else{
                 res.json({success: true, message:"User List Find with success", data: product});
             }
-        };
+        }
     },
 
     editProduct: function(req, res){
-        var product = req.body.product;
-        //the hard-coded value are only here for testing; should be removed
-        Product.findOneAndUpdate({_id: product._id}, {
-            $set: {
-                'name': "test",
-                'hydrophily': product.hydrophily,
-                'material': product.material,
-                'color': product.color,
-                'price': product.price,
-                'reference': product.reference,
-                'item': [ "571eb8f50eaef85707830af8", "571eb8f50eaef85707830af9" ],
-                'param': product.param
+        var i = 0;
+
+        updateItem(req.body.product, i);
+        function updateProduct(product, i){
+            Product.findOneAndUpdate({_id: product._id}, {
+                $set: {
+                    'name': product.name,
+                    'hydrophily': product.hydrophily,
+                    'material': product.material,
+                    'color': product.color,
+                    'price': product.price,
+                    'reference': product.reference,
+                    'item': product.item,
+                    'param': product.param
+                }
+            }, function(err, product){
+                if(err)
+                {
+                    console.log(err);
+                    logger.log('error', err);
+                    res.json({success: false, message:err});
+                }
+                else
+                {
+                    res.json({success: true, message:"Product Successfully updated", data: product});
+                }
+            })
+        }
+
+        function updateItem(product, i){
+            if(i < product.item.length) {
+                delete product.item[i].__v;
+
+                Item.findOneAndUpdate({_id: product.item[i]._id}, {$set: product.item[i] }, { 'new': true },  function(error, shop){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({ success: false, message: "Subscribe Failed", data:error});
+                    }
+                    product.item[i] = shop._id;
+                    console.log(shop);
+                    i++;
+                    updateItem(product, i);
+                });
+
+
+            }else{
+                updateProduct(product);
             }
-        }, function(err, product){
-            if(err)
-            {
-                console.log(err);
-                logger.log('error', err);
-                res.json({success: false, message:err});
-            }
-            else
-            {
-                res.json({success: true, message:"Product Successfully updated", data: product});
-            }
-        })
+        }
     },
 
     deleteProduct: function(req, res){

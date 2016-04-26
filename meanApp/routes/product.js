@@ -27,8 +27,10 @@ router.post('/add', function(req, res, next) {
 
 router.put('/edit/', function(req, res, next){
     if(req.body.product != 'undefined'){
+        console.log('test');
         product.editProduct(req, res);
     } else {
+        console.log('test2');
         res.sendStatus(500);
     }
 });

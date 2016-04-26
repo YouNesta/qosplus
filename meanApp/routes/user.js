@@ -122,6 +122,14 @@ router.put('/', function(req, res, next) {
   }
 });
 
+router.put('/edit', function(req,res,next){
+  if(req.body != 'undefined'){
+    users.update(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
 
 
 
