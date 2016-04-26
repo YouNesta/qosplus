@@ -6,7 +6,7 @@ import {AlertService} from "../Tools/alert";
 
 
 @Component({
-    selector: "defaukt",
+    selector: "default",
     templateUrl: "app/Product/product-price.html",
     directives: []
 })
