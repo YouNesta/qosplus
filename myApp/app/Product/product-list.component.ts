@@ -4,7 +4,6 @@ import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
 import {ProductAddComponent} from "./product-add.component";
 
-
 @Component({
     providers: [],
     templateUrl: "app/Product/product-list.html",
@@ -30,5 +29,20 @@ export class ProductListComponent {
                 err =>  console.log(err),
                 () => console.log('get product list Complete')
             );
+    }
+
+    deleteProduct(product){
+        this.service.deleteProduct(product)
+            .subscribe(
+                response => {
+                    if(response.success){
+                        console.log("Product successfully deleted");
+                    }else{
+                        console.log(response);
+                    }
+                },
+                err =>  console.log(err),
+                () => console.log('Product successfully deleted')
+            )
     }
 }

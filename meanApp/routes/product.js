@@ -25,4 +25,20 @@ router.post('/add', function(req, res, next) {
     }
 });
 
+router.put('/edit/:id', function(req, res, next){
+    if(req.body.product != 'undefined'){
+        product.editProduct(req, res);
+    } else {
+        res.sendStatus(500);
+    }
+});
+
+router.post('/delete', function(req, res){
+    if(req.body.product != "undefined"){
+        product.deleteProduct(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
 module.exports = router;

@@ -35,4 +35,17 @@ export class ProductFactory {
             .get(this.apiUrl+'list')
             .map(response => response.json())
     }
+
+    deleteProduct(product){
+        var data = JSON.stringify({product});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'delete',
+            data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
 }

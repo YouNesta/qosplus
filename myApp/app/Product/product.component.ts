@@ -10,6 +10,7 @@ import {ProductListComponent} from "./product-list.component";
 
 
 
+
 @Component({
     template:
         "<router-outlet></router-outlet>",
@@ -18,7 +19,7 @@ import {ProductListComponent} from "./product-list.component";
 
 @RouteConfig([
     { path: "/list", name: "List", component: ProductListComponent},
-    { path: "/add", name: "Add", component: ProductAddComponent}
+    { path: "/add", name: "Add", component: ProductAddComponent},
 ])
 
 

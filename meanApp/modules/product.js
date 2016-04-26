@@ -30,6 +30,7 @@ module.exports = {
                     var item = new Item(product.item[i]);
                     item.save(function(error, data) {
                         if (error) {
+                            console.log('estt');
                             console.log(error);
                             logger.log('error', error);
                             res.json({success: false, message:error});
@@ -96,6 +97,26 @@ module.exports = {
                 res.json({success: true, message:"User List Find with success", data: product});
             }
         };
+    },
+
+    editProduct: function(req, res){
+
+    },
+
+    deleteProduct: function(req, res){
+        Product.findOneAndRemove({_id: req.body.product._id}, function(err,product){
+            if(err)
+            {
+                console.log(err);
+                logger.log('error', err);
+                res.res.json({success: false, message:err});
+            }
+            else
+            {
+                res.json({success: true, message:"Product Successfully deleted", data: product});
+            }
+        });
+
     }
 
 };
