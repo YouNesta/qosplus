@@ -32,7 +32,7 @@ export class ProductListComponent {
     }
 
     //Edit and Delete should only take one product as argument
-    editProduct(product){
+    /*editProduct(product){
         this.service.editProduct(product)
             .subscribe(
                 response => {
@@ -60,5 +60,5 @@ export class ProductListComponent {
                 err =>  console.log(err),
                 () => console.log('Product successfully deleted')
             )
-    }
+    }*/
 }
