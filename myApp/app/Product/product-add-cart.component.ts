@@ -112,17 +112,17 @@ export class ProductAddCartComponent  implements  OnChanges{
         var cart = [];
         var local = JSON.parse(localStorage.getItem("cart"));
         if (local != null) {cart = local;}
-        //cart.push(this.cartProduct);
+        cart.push(this.cartProduct);
         localStorage.setItem("cart", JSON.stringify(cart));
+        this.alertService.addAlert('success', "Product successfully added to the cart.");
         return "Product added in cart";
     }
-
-
 
     ngOnChanges(changes: {[productCart: string]: SimpleChange}) {
         if(changes['productCart']){
             if (typeof changes['productCart'].currentValue !== "undefined" && changes['productCart'].currentValue !== "undefined") {
                 this.product = JSON.parse(changes['productCart'].currentValue);
+                console.log(this.product);
             }
 
         }
