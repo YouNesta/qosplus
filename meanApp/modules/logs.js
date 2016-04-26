@@ -7,9 +7,8 @@ var logger = require('winston');
 
 module.exports = {
     logFolder: function(){
-        var dir = this.mkdir();
         var y = new Date();
-        logger.add(logger.transports.File, { filename: dir+"/"+y.getHours()+'H.log' });
+        logger.add(logger.transports.File, { filename: ".logs"+"/"+y.getFullYear()+y.getMonth()+y.getDay()+"-"+y.getHours+'H.log' });
     },
     mkdir: function(){
         var dir = './logs';
@@ -32,6 +31,5 @@ module.exports = {
 
         return dir;
     }
-
 
 }

@@ -1,5 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 **/**.css
+!**/base/reset.css
 **/**.css.map
 **/**.js
 uploads/**

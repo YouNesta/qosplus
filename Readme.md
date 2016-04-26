@@ -89,6 +89,10 @@ cp app/Config/api.ts.old app/Config/api.ts;
 jspm install;
 npm install;
 typings install;
+
+gulp scss // Compile css 
+
+chmod -R 755 jspm_packages/npm/angular2@2.0.0-beta.15/ // For nginx only
 ```
 
 * Run Angular App 

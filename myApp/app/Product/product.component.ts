@@ -8,6 +8,8 @@ import {
 import {ProductAddComponent} from "./product-add.component";
 import {ProductListComponent} from "./product-list.component";
 
+import {ProductPriceComponent} from "./product-price.component";
+
 
 
 @Component({
@@ -18,7 +20,8 @@ import {ProductListComponent} from "./product-list.component";
 
 @RouteConfig([
     { path: "/list", name: "List", component: ProductListComponent},
-    { path: "/add", name: "Add", component: ProductAddComponent}
+    { path: "/add", name: "Add", component: ProductAddComponent},
+    { path: "/price", name: "Price", component: ProductPriceComponent}
 ])
 
 
