@@ -31,6 +31,21 @@ export class ProductListComponent {
             );
     }
 
+    editProduct(product){
+        this.service.editProduct(product)
+            .subscribe(
+                response => {
+                    if(response.success){
+                        console.log("Product successfully updated");
+                    }else{
+                        console.log(response);
+                    }
+                },
+                err =>  console.log(err),
+                () => console.log('Product successfully updated')
+            )
+    }
+
     deleteProduct(product){
         this.service.deleteProduct(product)
             .subscribe(

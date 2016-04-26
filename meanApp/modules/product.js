@@ -100,7 +100,31 @@ module.exports = {
     },
 
     editProduct: function(req, res){
-
+        var product = req.body.product;
+        //the hard-coded value are only here for testing; should be removed
+        Product.findOneAndUpdate({_id: product._id}, {
+            $set: {
+                'name': "test",
+                'hydrophily': product.hydrophily,
+                'material': product.material,
+                'color': product.color,
+                'price': product.price,
+                'reference': product.reference,
+                'item': [ "571eb8f50eaef85707830af8", "571eb8f50eaef85707830af9" ],
+                'param': product.param
+            }
+        }, function(err, product){
+            if(err)
+            {
+                console.log(err);
+                logger.log('error', err);
+                res.json({success: false, message:err});
+            }
+            else
+            {
+                res.json({success: true, message:"Product Successfully updated", data: product});
+            }
+        })
     },
 
     deleteProduct: function(req, res){

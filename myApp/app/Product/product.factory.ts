@@ -36,6 +36,19 @@ export class ProductFactory {
             .map(response => response.json())
     }
 
+    editProduct(product){
+        var data = JSON.stringify({product});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .put(this.apiUrl + 'edit',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
     deleteProduct(product){
         var data = JSON.stringify({product});
         var headers = new Headers();
