@@ -24,12 +24,6 @@
         {{product.color}}
         {{product.hydrophily}}
         {{product.price}}
-        <button class="edit" class="btn btn-primary delete-btn" (click)="editProduct(product)">
-            edit
-        </button>
-        <button type="button" class="btn btn-primary delete-btn" (click)="deleteProduct(product)">
-            delete
-        </button>
 
        <div *ngFor="#item of product.item">
            {{item.axis}}
