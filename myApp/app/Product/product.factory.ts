@@ -48,7 +48,6 @@ export class ProductFactory {
             .get(this.apiUrl+'price/count')
             .map(response => response.json())
     }
-
     updatePrice(product){
         var data =  JSON.stringify({product});
         var headers = new Headers();
@@ -63,17 +62,42 @@ export class ProductFactory {
 
     }
 
-    createPrice(price){
-        var data =  JSON.stringify({price});
+
+    getOneProduct(){
+        var data =  JSON.stringify({user});
         var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+            headers.append('Content-Type', 'application/json');
 
-        return  this.authHttp
-            .post(this.apiUrl + 'price/create',
-                data, {
-                    headers: headers
+            return this.authHttp
+                .post(this.apiUrl + 'login',
+                    data, {
+                        headers: headers
+                    })
+                .map(response => response.json())
+                .map(response => {
+                    if (response) {
+                        return response
+                    }else{
+                        console.log("Error")
+                    }
+                    return response;
                 })
-            .map(response => response.json())
+        }
 
-    }
+
+        createPrice(price){
+            var data =  JSON.stringify({price});
+            var headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
+            return  this.authHttp
+                .post(this.apiUrl + 'price/create',
+                    data, {
+                        headers: headers
+                    })
+                .map(response => response.json())
+
+        }
+
+
 }

@@ -195,6 +195,7 @@ export class ProductAddComponent {
             provider: false
         });
     }
+    
 
     save() {
         for (var i in this.products.item) {

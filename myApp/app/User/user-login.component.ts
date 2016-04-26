@@ -47,14 +47,14 @@ export class UserLoginComponent {
                             var user = JSON.stringify(res.data);
                             localStorage.setItem("user", user);
                             localStorage.setItem('token',res.token);
-                            this.alertService.addAlert('success', 'Vous vous êtes connecté avec succés')
+                            this.alertService.addAlert('success', 'Vous vous êtes connecté avec succés');
                             if(res.data.role > 0){
                                 this.router.navigateByUrl('/admin');
                             }else if(res.data.role == 0){
                                 this.router.navigateByUrl('/user');
                             }
                         }else{
-                            this.alertService.addAlert('warning', 'res.message')
+                            this.alertService.addAlert('warning', res.message);
                         }
                     },
                     err => {
