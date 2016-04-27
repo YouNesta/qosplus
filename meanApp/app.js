@@ -45,6 +45,9 @@ var product = require('./routes/product');
 var admin = require('./routes/admin/admin');
 var aUser = require('./routes/admin/user');
 
+// Command Routes
+var command = require('./routes/command/command');
+
 // Upload Routes
 var upload = require('./routes/upload');
 
@@ -55,6 +58,7 @@ app.use('/api/v1/admin', admin);
 app.use('/api/v1/product', product);
 app.use('/api/v1/admin/user', aUser);
 app.use('/api/v1/upload', upload);
+app.use('/api/v1/command', command);
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
