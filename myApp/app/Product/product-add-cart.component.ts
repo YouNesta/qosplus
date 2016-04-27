@@ -90,6 +90,26 @@ export class ProductAddCartComponent  implements  OnChanges{
 
     };
 
+    itemIndex = 0;
+
+    item = {
+        radius: null,
+        diameter: null,
+        axis: null,
+        addition: null,
+        cylinder: null,
+        sphere: [{
+            sphere: 0,
+        }],
+        condition: "30",
+        stock: 0,
+        provider: false
+    };
+
+    keys() {
+        return Object.keys(this.item.sphere);
+    }
+
     alertService: AlertService;
 
     constructor(public service: ProductFactory, fb: FormBuilder, regEx: RegEx,  @Inject(forwardRef(() => AlertService)) alertService){
@@ -107,8 +127,18 @@ export class ProductAddCartComponent  implements  OnChanges{
         console.log(this.product);
     }
 
+    changeItem() {
+        this.item = this.product.item[this.itemIndex];
+    }
+
     addProductToCart() {
-        console.log(this.cartProduct);
+
+        this.cartProduct.addition = this.item.addition;
+        this.cartProduct.axis = this.item.axis;
+        this.cartProduct.cylinder = this.item.cylinder;
+        this.cartProduct.diameter = this.item.diameter;
+        this.cartProduct.radius = this.item.radius;
+
         var cart = [];
         var local = JSON.parse(localStorage.getItem("cart"));
         if (local != null) {cart = local;}
@@ -122,7 +152,7 @@ export class ProductAddCartComponent  implements  OnChanges{
         if(changes['productCart']){
             if (typeof changes['productCart'].currentValue !== "undefined" && changes['productCart'].currentValue !== "undefined") {
                 this.product = JSON.parse(changes['productCart'].currentValue);
-                console.log(this.product);
+                this.changeItem();
             }
 
         }

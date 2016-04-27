@@ -5,52 +5,27 @@
             <div class="row">
                 <div class="col col-md-12">
                     <div class="form-group ">
-                        <div class="col col-md-2 ">
+                        <div class="col col-md-9 ">
                             <label for="diameter">
-                                Diamètre
+                                Item
                             </label>
-                            <select id="diameter" [(ngModel)]="cartProduct.diameter">
-                                <option *ngFor="#item of product.item; #i = index" [value]="item.diameter">{{item.diameter}}</option>
+                            <select id="diameter" (change)="changeItem()" [(ngModel)]="itemIndex" >
+                                <option *ngFor="#item of product.item; #i = index" [value]="i">
+                                    Diamètre: {{item.diameter}}
+                                    Addition: {{item.addition}}
+                                    Cylindre: {{item.cylinder}}
+                                    COndition: {{item.condition}}
+                                    Rayon: {{item.radius}}
+                                    Axes: {{item.axis}}
+                                </option>
                             </select>
                         </div>
-                        <div class="col col-md-2">
-                            <label for="radius">
-                                Rayon
-                            </label>
-                            <select id="radius" [(ngModel)]="cartProduct.radius">
-                                <option *ngFor="#item of product.item;" [value]="item.radius">{{item.radius}}</option>
-                            </select>
-                        </div>
-                        <div class="col col-md-2">
-                            <label for="axis">
-                                Axes
-                            </label>
-                            <select id="axis" [(ngModel)]="cartProduct.axis">
-                                <option *ngFor="#item of product.item; #i = index" [value]="item.axis">{{item.axis}}</option>
-                            </select>
-                        </div>
-                        <div class="col col-md-2">
-                            <label for="addition">
-                                Addition
-                            </label>
-                            <select id="addition" [(ngModel)]="cartProduct.addition">
-                                <option *ngFor="#item of product.item; #i = index" [value]="item.addition">{{item.addition}}</option>
-                            </select>
-                        </div>
-                        <div class="col col-md-2">
-                            <label for="cylinder">
-                                Cylindre
-                            </label>
-                            <select id="cylinder" [(ngModel)]="cartProduct.cylinder">
-                                <option *ngFor="#item of product.item; #i = index" [value]="item.cylinder">{{item.cylinder}}</option>
-                            </select>
-                        </div>
-                        <div class="col col-md-2">
+                        <div class="col col-md-3">
                             <label for="sphere">
                                 Sphere
                             </label>
-                            <select id="sphere" [(ngModel)]="cartProduct.sphere">
-                                <option *ngFor="#item of product.item; #i = index"  [value]="item.sphere">{{item.sphere}}</option>
+                            <select id="sphere"  [(ngModel)]="cartProduct.sphere">
+                                <option *ngFor="#key of keys()" [value]="key">{{item.sphere[key].sphere}}</option>
                             </select>
                         </div>
                     </div>
