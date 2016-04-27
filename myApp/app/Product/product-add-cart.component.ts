@@ -38,6 +38,7 @@ export class ProductAddCartComponent  implements  OnChanges{
     ];
 
     cartProduct = {
+        reference: "0-0-0",
         name: "Younesta",
         image: "public/uploads/no_image.png",
         hydrophily: 56,
@@ -51,11 +52,11 @@ export class ProductAddCartComponent  implements  OnChanges{
         axis: 5,
         sphere: 2,
         client: "Younes Nesta",
-        quantity: 1
+        quantity: 1,
 
     };
 
-    product: Object = {
+    product = {
         name: "Younestaaa",
         image: "public/uploads/no_image.png",
         hydrophily: 56,
@@ -91,6 +92,7 @@ export class ProductAddCartComponent  implements  OnChanges{
     };
 
     itemIndex = 0;
+    itemSphereIndex = 0;
 
     item = {
         radius: null,
@@ -138,6 +140,14 @@ export class ProductAddCartComponent  implements  OnChanges{
         this.cartProduct.cylinder = this.item.cylinder;
         this.cartProduct.diameter = this.item.diameter;
         this.cartProduct.radius = this.item.radius;
+        this.cartProduct.sphere = this.item.sphere[this.itemSphereIndex].sphere;
+        this.cartProduct.reference = this.item.sphere[this.itemSphereIndex].reference;
+        this.cartProduct.image = this.product.image;
+        this.cartProduct.name = this.product.name;
+        this.cartProduct.hydrophily = this.product.hydrophily;
+        this.cartProduct.material = this.product.material;
+        this.cartProduct.color = this.product.color;
+        this.cartProduct.price = this.product.price;
 
         var cart = [];
         var local = JSON.parse(localStorage.getItem("cart"));

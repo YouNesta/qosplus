@@ -24,7 +24,7 @@
                             <label for="sphere">
                                 Sphere
                             </label>
-                            <select id="sphere"  [(ngModel)]="cartProduct.sphere">
+                            <select id="sphere"  [(ngModel)]="itemSphereIndex">
                                 <option *ngFor="#key of keys()" [value]="key">{{item.sphere[key].sphere}}</option>
                             </select>
                         </div>
