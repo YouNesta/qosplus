@@ -6,7 +6,6 @@ import {ProductAddComponent} from "./product-add.component";
 import {ProductAddCartComponent} from "./product-add-cart.component";
 import {TagInputComponent} from "angular2-tag-input";
 
-
 @Component({
     providers: [],
     templateUrl: "app/Product/product-list.html",
@@ -41,4 +40,34 @@ export class ProductListComponent {
         this.productCart = JSON.stringify(product);
     }
 
+    //Edit and Delete should only take one product as argument
+    /*editProduct(product){
+        this.service.editProduct(product)
+            .subscribe(
+                response => {
+                    if(response.success){
+                        console.log("Product successfully updated");
+                    }else{
+                        console.log(response);
+                    }
+                },
+                err =>  console.log(err),
+                () => console.log('Product successfully updated')
+            )
+    }
+
+    deleteProduct(product){
+        this.service.deleteProduct(product)
+            .subscribe(
+                response => {
+                    if(response.success){
+                        console.log("Product successfully deleted");
+                    }else{
+                        console.log(response);
+                    }
+                },
+                err =>  console.log(err),
+                () => console.log('Product successfully deleted')
+            )
+    }*/
 }

@@ -31,6 +31,7 @@ module.exports = {
                     var item = new Item(product.item[i]);
                     item.save(function(error, data) {
                         if (error) {
+                            console.log('estt');
                             console.log(error);
                             logger.log('error', error);
                             res.json({success: false, message:error});
@@ -168,6 +169,75 @@ module.exports = {
                res.json({success: true, message:"Update Product Price with success", data: products});
            }
         }
+    },
+
+    editProduct: function(req, res){
+        var i = 0;
+
+        updateItem(req.body.product, i);
+        function updateProduct(product, i){
+            Product.findOneAndUpdate({_id: product._id}, {
+                $set: {
+                    'name': product.name,
+                    'hydrophily': product.hydrophily,
+                    'material': product.material,
+                    'color': product.color,
+                    'price': product.price,
+                    'reference': product.reference,
+                    'item': product.item,
+                    'param': product.param
+                }
+            }, function(err, product){
+                if(err)
+                {
+                    console.log(err);
+                    logger.log('error', err);
+                    res.json({success: false, message:err});
+                }
+                else
+                {
+                    res.json({success: true, message:"Product Successfully updated", data: product});
+                }
+            })
+        }
+
+        function updateItem(product, i){
+            if(i < product.item.length) {
+                delete product.item[i].__v;
+
+                Item.findOneAndUpdate({_id: product.item[i]._id}, {$set: product.item[i] }, { 'new': true },  function(error, shop){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({ success: false, message: "Subscribe Failed", data:error});
+                    }
+                    product.item[i] = shop._id;
+                    console.log(shop);
+                    i++;
+                    updateItem(product, i);
+                });
+
+
+            }else{
+                updateProduct(product);
+            }
+        }
+    },
+
+    deleteProduct: function(req, res){
+        Product.findOneAndRemove({_id: req.body.product._id}, function(err,product){
+            if(err)
+            {
+                console.log(err);
+                logger.log('error', err);
+                res.res.json({success: false, message:err});
+            }
+            else
+            {
+                res.json({success: true, message:"Product Successfully deleted", data: product});
+            }
+        });
+
     }
 
   

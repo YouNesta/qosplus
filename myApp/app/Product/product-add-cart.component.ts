@@ -112,7 +112,7 @@ export class ProductAddCartComponent  implements  OnChanges{
         var cart = [];
         var local = JSON.parse(localStorage.getItem("cart"));
         if (local != null) {cart = local;}
-        //cart.push(this.cartProduct);
+        cart.push(this.cartProduct);
         localStorage.setItem("cart", JSON.stringify(cart));
         return "Product added in cart";
     }

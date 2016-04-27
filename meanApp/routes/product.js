@@ -40,10 +40,28 @@ router.post('/price/update', function(req, res, next) {
     }
 });
 
+router.put('/edit/', function(req, res, next){
+    if(req.body.product != 'undefined'){
+        console.log('test');
+        product.editProduct(req, res);
+    } else {
+        res.sendStatus(500);
+    }
+});
+
 router.post('/price/create', function(req, res, next) {
     if(req.body.price != 'undefined'){
         product.createPrice(req, res);
     } else {
+        res.sendStatus(500);
+    }
+});
+
+
+router.post('/delete', function(req, res){
+    if(req.body.product != "undefined"){
+        product.deleteProduct(req, res);
+    }else{
         res.sendStatus(500);
     }
 });

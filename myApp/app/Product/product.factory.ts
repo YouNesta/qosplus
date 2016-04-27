@@ -37,7 +37,6 @@ export class ProductFactory {
             .get(this.apiUrl+'list')
             .map(response => response.json())
     }
-
     getPrice(){
         return  this.authHttp
             .get(this.apiUrl+'price/list')
@@ -48,6 +47,8 @@ export class ProductFactory {
             .get(this.apiUrl+'price/count')
             .map(response => response.json())
     }
+
+
     updatePrice(product){
         var data =  JSON.stringify({product});
         var headers = new Headers();
@@ -58,9 +59,24 @@ export class ProductFactory {
                 data, {
                     headers: headers
                 })
-            .map(response => response.json())
+                .map(response => response.json())
 
     }
+
+    editProduct(product){
+        var data = JSON.stringify({product});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .put(this.apiUrl + 'edit',
+                data, {
+                    headers: headers
+                })
+                .map(response => response.json())
+
+        }
+
 
 
     getOneProduct(){
@@ -98,6 +114,16 @@ export class ProductFactory {
                 .map(response => response.json())
 
         }
+    deleteProduct(product){
+        var data = JSON.stringify({product});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
 
-
+        return this.authHttp
+            .post(this.apiUrl + 'delete',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
 }

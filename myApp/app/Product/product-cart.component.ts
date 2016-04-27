@@ -18,6 +18,7 @@ export class ProductCartComponent {
 
     constructor(public service: ProductFactory){
         this.products = JSON.parse(localStorage.getItem("cart"));
+        console.log()
     }
 
 }

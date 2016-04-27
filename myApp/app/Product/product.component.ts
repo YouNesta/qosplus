@@ -14,6 +14,7 @@ import {ProductCartComponent} from "./product-cart.component";
 
 
 
+
 @Component({
     template:
         "<router-outlet></router-outlet>",
