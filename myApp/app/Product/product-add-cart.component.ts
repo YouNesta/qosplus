@@ -37,23 +37,21 @@ export class ProductAddCartComponent  implements  OnChanges{
         0.25,
     ];
 
-    cartProduct = {
-        reference: "0-0-0",
-        name: "Younesta",
-        image: "public/uploads/no_image.png",
-        hydrophily: 56,
-        material: "Verre",
-        color: "Transparent",
-        price: 55,
-        diameter: 11,
-        addition: 25,
-        cylinder: 12,
-        radius: 5,
-        axis: 5,
-        sphere: 2,
-        client: "Younes Nesta",
-        quantity: 1,
+    axis = [];
+    addition = [];
+    cylinder = [];
+    condition = [];
+    radius = [];
+    diameter = [];
+    sphere = [];
 
+    cartProduct = {
+        diameter: null,
+        addition: null,
+        cylinder: null,
+        radius: null,
+        axis: null,
+        sphere: null,
     };
 
     product = {
@@ -62,7 +60,7 @@ export class ProductAddCartComponent  implements  OnChanges{
         hydrophily: 56,
         material: "Verre",
         color: "Transparent",
-        price: 55,
+        price: [],
         param: {
             diameter: ["11"],
             addition: ["+25"],
@@ -91,9 +89,6 @@ export class ProductAddCartComponent  implements  OnChanges{
 
     };
 
-    itemIndex = 0;
-    itemSphereIndex = 0;
-
     item = {
         radius: null,
         diameter: null,
@@ -108,9 +103,19 @@ export class ProductAddCartComponent  implements  OnChanges{
         provider: false
     };
 
-    keys() {
-        return Object.keys(this.item.sphere);
-    }
+
+    cartFinal = {
+        _id: '',
+        image: '',
+        name: '',
+        hydrophily: null,
+        material: '',
+        color: '',
+        price: [],
+        item: []
+    };
+
+
 
     alertService: AlertService;
 
@@ -124,35 +129,136 @@ export class ProductAddCartComponent  implements  OnChanges{
         });
     }
 
-    loadProduct() {
-        this.product = JSON.parse(localStorage.getItem("product"));
-        console.log(this.product);
+    changeDiameter(diameter){
+        this.axis = [];
+        this.addition = [];
+        this.cylinder = [];
+        this.condition = [];
+        this.radius = [];
+        for (var i in this.product.item) {
+            console.log(this.product.item[i])
+            if(this.product.item[i].diameter == diameter){
+                if(this.axis.indexOf(this.product.item[i].axis) == -1){
+                    this.axis.push(this.product.item[i].axis);
+                }
+            }
+        }
+
+    }
+    changeAxis(axis){
+        this.cylinder = [];
+        this.condition = [];
+        this.radius = [];
+        this.addition = [];
+
+        for (var i in this.product.item) {
+            console.log(axis, this.product.item[i].axis);
+            if(this.product.item[i].axis == axis && this.product.item[i].diameter == this.cartProduct.diameter){
+                console.log('equal');
+                if(this.cylinder.indexOf(this.product.item[i].cylinder) == -1){
+                    this.cylinder.push(this.product.item[i].cylinder);
+                }
+            }
+        }
     }
 
-    changeItem() {
-        this.item = this.product.item[this.itemIndex];
+    changeCylinder(cylinder){
+        this.condition = [];
+        this.radius = [];
+        this.addition = [];
+
+
+        for (var i in this.product.item) {
+            if(this.product.item[i].cylinder == cylinder
+                && this.product.item[i].diameter == this.cartProduct.diameter
+                && this.product.item[i].axis == this.cartProduct.axis
+            ){
+                console.log('equal');
+                if(this.condition.indexOf(this.product.item[i].condition) == -1){
+                    this.condition.push(this.product.item[i].condition);
+                }
+            }
+        }
     }
 
-    addProductToCart() {
 
-        this.cartProduct.addition = this.item.addition;
-        this.cartProduct.axis = this.item.axis;
-        this.cartProduct.cylinder = this.item.cylinder;
-        this.cartProduct.diameter = this.item.diameter;
-        this.cartProduct.radius = this.item.radius;
-        this.cartProduct.sphere = this.item.sphere[this.itemSphereIndex].sphere;
-        this.cartProduct.reference = this.item.sphere[this.itemSphereIndex].reference;
-        this.cartProduct.image = this.product.image;
-        this.cartProduct.name = this.product.name;
-        this.cartProduct.hydrophily = this.product.hydrophily;
-        this.cartProduct.material = this.product.material;
-        this.cartProduct.color = this.product.color;
-        this.cartProduct.price = this.product.price;
+    changeCondition(condition){
+        this.radius = [];
+        this.addition = [];
+
+        for (var i in this.product.item) {
+            if(this.product.item[i].condition == condition
+                && this.product.item[i].cylinder == this.cartProduct.cylinder
+                && this.product.item[i].diameter == this.cartProduct.diameter
+                && this.product.item[i].axis == this.cartProduct.axis
+            ){
+                if(this.radius.indexOf(this.product.item[i].radius) == -1){
+                    this.radius.push(this.product.item[i].radius);
+                }
+            }
+        }
+
+
+    }
+    changeRadius(radius) {
+        this.addition = [];
+
+        for (var i in this.product.item) {
+            if(  this.product.item[i].radius == radius
+                && this.product.item[i].condition == this.cartProduct.condition
+                && this.product.item[i].cylinder == this.cartProduct.cylinder
+                && this.product.item[i].diameter == this.cartProduct.diameter
+                && this.product.item[i].axis == this.cartProduct.axis
+            ){
+                if(this.addition.indexOf(this.product.item[i].addition) == -1){
+                    this.addition.push(this.product.item[i].addition);
+                }
+            }
+        }
+    }
+    changeAddition(addition){
+        this.sphere = [];
+
+        for (var i in this.product.item) {
+            if( this.product.item[i].addition == addition
+                && this.product.item[i].radius == this.cartProduct.radius
+                && this.product.item[i].condition == this.cartProduct.condition
+                && this.product.item[i].cylinder == this.cartProduct.cylinder
+                && this.product.item[i].diameter == this.cartProduct.diameter
+                && this.product.item[i].axis == this.cartProduct.axis
+            ){
+                if(this.sphere.indexOf(this.product.item[i].sphere) == -1){
+                    for (var n in this.product.item[i].sphere) {
+                        var sphereLength = this.sphere.push(this.product.item[i].sphere[n])
+                        this.sphere[sphereLength - 1].radius =  this.cartProduct.radius;
+                        this.sphere[sphereLength - 1].axis =  this.cartProduct.axis;
+                        this.sphere[sphereLength - 1].condition =  this.cartProduct.condition;
+                        this.sphere[sphereLength - 1].cylinder =  this.cartProduct.cylinder;
+                        this.sphere[sphereLength - 1].diameter =  this.cartProduct.diameter;
+                        this.sphere[sphereLength - 1].radius =  this.cartProduct.radius;
+                        this.sphere[sphereLength - 1].addition =  addition;
+                    }
+                }
+            }
+        }
+    }
+    changeSphere(i){
+        this.cartFinal.item = this.sphere[i];
+    }
+
+    addProductToCart(product) {
+        this.cartFinal.image = this.product.image;
+        this.cartFinal.name = this.product.name;
+        this.cartFinal.hydrophily = this.product.hydrophily;
+        this.cartFinal.material = this.product.material;
+        this.cartFinal.color = this.product.color;
+        this.cartFinal.price = this.product.price;
+        this.cartFinal.price = this.product.price;
 
         var cart = [];
         var local = JSON.parse(localStorage.getItem("cart"));
         if (local != null) {cart = local;}
-        cart.push(this.cartProduct);
+        cart.push(this.cartFinal);
         localStorage.setItem("cart", JSON.stringify(cart));
         this.alertService.addAlert('success', "Product successfully added to the cart.");
         return "Product added in cart";
@@ -162,7 +268,13 @@ export class ProductAddCartComponent  implements  OnChanges{
         if(changes['productCart']){
             if (typeof changes['productCart'].currentValue !== "undefined" && changes['productCart'].currentValue !== "undefined") {
                 this.product = JSON.parse(changes['productCart'].currentValue);
-                this.changeItem();
+                for (var i in this.product.item) {
+                        if(this.diameter.indexOf(this.product.item[i].diameter) == -1){
+                            this.diameter.push(this.product.item[i].diameter);
+                        }
+                }
+
+                console.log(this.product)
             }
 
         }

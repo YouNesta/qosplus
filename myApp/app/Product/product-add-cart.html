@@ -9,14 +9,34 @@
                             <label for="diameter">
                                 Item
                             </label>
-                            <select id="diameter" (change)="changeItem()" [(ngModel)]="itemIndex" >
-                                <option *ngFor="#item of product.item; #i = index" [value]="i">
-                                    Diamètre: {{item.diameter}}
-                                    Addition: {{item.addition}}
-                                    Cylindre: {{item.cylinder}}
-                                    COndition: {{item.condition}}
-                                    Rayon: {{item.radius}}
-                                    Axes: {{item.axis}}
+                            <select id="diameter" #diameterDOM (change)="changeDiameter(diameterDOM.value)" [(ngModel)]="cartProduct.diameter" >
+                                <option *ngFor="#diameter of diameter; #i = index" [value]="diameter">
+                                    Diamètre: {{diameter}}
+                                </option>
+                            </select>
+                            <select id="axis" #axisDOM (change)="changeAxis(axisDOM.value)" [(ngModel)]="cartProduct.axis" >
+                                <option *ngFor="#axis of axis; #i = index" [value]="axis">
+                                    Axes: {{axis}}
+                                </option>
+                            </select>
+                            <select id="cylinder" #cylinderDOM (change)="changeCylinder(cylinderDOM.value)" [(ngModel)]="cartProduct.cylinder" >
+                                <option *ngFor="#cylinder of cylinder; #i = index" [value]="cylinder">
+                                    Cylindre: {{cylinder}}
+                                </option>
+                            </select>
+                            <select id="condition" #conditionDOM (change)="changeCondition(conditionDOM.value)" [(ngModel)]="cartProduct.condition" >
+                                <option *ngFor="#condition of condition; #i = index" [value]="condition">
+                                    COndition: {{condition}}
+                                </option>
+                            </select>
+                            <select id="radius" #radiusDOM (change)="changeRadius(radiusDOM.value)" [(ngModel)]="cartProduct.radius" >
+                                <option *ngFor="#radius of radius; #i = index" [value]="radius">
+                                    Rayon: {{radius}}
+                                </option>
+                            </select>
+                            <select id="addition" #additionDOM (change)="changeAddition(additionDOM.value)" [(ngModel)]="cartProduct.addition" >
+                                <option *ngFor="#addition of addition; #i = index" [value]="addition">
+                                    Addition: {{addition}}
                                 </option>
                             </select>
                         </div>
@@ -24,8 +44,8 @@
                             <label for="sphere">
                                 Sphere
                             </label>
-                            <select id="sphere"  [(ngModel)]="itemSphereIndex">
-                                <option *ngFor="#key of keys()" [value]="key">{{item.sphere[key].sphere}}</option>
+                            <select id="sphere" #sphereDOM (change)="changeSphere(sphereDOM.value)">
+                                <option *ngFor="#sphere of sphere; #i = index" [value]="i">{{sphere.sphere}}</option>
                             </select>
                         </div>
                     </div>

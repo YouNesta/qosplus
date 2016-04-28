@@ -4,7 +4,7 @@
 <accordion [closeOthers]="true">
 
 
-    <accordion-group heading="{{product.reference}} - {{product.name}}"  *ngFor='#product of products; #i = index' [product]="product">
+    <accordion-group heading="{{product.item.reference}} - {{product.name}}"  *ngFor='#product of products; #i = index' [product]="product">
         {{product.name}}
         {{product.material}}
         {{product.color}}

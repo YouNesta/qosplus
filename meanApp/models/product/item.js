@@ -21,6 +21,10 @@ var ItemSchema = new mongoose.Schema({
         type: Number,
         required : false
     },
+    addition:{
+        type: Number,
+        required : false
+    },
     sphere:{
         type: Array,
         required : true

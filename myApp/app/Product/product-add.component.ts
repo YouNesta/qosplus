@@ -99,6 +99,7 @@ export class ProductAddComponent {
         item:[
             {
                 radius: null,
+                addition: null,
                 diameter: null,
                 axis: null,
                 addition: null,
