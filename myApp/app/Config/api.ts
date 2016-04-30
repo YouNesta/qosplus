@@ -11,6 +11,7 @@ export class API {
     admin = 'admin/';
     user = 'client/user/';
     product = 'product/';
-    upload = 'upload/'
+    upload = 'upload/';
+    command = 'command/';
 
 }

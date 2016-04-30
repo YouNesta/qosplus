@@ -6,14 +6,24 @@ var express = require('express');
 var router = express.Router();
 var Command = require("../../models/command/command.js").Command;
 var Payment = require("../../models/command/payment.js").Payment;
-var CommandModule    = require('../../modules/command');
+var CommandModule = require('../../modules/command');
 
 
 
 
 router.post('/create',function(req, res) {
     if(req.body != 'undefined'){
+        console.log('Ok.');
+        CommandModule.addCommand();
+    }else{
+        console.log('Nope.');
+        res.sendStatus(500);
+    }
+});
 
+router.get('/list',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.getCommands();
     }else{
         res.sendStatus(500);
     }

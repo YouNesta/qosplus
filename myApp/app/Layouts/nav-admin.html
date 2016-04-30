@@ -21,19 +21,25 @@
         <li>
            <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Product', 'List']))"
                    [routerLink]="['Admin', 'Product', 'List']">Nos Produits
-               <i class="fa fa-user-plus fa-fw"></i>
+               <i class="fa fa-list fa-fw"></i>
            </a>
         </li>
         <li>
             <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Product', 'Price']))"
                [routerLink]="['Admin', 'Product', 'Price']">Prix
-                <i class="fa fa-user-plus fa-fw"></i>
+                <i class="fa fa-eur fa-fw"></i>
             </a>
         </li>
         <li>
             <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Product', 'Cart']))"
                    [routerLink]="['Admin', 'Product', 'Cart']">Mon Panier
-               <i class="fa fa-user-plus fa-fw"></i>
+               <i class="fa fa-shopping-cart fa-fw"></i>
+           </a>
+        </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Product', 'Command']))"
+                   [routerLink]="['Admin', 'Product', 'Command']">Mes commandes
+               <i class="fa fa-truck fa-fw"></i>
            </a>
         </li>
     </ul>

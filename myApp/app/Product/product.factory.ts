@@ -12,9 +12,11 @@ export class ProductFactory {
     http = null;
     apiUrl = "";
     uploadUrl = "";
+    commandUrl = "";
     constructor(public authHttp: AuthHttp, public router : Router, api : API) {
         this.apiUrl = api.url+api.product;
         this.uploadUrl = api.url+api.upload+api.product;
+        this.commandUrl = api.url+api.command;
 
     }
 
@@ -46,6 +48,11 @@ export class ProductFactory {
         return  this.authHttp
             .get(this.apiUrl+'price/count')
             .map(response => response.json())
+    }
+    getCommand(){
+    return  this.authHttp
+        .get(this.commandUrl+'list')
+        .map(response => response.json())
     }
 
 
@@ -114,6 +121,22 @@ export class ProductFactory {
                 .map(response => response.json())
 
         }
+
+
+    createCommand(){
+        var cart = JSON.parse(localStorage.getItem("cart"));
+        var data =  JSON.stringify({cart});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'create',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
     deleteProduct(product){
         var data = JSON.stringify({product});
         var headers = new Headers();

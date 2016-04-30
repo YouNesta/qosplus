@@ -32,4 +32,8 @@ export class ProductCartComponent {
         this.alertService.addAlert('warning', "Product successfully deleted from the cart.");
     }
 
+    validateCart() {
+        this.service.createCommand();
+    }
+
 }

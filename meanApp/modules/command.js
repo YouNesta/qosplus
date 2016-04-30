@@ -14,12 +14,12 @@ module.exports = {
                 logger.log('error', err);
                 res.res.json({success: false, message:error});
             }
-            var i = 0;
-            getCommands(commands, i);
-        });
-
-        function getCommands(commands, i){
             res.json({success: true, message:"Command List Find with success", data:  commands});
-        }
+        });
     },
+
+    addCommand: function(req, res) {
+        console.log(req.body);
+        //var command = new Command(req.body.cart);
+    }
 };
