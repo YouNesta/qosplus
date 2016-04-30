@@ -21,5 +21,6 @@ module.exports = {
     addCommand: function(req, res) {
         console.log(req.body);
         //var command = new Command(req.body.cart);
+        res.json({success: true, message:"Command Added with success", data:  []});
     }
 };

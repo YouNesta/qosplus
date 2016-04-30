@@ -13,10 +13,8 @@ var CommandModule = require('../../modules/command');
 
 router.post('/create',function(req, res) {
     if(req.body != 'undefined'){
-        console.log('Ok.');
         CommandModule.addCommand();
     }else{
-        console.log('Nope.');
         res.sendStatus(500);
     }
 });

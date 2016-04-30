@@ -18,12 +18,12 @@ export class ProductCommandComponent {
     constructor(public service: ProductFactory){
         this.service.getCommand()
             .subscribe(
-                response => {
-                    if(response.success){
-                        this.commands = response.data;
+                res => {
+                    if(res.success){
+                        this.commands = res.data;
                         console.log(this.commands)
                     }else{
-                        console.log(response);
+                        console.log(res);
                     }
                 },
                 err =>  console.log(err),

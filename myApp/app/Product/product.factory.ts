@@ -52,7 +52,7 @@ export class ProductFactory {
     getCommand(){
     return  this.authHttp
         .get(this.commandUrl+'list')
-        .map(response => response.json())
+        .map(res => res.json())
     }
 
 
@@ -126,6 +126,7 @@ export class ProductFactory {
     createCommand(){
         var cart = JSON.parse(localStorage.getItem("cart"));
         var data =  JSON.stringify({cart});
+
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 

@@ -33,7 +33,20 @@ export class ProductCartComponent {
     }
 
     validateCart() {
-        this.service.createCommand();
+        this.service.createCommand()
+            .subscribe(
+            res => {
+                if(res.success){
+                    this.alertService.addAlert('success', res.message);
+                }else{
+                    this.alertService.addAlert('warning', res.message);
+                }
+            },
+            err => {
+                this.alertService.addAlert('danger', 500);
+            },
+            () => console.log('Command Added')
+        );;
     }
 
 }
