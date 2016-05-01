@@ -86,8 +86,8 @@ export class ProductFactory {
 
 
 
-    getOneProduct(){
-        var data =  JSON.stringify({user});
+    getOneProduct(product){
+        var data =  JSON.stringify({product});
         var headers = new Headers();
             headers.append('Content-Type', 'application/json');
 

@@ -31,7 +31,7 @@ module.exports = {
         command.setParameter("product", req.body.cart);
         command.setParameter("status", 1);
         command.setParameter("payment", payment);
-        conole.log('Ok.');
+        console.log('Ok.');
         res.json({success: true, message:"Command Added with success", data:  []});
     }
 };

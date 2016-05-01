@@ -1,0 +1,23 @@
+<accordion [closeOthers]="false">
+
+
+    <button class="btn btn-default" (click)=""><i class="fa fa-trash"></i></button>
+    <accordion-group heading="{{command.date}} - {{command.client}}"  *ngFor='#command of commands; #i = index '>
+
+        {{command.date}}
+        {{command.facture}}
+        {{command.orderFrom}}
+        {{command.commandFrom}}
+        {{command.client}}
+
+
+        <div *ngFor="#product of command.product">
+            {{product.name}}
+            {{product.date}}
+            {{product.client}}
+            {{product.reference}}
+            {{product.status}}
+            <button class="btn btn-default" (click)=""><i class="fa fa-eye"></i></button>
+        </div>
+    </accordion-group>
+</accordion>
