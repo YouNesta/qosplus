@@ -1,23 +1,40 @@
-<accordion [closeOthers]="false">
+<h1>Cart</h1>
 
 
-    <button class="btn btn-default" (click)=""><i class="fa fa-trash"></i></button>
-    <accordion-group heading="{{command.date}} - {{command.client}}"  *ngFor='#command of commands; #i = index '>
-
-        {{command.date}}
-        {{command.facture}}
-        {{command.orderFrom}}
-        {{command.commandFrom}}
-        {{command.client}}
+<accordion [closeOthers]="true">
 
 
-        <div *ngFor="#product of command.product">
-            {{product.name}}
-            {{product.date}}
-            {{product.client}}
-            {{product.reference}}
-            {{product.status}}
-            <button class="btn btn-default" (click)=""><i class="fa fa-eye"></i></button>
-        </div>
+    <accordion-group heading="Commande du {{command.date}}"  *ngFor='#command of commands; #i = index' [command]="command">
+        Client: #{{command.client}}<br>
+        Liste des produits:
+        <table>
+            <tr>
+                <td>nom</td>
+                <td>materiau</td>
+                <td>couleur</td>
+                <td>addition</td>
+                <td>axes</td>
+                <td>cylindre</td>
+                <td>diamètre</td>
+                <td>rayon</td>
+                <td>sphere</td>
+                <td>status</td>
+            </tr>
+            <tr *ngFor="#product of command.product">
+                <td>{{product.name}}</td>
+                <td>{{product.material}}</td>
+                <td>{{product.color}}</td>
+                <td>{{product.item.addition}}</td>
+                <td>{{product.item.axis}}</td>
+                <td>{{product.item.cylinder}}</td>
+                <td>{{product.item.diameter}}</td>
+                <td>{{product.item.radius}}</td>
+                <td>{{product.item.sphere}}</td>
+                <td>{{command.status}}</td>
+            </tr>
+        </table>
     </accordion-group>
+
 </accordion>
+
+<button (click)="validateCart()" class="btn btn-default">Valider le panier</button>

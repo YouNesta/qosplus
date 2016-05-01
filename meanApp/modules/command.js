@@ -4,6 +4,7 @@
 
 var Payment = require("../models/command/payment.js").Payment;
 var Command = require("../models/command/command.js").Command;
+var logger = require('winston');
 
 module.exports = {
 
@@ -19,19 +20,24 @@ module.exports = {
     },
 
     addCommand: function(req, res) {
-        var payment = new Payment();
-        payment.setParameter("date", new Date());
-        var user = JSON.parse(localStorage.getItem("user"));
-        payment.setParameter("client", user._id);
-        payment.setParameter("IBAN", 12345678);
-        payment.setParameter("status", 0);
 
-        var command = new Command();
-        command.setParameter("date", new Date());
-        command.setParameter("product", req.body.cart);
-        command.setParameter("status", 1);
-        command.setParameter("payment", payment);
-        console.log('Ok.');
+        var payment = new Payment(req.body.payment);
+        payment.save(function(error, payment){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+            }
+        });
+        var command = new Command(req.body.command);
+        command.save(function(error, command){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+            } else {
+                console.log(command);
+            }
+        });
+
         res.json({success: true, message:"Command Added with success", data:  []});
     }
 };

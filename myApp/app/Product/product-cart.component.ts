@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, forwardRef, Inject, Input} from 'angular2/core';
 import {ProductFactory} from "./product.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
@@ -18,7 +18,8 @@ export class ProductCartComponent {
     products: Object;
     alertService: AlertService;
 
-    constructor(public service: ProductFactory){
+    constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService){
+        this.alertService = alertService;
         this.products = JSON.parse(localStorage.getItem("cart"));
         console.log()
     }
