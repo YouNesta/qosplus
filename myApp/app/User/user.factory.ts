@@ -86,6 +86,11 @@ export class UserFactory {
         }
         return 0;
     }
+    getMails(){
+        return  this.authHttp
+            .get(this.apiUrl+'getMails')
+            .map(res => res.json())
+    }
 
 
     login = function(user) {
