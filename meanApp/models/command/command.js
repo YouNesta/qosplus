@@ -22,7 +22,7 @@ var CommandSchema = new mongoose.Schema({
         required : false
     },
     client:{
-        type: Number,
+        type: String,
         required: false
     },
     product: {

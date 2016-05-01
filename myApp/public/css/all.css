@@ -547,6 +547,10 @@ header nav-admin #sidebar-wrapper {
       .page.engagement .hero .img-overlay p {
         margin-top: 0; } }
 
+td {
+  border: 1px solid;
+  padding: 2px; }
+
 @font-face {
   font-family: OpenSans;
   src: url("./fonts/open-sans/OpenSans-Regular.ttf"); }
