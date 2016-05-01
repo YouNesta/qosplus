@@ -37,6 +37,8 @@ export class ProductCartComponent {
             .subscribe(
             res => {
                 if(res.success){
+                    var cart = [];
+                    localStorage.setItem("cart", JSON.stringify(cart));
                     this.alertService.addAlert('success', res.message);
                 }else{
                     this.alertService.addAlert('warning', res.message);

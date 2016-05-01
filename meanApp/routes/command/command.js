@@ -13,7 +13,7 @@ var CommandModule = require('../../modules/command');
 
 router.post('/create',function(req, res) {
     if(req.body != 'undefined'){
-        CommandModule.addCommand();
+        CommandModule.addCommand(req, res);
     }else{
         res.sendStatus(500);
     }
@@ -21,7 +21,7 @@ router.post('/create',function(req, res) {
 
 router.get('/list',function(req, res) {
     if(req.body != 'undefined'){
-        CommandModule.getCommands();
+        CommandModule.getCommands(req, res);
     }else{
         res.sendStatus(500);
     }

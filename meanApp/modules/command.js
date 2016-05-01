@@ -19,8 +19,19 @@ module.exports = {
     },
 
     addCommand: function(req, res) {
-        console.log(req.body);
-        //var command = new Command(req.body.cart);
+        var payment = new Payment();
+        payment.setParameter("date", new Date());
+        var user = JSON.parse(localStorage.getItem("user"));
+        payment.setParameter("client", user._id);
+        payment.setParameter("IBAN", 12345678);
+        payment.setParameter("status", 0);
+
+        var command = new Command();
+        command.setParameter("date", new Date());
+        command.setParameter("product", req.body.cart);
+        command.setParameter("status", 1);
+        command.setParameter("payment", payment);
+        conole.log('Ok.');
         res.json({success: true, message:"Command Added with success", data:  []});
     }
 };
