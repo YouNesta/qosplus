@@ -18,6 +18,17 @@ module.exports = {
             res.json({success: true, message:"Command List Find with success", data:  commands});
         });
     },
+    getCommandsByUser: function(req, res){
+        var user = req.body.user;
+        Command.find({client: user._id}, function(err, commands){
+            if(err){
+                console.log(err);
+                logger.log('error', err);
+                res.res.json({success: false, message:error});
+            }
+            res.json({success: true, message:"Command List Find with success", data:  commands});
+        })
+    },
 
     addCommand: function(req, res) {
 

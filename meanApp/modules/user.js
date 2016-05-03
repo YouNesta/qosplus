@@ -4,6 +4,8 @@
 var crypto    = require('crypto');
 var SHA256 = require("crypto-js/sha256");
 var User = require("../models/user.js").User;
+var Command = require("../models/command/command.js");
+var Payment = require("../models/command/payment.js");
 var Shop = require("../models/shop.js").Shop;
 var logger = require('winston');
 var generatePassword = require('password-generator');
@@ -166,6 +168,70 @@ module.exports = {
             }
         }
     },
+
+    getProfile: function(req, res){
+        var i = 0;
+        var user = req.body.user;
+
+        findShop(user, i);
+        function findUser(user){
+            User.find({_id: user._id}, function(error, user){
+                if(error){
+                    console.log(error);
+                    logger.log('error', error);
+                    res.json({ success: false, message: "User Not Found", data:error});
+                }
+                res.json({ success: true, message: "User Found", data:user});
+            })
+        }
+
+        function findShop(user, i){
+            if(i < user.associateShop.length) {
+                delete user.associateShop[i].__v;
+
+                Shop.find({_id: user.associateShop[i]._id}, function(error, shop){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({ success: false, message: "Subscribe Failed", data:error});
+                    }
+                    user.associateShop[i] = shop._id;
+                    console.log(shop);
+                    i++;
+                    findShop(user, i);
+                });
+
+
+            }else{
+                findUser(user);
+            }
+        }
+
+    },
+
+    getUserCommands: function(req, res){
+        var user_Id = req.body.user._id;
+        Command.find({client: user_Id}, function(error, command){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "Commands not Found", data:error});
+            }
+            res.json({success: true, message: "Commands found", data:command})
+        })
+    },
+
+    getUserPayments: function(req, res){
+        var user_Id = req.body.user._id;
+        Payment.find({client: user_Id}, function(error, payment){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "Commands not Found", data:error});
+            }
+            res.json({success: true, message: "Commands found", data:payment})
+        })
+    }
 
 
 };

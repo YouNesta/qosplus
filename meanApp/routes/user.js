@@ -130,6 +130,30 @@ router.put('/edit', function(req,res,next){
   }
 });
 
+router.post('/profile', function(req,res,next){
+  if(req.body != 'undefined'){
+    users.getProfile(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
+router.post('/commands', function(req, res, next){
+  if(req.body != 'undefined'){
+    users.getUserCommands(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
+router.post('/payments', function(req, res, next){
+  if(req.body != 'undefined'){
+    users.getUserPayments(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
 
 
 
