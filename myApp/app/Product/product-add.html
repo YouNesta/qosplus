@@ -196,14 +196,14 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <label for="addition">Stock</label>
                     <div class="col col-md-6">
-                        <input type="checkbox" [(ngModel)]="product.provider">
+                        <label>Stock</label><br>
+                        <input type="checkbox" [(ngModel)]="product.provider"><label>Chez le fournisseur</label><br>
                         <input [disabled]="product.provider" type="number" id="stock" [(ngModel)]="product.stock" class="form-control" placeholder="Min Value">
                     </div>
 
-                    <label for="addition">Condition</label><br><br>
                     <div class="col col-md-6">
+                        <label for="addition">Condition</label><br><br>
                         <select [(ngModel)]="product.condition">
                             <option *ngFor="#item of conditions; #i = index" [value]="item">{{item}}</option>
                         </select>
