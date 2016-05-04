@@ -205,14 +205,14 @@ module.exports = {
             if(i < product.item.length) {
                 delete product.item[i].__v;
 
-                Item.findOneAndUpdate({_id: product.item[i]._id}, {$set: product.item[i] }, { 'new': true },  function(error, shop){
+                Item.findOneAndUpdate({_id: product.item[i]._id}, {$set: product.item[i] }, { 'new': true },  function(error, item){
                     if(error){
                         console.log(error);
                         logger.log('error', error);
                         res.json({ success: false, message: "Subscribe Failed", data:error});
                     }
-                    product.item[i] = shop._id;
-                    console.log(shop);
+                    product.item[i] = item._id;
+                    console.log(item);
                     i++;
                     updateItem(product, i);
                 });

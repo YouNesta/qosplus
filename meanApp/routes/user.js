@@ -106,6 +106,8 @@ router.post('/login', function(req, res) {   // Login
 
 });
 
+
+
 router.post('/subscribe', function(req, res, next) {
   if(req.body != 'undefined'){
     users.setUser(req, res);
@@ -130,8 +132,32 @@ router.put('/edit', function(req,res,next){
   }
 });
 
-router.get('/getMails', function(req, res) {   // Get user mails
 
+router.post('/profile', function(req,res,next){
+  if(req.body != 'undefined'){
+    users.getProfile(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
+router.post('/commands', function(req, res, next){
+  if(req.body != 'undefined'){
+    users.getUserCommands(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
+router.post('/payments', function(req, res, next){
+  if(req.body != 'undefined'){
+    users.getUserPayments(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
+router.get('/getMails', function(req, res) {   // Get user mails
   var model = User;
 
   model.find({} ,function(err, users) {

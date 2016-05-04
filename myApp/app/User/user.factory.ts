@@ -93,11 +93,33 @@ export class UserFactory {
     }
 
 
-    login = function(user) {
+    login(user) {
         var data =  JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        console.log(this.apiUrl);
+        return this.authHttp
+            .post(this.apiUrl + 'login',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .map(response => {
+                if (response) {
+                    return response
+                }else{
+                    console.log("Error")
+                }
+                return response;
+            })
 
+    };
+
+    login(user) {
+        var data =  JSON.stringify({user});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        console.log(this.apiUrl);
         return this.authHttp
             .post(this.apiUrl + 'login',
                 data, {
@@ -117,13 +139,13 @@ export class UserFactory {
 
 
 
-    updateUser = function(user) {
+    updateUser(user) {
         var data =  JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
         return this.authHttp
-            .put(this.apiUrl,
+            .put(this.apiUrl + "",
                 data, {
                     headers: headers
                 })
@@ -138,5 +160,68 @@ export class UserFactory {
             })
 
 
+    };
+
+    getProfile(user){
+        var data =  JSON.stringify({user});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + "profile",
+            data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .map(response => {
+                if (response) {
+                    return response
+                }else{
+                    console.log("Error")
+                }
+                return response;
+            })
+    };
+
+    getUserCommands(user){
+        var data = JSON.stringify({user});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + "commands",
+            data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .map(response => {
+                if (response) {
+                    return response
+                }else{
+                    console.log("Error")
+                }
+                return response;
+            })
+    };
+
+    getUserCommands(user){
+        var data = JSON.stringify({user});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + "payments",
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .map(response => {
+                if (response) {
+                    return response
+                }else{
+                    console.log("Error")
+                }
+                return response;
+            })
     };
 }
