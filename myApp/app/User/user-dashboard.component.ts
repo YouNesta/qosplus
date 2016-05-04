@@ -9,7 +9,8 @@ import {CanActivate} from "angular2/router";
 @Component({
     providers: [],
     templateUrl: "app/User/user-dashboard.html",
-    directives: [ ACCORDION_DIRECTIVES ]
+    directives: [ ACCORDION_DIRECTIVES ],
+    providers: []
 })
 
 

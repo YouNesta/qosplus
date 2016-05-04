@@ -9,7 +9,8 @@ import {AlertService} from "../Tools/alert";
 
 
 @Component({
-    templateUrl: "app/User/user-login.html"
+    templateUrl: "app/User/user-login.html",
+    providers: [RegEx, UserFactory, AlertService]
 })
 
 export class UserLoginComponent {

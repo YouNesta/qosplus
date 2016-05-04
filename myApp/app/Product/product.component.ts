@@ -19,7 +19,7 @@ import {ProductCommandComponent} from "./product-command-list.component";
 @Component({
     template:
         "<router-outlet></router-outlet>",
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
 })
 
 @RouteConfig([

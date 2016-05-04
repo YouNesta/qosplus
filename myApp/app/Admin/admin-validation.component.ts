@@ -22,7 +22,8 @@ import {AlertService} from "../Tools/alert";
 
 @Component({
     templateUrl: "app/Admin/admin-validation.html",
-    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES]
+    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES],
+    providers: [ AdminFactory]
 })
 
 

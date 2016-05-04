@@ -5,11 +5,14 @@ import {Shop} from "../Shop/shop";
 import {FormBuilder, Validators} from "angular2/common";
 import {ControlGroup} from "angular2/common";
 import {RegEx} from "../lib/regex";
+import {AlertService} from "../Tools/alert";
 
 
 @Component({
     providers: [],
     templateUrl: "app/User/user-subscribe.html",
+    providers: [RegEx, UserFactory, AlertService]
+
 })
 
 export class UserSubscribeComponent {
