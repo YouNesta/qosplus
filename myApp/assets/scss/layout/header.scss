@@ -1,12 +1,9 @@
 header {
-  nav, nav-user {
+  nav{
     li {
       display: inline-block;
       float: right;
     }
-  }
-
-  nav{
     .container, .container-fluid {
       padding: 0 !important;
     }
@@ -74,7 +71,7 @@ header {
     }
   }
 
-  nav-admin{
+  nav-admin, nav-user{
     #sidebar-wrapper {
       z-index: 1000;
       position: fixed;
