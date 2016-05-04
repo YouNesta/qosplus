@@ -92,7 +92,29 @@ export class UserFactory {
         var data =  JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        console.log(this.apiUrl);
+        return this.authHttp
+            .post(this.apiUrl + 'login',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .map(response => {
+                if (response) {
+                    return response
+                }else{
+                    console.log("Error")
+                }
+                return response;
+            })
 
+    };
+
+    login(user) {
+        var data =  JSON.stringify({user});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        console.log(this.apiUrl);
         return this.authHttp
             .post(this.apiUrl + 'login',
                 data, {

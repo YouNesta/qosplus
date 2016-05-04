@@ -106,6 +106,8 @@ router.post('/login', function(req, res) {   // Login
 
 });
 
+
+
 router.post('/subscribe', function(req, res, next) {
   if(req.body != 'undefined'){
     users.setUser(req, res);
