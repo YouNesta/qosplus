@@ -18,8 +18,6 @@ import {UserDashboardComponent} from "./user-dashboard.component";
 })
 
 @RouteConfig([
-    { path: "/login", name: "Login", component: UserLoginComponent},
-    { path: "/subscribe", name: "Subscribe", component: UserSubscribeComponent},
     { path: "/", name: "Dashboard", component: UserDashboardComponent}
 ])
 

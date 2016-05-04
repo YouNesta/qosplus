@@ -12,10 +12,9 @@ import {Router} from "angular2/router";
 })
 
 export class NavAdminComponent  {
-
+    public title = "X-vision";
 
     constructor(public router: Router){
-        this.title = "QosPlus";
     }
 
 }

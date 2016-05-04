@@ -12,6 +12,8 @@ import {HomeContactComponent} from "./home-contact.component";
 import {UserFactory} from "../User/user.factory";
 import {tokenNotExpired} from "angular2-jwt";
 import {RouteAuth} from "../Config/route-auth";
+import {UserLoginComponent} from "../User/user-login.component";
+import {UserSubscribeComponent} from "../User/user-subscribe.component";
 
 @Component({
     template:
@@ -23,6 +25,8 @@ import {RouteAuth} from "../Config/route-auth";
     { path: "/", name: "Homepage", component: HomeHomepageComponent},
     { path: "/about", name: "About", component: HomeAboutComponent},
     { path: "/products", name: "Products", component: HomeProductsComponent},
+    { path: "/login", name: "Login", component: UserLoginComponent},
+    { path: "/subscribe", name: "Subscribe", component: UserSubscribeComponent},
     { path: "/engagements", name: "Contact", component: HomeContactComponent}
 ])
 

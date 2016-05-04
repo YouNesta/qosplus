@@ -171,11 +171,10 @@ module.exports = {
 
     getProfile: function(req, res){
         var i = 0;
-        var user = req.body.user;
-
+        var user = JSON.parse(req.body.user);
         findShop(user, i);
         function findUser(user){
-            User.find({_id: user._id}, function(error, user){
+            User.findOne({_id: user._id}, function(error, user){
                 if(error){
                     console.log(error);
                     logger.log('error', error);
@@ -187,6 +186,7 @@ module.exports = {
 
         function findShop(user, i){
             if(i < user.associateShop.length) {
+
                 delete user.associateShop[i].__v;
 
                 Shop.find({_id: user.associateShop[i]._id}, function(error, shop){
