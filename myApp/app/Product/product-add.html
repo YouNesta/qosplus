@@ -148,26 +148,31 @@
                 <div class="col col-md-6">
                     <div class="form-group ">
                         <div class="col col-md-2">
+                            <label for="cylindre">Rayon</label><br>
                             <select [(ngModel)]="product.radius">
                                 <option *ngFor="#item of products.param.radius; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                         <div class="col col-md-2 col-md-offset-1">
+                            <label for="cylindre">Diametre</label><br>
                             <select [(ngModel)]="product.diameter">
                                 <option *ngFor="#item of products.param.diameter; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                         <div class="col col-md-2">
+                            <label for="cylindre">Axis</label><br>
                             <select [(ngModel)]="product.axis">
                                 <option *ngFor="#item of products.param.axis; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                         <div class="col col-md-2">
+                            <label for="cylindre">Addition</label><br>
                             <select [(ngModel)]="product.addition">
                                 <option *ngFor="#item of products.param.addition; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
                         <div class="col col-md-2">
+                            <label for="cylindre">Cylindre</label><br>
                             <select [(ngModel)]="product.cylinder">
                                 <option *ngFor="#item of products.param.cylinder; #i = index" [value]="item">{{item}}</option>
                             </select>
