@@ -10,8 +10,8 @@ header {
     .container, .container-fluid {
       padding: 0 !important;
     }
-    background-color: #7B19F4;
-    color: #FFF;
+    background-color: #fff;
+    color: #000;
     font-family: 'Roboto', sans-serif;
     .logo {
       margin-top: 15px;
@@ -28,7 +28,8 @@ header {
         &.selected {
           a {
             background-color: #CCA6FB;
-            color: #000;
+            color: #fff;
+            border-bottom: 2px solid #571885;
           }
         }
         border-right: 1px solid #FFF;
@@ -38,19 +39,19 @@ header {
         animation-duration: 1s;
         font-size: 12px;
         a {
+
           clear: both;
-          color: #FFF;
+          color: #000;
           text-decoration: none;
           display: block;
           height: 100%;
           width: 100%;
           padding: 15px;
-          padding-top: 40px;
-          vertical-align: middle;
+          padding-top: 70px;
+          vertical-align: bottom;
         }
         a:hover {
-          background-color: #CCA6FB;
-          color: #000;
+          border-bottom: 2px solid #571885;
         }
       }
       li:first-child {
