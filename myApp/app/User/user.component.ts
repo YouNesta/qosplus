@@ -8,6 +8,7 @@ import {
 import {UserLoginComponent} from "./user-login.component";
 import {UserSubscribeComponent} from "./user-subscribe.component";
 import {UserDashboardComponent} from "./user-dashboard.component";
+import {UserProfileComponent} from "./user-profile.component";
 
 
 
@@ -18,7 +19,8 @@ import {UserDashboardComponent} from "./user-dashboard.component";
 })
 
 @RouteConfig([
-    { path: "/", name: "Dashboard", component: UserDashboardComponent}
+    { path: "/", name: "Dashboard", component: UserDashboardComponent},
+    { path: "/profile", name: "Profile", component: UserProfileComponent }
 ])
 
 

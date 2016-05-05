@@ -221,6 +221,18 @@ module.exports = {
         })
     },
 
+    getById: function(req, res){
+        var user_Id = req.body.id;
+        User.findOne({_id: user_Id}, function(error, user){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "User not Found", data:error});
+            }
+            res.json({success: true, message: "User found", data:user})
+        })
+    },
+
     getUserPayments: function(req, res){
         var user_Id = req.body.user._id;
         Payment.find({client: user_Id}, function(error, payment){

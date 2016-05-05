@@ -7,8 +7,14 @@
             </a>
         </li>
         <li>
-            <a [class.active]="router.isRouteActive(router.generate(['Home', 'Subscribe']))"
-               [routerLink]="['Home', 'Subscribe']">Ajouter un Employé
+            <a [class.active]="router.isRouteActive(router.generate(['User', 'Subscribe']))"
+               [routerLink]="['User', 'Subscribe']">Ajouter un Employé
+                <i class="fa fa-user fa-fw"></i>
+            </a>
+        </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['User', 'Profile']))"
+               [routerLink]="['User', 'Profile']">Ajouter un Employé
                 <i class="fa fa-user fa-fw"></i>
             </a>
         </li>

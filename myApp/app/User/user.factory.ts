@@ -64,6 +64,24 @@ export class UserFactory {
             })
     }
 
+    getUserById(id){
+        var data =  JSON.stringify({id});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        this.authHttp
+            .post(this.apiUrl + 'getById',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .subscribe(
+                response => console.log(response),
+                err =>  console.log(err),
+                () => console.log('User find')
+            );
+    }
+
     logout(){
         localStorage.removeItem('token');
         localStorage.removeItem('user');
