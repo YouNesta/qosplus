@@ -20,6 +20,19 @@ export class ProductFactory {
 
     }
 
+    deleteProducts(products){
+        var data =  JSON.stringify({products});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return  this.authHttp
+            .post(this.apiUrl + 'deletes',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
     save(products){
         var data =  JSON.stringify({products});
         var headers = new Headers();

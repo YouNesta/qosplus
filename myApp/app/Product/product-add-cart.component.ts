@@ -56,6 +56,7 @@ export class ProductAddCartComponent  implements  OnChanges{
 
     product = {
         name: "Younestaaa",
+        status: 1,
         image: "public/uploads/no_image.png",
         hydrophily: 56,
         material: "Verre",

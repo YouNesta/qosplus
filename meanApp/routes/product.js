@@ -66,4 +66,12 @@ router.post('/delete', function(req, res){
     }
 });
 
+router.post('/deletes', function(req, res){
+    if(req.body.products != "undefined"){
+        product.deleteProducts(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
 module.exports = router;

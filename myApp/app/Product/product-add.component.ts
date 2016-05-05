@@ -84,7 +84,13 @@ export class ProductAddComponent {
 
     products = {
         name: "Younesta",
-        image: "public/uploads/no_image.png",
+        status: 1,
+        image: {
+            original: "public/uploads/no_image.png",
+            small: "public/uploads/no_image.png",
+            medium: "public/uploads/no_image.png",
+            big: "public/uploads/no_image.png"
+        },
         hydrophily: 56,
         material: "Verre",
         color: "Transparent",
@@ -161,7 +167,12 @@ export class ProductAddComponent {
         if (resp) {
             resp = JSON.parse(resp);
             this.uploadResponse = resp;
-            this.products.image = 'public/uploads/'+resp.data[0].generatedName;
+            this.products.image = {
+                original: 'public/uploads/'+resp.data[0].generatedName,
+                small: 'public/uploads/'+resp.data[0].generatedNameSmall,
+                medium: 'public/uploads/'+resp.data[0].generatedNameMedium,
+                big: 'public/uploads/'+resp.data[0].generatedNameBig
+            }
         }
     }
 
