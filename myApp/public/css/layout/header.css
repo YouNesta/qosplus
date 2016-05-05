@@ -22,7 +22,7 @@ header nav {
       text-transform: uppercase;
       padding: 0;
       animation-duration: 1s;
-      font-size: 12px; }
+      font-size: 18px; }
       header nav .header-navbar li.selected a {
         background-color: #CCA6FB;
         color: #fff;
@@ -41,7 +41,7 @@ header nav {
         border-bottom: 2px solid #571885; }
     header nav .header-navbar li:first-child {
       border: 0;
-      margin-right: 20px; }
+      margin-right: 80px; }
   header nav .header-connection {
     color: #000;
     padding-right: 100px;
