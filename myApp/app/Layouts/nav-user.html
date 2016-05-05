@@ -1,0 +1,16 @@
+<div id="sidebar-wrapper">
+
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a [routerLink]="['User', 'Dashboard']">
+                {{title}}
+            </a>
+        </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['User', 'Subscribe']))"
+               [routerLink]="['User', 'Subscribe']">Ajouter un Employé
+                <i class="fa fa-user fa-fw"></i>
+            </a>
+        </li>
+    </ul>
+</div>

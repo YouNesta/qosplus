@@ -1,5 +1,6 @@
 import {Component, forwardRef, Inject, Input} from 'angular2/core';
 import {ProductFactory} from "./product.factory";
+import {UserFactory} from "./../User/user.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
 import {TagInputComponent} from "angular2-tag-input";
@@ -17,11 +18,28 @@ export class ProductCartComponent {
 
     products: Object;
     alertService: AlertService;
+    user = Object;
+    mails = [];
+    client = "";
 
-    constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService){
+    constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService, public userService: UserFactory){
         this.alertService = alertService;
         this.products = JSON.parse(localStorage.getItem("cart"));
-        console.log()
+        this.user = JSON.parse(localStorage.getItem("user"));
+        if (this.user.role == 1) {
+            userService.getMails()
+                .subscribe(
+                    res => {
+                        if(res.success){
+                            this.mails = res.data;
+                        }else{
+                            console.log(res);
+                        }
+                    },
+                    err =>  console.log(err),
+                    () => console.log('get mail list Complete')
+                );
+        }
     }
 
     removeFromCart(index) {
@@ -34,7 +52,7 @@ export class ProductCartComponent {
     }
 
     validateCart() {
-        this.service.createCommand()
+        this.service.createCommand(this.client)
             .subscribe(
             res => {
                 if(res.success){

@@ -132,6 +132,7 @@ router.put('/edit', function(req,res,next){
   }
 });
 
+
 router.post('/profile', function(req,res,next){
   if(req.body != 'undefined'){
     users.getProfile(req, res);
@@ -156,7 +157,33 @@ router.post('/payments', function(req, res, next){
   }
 });
 
+router.get('/getMails', function(req, res) {   // Get user mails
+  var model = User;
 
+  model.find({} ,function(err, users) {
+    if(err){
+      console.log(error);
+      logger.log('error', error);
+      res.res.json({success: false, message:error
+      });
+    }
+    if (!users) {
+      res.json({ success: false, message: 'No user found' });
+    } else if (users) {
+      var mails = [];
+      for (i in users) {
+        mails.push(users[i].mail);
+      }
+      data = mails;
+      res.json({
+        success: true,
+        message: 'Users mails Found',
+        data: data
+      });
+
+    }
+  });
+});
 
 
 

@@ -17,5 +17,7 @@
     </accordion-group>
 
 </accordion>
-
+<select type="text" *ngIf="user.role == 1" [(ngModel)]="client">
+    <option *ngFor="#mail of mails; #i = index " value="{{mail}}">{{mail}}</option>
+</select>
 <button (click)="validateCart()" class="btn btn-default">Valider le panier</button>

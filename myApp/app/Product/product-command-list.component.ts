@@ -21,7 +21,6 @@ export class ProductCommandComponent {
                 res => {
                     if(res.success){
                         this.commands = res.data;
-                        console.log(this.commands)
                     }else{
                         console.log(res);
                     }
