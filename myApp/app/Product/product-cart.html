@@ -1,23 +1,40 @@
-<h1>Cart</h1>
+<div class="content product-cart">
+    <h2>Cart</h2>
 
 
-<accordion [closeOthers]="true">
+    <accordion [closeOthers]="true">
 
 
-    <accordion-group heading="{{product.item.reference}} - {{product.name}}"  *ngFor='#product of products; #i = index' [product]="product">
-        {{product.name}}
-        {{product.material}}
-        {{product.color}}
-        {{product.hydrophily}}
-        {{product.price}}
-        {{product.client}}
-        {{product.quantity}}
-        {{product.reference}}
-        <button (click)="removeFromCart(i)">Remove</button>
-    </accordion-group>
+        <accordion-group class="product col-lg-12" *ngFor='#product of products; #i = index' [product]="product">
 
-</accordion>
-<select type="text" *ngIf="user.role == 1" [(ngModel)]="client">
-    <option *ngFor="#mail of mails; #i = index " value="{{mail}}">{{mail}}</option>
-</select>
-<button (click)="validateCart()" class="btn btn-default">Valider le panier</button>
+
+
+            <div accordion-heading class="product col-lg-12">
+                <div>
+                    {{product.item.reference}} - {{product.name}}
+                </div>
+                I can have markup, too!
+                <i class="pull-right glyphicon"
+                   [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+            </div>
+
+
+
+
+            {{product.name}}
+            {{product.material}}
+            {{product.color}}
+            {{product.hydrophily}}
+            {{product.price}}
+            {{product.client}}
+            {{product.quantity}}
+            {{product.reference}}
+            <button (click)="removeFromCart(i)">Remove</button>
+        </accordion-group>
+
+    </accordion>
+    <select type="text" *ngIf="user.role == 1" [(ngModel)]="client">
+        <option *ngFor="#mail of mails; #i = index " value="{{mail}}">{{mail}}</option>
+    </select>
+    <button (click)="validateCart()" class="btn btn-default">Valider le panier</button>
+</div>

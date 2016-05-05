@@ -19,7 +19,7 @@
             <div *ngIf="uploadFile">
                 Progress: {{ uploadProgress }}%
             </div>
-            <img [src]="products.image" alt="product image">
+            <img [src]="products.image.original" alt="product image">
             <div *ngIf="uploadFile">
                 <div class="ui indicating olive progress">
                     <div class="bar" [style.width]="uploadProgress + '%'"></div>

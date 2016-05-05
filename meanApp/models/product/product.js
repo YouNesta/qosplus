@@ -10,6 +10,10 @@ var ProductSchema = new mongoose.Schema({
         required : true,
         index: true
     },
+    status:{
+        type: Number,
+        required: false
+    },
     material:{
         type: String,
         required : true 
@@ -39,7 +43,7 @@ var ProductSchema = new mongoose.Schema({
         required : true
     },
     image: {
-        type: String,
+        type: Array,
         required : true
     }
 });

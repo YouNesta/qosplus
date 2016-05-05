@@ -31,7 +31,6 @@ module.exports = {
                     var item = new Item(product.item[i]);
                     item.save(function(error, data) {
                         if (error) {
-                            console.log('estt');
                             console.log(error);
                             logger.log('error', error);
                             res.json({success: false, message:error});
@@ -237,6 +236,34 @@ module.exports = {
                 res.json({success: true, message:"Product Successfully deleted", data: product});
             }
         });
+
+    },
+
+    deleteProducts: function(req, res){
+
+        var i = 0;
+
+        deleteProduct(req.body.products, i);
+
+        function deleteProduct(index){
+            console.log( req.body.products[index]);
+           if(i < req.body.products.length){
+               console.log('lalala');
+               Product.findOneAndRemove({_id: req.body.products[i]}, function(err,product){
+                   if(err)
+                   {
+                       console.log(err);
+                       logger.log('error', err);
+                       res.res.json({success: false, message:err});
+                   }
+                   i++;
+                   deleteProduct(i);
+
+               });
+           }else{
+               res.json({success: true, message:"Product Successfully deleted", data: req.body.products});
+           }
+        }
 
     }
 
