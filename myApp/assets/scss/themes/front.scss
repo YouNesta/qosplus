@@ -400,3 +400,36 @@ td {
   border: 1px solid;
   padding: 2px;
 }
+
+.user {
+  padding: 10px;
+  hr {
+    border-color: #e0e4ea;
+  }
+  .profile {
+    .shops {
+      margin-top: 20px;
+    }
+    .back-array {
+      border: 2px solid #e0e4ea;
+      border-radius: 5px;
+      padding: 0;
+      background-color: #FFF;
+      h4 {
+        font-weight: bold;
+        background-color: #f8f9fb;
+        margin: 0;
+        padding: 10px;
+      }
+      .row {
+        margin: 0;
+        border-bottom: 1px solid #e0e4ea;
+        div{
+          &.col-md-12, &.col-md-6 {
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+}

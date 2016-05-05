@@ -295,3 +295,25 @@
 td {
   border: 1px solid;
   padding: 2px; }
+
+.user {
+  padding: 10px; }
+  .user hr {
+    border-color: #e0e4ea; }
+  .user .profile .shops {
+    margin-top: 20px; }
+  .user .profile .back-array {
+    border: 2px solid #e0e4ea;
+    border-radius: 5px;
+    padding: 0;
+    background-color: #FFF; }
+    .user .profile .back-array h4 {
+      font-weight: bold;
+      background-color: #f8f9fb;
+      margin: 0;
+      padding: 10px; }
+    .user .profile .back-array .row {
+      margin: 0;
+      border-bottom: 1px solid #e0e4ea; }
+      .user .profile .back-array .row div.col-md-12, .user .profile .back-array .row div.col-md-6 {
+        padding: 10px; }

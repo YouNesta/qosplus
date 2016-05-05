@@ -221,9 +221,10 @@ module.exports = {
         })
     },
 
-    getById: function(req, res){
-        var user_Id = req.body.id;
-        User.findOne({_id: user_Id}, function(error, user){
+    getByMail: function(req, res){
+        var user_mail = req.body.mail;
+        User.findOne({mail: user_mail}, function(error, user){
+            console.log(user);
             if(error){
                 console.log(error);
                 logger.log('error', error);

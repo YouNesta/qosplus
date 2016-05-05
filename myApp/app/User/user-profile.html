@@ -9,22 +9,108 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-5 col-md-offset-1 back-array">
+                    <h4>Vos Infos</h4>
                     <div class="row">
-                        <div class="col-md-1"><i class="fa fa-envelope"></i></div>
-                        <div class="col-md-5">{{ user.mail }}</div>
+                        <div class="col-md-12"><i class="fa fa-envelope"></i> {{ user.mail }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-1"><i class="fa fa-phone"></i></div>
-                        <div class="col-md-5">{{ user.phone }}</div>
+                        <div class="col-md-12"><i class="fa fa-phone"></i> {{ user.phone }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-1"><i class="fa fa-euro"></i></div>
-                        <div class="col-md-5">{{ user.IBAN }}</div>
+                        <div class="col-md-12"><i class="fa fa-arrow-right"></i> <strong>IBAN</strong> {{ user.IBAN }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-md-1"><i class="fa fa-euro"></i></div>
-                        <div class="col-md-5">{{ user.BIC }}</div>
+                        <div class="col-md-12"><i class="fa fa-arrow-right"></i> <strong>BIC</strong> {{ user.BIC }}</div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-1 back-array">
+                    <h4>Transactions</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Solde actuel:
+                        </div>
+                        <div class="col-md-6">
+                            15747€
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Commandes passées:
+                        </div>
+                        <div class="col-md-6">
+                            6
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            Commandes validées:
+                        </div>
+                        <div class="col-md-6">
+                            5
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3>Shops</h3>
+            <hr>
+            <div class="row shops" *ngFor="#shop of shops">
+                <div class="col-md-10 col-md-offset-1 back-array">
+                    <h4>{{ shop.name }}</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ shop.socialReason }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <i class="fa fa-map-marker"></i> {{ shop.adress }}, {{ shop.zipCode }} {{ shop.city }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <i class="fa fa-phone"> {{ shop.phone }}</i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <i class="fa fa-mobile"> {{ shop.mobile }}</i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <i class="fa fa-fax"> {{ shop.fax }}</i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <i class="fa fa-envelope"> {{ shop.mail }}</i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <i class="fa fa-arrow-right"> <strong>TVA</strong> {{ shop.tva }}%</i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <i class="fa fa-arrow-right"> <strong>Siret</strong> {{ shop.siret }}</i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <i class="fa fa-arrow-right"> <strong>Adeli</strong> {{ shop.adeli }}</i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <i class="fa fa-truck"> {{ shop.transporteur }}</i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <i class="fa fa-calendar"> <strong>From</strong> {{ shop.openDay }} - {{ shop.openHour }} <strong>To</strong> {{ shop.closeDay }} - {{ shop.closeHour }}</i>
+                        </div>
                     </div>
                 </div>
             </div>

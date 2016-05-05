@@ -14,6 +14,7 @@ import {AdminFactory} from "./admin.factory";
 import {AlertService} from "../Tools/alert";
 import {FormValidator} from "../Config/form-validator";
 import {ProductFactory} from "../Product/product.factory";
+import {UserProfileComponent} from "../User/user-profile.component";
 
 
 @Component({

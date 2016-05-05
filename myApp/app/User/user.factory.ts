@@ -64,13 +64,13 @@ export class UserFactory {
             })
     }
 
-    getUserById(id){
-        var data =  JSON.stringify({id});
+    getUserByMail(mail){
+        var data =  JSON.stringify({mail});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
         this.authHttp
-            .post(this.apiUrl + 'getById',
+            .post(this.apiUrl + 'getByMail',
                 data, {
                     headers: headers
                 })
