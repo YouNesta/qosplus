@@ -1,19 +1,19 @@
 
 <div class="header row">
     <button class="menu-mobile"><img src="../../public/img/menu.png"></button>
-    <div class="col-md-2">
+    <div class="col-md-3">
         <div class="logo">
             <img src="../../public/img/logo.png">
         </div>
     </div>
-    <div class="col-md-8 header-navbar" id="header-navbar">
+    <div class="col-md-6 header-navbar" id="header-navbar">
         <li><a [routerLink]="['Home', 'Products']">Nos Produits</a></li>
         <li><a [routerLink]="['Home', 'Contact']">Nos Engagements</a></li>
         <li><a [routerLink]="['Home', 'About']">Qui sommes nous ?</a></li>
         <li><a [routerLink]="['Home', 'Homepage']">Accueil</a></li>
     </div>
-    <div class="col-md-8 header-connection">
-        <a [routerLink]="['User', 'Login']"><span>Connection</span></a>
+    <div class="col-md-3 header-connection">
+        <a [routerLink]="['User', 'Login']"><span>Connection</span></a> |
         <a [routerLink]="['User', 'Subscribe']"><span>Inscription</span></a>
     </div>
 </div>
