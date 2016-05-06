@@ -9,13 +9,32 @@
                         </div>
                         <div class="col-md-6 product-desc">
                             <h3>{{product.name}}</h3>
-                            <span>{{product.price}} €</span>
-                            <span>Hidrophilie: </span><span>{{product.hidrophily}}</span>
-                            <span>Matériau: </span><span>{{product.material}}</span>
-                            <span>Reference: </span><span>{{product.reference}}</span>
-                            <span>Couleur: </span><span>{{product.color}}</span>
-                            <span>nb items: </span><span>{{product.item.length}}</span>
+                            <div class="product-desc-items">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4>Prix: {{product.price}} €</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <span>Matériau: </span><span>{{product.material}}</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Reference: </span><span>{{product.reference}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>Hidrophilie: </span><span>{{product.hidrophily}}</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>Couleur: </span><span>{{product.color}}</span>
+                                </div>
+                                <span>nb items: </span><span>{{product.item.length}}</span>
+                                <p>{{product.description}}</p>
+                                <button class="btn btn-default btn-show-produit">Voir le Produit</button>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
