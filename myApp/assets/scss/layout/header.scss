@@ -1,4 +1,5 @@
 header {
+  padding-bottom: 10px;
   nav{
     li {
       display: inline-block;
@@ -45,10 +46,11 @@ header {
           width: 100%;
           padding: 15px;
           padding-top: 70px;
+          padding-bottom:2px;
           vertical-align: bottom;
         }
         a:hover {
-          border-bottom: 2px solid #571885;
+          border-bottom: 3px solid #571885;
         }
       }
       li:first-child {
