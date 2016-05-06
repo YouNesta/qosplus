@@ -6,7 +6,7 @@
 
 
         <accordion-group heading="Commande du {{command.date}}"  *ngFor='#command of commands; #i = index' [command]="command">
-            Client: #{{command.client}}<br>
+            Client: {{command.client}}<br>
             Liste des produits:
             <table>
                 <tr>

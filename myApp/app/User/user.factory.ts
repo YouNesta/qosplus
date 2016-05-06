@@ -229,25 +229,4 @@ export class UserFactory {
                 return response;
             })
     };
-
-    getUserCommands(user){
-        var data = JSON.stringify({user});
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-
-        return this.authHttp
-            .post(this.apiUrl + "payments",
-                data, {
-                    headers: headers
-                })
-            .map(response => response.json())
-            .map(response => {
-                if (response) {
-                    return response
-                }else{
-                    console.log("Error")
-                }
-                return response;
-            })
-    };
 }

@@ -31,7 +31,7 @@
                             Solde actuel:
                         </div>
                         <div class="col-md-6">
-                            15747€
+                            {{ getPrice() }}€
                         </div>
                     </div>
                     <div class="row">
@@ -39,7 +39,7 @@
                             Commandes passées:
                         </div>
                         <div class="col-md-6">
-                            6
+                            {{ commands.length }}
                         </div>
                     </div>
                     <div class="row">
@@ -47,7 +47,7 @@
                             Commandes validées:
                         </div>
                         <div class="col-md-6">
-                            5
+                            {{ getValidated() }}
                         </div>
                     </div>
                 </div>

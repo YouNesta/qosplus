@@ -210,8 +210,8 @@ module.exports = {
     },
 
     getUserCommands: function(req, res){
-        var user_Id = req.body.user._id;
-        Command.find({client: user_Id}, function(error, command){
+        var user_mail = req.body.user.mail;
+        Command.find({client: user_mail}, function(error, command){
             if(error){
                 console.log(error);
                 logger.log('error', error);

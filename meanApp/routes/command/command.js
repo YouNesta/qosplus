@@ -27,7 +27,8 @@ router.get('/list',function(req, res) {
     }
 });
 
-router.get('/list/user',function(req, res) {
+router.post('/list/user',function(req, res) {
+    console.log("hey");
     if(req.body != 'undefined'){
         CommandModule.getCommandsByUser(req, res);
     }else{
