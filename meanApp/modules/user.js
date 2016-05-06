@@ -224,13 +224,12 @@ module.exports = {
     getByMail: function(req, res){
         var user_mail = req.body.mail;
         User.findOne({mail: user_mail}, function(error, user){
-            console.log(user);
             if(error){
                 console.log(error);
                 logger.log('error', error);
                 res.json({ success: false, message: "User not Found", data:error});
             }
-            res.json({success: true, message: "User found", data:user})
+            res.json({success: true, message: "User found", data: user})
         })
     },
 

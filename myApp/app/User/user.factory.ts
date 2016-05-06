@@ -69,17 +69,25 @@ export class UserFactory {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        this.authHttp
+        return this.authHttp
             .post(this.apiUrl + 'getByMail',
                 data, {
                     headers: headers
                 })
             .map(response => response.json())
-            .subscribe(
-                response => console.log(response),
-                err =>  console.log(err),
-                () => console.log('User find')
-            );
+    }
+
+    getShops(ids){
+        var data =  JSON.stringify({ids});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'getShops',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
     }
 
     logout(){

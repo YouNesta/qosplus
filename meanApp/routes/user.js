@@ -8,6 +8,7 @@ var User = require("../models/user.js").User;
 var Admin = require("../models/admin/admin.js").Admin;
 var Shop = require("../models/shop.js").Shop;
 var users = require("../modules/user.js");
+var shops = require("../modules/shop.js");
 var Token    = require('../modules/jsonwebtoken/module');
 
 
@@ -133,17 +134,25 @@ router.put('/edit', function(req,res,next){
 });
 
 
-router.post('/profile', function(req,res,next){
+router.post('/profile', function(req,response,next){
   if(req.body != 'undefined'){
-    users.getProfile(req, res);
+    users.getProfile(req, response);
   }else{
-    res.sendStatus(500);
+    response.sendStatus(500);
   }
 });
 
 router.post('/getByMail', function(req,res,next){
   if(req.body != 'undefined'){
     users.getByMail(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
+router.post('/getShops', function(req,res,next){
+  if(req.body != 'undefined'){
+    shops.getShops(req, res);
   }else{
     res.sendStatus(500);
   }
