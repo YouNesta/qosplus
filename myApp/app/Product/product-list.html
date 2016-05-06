@@ -25,37 +25,34 @@
         </modal-footer>
     </modal>
 
-    <h2>Products</h2>
-    <button (click)="modal.open()">Open</button>
+    <button (click)="modal.open()" class="add-modale">Add a product</button>
 
-    <div class="col-lg-10 col-lg-offset-1 collapse-tab">
+    <div class="col-lg-12 collapse-tab">
         <div class="col-lg-12">
-            <div class="col-lg-12">
-                <div class="col-lg-1">
-                    <button (click)="deleteProducts(i)">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                    </button>
-                </div>
-                <div class="col-lg-2">
-                    Visuel Produit
-                </div>
-                <div class="col-lg-2">
-                   Nom Commercial
-                </div>
-                <div class="col-lg-2">
-                    Prix
-                </div>
-                <div class="col-lg-2">
-                    Réference
-                </div>
-                <div class="col-lg-3">
-                        Status
-                </div>
+            <div class="col-lg-1">
+                <button (click)="deleteProducts(i)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
             </div>
-
+            <div class="col-lg-2">
+                Visuel Produit
+            </div>
+            <div class="col-lg-2">
+               Nom Commercial
+            </div>
+            <div class="col-lg-2">
+                Prix
+            </div>
+            <div class="col-lg-2">
+                Réference
+            </div>
+            <div class="col-lg-3">
+                Status
+            </div>
         </div>
     </div>
-    <div class="col-lg-10 col-lg-offset-1 collapse-content">
+    <hr>
+    <div class="col-lg-12 collapse-content">
             <div class="product col-lg-12"  *ngFor='#product of products; #i = index;'>
 
                 <div class="collapse-head col-lg-12">
@@ -80,15 +77,13 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="col-lg-4">
-                            <h3>
-                                {{product.status}}
-                            </h3>
+                            <button class="status status-{{product.status}}"></button>
                         </div>
                         <div class="col-lg-4">
-                            <button (click)="loadModalProduct(product, modalCart);">Cart</button>
+                            <button (click)="loadModalProduct(product, modalCart);"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
                         </div>
                         <div class="col-lg-4">
-                            <button (click)="isOpen[i] = !isOpen[i]">open</button>
+                            <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                         </div>
 
                     </div>

@@ -433,3 +433,63 @@ td {
     }
   }
 }
+
+.content {
+  &.product-list {
+    padding: 20px;
+    hr {
+      border: solid 1px #e0e4ea;
+      width: 97%;
+    }
+    button {
+      height: 28px;
+      border-radius: 3px;
+      background-color: #ffffff;
+      border: solid 1px #e0e4ea;
+      padding-left: 13px;
+      padding-right: 13px;
+      &:hover {
+        background-color: #e0e4ea;
+        border-color: #878787;
+      }
+      &.add-modale {
+        width: 150px;
+        height: 36px;
+        border-radius: 3px;
+        color: #FFF;
+        background-color: #10cfbd;
+        margin-bottom: 40px;
+        &:hover {
+          background-color: rgba(16, 207, 189, 0.6);
+        }
+      }
+    }
+    .collapse-tab {
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: #3e5e76;
+    }
+    .collapse-content {
+      .product {
+        border: 1px solid #e0e4ea;
+        border-radius: 3px;
+        input[type="checkbox"]{
+          margin-top: 30%;
+          width: 40px;
+          height: 40px;
+        }
+        button {
+          margin-top: 50%;
+        }
+      }
+    }
+  }
+}
+
+.modal-body {
+  img {
+   width: 100%;
+  }
+}
