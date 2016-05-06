@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Nos produits</h1>
-    <div class="row" *ngFor="#product of products; #i = index">
+    <div class="row" *ngFor="#product of products; #i = index" (click)="onSelect(product)">
             <div class="container-products">
                 <div class="row">
                     <div class="col-md-12 product-display">

@@ -238,6 +238,41 @@ module.exports = {
             }
         });
 
+    },
+
+    getOneProduct: function(req, res){
+        Product.findOne({_id: req.body.product._id}, function(err, product){
+            if(err)
+            {
+                console.log(err);
+                logger.log('error', err);
+                res.res.json({success: false, message:err});
+            }
+            var i = 0;
+            getItem(product, i);
+
+            function getItem(product, i){
+                if(i < product.length){
+
+                    Item.find({
+                        '_id': { $in: product[i].item}
+                    }, function(error, item){
+                        if (error) {
+                            console.log(error);
+                            logger.log('error', error);
+                            res.json({success: false, message:error});
+                        }
+                        delete product[i].item;
+                        product[i].item = item;
+                        i++;
+                        getItem(product, i);
+                    });
+
+                }else{
+                    res.json({success: true, message:"User List Find with success", data: product});
+                }
+            };
+        })
     }
 
   

@@ -17,6 +17,10 @@ router.get('/list', function(req, res, next) {
    product.getProducts(req, res);
 });
 
+router.get('/product/:id', function(req, res, next){
+    product.getOneProduct(req, res);
+})
+
 router.post('/add', function(req, res, next) {
     if(req.body.product != 'undefined'){
         product.addProduct(req, res);
