@@ -24,7 +24,7 @@ export class UserProductComponent {
                 response => {
                     if(response.success){
                         this.product = response.data;
-                        console.log(this.products)
+                        console.log(this.product)
                     }else{
                         console.log(response);
                     }
