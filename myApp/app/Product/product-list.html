@@ -13,16 +13,9 @@
     </modal>
 
     <modal #modalCart>
-        <modal-header>
-            <h4 class="modal-title">Add a product to the cart</h4>
-        </modal-header>
         <modal-body>
             <product-add-cart [modal]="modalCart" [productCart]="productCart"></product-add-cart>
         </modal-body>
-        <modal-footer>
-            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalCart.dismiss()">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="modalCart.close()">Ok</button>
-        </modal-footer>
     </modal>
 
     <button (click)="modal.open()" class="add-modale">Add a product</button>

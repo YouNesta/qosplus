@@ -492,4 +492,43 @@ td {
   img {
    width: 100%;
   }
+  .add-product {
+    h2 {
+      font-family: HelveticaNeue;
+      font-size: 21px;
+      color: #22282b;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h3 {
+      font-family: HelveticaNeue-Medium;
+      font-size: 16px;
+      color: #22282b;
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+      font-family: HelveticaNeue-Medium;
+      font-size: 14px;
+      color: #22282b;
+    }
+    select, input[type="text"], input[type="number"] {
+      height: 36px;
+      border-radius: 3px;
+      border: solid 1px #e0e4ea;
+      width: 100%;
+      background-color: #FFF;
+      margin-bottom: 25px;
+    }
+    button {
+      width: 150px;
+      height: 36px;
+      border-radius: 3px;
+      background-color: #10cfbd;
+      color: #FFF;
+      border-color: transparent;
+      font-family: HelveticaNeue-Medium;
+      font-size: 13px;
+    }
+  }
 }
