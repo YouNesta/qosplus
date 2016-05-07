@@ -135,11 +135,11 @@ export class AdminValidationComponent {
     validateUser(){
         this.service.updateUser(this.model)
             .subscribe(
-                res => {
-                    if(res.success){
-                        this.alertService.addAlert('success', res.message);
+                response => {
+                    if(response.success){
+                        this.alertService.addAlert('success', response.message);
                     }else{
-                        this.alertService.addAlert('warning', res.message);
+                        this.alertService.addAlert('warning', response.message);
                     }
                 },
                 err => {

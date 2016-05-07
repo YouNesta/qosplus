@@ -56,7 +56,7 @@ export class ProductListComponent {
             .subscribe(
                 response => {
                     if(response.success){
-                        getProducts();
+                        this.getProducts();
                     }else{
                         console.log(response);
                     }

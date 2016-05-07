@@ -67,7 +67,7 @@ export class AdminSubscribeComponent {
             this.service.save(this.model)
                 .subscribe(
                     response => {
-                        if(response.success == true){
+                        if(response.success){
                             this.alertService.addAlert('success', response.message);
                         }else{
                             this.alertService.addAlert('warning', response.message);
