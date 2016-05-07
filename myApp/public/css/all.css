@@ -662,10 +662,21 @@ td {
     .content.product-list .collapse-content .product button {
       margin-top: 50%; }
 
-.modal-body img {
-  width: 100%; }
+.modal-body label {
+  font-weight: bold;
+  font-family: HelveticaNeue-Medium;
+  font-size: 14px;
+  color: #22282b; }
 
-.modal-body .add-product h2 {
+.modal-body select, .modal-body input[type="text"], .modal-body input[type="number"] {
+  height: 36px;
+  border-radius: 3px;
+  border: solid 1px #e0e4ea;
+  width: 100%;
+  background-color: #FFF;
+  margin-bottom: 25px; }
+
+.modal-body h2 {
   font-family: HelveticaNeue;
   font-size: 21px;
   color: #22282b;
@@ -678,20 +689,6 @@ td {
   color: #22282b;
   text-align: center; }
 
-.modal-body .add-product label {
-  font-weight: bold;
-  font-family: HelveticaNeue-Medium;
-  font-size: 14px;
-  color: #22282b; }
-
-.modal-body .add-product select, .modal-body .add-product input[type="text"], .modal-body .add-product input[type="number"] {
-  height: 36px;
-  border-radius: 3px;
-  border: solid 1px #e0e4ea;
-  width: 100%;
-  background-color: #FFF;
-  margin-bottom: 25px; }
-
 .modal-body .add-product button {
   width: 150px;
   height: 36px;
@@ -701,6 +698,42 @@ td {
   border-color: transparent;
   font-family: HelveticaNeue-Medium;
   font-size: 13px; }
+
+.modal-body .new-product button {
+  width: 100%;
+  height: 36px;
+  border-radius: 3px;
+  background-color: #10cfbd;
+  color: #FFF;
+  border-color: transparent;
+  font-family: HelveticaNeue-Medium;
+  font-size: 13px; }
+
+.modal-body .new-product input[type="checkbox"] {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.modal-body .new-product .photo {
+  border-radius: 5px;
+  border: solid 1px #e0e4ea;
+  width: 100px;
+  height: 100px;
+  margin-left: 50px;
+  overflow: hidden; }
+  .modal-body .new-product .photo img {
+    height: 100%; }
+
+.modal-body .new-product .upload-button {
+  border-radius: 3px;
+  background-color: #48b0f7;
+  padding: 5px;
+  color: #FFF;
+  width: 80%;
+  text-align: center;
+  margin-top: 15%; }
+
+.modal-body .new-product .row {
+  margin-bottom: 10px; }
 
 @font-face {
   font-family: OpenSans;

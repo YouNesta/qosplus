@@ -1,218 +1,213 @@
-<h1>Add a product</h1>
-<div class="container-fluid">
+<div class="container-fluid new-product">
     <form [ngFormModel]="subscribeForm" novalidate>
         <div class="row">
-            Add image
+            <div class="col-md-12">
+                <h1>Add a product</h1>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="photo">
+                                    <img [src]="products.image.original" alt="product image">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="file-pb" class="ui small black button right icon upload-button">
+                                    Choose file
+                                </label>
+                                <input type="file"
+                                       id="file-pb"
+                                       style="display:none;"
+                                       [ng-file-select]="options"
+                                       (onUpload)="handleUpload($event)">
+                                <div *ngIf="uploadFile">
+                                    Progress: {{ uploadProgress }}%
+                                </div>
 
-            <div>
-                <label for="file-pb" class="ui small black button right icon upload-button">
-                    <i class="ion-document icon"></i>
-                    Choose file
-                </label>
-                <input type="file"
-                       id="file-pb"
-                       style="display:none;"
-                       [ng-file-select]="options"
-                       (onUpload)="handleUpload($event)">
-            </div>
+                                <div *ngIf="uploadFile">
+                                    <div class="ui indicating olive progress">
+                                        <div class="bar" [style.width]="uploadProgress + '%'"></div>
+                                        <div class="label">Uploading file ({{ uploadProgress }}%)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div *ngIf="uploadFile">
-                Progress: {{ uploadProgress }}%
-            </div>
-            <img [src]="products.image.original" alt="product image">
-            <div *ngIf="uploadFile">
-                <div class="ui indicating olive progress">
-                    <div class="bar" [style.width]="uploadProgress + '%'"></div>
-                    <div class="label">Uploading file ({{ uploadProgress }}%)</div>
-                </div>
-            </div>
-
-            <div>
-                Response: <br/>{{ uploadFile | json }}
-            </div>
-        </div>
-        <div class="row product">
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <div class="form-group ">
-                    <label for="name">Nom</label>
-                    <input  [(ngModel)]="products.name" ngControl="name" id="name" class="form-control">
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <div class="form-group ">
-                    <label for="hydrophily">Hydrophilie</label>
-                    <input type="number" [(ngModel)]="products.hydrophily" id="hydrophily" class="form-control" placeholder="%">
-                </div>
-            </div>
-        </div>
-        <div class="row product">
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <div class="form-group ">
-                    <label for="material">Material</label>
-                    <select class="form-control" id="material" [(ngModel)]="products.material">
-                        <option *ngFor="#material of materials;" [value]="material">{{material}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <div class="form-group ">
-                    <label for="color">Color</label>
-                    <select class="form-control" id="color" [(ngModel)]="products.color">
-                        <option *ngFor="#item of colors;" [value]="item">{{item}}</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row product">
-            <div class="col-xs-12 col-md-§ col-sm-6">
-
-                <div class="form-group" *ngFor="#price of products.price">
-                    <label >Price {{price.name}} </label>
-                    <input [(ngModel)]="price.price" name="price"  class="form-control">
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row product">
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <div class="form-group ">
-                    <div class="col col-md-12">
-                        <tag-input [(ngModel)]="products.param.radius" placeholder="rayon"></tag-input>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="name">Nom</label>
+                        <input  [(ngModel)]="products.name" ngControl="name" id="name" class="form-control">
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <div class="form-group ">
-                    <div class="col col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="hydrophily">Hydrophilie</label>
+                        <input type="number" [(ngModel)]="products.hydrophily" id="hydrophily" class="form-control" placeholder="%">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="material">Material</label>
+                        <select class="form-control" id="material" [(ngModel)]="products.material">
+                            <option *ngFor="#material of materials;" [value]="material">{{material}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="color">Color</label>
+                        <select class="form-control" id="color" [(ngModel)]="products.color">
+                            <option *ngFor="#item of colors;" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group" *ngFor="#price of products.price">
+                            <label >Price {{price.name}} </label>
+                            <input [(ngModel)]="price.price" name="price"  class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Rayon</label>
+                        <tag-input [(ngModel)]="products.param.radius" placeholder="rayon"></tag-input>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Diamètre</label>
                         <tag-input [(ngModel)]="products.param.diameter" placeholder="diamètre"></tag-input>
                     </div>
                 </div>
-            </div>
-        </div>
-        <br>
-        <div class="row product">
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <div class="form-group ">
-                    <label for="axis">Axe</label><br><br>
-                    <div class="col col-md-4">
-                        <input type="number" id="axis" class="form-control" [(ngModel)]="int.axis.min"  placeholder="Min Value">
-                    </div>
-                    <div class="col col-md-4">
-                        <input type="number" id="axis-max" class="form-control" [(ngModel)]="int.axis.max"   placeholder="Max Value">
-                    </div>
-                    <div class="col col-md-4">
-                        <input type="number" id="axis-interval" class="form-control" [(ngModel)]="int.axis.int"   placeholder="Interval">
-                    </div>
-                    <button (click)="addParams('axis')">add</button>
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <div class="form-group ">
-                    <label for="addition">Addition</label><br><br>
-                    <div class="col col-md-4">
-                        <input  type="number" id="addition" [(ngModel)]="int.addition.min" class="form-control" placeholder="Min Value">
-                    </div>
-                    <div class="col col-md-4">
-                        <input type="number" id="addition-max" [(ngModel)]="int.addition.max" class="form-control" placeholder="Max Value">
-                    </div>
-                    <div class="col col-md-4">
-                        <input type="number"  id="addition-interval" [(ngModel)]="int.addition.int" class="form-control" placeholder="Interval">
-                    </div>
-                    <button (click)="addParams('addition')">add</button>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row product">
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <div class="form-group ">
-                    <label for="cylindre">Cylindre</label><br><br>
-                    <div class="col col-md-4">
-                        <input type="number" id="cylindre" [(ngModel)]="int.cylinder.min" class="form-control" placeholder="Min Value">
-                    </div>
-                    <div class="col col-md-4">
-                        <input type="number" id="cylindre-max" [(ngModel)]="int.cylinder.max" class="form-control" placeholder="Max Value">
-                    </div>
-                    <div class="col col-md-4">
-                        <input type="number" id="cylindre-interval" [(ngModel)]="int.cylinder.int" class="form-control" placeholder="Interval">
-                    </div>
-                    <button (click)="addParams('cylinder')">add</button>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row product" *ngFor="#product of products.item">
-            <div class="form-group">
-                <div class="col col-md-6">
-                    <div class="form-group ">
-                        <div class="col col-md-3">
-                            <label for="cylindre">Rayon</label><br>
-                            <select [(ngModel)]="product.radius">
-                                <option *ngFor="#item of products.param.radius; #i = index" [value]="item">{{item}}</option>
-                            </select>
-                        </div>
-                        <div class="col col-md-3">
-                            <label for="cylindre">Diametre</label><br>
-                            <select [(ngModel)]="product.diameter">
-                                <option *ngFor="#item of products.param.diameter; #i = index" [value]="item">{{item}}</option>
-                            </select>
-                        </div>
-                        <div class="col col-md-3">
-                            <label for="cylindre">Axis</label><br>
-                            <select [(ngModel)]="product.axis">
-                                <option *ngFor="#item of products.param.axis; #i = index" [value]="item">{{item}}</option>
-                            </select>
-                        </div>
-                        <div class="col col-md-3">
-                            <label for="cylindre">Addition</label><br>
-                            <select [(ngModel)]="product.addition">
-                                <option *ngFor="#item of products.param.addition; #i = index" [value]="item">{{item}}</option>
-                            </select>
-                        </div>
-                        <div class="col col-md-3">
-                            <label for="cylindre">Cylindre</label><br>
-                            <select [(ngModel)]="product.cylinder">
-                                <option *ngFor="#item of products.param.cylinder; #i = index" [value]="item">{{item}}</option>
-                            </select>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="axis">Axe</label>
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <input type="number" id="axis" class="form-control" [(ngModel)]="int.axis.min"  placeholder="Min Value">
+                            </div>
+                            <div class="col col-md-3">
+                                <input type="number" id="axis-max" class="form-control" [(ngModel)]="int.axis.max"   placeholder="Max Value">
+                            </div>
+                            <div class="col col-md-3">
+                                <input type="number" id="axis-interval" class="form-control" [(ngModel)]="int.axis.int"   placeholder="Interval">
+                            </div>
+                            <div class="col col-md-3">
+                                <button (click)="addParams('axis')">add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col col-md-6">
-                    <div class="form-group ">
-                        <label for="addition">Sphere</label><br><br>
-                        <div class="col col-md-4">
-                            <input  type="number" id="sphere" [(ngModel)]="product.sphere.min" class="form-control" placeholder="Min Value">
-                        </div>
-                        <div class="col col-md-4">
-                            <input type="number" id="sphere-max" [(ngModel)]="product.sphere.max" class="form-control" placeholder="Max Value">
-                        </div>
-                        <div class="col col-md-4">
-                            <select [(ngModel)]="product.sphere.int">
-                                <option *ngFor="#intervale of intervales; #i = index" [value]="intervale">{{intervale}}</option>
-                            </select>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="addition">Addition</label>
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <input  type="number" id="addition" [(ngModel)]="int.addition.min" class="form-control" placeholder="Min Value">
+                            </div>
+                            <div class="col col-md-3">
+                                <input type="number" id="addition-max" [(ngModel)]="int.addition.max" class="form-control" placeholder="Max Value">
+                            </div>
+                            <div class="col col-md-3">
+                                <input type="number"  id="addition-interval" [(ngModel)]="int.addition.int" class="form-control" placeholder="Interval">
+                            </div>
+                            <div class="col-md-3">
+                                <button (click)="addParams('addition')">add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <div class="col col-md-6">
-                        <label>Stock</label><br>
-                        <input type="checkbox" [(ngModel)]="product.provider"><label>Chez le fournisseur</label><br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="cylindre">Cylindre</label>
+                        <div class="row">
+                            <div class="col col-md-3">
+                                <input type="number" id="cylindre" [(ngModel)]="int.cylinder.min" class="form-control" placeholder="Min Value">
+                            </div>
+                            <div class="col col-md-3">
+                                <input type="number" id="cylindre-max" [(ngModel)]="int.cylinder.max" class="form-control" placeholder="Max Value">
+                            </div>
+                            <div class="col col-md-3">
+                                <input type="number" id="cylindre-interval" [(ngModel)]="int.cylinder.int" class="form-control" placeholder="Interval">
+                            </div>
+                            <div class="col-md-3">
+                                <button (click)="addParams('cylinder')">add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="cylindre">Rayon</label><br>
+                        <select [(ngModel)]="products.radius">
+                            <option *ngFor="#item of products.param.radius; #i = index" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cylindre">Diamètre</label><br>
+                        <select [(ngModel)]="products.diameter">
+                            <option *ngFor="#item of products.param.diameter; #i = index" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="cylindre">Axes</label><br>
+                        <select [(ngModel)]="products.axis">
+                            <option *ngFor="#item of products.param.axis; #i = index" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="cylindre">Addition</label><br>
+                        <select [(ngModel)]="products.addition">
+                            <option *ngFor="#item of products.param.addition; #i = index" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="cylindre">Cylindre</label><br>
+                        <select [(ngModel)]="products.cylinder">
+                            <option *ngFor="#item of products.param.cylinder; #i = index" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="addition">Sphere</label>
+                        <div class="row">
+                            <div class="col col-md-4">
+                                <input  type="number" id="sphere" [(ngModel)]="products.sphere.min" class="form-control" placeholder="Min Value">
+                            </div>
+                            <div class="col col-md-4">
+                                <input type="number" id="sphere-max" [(ngModel)]="products.sphere.max" class="form-control" placeholder="Max Value">
+                            </div>
+                            <div class="col col-md-4">
+                                <select [(ngModel)]="products.sphere.int">
+                                    <option *ngFor="#intervale of intervales; #i = index" [value]="intervale">{{intervale}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Stock</label> (<input type="checkbox" [(ngModel)]="products.provider"><label>Chez le fournisseur</label>)
                         <input [disabled]="product.provider" type="number" id="stock" [(ngModel)]="product.stock" class="form-control" placeholder="Min Value">
                     </div>
-
-                    <div class="col col-md-6">
-                        <label for="addition">Condition</label><br><br>
-                        <select [(ngModel)]="product.condition">
+                    <div class="col-md-6">
+                        <label for="addition">Condition</label>
+                        <select [(ngModel)]="products.condition">
                             <option *ngFor="#item of conditions; #i = index" [value]="item">{{item}}</option>
                         </select>
                     </div>
                 </div>
-                <button (click)="addProduct()">add</button>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <button (click)="addProduct()">add</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <button (click)="save()">Valider</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <button (click)="save()">Sauvegarder</button>
     </form>
 </div>
 
