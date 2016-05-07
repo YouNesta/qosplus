@@ -87,13 +87,12 @@ export class ProductFactory {
 
 
     getOneProduct(productId){
-        var data =  JSON.stringify({productId});
+        console.log(productId);
         var headers = new Headers();
             headers.append('Content-Type', 'application/json');
-
             return this.authHttp
-                .post(this.apiUrl + 'product/:'+productId,
-                    data, {
+                .get(this.apiUrl + 'product/'+productId,
+                     {
                         headers: headers
                     })
                 .map(response => response.json())

@@ -10,7 +10,7 @@ import {Product} from "../Product/product";
 @Component({
     providers: [],
     templateUrl: "app/User/user-products-list.html",
-    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES]
+    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, ROUTER_DIRECTIVES]
 })
 
 export class UserProductsListComponent {
@@ -33,7 +33,7 @@ export class UserProductsListComponent {
     }
 
     onSelect(product: Product) {
-        this.router.navigate(['Product', {id: product.id}]);
+        this.router.navigate(['Product', {id: product._id}]);
     }
 
 }

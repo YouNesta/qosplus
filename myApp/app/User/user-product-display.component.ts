@@ -18,14 +18,17 @@ export class UserProductComponent {
     productId: Object;
 
     constructor(public service: ProductFactory, params: RouteParams, public router: Router){
+        console.log(params);
         this.productId = params.get('id');
         this.service.getOneProduct(this.productId)
             .subscribe(
                 response => {
                     if(response.success){
+                        console.log('test');
                         this.product = response.data;
                         console.log(this.product)
                     }else{
+                        console.log('fail');
                         console.log(response);
                     }
                 },

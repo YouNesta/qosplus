@@ -241,13 +241,16 @@ module.exports = {
     },
 
     getOneProduct: function(req, res){
-        Product.findOne({_id: req.body.product._id}, function(err, product){
+        console.log(req.params.id);
+        console.log('win');
+        Product.findOne({_id: req.params.id}, function(err, product){
             if(err)
             {
                 console.log(err);
                 logger.log('error', err);
                 res.res.json({success: false, message:err});
             }
+            console.log('win2');
             var i = 0;
             getItem(product, i);
 
@@ -269,6 +272,7 @@ module.exports = {
                     });
 
                 }else{
+                    console.log('testtest');
                     res.json({success: true, message:"User List Find with success", data: product});
                 }
             };
