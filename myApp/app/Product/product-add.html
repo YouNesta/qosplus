@@ -131,75 +131,77 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="cylindre">Rayon</label><br>
-                        <select [(ngModel)]="products.radius">
-                            <option *ngFor="#item of products.param.radius; #i = index" [value]="item">{{item}}</option>
-                        </select>
+                <span *ngFor="#product of products.item">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="cylindre">Rayon</label><br>
+                            <select [(ngModel)]="product.radius">
+                                <option *ngFor="#item of products.param.radius; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cylindre">Diamètre</label><br>
+                            <select [(ngModel)]="product.diameter">
+                                <option *ngFor="#item of products.param.diameter; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="cylindre">Diamètre</label><br>
-                        <select [(ngModel)]="products.diameter">
-                            <option *ngFor="#item of products.param.diameter; #i = index" [value]="item">{{item}}</option>
-                        </select>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="cylindre">Axes</label><br>
+                            <select [(ngModel)]="product.axis">
+                                <option *ngFor="#item of products.param.axis; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="cylindre">Addition</label><br>
+                            <select [(ngModel)]="product.addition">
+                                <option *ngFor="#item of products.param.addition; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="cylindre">Cylindre</label><br>
+                            <select [(ngModel)]="product.cylinder">
+                                <option *ngFor="#item of products.param.cylinder; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label for="cylindre">Axes</label><br>
-                        <select [(ngModel)]="products.axis">
-                            <option *ngFor="#item of products.param.axis; #i = index" [value]="item">{{item}}</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="cylindre">Addition</label><br>
-                        <select [(ngModel)]="products.addition">
-                            <option *ngFor="#item of products.param.addition; #i = index" [value]="item">{{item}}</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="cylindre">Cylindre</label><br>
-                        <select [(ngModel)]="products.cylinder">
-                            <option *ngFor="#item of products.param.cylinder; #i = index" [value]="item">{{item}}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="addition">Sphere</label>
-                        <div class="row">
-                            <div class="col col-md-4">
-                                <input  type="number" id="sphere" [(ngModel)]="products.sphere.min" class="form-control" placeholder="Min Value">
-                            </div>
-                            <div class="col col-md-4">
-                                <input type="number" id="sphere-max" [(ngModel)]="products.sphere.max" class="form-control" placeholder="Max Value">
-                            </div>
-                            <div class="col col-md-4">
-                                <select [(ngModel)]="products.sphere.int">
-                                    <option *ngFor="#intervale of intervales; #i = index" [value]="intervale">{{intervale}}</option>
-                                </select>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="addition">Sphere</label>
+                            <div class="row">
+                                <div class="col col-md-4">
+                                    <input  type="number" id="sphere" [(ngModel)]="product.sphere.min" class="form-control" placeholder="Min Value">
+                                </div>
+                                <div class="col col-md-4">
+                                    <input type="number" id="sphere-max" [(ngModel)]="product.sphere.max" class="form-control" placeholder="Max Value">
+                                </div>
+                                <div class="col col-md-4">
+                                    <select [(ngModel)]="product.sphere.int">
+                                        <option *ngFor="#intervale of intervales; #i = index" [value]="intervale">{{intervale}}</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label>Stock</label> (<input type="checkbox" [(ngModel)]="products.provider"><label>Chez le fournisseur</label>)
-                        <input [disabled]="product.provider" type="number" id="stock" [(ngModel)]="product.stock" class="form-control" placeholder="Min Value">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Stock</label> (<input type="checkbox" [(ngModel)]="product.provider"><label>Chez le fournisseur</label>)
+                            <input [disabled]="product.provider" type="number" id="stock" [(ngModel)]="product.stock" class="form-control" placeholder="Min Value">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="addition">Condition</label>
+                            <select [(ngModel)]="product.condition">
+                                <option *ngFor="#item of conditions; #i = index" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="addition">Condition</label>
-                        <select [(ngModel)]="products.condition">
-                            <option *ngFor="#item of conditions; #i = index" [value]="item">{{item}}</option>
-                        </select>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <button (click)="addProduct()">add</button>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <button (click)="addProduct()">add</button>
-                    </div>
-                </div>
+                </span>
                 <hr>
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
