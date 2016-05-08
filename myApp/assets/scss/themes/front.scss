@@ -435,11 +435,21 @@ td {
 }
 
 .content {
-  &.product-list {
+  &.product-list, &.product-cart {
     padding: 20px;
     hr {
       border: solid 1px #e0e4ea;
       width: 97%;
+    }
+    .col-lg-2 {
+      p {
+        margin-top: 25%;
+      }
+    }
+    .col-lg-1 {
+      p {
+        margin-top: 50%;
+      }
     }
     button {
       height: 28px;
@@ -452,7 +462,7 @@ td {
         background-color: #e0e4ea;
         border-color: #878787;
       }
-      &.add-modale {
+      &.add-modale, &.validate-cart {
         width: 150px;
         height: 36px;
         border-radius: 3px;
@@ -461,6 +471,7 @@ td {
         margin-bottom: 40px;
         &:hover {
           background-color: rgba(16, 207, 189, 0.6);
+          border-color: transparent;
         }
       }
     }
@@ -483,6 +494,39 @@ td {
         button {
           margin-top: 50%;
         }
+      }
+    }
+  }
+  &.product-cart {
+    select {
+      margin-bottom: 20px;
+      width: 100%;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      padding: 10px;
+      height: 40px;
+      border-radius: 3px;
+      background-color: #ffffff;
+      border: solid 1px #e0e4ea;
+    }
+    .total {
+      height: 80px;
+      border-radius: 5px;
+      background-color: #ffffff;
+      border: solid 1px #e0e4ea;
+      font-family: 'Open Sans';
+      font-size: 15px;
+      text-transform: uppercase;
+      color: #3e5e76;
+      padding-top: 2%;
+      .price {
+        font-size: 15px;
+        color: #48b0f7;
+      }
+      button {
+        width: 180px;
+        height: 36px;
       }
     }
   }

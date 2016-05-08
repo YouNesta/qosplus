@@ -20,12 +20,17 @@ export class ProductCartComponent {
     alertService: AlertService;
     user = Object;
     mails = [];
+    isOpen = [];
     client = "";
 
     constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService, public userService: UserFactory){
         this.alertService = alertService;
         this.products = JSON.parse(localStorage.getItem("cart"));
+        for(var i in this.products){
+            this.isOpen.push(false);
+        }
         this.user = JSON.parse(localStorage.getItem("user"));
+        this.client = this.user.mail;
         if (this.user.role == 1) {
             userService.getMails()
                 .subscribe(
@@ -68,6 +73,11 @@ export class ProductCartComponent {
             },
             () => console.log('Command Added')
         );;
+    }
+
+    getPrice() {
+        var price = 7345.99;
+        return price;
     }
 
 }
