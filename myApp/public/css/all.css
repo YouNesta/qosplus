@@ -112,10 +112,11 @@ search .row {
       text-align: center; }
       .footer .footer-content form .center input {
         color: #FFF; }
-    .footer .footer-content a {
-      text-decoration: none; }
     .footer .footer-content .useful-link {
       margin-top: 10px; }
+      .footer .footer-content .useful-link a {
+        text-decoration: none;
+        color: #fff; }
     .footer .footer-content #map {
       width: 100%;
       height: 230px;
@@ -123,116 +124,119 @@ search .row {
   .footer .copyright {
     padding: 20px; }
 
-header nav {
-  background-color: #fff;
-  color: #000;
-  font-family: 'Roboto', sans-serif; }
-  header nav li {
-    display: inline-block;
-    float: right; }
-  header nav .container, header nav .container-fluid {
-    padding: 0 !important; }
-  header nav .logo {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 75px; }
-    header nav .logo img {
-      width: 93px; }
-  header nav .header-navbar {
-    height: 93px;
-    max-width: 100%; }
-    header nav .header-navbar li {
-      border-right: 1px solid #FFF;
-      height: 93px;
-      text-transform: uppercase;
-      padding: 0;
-      animation-duration: 1s;
-      font-size: 18px; }
-      header nav .header-navbar li.selected a {
-        background-color: #CCA6FB;
-        color: #fff;
-        border-bottom: 2px solid #571885; }
-      header nav .header-navbar li a {
-        clear: both;
-        color: #000;
-        text-decoration: none;
-        display: block;
-        height: 100%;
-        width: 100%;
-        padding: 15px;
-        padding-top: 70px;
-        vertical-align: bottom; }
-      header nav .header-navbar li a:hover {
-        border-bottom: 2px solid #571885; }
-    header nav .header-navbar li:first-child {
-      border: 0;
-      margin-right: 80px; }
-  header nav .menu-mobile {
-    background-color: transparent;
-    border: 0;
-    height: 40px;
-    float: right;
-    display: none;
-    position: absolute;
-    width: 10%;
-    margin-left: 90%;
-    margin-top: 5%; }
-    header nav .menu-mobile img {
-      height: 100%; }
-
-header nav-admin #sidebar-wrapper, header nav-user #sidebar-wrapper {
-  z-index: 1000;
+header {
   position: fixed;
-  top: 0;
-  width: 250px;
-  bottom: 0;
-  background: #000; }
-  header nav-admin #sidebar-wrapper .sidebar-nav, header nav-user #sidebar-wrapper .sidebar-nav {
-    background: #2b303b;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: rgba(120, 129, 149, 0.92); }
-    header nav-admin #sidebar-wrapper .sidebar-nav li, header nav-user #sidebar-wrapper .sidebar-nav li {
-      line-height: 40px; }
-      header nav-admin #sidebar-wrapper .sidebar-nav li a, header nav-user #sidebar-wrapper .sidebar-nav li a {
-        display: block;
-        color: #999999; }
-        header nav-admin #sidebar-wrapper .sidebar-nav li a:hover, header nav-user #sidebar-wrapper .sidebar-nav li a:hover {
-          text-decoration: none;
+  width: 100%;
+  z-index: 100; }
+  header nav {
+    background-color: #fff;
+    color: #000;
+    font-family: 'Roboto', sans-serif; }
+    header nav li {
+      display: inline-block;
+      float: right; }
+    header nav .container, header nav .container-fluid {
+      padding: 0 !important; }
+    header nav .logo {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      margin-left: 75px; }
+      header nav .logo img {
+        width: 93px; }
+    header nav .header-navbar {
+      height: 93px;
+      max-width: 100%; }
+      header nav .header-navbar li {
+        border-right: 1px solid #FFF;
+        height: 93px;
+        text-transform: uppercase;
+        padding: 0;
+        animation-duration: 1s;
+        font-size: 18px; }
+        header nav .header-navbar li.selected a {
+          background-color: #CCA6FB;
           color: #fff;
-          background: rgba(255, 255, 255, 0.2); }
-        header nav-admin #sidebar-wrapper .sidebar-nav li a:active, header nav-admin #sidebar-wrapper .sidebar-nav li a:focus, header nav-user #sidebar-wrapper .sidebar-nav li a:active, header nav-user #sidebar-wrapper .sidebar-nav li a:focus {
-          text-decoration: none; }
-      header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand), header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) {
+          border-bottom: 2px solid #571885; }
+        header nav .header-navbar li a {
+          clear: both;
+          color: #000;
+          text-decoration: none;
+          display: block;
+          height: 100%;
+          width: 100%;
+          padding: 15px;
+          padding-top: 70px;
+          vertical-align: bottom; }
+        header nav .header-navbar li a:hover {
+          border-bottom: 2px solid #571885; }
+      header nav .header-navbar li:first-child {
+        border: 0;
+        margin-right: 80px; }
+    header nav .menu-mobile {
+      background-color: transparent;
+      border: 0;
+      height: 40px;
+      float: right;
+      display: none;
+      position: absolute;
+      width: 10%;
+      margin-left: 90%;
+      margin-top: 5%; }
+      header nav .menu-mobile img {
+        height: 100%; }
+  header nav-admin #sidebar-wrapper, header nav-user #sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    width: 250px;
+    bottom: 0;
+    background: #000; }
+    header nav-admin #sidebar-wrapper .sidebar-nav, header nav-user #sidebar-wrapper .sidebar-nav {
+      background: #2b303b;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      color: rgba(120, 129, 149, 0.92); }
+      header nav-admin #sidebar-wrapper .sidebar-nav li, header nav-user #sidebar-wrapper .sidebar-nav li {
+        line-height: 40px; }
+        header nav-admin #sidebar-wrapper .sidebar-nav li a, header nav-user #sidebar-wrapper .sidebar-nav li a {
+          display: block;
+          color: #999999; }
+          header nav-admin #sidebar-wrapper .sidebar-nav li a:hover, header nav-user #sidebar-wrapper .sidebar-nav li a:hover {
+            text-decoration: none;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.2); }
+          header nav-admin #sidebar-wrapper .sidebar-nav li a:active, header nav-admin #sidebar-wrapper .sidebar-nav li a:focus, header nav-user #sidebar-wrapper .sidebar-nav li a:active, header nav-user #sidebar-wrapper .sidebar-nav li a:focus {
+            text-decoration: none; }
+        header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand), header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) {
+          margin-bottom: 30px; }
+          header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a, header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a {
+            padding-left: 20px; }
+            header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a.active, header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a.active {
+              color: white; }
+            header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa, header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa {
+              width: 40px;
+              height: 40px;
+              text-align: center;
+              line-height: 40px;
+              background: #21252d;
+              color: rgba(120, 129, 149, 0.92);
+              font-size: 18px;
+              position: absolute;
+              right: 30px; }
+      header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand, header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand {
+        height: 60px;
         margin-bottom: 30px; }
-        header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a, header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a {
-          padding-left: 20px; }
-          header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a.active, header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a.active {
-            color: white; }
-          header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa, header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa {
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            line-height: 40px;
-            background: #21252d;
-            color: rgba(120, 129, 149, 0.92);
-            font-size: 18px;
-            position: absolute;
-            right: 30px; }
-    header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand, header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand {
-      height: 60px;
-      margin-bottom: 30px; }
-      header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a, header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand a {
-        text-align: center;
-        font-size: 16px;
-        line-height: 60px;
-        background-color: #242731;
-        color: #9eacb5; }
-        header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover, header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover {
-          color: #fff; }
+        header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a, header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand a {
+          text-align: center;
+          font-size: 16px;
+          line-height: 60px;
+          background-color: #242731;
+          color: #9eacb5; }
+          header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover, header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover {
+            color: #fff; }
 
 @media screen and (max-width: 991px) {
   header nav li, header nav-user li {
@@ -415,8 +419,13 @@ header nav-admin #sidebar-wrapper, header nav-user #sidebar-wrapper {
       font-weight: bold;
       letter-spacing: 2px;
       padding: 10px;
-      padding-bottom: 40px;
-      background-image: url("../../public/img/hgit staome.png"); }
+      padding-top: 80px;
+      padding-bottom: 80px;
+      background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
+      background-size: 100% 100%; }
+      .page.home .hero h1 {
+        letter-spacing: 20px;
+        font-size: 70px; }
       .page.home .hero img {
         width: 100%; }
       .page.home .hero div {
@@ -434,11 +443,32 @@ header nav-admin #sidebar-wrapper, header nav-user #sidebar-wrapper {
     .page.home .homepage-description {
       color: #000;
       padding: 10px;
-      padding-bottom: 60px;
-      background-image: url("../../public/img/home-back-bottom.png"); }
+      padding-bottom: 60px; }
       .page.home .homepage-description h4 {
-        padding: 60px 0 60px;
+        padding: 40px 0 30px;
         font-weight: bold; }
+      .page.home .homepage-description .display-glass .img-container {
+        background: url("../../public/img/optical-glass.jpg") no-repeat center;
+        background-size: 100% 100%; }
+      .page.home .homepage-description .display-lens .img-container {
+        background: url("../../public/img/optical-lens.jpg") no-repeat center;
+        background-size: 100% 100%; }
+      .page.home .homepage-description .products-display .product-display {
+        padding: 0px !important;
+        background-color: #c6c6c6; }
+        .page.home .homepage-description .products-display .product-display .img-container {
+          width: 100%;
+          height: 170px; }
+        .page.home .homepage-description .products-display .product-display .product-desc span {
+          display: block;
+          padding: 5px; }
+      .page.home .homepage-description .products-display .product-desc button {
+        margin: 10px;
+        color: #7B19F4;
+        background-color: #d8d8d8; }
+      .page.home .homepage-description .products-display .product-desc button:hover {
+        color: #d8d8d8;
+        background-color: #7B19F4; }
   .page.engagement {
     color: #000; }
     .page.engagement .hero {

@@ -66,11 +66,12 @@
         }
       }
     }
-    a{
-      text-decoration: none;
-    }
     .useful-link{
       margin-top: 10px;
+      a{
+        text-decoration: none;
+        color: #fff;
+      }
     }
     #map {
       width: 100%;

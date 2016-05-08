@@ -207,8 +207,14 @@
       font-weight: bold;
       letter-spacing: 2px;
       padding: 10px;
-      padding-bottom: 40px;
-      background-image: url("../../public/img/hgit staome.png");
+      padding-top: 80px;
+      padding-bottom: 80px;
+      background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
+      background-size: 100% 100%;
+      h1{
+        letter-spacing: 20px;
+        font-size: 70px;
+      }
       img {
         width: 100%;
       }
@@ -232,10 +238,50 @@
       color: #000;
       padding: 10px;
       padding-bottom: 60px;
-      background-image: url("../../public/img/home-back-bottom.png");
       h4 {
-        padding: 60px 0 60px;
+        padding: 40px 0 30px;
         font-weight: bold;
+      }
+      .display-glass{
+        .img-container{
+          background: url("../../public/img/optical-glass.jpg") no-repeat center;
+          background-size: 100% 100%;
+        }
+      }
+      .display-lens{
+        .img-container{
+          background: url("../../public/img/optical-lens.jpg") no-repeat center;
+          background-size: 100% 100%;
+        }
+      }
+      .products-display{
+        .product-display{
+          padding: 0px !important;
+          background-color: #c6c6c6;
+          .img-container{
+            width: 100%;
+            height: 170px;
+          }
+          .product-desc{
+            span{
+              display: block;
+              padding: 5px;
+            }
+
+          }
+        }
+        .product-desc{
+          button{
+            margin: 10px;
+            color: #7B19F4;
+            background-color: #d8d8d8;
+
+          }
+          button:hover{
+            color: #d8d8d8;
+            background-color: #7B19F4;
+          }
+        }
       }
     }
   }
