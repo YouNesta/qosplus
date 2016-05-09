@@ -2,62 +2,83 @@
   font-family: 'Roboto', sans-serif;
   color: #000;
   &.product {
-    .page-container {
-      .hero {
-        position: relative;
+    text-align: center;
+    color: #FFF;
+    background-color: #F5F5F5;
+    .hero {
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 10px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
+      background-size: 100% 100%;
+      h1{
+        letter-spacing: 20px;
+        font-size: 70px;
+      }
+      img {
         width: 100%;
-        color: #FFF;
-        font-weight: bold;
-        img {
-          width: 100%;
-        }
-        .img-overlay {
-          position: absolute;
-          width: 100%;
-          .title {
-            border-bottom: 2px solid #FFF;
-            padding: 30px;
-          }
-          .center {
-            margin-top: 3%;
-          }
-          .block {
-            margin-top: 10%;
-            p {
-              text-align: center;
-            }
+      }
+      div {
+        margin-top: 20px;
+        a {
+          border: 1px solid #FFF;
+          color: #FFF;
+          border-radius: 17px;
+          letter-spacing: 2px;
+          padding: 7px 15px;
+          &:hover {
+            background-color: #FFF;
+            color: #000;
+            text-decoration: none;
           }
         }
       }
-      .product-content {
-        padding: 20px;
-        padding-top: 40px;
-        padding-bottom: 40px;
-        .bordered {
-          border: 2px solid #000;
-          padding: 15px;
-          text-align: center;
-          h5 {
-            font-weight: bold;
-            font-size: 16px;
-            text-transform: uppercase;
-            img {
-              height: 18px;
-            }
-            span {
-              color: #7B19F4;
-            }
-          }
-          &.top {
-            border-bottom: 0;
-          }
-          &.bottom {
-            border-top: 0;
-          }
+    }
+    .container{
+      padding: 40px 0px;
+      .search-container{
+        #product-name{
+          display: inline-block;
         }
-        .border-bottom {
-          border-bottom: 2px solid #000;
-          height: 100%;
+        .btn-search{
+          display: inline-block;
+        }
+      }
+      .supplier-container{
+        padding: 10px;
+        padding-top: 0;
+        margin-top: 10px;
+        background-color: #fff;
+        color: #000;
+        border-bottom: 1px solid #f3f5f8;
+        h1{
+          margin: 0;
+          background-color: #e0e4ea;
+          padding: 10px;
+        }
+        .item-container{
+          .item{
+            margin-top:10px;
+            line-height: 60px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            border: solid 1px #e0e4ea;
+            .item-picture{
+              max-height: 100px;
+              max-width: 120px;
+              img{
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .item-action{
+              button{
+                background-color: #e0e4ea;
+              }
+            }
+          }
         }
       }
     }
@@ -257,7 +278,8 @@
       .products-display{
         .product-display{
           padding: 0px !important;
-          background-color: #c6c6c6;
+          background-color: #F5F5F5;
+          border: solid 1px #e0e4ea;
           .img-container{
             width: 100%;
             height: 170px;
@@ -273,13 +295,13 @@
         .product-desc{
           button{
             margin: 10px;
-            color: #7B19F4;
-            background-color: #d8d8d8;
+            color: #ffffff;
+            background-color: #10cfbd;
 
           }
           button:hover{
-            color: #d8d8d8;
-            background-color: #7B19F4;
+            color: #10cfbd;
+            background-color: #ffffff;
           }
         }
       }
@@ -392,6 +414,69 @@
           height: 90px;
         }
       }
+    }
+  }
+  &.signin{
+    .hero{
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
+      background-size: 100% 100%;
+      h1{
+        letter-spacing: 20px;
+        font-size: 70px;
+        color: #fff;
+        text-align: center;
+      }
+      h3{
+        color: #fff;
+        text-align: center;
+      }
+      img {
+        width: 100%;
+      }
+      div {
+        margin-top: 20px;
+        a {
+          border: 1px solid #FFF;
+          color: #FFF;
+          border-radius: 17px;
+          letter-spacing: 2px;
+          padding: 7px 15px;
+          &:hover {
+            background-color: #FFF;
+            color: #000;
+            text-decoration: none;
+          }
+        }
+      }
+
+
+    }
+    .page-container{
+      .btn-container{
+        padding: 90px 0px;
+        button{
+          font-size: 23px;
+          font-weight: 500;
+          letter-spacing: 3px;
+          margin: 10px;
+          display: block;
+          margin-left: auto;
+          margin-right:auto;
+          width:100%;
+          border-radius: 3px;
+          background-color: #10cfbd;
+          padding: 20px;
+          a{
+            text-decoration: none;
+            color: #fff;
+          }
+        }
+      }
+
     }
   }
 }

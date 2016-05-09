@@ -9,6 +9,7 @@ import {HomeHomepageComponent} from "./home-homepage.component";
 import {HomeAboutComponent} from "./home-about.component";
 import {HomeProductsComponent} from "./home-products.component";
 import {HomeContactComponent} from "./home-contact.component";
+import {HomeSigninComponent} from "./home-signin.component";
 import {UserFactory} from "../User/user.factory";
 import {tokenNotExpired} from "angular2-jwt";
 import {RouteAuth} from "../Config/route-auth";
@@ -23,7 +24,8 @@ import {RouteAuth} from "../Config/route-auth";
     { path: "/", name: "Homepage", component: HomeHomepageComponent},
     { path: "/about", name: "About", component: HomeAboutComponent},
     { path: "/products", name: "Products", component: HomeProductsComponent},
-    { path: "/engagements", name: "Contact", component: HomeContactComponent}
+    { path: "/engagements", name: "Contact", component: HomeContactComponent},
+    { path: "/signin", name: "Sign", component: HomeSigninComponent}
 ])
 
 export class HomeComponent  implements OnInit{
