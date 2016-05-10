@@ -323,6 +323,8 @@ td {
   .content.product-list hr, .content.product-cart hr, .content.product-command-list hr {
     border: solid 1px #e0e4ea;
     width: 97%; }
+  .content.product-list .col-lg-3 p, .content.product-cart .col-lg-3 p, .content.product-command-list .col-lg-3 p {
+    margin-top: 15%; }
   .content.product-list .col-lg-2 p, .content.product-cart .col-lg-2 p, .content.product-command-list .col-lg-2 p {
     margin-top: 25%; }
   .content.product-list .col-lg-1 p, .content.product-cart .col-lg-1 p, .content.product-command-list .col-lg-1 p {
@@ -347,6 +349,14 @@ td {
       .content.product-list button.add-modale:hover, .content.product-list button.validate-cart:hover, .content.product-cart button.add-modale:hover, .content.product-cart button.validate-cart:hover, .content.product-command-list button.add-modale:hover, .content.product-command-list button.validate-cart:hover {
         background-color: rgba(16, 207, 189, 0.6);
         border-color: transparent; }
+  .content.product-list .status, .content.product-cart .status, .content.product-command-list .status {
+    width: 40px; }
+  .content.product-list .status-color, .content.product-cart .status-color, .content.product-command-list .status-color {
+    height: 10px;
+    width: 10px;
+    background-color: #48b0f7;
+    border-radius: 10px;
+    display: block; }
   .content.product-list .collapse-tab, .content.product-cart .collapse-tab, .content.product-command-list .collapse-tab {
     margin-bottom: 10px;
     font-weight: bold;
@@ -361,7 +371,7 @@ td {
       width: 40px;
       height: 40px; }
     .content.product-list .collapse-content .product button, .content.product-cart .collapse-content .product button, .content.product-command-list .collapse-content .product button {
-      margin-top: 50%; }
+      margin-top: 40%; }
 
 .content.product-cart select {
   margin-bottom: 20px;
@@ -392,18 +402,18 @@ td {
     width: 180px;
     height: 36px; }
 
-.content.admin-subscribe h2 {
+.content.admin-subscribe h2, .content.product-price h2 {
   width: 95%;
   margin: auto;
   margin-top: 20px;
   text-align: left;
   font-family: 'Open Sans'; }
 
-.content.admin-subscribe hr {
+.content.admin-subscribe hr, .content.product-price hr {
   width: 95%;
   border-color: #e0e4ea; }
 
-.content.admin-subscribe button {
+.content.admin-subscribe button, .content.product-price button {
   width: 150px;
   height: 42px;
   border-radius: 3px;
@@ -411,7 +421,7 @@ td {
   background-color: #10cfbd;
   margin-bottom: 40px;
   border: 0; }
-  .content.admin-subscribe button:hover {
+  .content.admin-subscribe button:hover, .content.product-price button:hover {
     background-color: rgba(16, 207, 189, 0.6);
     border-color: transparent; }
 
@@ -427,39 +437,31 @@ td {
   font-weight: bold;
   font-family: 'Open Sans'; }
 
-.content.product-command-list table {
+.content.product-command-list button {
+  margin-top: 40%; }
+
+.content.product-command-list .status-1 {
+  background-color: #E9DC51; }
+
+.content.product-price table, .content.product-command-list table {
   border-radius: 3px;
   text-align: center;
   margin: auto;
+  width: 80%;
+  margin-left: 5%;
   margin-top: 20px; }
-  .content.product-command-list table thead {
+  .content.product-price table thead, .content.product-command-list table thead {
     background-color: #f8f9fb;
     border: solid 1px #e0e4ea;
     font-weight: bold; }
-  .content.product-command-list table tr {
+  .content.product-price table tr, .content.product-command-list table tr {
     background-color: #fff;
     border: solid 1px #e0e4ea; }
-  .content.product-command-list table td {
+  .content.product-price table td, .content.product-command-list table td {
     height: 42px;
     border: 0;
     border-right: 1px solid #e0e4ea;
     padding: 15px; }
-
-.content.product-command-list .status {
-  position: absolute;
-  width: 40px; }
-
-.content.product-command-list .status:after {
-  content: "";
-  top: 9px;
-  left: 15px;
-  height: 10px;
-  background-color: #0000FF;
-  width: 10px;
-  border-radius: 10px;
-  position: absolute; }
-  .content.product-command-list .status:after.status-1:after {
-    background-color: #810b10; }
 
 .modal-body label {
   font-weight: bold;

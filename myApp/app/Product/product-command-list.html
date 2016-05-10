@@ -21,7 +21,7 @@
         <div class="product col-lg-12"  *ngFor='#command of commands; #i = index;'>
             <div class="collapse-head col-lg-12">
                 <div class="col-lg-3">
-                    {{ command.date }}
+                    <p>{{ command.date }}</p>
                 </div>
                 <div class="col-lg-3">
                     <p>{{ command.client }}</p>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="col-lg-6">
-                        <button class="status status-{{command.status}}"></button>
+                        <button class="status"><span class="status-color status-{{command.status}}"></span></button>
                     </div>
                     <div class="col-lg-6">
                         <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>

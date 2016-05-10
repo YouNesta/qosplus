@@ -441,6 +441,11 @@ td {
       border: solid 1px #e0e4ea;
       width: 97%;
     }
+    .col-lg-3 {
+      p {
+        margin-top: 15%;
+      }
+    }
     .col-lg-2 {
       p {
         margin-top: 25%;
@@ -475,6 +480,16 @@ td {
         }
       }
     }
+    .status {
+      width: 40px;
+    }
+    .status-color {
+      height: 10px;
+      width: 10px;
+      background-color: #48b0f7;
+      border-radius: 10px;
+      display: block;
+    }
     .collapse-tab {
       margin-bottom: 10px;
       font-weight: bold;
@@ -492,7 +507,7 @@ td {
           height: 40px;
         }
         button {
-          margin-top: 50%;
+          margin-top: 40%;
         }
       }
     }
@@ -530,7 +545,7 @@ td {
       }
     }
   }
-  &.admin-subscribe {
+  &.admin-subscribe, &.product-price {
     h2 {
       width: 95%;
       margin: auto;
@@ -555,6 +570,8 @@ td {
         border-color: transparent;
       }
     }
+  }
+  &.admin-subscribe {
     input {
       height: 36px;
       border-radius: 3px;
@@ -569,10 +586,20 @@ td {
     }
   }
   &.product-command-list {
+    button {
+      margin-top: 40%;
+    }
+    .status-1 {
+      background-color: #E9DC51;
+    }
+  }
+  &.product-price, &.product-command-list {
     table {
       border-radius: 3px;
       text-align: center;
       margin: auto;
+      width: 80%;
+      margin-left: 5%;
       margin-top: 20px;
       thead {
         background-color: #f8f9fb;
@@ -590,22 +617,10 @@ td {
         padding: 15px;
       }
     }
-    .status {
-      position: absolute;
-      width: 40px;
-    }
-    .status:after {
-      content: "";
-      top: 9px;
-      left: 15px;
-      height: 10px;
-      background-color: #0000FF;
-      width: 10px;
-      border-radius: 10px;
-      position: absolute;
-      &.status-1:after {
-        background-color: #810b10;
-      }
+  }
+  &.product-price {
+    .container {
+
     }
   }
 }
