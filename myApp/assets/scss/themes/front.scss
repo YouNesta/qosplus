@@ -435,7 +435,7 @@ td {
 }
 
 .content {
-  &.product-list, &.product-cart {
+  &.product-list, &.product-cart, &.product-command-list {
     padding: 20px;
     hr {
       border: solid 1px #e0e4ea;
@@ -527,6 +527,84 @@ td {
       button {
         width: 180px;
         height: 36px;
+      }
+    }
+  }
+  &.admin-subscribe {
+    h2 {
+      width: 95%;
+      margin: auto;
+      margin-top: 20px;
+      text-align: left;
+      font-family: 'Open Sans';
+    }
+    hr {
+      width: 95%;
+      border-color: #e0e4ea;
+    }
+    button {
+      width: 150px;
+      height: 42px;
+      border-radius: 3px;
+      color: #FFF;
+      background-color: #10cfbd;
+      margin-bottom: 40px;
+      border: 0;
+      &:hover {
+        background-color: rgba(16, 207, 189, 0.6);
+        border-color: transparent;
+      }
+    }
+    input {
+      height: 36px;
+      border-radius: 3px;
+      border: 1px solid #e0e4ea;
+      width: 100%;
+      background-color: #FFF;
+      margin-bottom: 25px;
+    }
+    label {
+      font-weight: bold;
+      font-family: 'Open Sans';
+    }
+  }
+  &.product-command-list {
+    table {
+      border-radius: 3px;
+      text-align: center;
+      margin: auto;
+      margin-top: 20px;
+      thead {
+        background-color: #f8f9fb;
+        border: solid 1px #e0e4ea;
+        font-weight: bold;
+      }
+      tr {
+        background-color: #fff;
+        border: solid 1px #e0e4ea;
+      }
+      td {
+        height: 42px;
+        border: 0;
+        border-right: 1px solid #e0e4ea;
+        padding: 15px;
+      }
+    }
+    .status {
+      position: absolute;
+      width: 40px;
+    }
+    .status:after {
+      content: "";
+      top: 9px;
+      left: 15px;
+      height: 10px;
+      background-color: #0000FF;
+      width: 10px;
+      border-radius: 10px;
+      position: absolute;
+      &.status-1:after {
+        background-color: #810b10;
       }
     }
   }

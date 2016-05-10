@@ -76,8 +76,7 @@ export class ProductCartComponent {
     }
 
     getPrice() {
-        var price = 7345.99;
-        return price;
+        return 17345;
     }
 
 }

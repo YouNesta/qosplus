@@ -13,7 +13,7 @@ import {TagInputComponent} from "angular2-tag-input";
 export class ProductCommandComponent {
 
     commands: Object ;
-
+    isOpen = [];
 
     constructor(public service: ProductFactory){
         this.service.getCommand()
@@ -21,6 +21,9 @@ export class ProductCommandComponent {
                 res => {
                     if(res.success){
                         this.commands = res.data;
+                        for(var i in this.commands){
+                            this.isOpen.push(false);
+                        }
                     }else{
                         console.log(res);
                     }
