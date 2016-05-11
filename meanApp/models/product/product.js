@@ -45,6 +45,10 @@ var ProductSchema = new mongoose.Schema({
     image: {
         type: Array,
         required : true
+    },
+    supplier: {
+        type: String,
+        required: false
     }
 });
 

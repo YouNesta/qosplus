@@ -19,6 +19,7 @@ constructor(public service: UserFactory, public router: Router) {
     this.route = {
         " ": [
             { "route": "/", "auth": false },
+            { "route": "404", "auth": false },
             { "route": "contact", "auth": false },
             { "route": "about", "auth": false },
             { "route": "subscribe", "auth": false },

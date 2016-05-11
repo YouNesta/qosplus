@@ -1,0 +1,62 @@
+<div class="container" *ngIf="product">
+    <h1>{{product.name}}</h1>
+    <div class="container-product-display">
+        <div class="row">
+            <div class="col-md-4 img-container">
+                <img src="../../public/img/lens-product.jpeg">
+            </div>
+            <div class="col-md-8">
+               <p>{{product.description}}</p>
+            </div>
+        </div>
+        <div class="product-display-infos">
+            <div class="row">
+                <div class="col-sm-4">
+                    Color: {{product.color}}
+                </div>
+                <div class="col-sm-4">
+                    Hidrophilie: {{product.hidrophily}}
+                </div>
+                <div class="col-sm-4">
+                    Materiau: {{product.material}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    Prix: {{product.price}}
+                </div>
+                <div class="col-sm-4">
+                    reference: {{product.reference}}
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-hover table-stripped product-display-params">
+                <thead>
+                <th>Addition</th>
+                <th>axis</th>
+                <th>cylinder</th>
+                <th>diameter</th>
+                <th>radius</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="#item of product.param; #i = index">
+                    <td>{{item.addition}}</td>
+                    <td>{{item.axis}}</td>
+                    <td>{{item.cylinder}}</td>
+                    <td>{{item.diameter}}</td>
+                    <td>{{item.radius}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <p></p>
+        </div>
+        <div class="">
+        </div>
+    </div>
+</div>

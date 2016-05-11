@@ -9,6 +9,8 @@ import {UserLoginComponent} from "./user-login.component";
 import {UserSubscribeComponent} from "./user-subscribe.component";
 import {UserDashboardComponent} from "./user-dashboard.component";
 import {UserProfileComponent} from "./user-profile.component";
+import {UserProductsListComponent} from "./user-products-list.component";
+import {UserProductComponent} from "./user-product-display.component";
 
 
 
@@ -20,7 +22,9 @@ import {UserProfileComponent} from "./user-profile.component";
 
 @RouteConfig([
     { path: "/", name: "Dashboard", component: UserDashboardComponent},
-    { path: "/profile", name: "Profile", component: UserProfileComponent }
+    { path: "/profile", name: "Profile", component: UserProfileComponent },
+    { path: "/shop", name: "Shop", component: UserProductsListComponent},
+    { path: "/product/:id", name: "Product", component: UserProductComponent}
 ])
 
 

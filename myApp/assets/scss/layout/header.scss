@@ -1,4 +1,7 @@
 header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
   nav{
     li {
       display: inline-block;
@@ -7,8 +10,8 @@ header {
     .container, .container-fluid {
       padding: 0 !important;
     }
-    background-color: #7B19F4;
-    color: #FFF;
+    background-color: #fff;
+    color: #000;
     font-family: 'Roboto', sans-serif;
     .logo {
       margin-top: 15px;
@@ -25,7 +28,8 @@ header {
         &.selected {
           a {
             background-color: #CCA6FB;
-            color: #000;
+            color: #fff;
+            border-bottom: 2px solid #571885;
           }
         }
         border-right: 1px solid #FFF;
@@ -33,26 +37,26 @@ header {
         text-transform: uppercase;
         padding: 0;
         animation-duration: 1s;
-        font-size: 12px;
+        font-size: 18px;
         a {
+
           clear: both;
-          color: #FFF;
+          color: #000;
           text-decoration: none;
           display: block;
           height: 100%;
           width: 100%;
           padding: 15px;
-          padding-top: 40px;
-          vertical-align: middle;
+          padding-top: 70px;
+          vertical-align: bottom;
         }
         a:hover {
-          background-color: #CCA6FB;
-          color: #000;
+          border-bottom: 2px solid #571885;
         }
       }
       li:first-child {
         border: 0;
-        margin-right: 20px;
+        margin-right: 80px;
       }
     }
     .menu-mobile {

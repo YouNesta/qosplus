@@ -93,7 +93,7 @@ export class UserFactory {
     logout(){
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/404');
     }
 
     isConnected(){

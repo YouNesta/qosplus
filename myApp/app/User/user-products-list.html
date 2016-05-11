@@ -1,0 +1,42 @@
+<div class="container">
+    <h1>Nos produits</h1>
+    <div class="row" *ngFor="#product of products; #i = index" (click)="onSelect(product)">
+            <div class="container-products">
+                <div class="row">
+                    <div class="col-md-12 product-display">
+                        <div class="col-md-6 product-img">
+                            <img src="../../public/img/lens-product.jpeg">
+                        </div>
+                        <div class="col-md-6 product-desc">
+                            <h3>{{product.name}}</h3>
+                            <div class="product-desc-items">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <h4>Prix: {{product.price}} €</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <span>Matériau: </span><span>{{product.material}}</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span>Reference: </span><span>{{product.reference}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>Hidrophilie: </span><span>{{product.hidrophily}}</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>Couleur: </span><span>{{product.color}}</span>
+                                </div>
+                                <span>nb items: </span><span>{{product.item.length}}</span>
+                                <p>{{product.description}}</p>
+                                <button class="btn btn-default btn-show-produit">Voir le Produit</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
