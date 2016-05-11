@@ -768,45 +768,150 @@ td {
       .user .profile .back-array .row div.col-md-12, .user .profile .back-array .row div.col-md-6 {
         padding: 10px; }
 
-.content.product-list {
+.content.product-list, .content.product-cart, .content.product-command-list {
   padding: 20px; }
-  .content.product-list hr {
+  .content.product-list hr, .content.product-cart hr, .content.product-command-list hr {
     border: solid 1px #e0e4ea;
     width: 97%; }
-  .content.product-list button {
+  .content.product-list .col-lg-3 p, .content.product-cart .col-lg-3 p, .content.product-command-list .col-lg-3 p {
+    margin-top: 15%; }
+  .content.product-list .col-lg-2 p, .content.product-cart .col-lg-2 p, .content.product-command-list .col-lg-2 p {
+    margin-top: 25%; }
+  .content.product-list .col-lg-1 p, .content.product-cart .col-lg-1 p, .content.product-command-list .col-lg-1 p {
+    margin-top: 50%; }
+  .content.product-list button, .content.product-cart button, .content.product-command-list button {
     height: 28px;
     border-radius: 3px;
     background-color: #ffffff;
     border: solid 1px #e0e4ea;
     padding-left: 13px;
     padding-right: 13px; }
-    .content.product-list button:hover {
+    .content.product-list button:hover, .content.product-cart button:hover, .content.product-command-list button:hover {
       background-color: #e0e4ea;
       border-color: #878787; }
-    .content.product-list button.add-modale {
+    .content.product-list button.add-modale, .content.product-list button.validate-cart, .content.product-cart button.add-modale, .content.product-cart button.validate-cart, .content.product-command-list button.add-modale, .content.product-command-list button.validate-cart {
       width: 150px;
       height: 36px;
       border-radius: 3px;
       color: #FFF;
       background-color: #10cfbd;
       margin-bottom: 40px; }
-      .content.product-list button.add-modale:hover {
-        background-color: rgba(16, 207, 189, 0.6); }
-  .content.product-list .collapse-tab {
+      .content.product-list button.add-modale:hover, .content.product-list button.validate-cart:hover, .content.product-cart button.add-modale:hover, .content.product-cart button.validate-cart:hover, .content.product-command-list button.add-modale:hover, .content.product-command-list button.validate-cart:hover {
+        background-color: rgba(16, 207, 189, 0.6);
+        border-color: transparent; }
+  .content.product-list .status, .content.product-cart .status, .content.product-command-list .status {
+    width: 40px; }
+  .content.product-list .status-color, .content.product-cart .status-color, .content.product-command-list .status-color {
+    height: 10px;
+    width: 10px;
+    background-color: #48b0f7;
+    border-radius: 10px;
+    display: block; }
+  .content.product-list .collapse-tab, .content.product-cart .collapse-tab, .content.product-command-list .collapse-tab {
     margin-bottom: 10px;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: #3e5e76; }
-  .content.product-list .collapse-content .product {
+  .content.product-list .collapse-content .product, .content.product-cart .collapse-content .product, .content.product-command-list .collapse-content .product {
     border: 1px solid #e0e4ea;
     border-radius: 3px; }
-    .content.product-list .collapse-content .product input[type="checkbox"] {
+    .content.product-list .collapse-content .product input[type="checkbox"], .content.product-cart .collapse-content .product input[type="checkbox"], .content.product-command-list .collapse-content .product input[type="checkbox"] {
       margin-top: 30%;
       width: 40px;
       height: 40px; }
-    .content.product-list .collapse-content .product button {
-      margin-top: 50%; }
+    .content.product-list .collapse-content .product button, .content.product-cart .collapse-content .product button, .content.product-command-list .collapse-content .product button {
+      margin-top: 40%; }
+
+.content.product-cart select {
+  margin-bottom: 20px;
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px;
+  height: 40px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  border: solid 1px #e0e4ea; }
+
+.content.product-cart .total {
+  height: 80px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: solid 1px #e0e4ea;
+  font-family: 'Open Sans';
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #3e5e76;
+  padding-top: 2%; }
+  .content.product-cart .total .price {
+    font-size: 15px;
+    color: #48b0f7; }
+  .content.product-cart .total button {
+    width: 180px;
+    height: 36px; }
+
+.content.admin-subscribe h2, .content.product-price h2 {
+  width: 95%;
+  margin: auto;
+  margin-top: 20px;
+  text-align: left;
+  font-family: 'Open Sans'; }
+
+.content.admin-subscribe hr, .content.product-price hr {
+  width: 95%;
+  border-color: #e0e4ea; }
+
+.content.admin-subscribe button, .content.product-price button {
+  width: 150px;
+  height: 42px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #10cfbd;
+  margin-bottom: 40px;
+  border: 0; }
+  .content.admin-subscribe button:hover, .content.product-price button:hover {
+    background-color: rgba(16, 207, 189, 0.6);
+    border-color: transparent; }
+
+.content.admin-subscribe input {
+  height: 36px;
+  border-radius: 3px;
+  border: 1px solid #e0e4ea;
+  width: 100%;
+  background-color: #FFF;
+  margin-bottom: 25px; }
+
+.content.admin-subscribe label {
+  font-weight: bold;
+  font-family: 'Open Sans'; }
+
+.content.product-command-list button {
+  margin-top: 40%; }
+
+.content.product-command-list .status-1 {
+  background-color: #E9DC51; }
+
+.content.product-price table, .content.product-command-list table {
+  border-radius: 3px;
+  text-align: center;
+  margin: auto;
+  width: 80%;
+  margin-left: 5%;
+  margin-top: 20px; }
+  .content.product-price table thead, .content.product-command-list table thead {
+    background-color: #f8f9fb;
+    border: solid 1px #e0e4ea;
+    font-weight: bold; }
+  .content.product-price table tr, .content.product-command-list table tr {
+    background-color: #fff;
+    border: solid 1px #e0e4ea; }
+  .content.product-price table td, .content.product-command-list table td {
+    height: 42px;
+    border: 0;
+    border-right: 1px solid #e0e4ea;
+    padding: 15px; }
 
 .modal-body label {
   font-weight: bold;

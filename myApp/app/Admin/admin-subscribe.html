@@ -1,40 +1,45 @@
 <div class="content admin-subscribe">
     <h2>Subscribe</h2>
+    <hr>
     <div class="container-fluid">
         <form [ngFormModel]="subscribeForm" novalidate>
             <div class="row user">
                 <div class="col-xs-12 col-md-6 col-sm-6">
-                    <div class="form-group ">
+                    <div>
                         <label for="lastName">Nom</label>
                         <input type="text" [(ngModel)]="model.lastName" ngControl="name" id="lastName" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label for="firstName">Prénom</label>
                         <input type="text" [(ngModel)]="model.firstName" ngControl="name" id="firstName" class="form-control">
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6 col-sm-6">
-                    <div class="form-group ">
+                    <div>
                         <label for="phone">Téléphone</label>
                         <input type="tel" [(ngModel)]="model.phone" ngControl="phone" id="phone" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label for="mail">E-mail</label>
                         <input type="email" [(ngModel)]="model.mail" ngControl="mail" id="mail" class="form-control">
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-12 col-sm-12">
-                    <div class="form-group ">
+                    <div>
                         <label for="password">Mots de Passe</label>
                         <input type="password"  [(ngModel)]="model.password" ngControl="password" id="password" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div>
                         <label for="passwordCheck">Retappez le mots de passe</label>
                         <input  type="password" [(ngModel)]="model.passwordCheck" ngControl="passwordCheck" id="passwordCheck" class="form-control">
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary" (click)="subscribe()" type="button">Envoyer</button>
+            <div class="row">
+                <div class="col-md-3 col-md-offset-5">
+                    <button class="btn btn-primary" (click)="subscribe()" type="button">Envoyer</button>
+                </div>
+            </div>
         </form>
     </div>
 
