@@ -3,12 +3,12 @@ import {ProductFactory} from "../Product/product.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
 import {TagInputComponent} from "angular2-tag-input";
-import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
+import {Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Product} from "../Product/product";
 
 
 @Component({
-    providers: [],
+    providers: [ProductFactory],
     templateUrl: "app/User/user-products-list.html",
     directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, ROUTER_DIRECTIVES]
 })

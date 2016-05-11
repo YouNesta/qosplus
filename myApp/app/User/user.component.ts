@@ -22,7 +22,6 @@ import {UserProductComponent} from "./user-product-display.component";
 
 @RouteConfig([
     { path: "/", name: "Dashboard", component: UserDashboardComponent},
-    { path: "/profile", name: "Profile", component: UserProfileComponent },
     { path: "/shop", name: "Shop", component: UserProductsListComponent},
     { path: "/product/:id", name: "Product", component: UserProductComponent}
 ])
