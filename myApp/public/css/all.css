@@ -34,6 +34,20 @@ body {
         height: 300px;
         margin-bottom: 15px; }
 
+button.add-modale, button.validate-cart, button.default {
+  width: 150px;
+  height: 36px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #10cfbd;
+  margin-bottom: 40px;
+  border: solid 1px #e0e4ea;
+  padding-left: 13px;
+  padding-right: 13px; }
+  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
+    background-color: rgba(16, 207, 189, 0.6);
+    border-color: transparent; }
+
 search .row {
   background: white;
   height: 60px; }
@@ -581,42 +595,6 @@ header {
       position: relative;
       margin-bottom: 50px;
       margin-top: 30px; }
-      .page.register .page-container form .form-buttons {
-        z-index: 90;
-        width: 100%;
-        text-align: center; }
-        .page.register .page-container form .form-buttons button {
-          background-color: transparent;
-          border: 0;
-          color: #7B19F4;
-          font-weight: bold; }
-          .page.register .page-container form .form-buttons button span {
-            font-size: 20px;
-            width: 35px;
-            height: 35px;
-            display: inline-block;
-            border-radius: 22px;
-            border: 2px solid; }
-          .page.register .page-container form .form-buttons button:hover {
-            color: rgba(123, 29, 255, 0.53); }
-      .page.register .page-container form:before {
-        position: absolute;
-        top: 0;
-        right: 0;
-        content: "";
-        border-top: 3px solid #000;
-        border-right: 3px solid #000;
-        width: 160px;
-        height: 90px; }
-      .page.register .page-container form:after {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        content: "";
-        border-bottom: 3px solid #000;
-        border-left: 3px solid #000;
-        width: 160px;
-        height: 90px; }
   .page.signin .hero {
     font-weight: bold;
     letter-spacing: 2px;
@@ -773,26 +751,6 @@ td {
   .content.product-list hr, .content.product-cart hr, .content.product-command-list hr, .content.admin-validation hr {
     border: solid 1px #e0e4ea;
     width: 97%; }
-  .content.product-list button, .content.product-cart button, .content.product-command-list button, .content.admin-validation button {
-    height: 28px;
-    border-radius: 3px;
-    background-color: #ffffff;
-    border: solid 1px #e0e4ea;
-    padding-left: 13px;
-    padding-right: 13px; }
-    .content.product-list button:hover, .content.product-cart button:hover, .content.product-command-list button:hover, .content.admin-validation button:hover {
-      background-color: #e0e4ea;
-      border-color: #878787; }
-    .content.product-list button.add-modale, .content.product-list button.validate-cart, .content.product-cart button.add-modale, .content.product-cart button.validate-cart, .content.product-command-list button.add-modale, .content.product-command-list button.validate-cart, .content.admin-validation button.add-modale, .content.admin-validation button.validate-cart {
-      width: 150px;
-      height: 36px;
-      border-radius: 3px;
-      color: #FFF;
-      background-color: #10cfbd;
-      margin-bottom: 40px; }
-      .content.product-list button.add-modale:hover, .content.product-list button.validate-cart:hover, .content.product-cart button.add-modale:hover, .content.product-cart button.validate-cart:hover, .content.product-command-list button.add-modale:hover, .content.product-command-list button.validate-cart:hover, .content.admin-validation button.add-modale:hover, .content.admin-validation button.validate-cart:hover {
-        background-color: rgba(16, 207, 189, 0.6);
-        border-color: transparent; }
   .content.product-list .status, .content.product-cart .status, .content.product-command-list .status, .content.admin-validation .status {
     width: 40px; }
   .content.product-list .status-color, .content.product-cart .status-color, .content.product-command-list .status-color, .content.admin-validation .status-color {
