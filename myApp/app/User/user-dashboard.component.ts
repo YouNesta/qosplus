@@ -1,11 +1,11 @@
 import {Component} from 'angular2/core';
+import {Router} from 'angular2/router';
 import {UserFactory} from "./user.factory";
 import {ProductFactory} from "../Product/product.factory"
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
 import {tokenNotExpired} from 'angular2-jwt';
 import {CanActivate} from "angular2/router";
 @CanActivate(() => tokenNotExpired('token'))
-import {Router} from 'angular2/router';
 
 @Component({
     providers: [],

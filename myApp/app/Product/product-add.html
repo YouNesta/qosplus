@@ -46,15 +46,11 @@
                     </div>
                     <div class="col-md-4">
                         <label for="material">Material</label>
-                        <select class="form-control" id="material" [(ngModel)]="products.material">
-                            <option *ngFor="#material of materials;" [value]="material">{{material}}</option>
-                        </select>
+                        <input type="text" [(ngModel)]="products.material" id="material" class="form-control" placeholder="material">
                     </div>
                     <div class="col-md-4">
                         <label for="color">Color</label>
-                        <select class="form-control" id="color" [(ngModel)]="products.color">
-                            <option *ngFor="#item of colors;" [value]="item">{{item}}</option>
-                        </select>
+                        <input type="text" [(ngModel)]="products.color" id="color" class="form-control" placeholder="color">
                     </div>
                     <div class="col-md-4">
                         <div class="form-group" *ngFor="#price of products.price">
