@@ -14,7 +14,7 @@
       padding-bottom: 80px;
       background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
       background-size: 100% 100%;
-      h1{
+      h1 {
         letter-spacing: 20px;
         font-size: 70px;
       }
@@ -37,45 +37,45 @@
         }
       }
     }
-    .container{
+    .container {
       padding: 40px 0px;
-      .search-container{
-        #product-name{
+      .search-container {
+        #product-name {
           display: inline-block;
         }
-        .btn-search{
+        .btn-search {
           display: inline-block;
         }
       }
-      .supplier-container{
+      .supplier-container {
         padding: 10px;
         padding-top: 0;
         margin-top: 10px;
         background-color: #fff;
         color: #000;
         border-bottom: 1px solid #f3f5f8;
-        h1{
+        h1 {
           margin: 0;
           background-color: #e0e4ea;
           padding: 10px;
         }
-        .item-container{
-          .item{
-            margin-top:10px;
+        .item-container {
+          .item {
+            margin-top: 10px;
             line-height: 60px;
             border-radius: 5px;
             background-color: #ffffff;
             border: solid 1px #e0e4ea;
-            .item-picture{
+            .item-picture {
               max-height: 100px;
               max-width: 120px;
-              img{
+              img {
                 width: 100%;
                 height: 100%;
               }
             }
-            .item-action{
-              button{
+            .item-action {
+              button {
                 background-color: #e0e4ea;
               }
             }
@@ -143,36 +143,36 @@
       }
     }
     .history {
-       background-color: #efefef;
-       padding: 40px;
-       padding-top: 80px;
-       padding-bottom: 80px;
-       img {
-         border-radius: 10px;
-         width: 100%;
-       }
-       h5 {
-         text-align: center;
-         font-weight: bold;
-         font-size: 20px;
-         margin-bottom: 20px;
-         span {
-           color: #7B19F4;
-         }
-       }
-       .history-content {
-         border-left: 1px solid #7B19F4;
-         padding-left: 10px;
-         p {
-           span {
-             font-weight: bold;
-             &:first-child {
-               margin-bottom: 10px;
-             }
-           }
-         }
-       }
-     }
+      background-color: #efefef;
+      padding: 40px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      img {
+        border-radius: 10px;
+        width: 100%;
+      }
+      h5 {
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 20px;
+        span {
+          color: #7B19F4;
+        }
+      }
+      .history-content {
+        border-left: 1px solid #7B19F4;
+        padding-left: 10px;
+        p {
+          span {
+            font-weight: bold;
+            &:first-child {
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
   }
   &.login {
     position: relative;
@@ -233,7 +233,7 @@
       padding-bottom: 80px;
       background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
       background-size: 100% 100%;
-      h1{
+      h1 {
         letter-spacing: 20px;
         font-size: 70px;
       }
@@ -264,43 +264,43 @@
         padding: 40px 0 30px;
         font-weight: bold;
       }
-      .display-glass{
-        .img-container{
+      .display-glass {
+        .img-container {
           background: url("../../public/img/optical-glass.jpg") no-repeat center;
           background-size: 100% 100%;
         }
       }
-      .display-lens{
-        .img-container{
+      .display-lens {
+        .img-container {
           background: url("../../public/img/optical-lens.jpg") no-repeat center;
           background-size: 100% 100%;
         }
       }
-      .products-display{
-        .product-display{
+      .products-display {
+        .product-display {
           padding: 0px !important;
           background-color: #F5F5F5;
           border: solid 1px #e0e4ea;
-          .img-container{
+          .img-container {
             width: 100%;
             height: 170px;
           }
-          .product-desc{
-            span{
+          .product-desc {
+            span {
               display: block;
               padding: 5px;
             }
 
           }
         }
-        .product-desc{
-          button{
+        .product-desc {
+          button {
             margin: 10px;
             color: #ffffff;
             background-color: #10cfbd;
 
           }
-          button:hover{
+          button:hover {
             color: #10cfbd;
             background-color: #ffffff;
           }
@@ -372,69 +372,72 @@
         position: relative;
         margin-bottom: 50px;
         margin-top: 30px;
-    }
-  }
-  &.signin{
-    .hero{
-      font-weight: bold;
-      letter-spacing: 2px;
-      padding-top: 80px;
-      padding-bottom: 80px;
-      background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
-      background-size: 100% 100%;
-      h1{
-        letter-spacing: 20px;
-        font-size: 70px;
-        color: #fff;
-        text-align: center;
-      }
-      h3{
-        color: #fff;
-        text-align: center;
-      }
-      img {
-        width: 100%;
-      }
-      div {
-        margin-top: 20px;
-        a {
-          border: 1px solid #FFF;
-          color: #FFF;
-          border-radius: 17px;
-          letter-spacing: 2px;
-          padding: 7px 15px;
-          &:hover {
-            background-color: #FFF;
-            color: #000;
-            text-decoration: none;
-          }
+        .form-buttons {
+          text-align: center;
         }
       }
-
-
     }
-    .page-container{
-      .btn-container{
-        padding: 90px 0px;
-        button{
-          font-size: 23px;
-          font-weight: 500;
-          letter-spacing: 3px;
-          margin: 10px;
-          display: block;
-          margin-left: auto;
-          margin-right:auto;
-          width:100%;
-          border-radius: 3px;
-          background-color: #10cfbd;
-          padding: 20px;
-          a{
-            text-decoration: none;
-            color: #fff;
+    &.signin {
+      .hero {
+        font-weight: bold;
+        letter-spacing: 2px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+        background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
+        background-size: 100% 100%;
+        h1 {
+          letter-spacing: 20px;
+          font-size: 70px;
+          color: #fff;
+          text-align: center;
+        }
+        h3 {
+          color: #fff;
+          text-align: center;
+        }
+        img {
+          width: 100%;
+        }
+        div {
+          margin-top: 20px;
+          a {
+            border: 1px solid #FFF;
+            color: #FFF;
+            border-radius: 17px;
+            letter-spacing: 2px;
+            padding: 7px 15px;
+            &:hover {
+              background-color: #FFF;
+              color: #000;
+              text-decoration: none;
+            }
           }
         }
-      }
 
+      }
+      .page-container {
+        .btn-container {
+          padding: 90px 0px;
+          button {
+            font-size: 23px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            margin: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            border-radius: 3px;
+            background-color: #10cfbd;
+            padding: 20px;
+            a {
+              text-decoration: none;
+              color: #fff;
+            }
+          }
+        }
+
+      }
     }
   }
 }
