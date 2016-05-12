@@ -16,7 +16,7 @@ export class ProductCommandComponent {
     isOpen = [];
 
     constructor(public service: ProductFactory){
-        this.service.getCommand()
+        this.service.getCommands()
             .subscribe(
                 res => {
                     if(res.success){

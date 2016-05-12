@@ -22,13 +22,9 @@ export class ProductCartComponent {
     mails = [];
     isOpen = [];
     client = "";
-
+    selectedProductCard = [];
     constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService, public userService: UserFactory){
         this.alertService = alertService;
-        this.products = JSON.parse(localStorage.getItem("cart"));
-        for(var i in this.products){
-            this.isOpen.push(false);
-        }
         this.user = JSON.parse(localStorage.getItem("user"));
         this.client = this.user.mail;
         if (this.user.role == 1) {
@@ -45,8 +41,14 @@ export class ProductCartComponent {
                     () => console.log('get mail list Complete')
                 );
         }
+        this.getCart();
     }
-
+    getCart(){
+        this.products = JSON.parse(localStorage.getItem("cart"));
+        for(var i in this.products){
+            this.isOpen.push(false);
+        }
+    };
     removeFromCart(index) {
         var cart = [];
         var local = JSON.parse(localStorage.getItem("cart"));
@@ -63,6 +65,7 @@ export class ProductCartComponent {
                 if(res.success){
                     var cart = [];
                     localStorage.setItem("cart", JSON.stringify(cart));
+                    this.getCart();
                     this.alertService.addAlert('success', res.message);
                 }else{
                     this.alertService.addAlert('warning', res.message);
@@ -78,5 +81,21 @@ export class ProductCartComponent {
     getPrice() {
         return 17345;
     }
+    deleteProductsCard(){
 
+        for(var i in this.selectedProductCard){
+           this.removeFromCart(this.selectedProductCard[i]);
+        }
+
+        this.getCart();
+
+    }
+    selectProduct(index){
+        var n = this.selectedProductCard.indexOf(index);
+        if( n != -1){
+            this.selectedProductCard.splice(n, 1);
+        }else{
+            this.selectedProductCard.push(index);
+        }
+    }
 }

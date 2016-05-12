@@ -45,6 +45,8 @@ export class HomeLoginComponent {
                 .subscribe(
                     res => {
                         if(res.success){
+                            console.log(res)
+
                             var user = JSON.stringify(res.data);
                             localStorage.setItem("user", user);
                             localStorage.setItem('token',res.token);
@@ -55,6 +57,7 @@ export class HomeLoginComponent {
                                 this.router.navigateByUrl('/user');
                             }
                         }else{
+                            console.log(res)
                             this.alertService.addAlert('warning', res.message);
                         }
                     },

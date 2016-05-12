@@ -5,16 +5,18 @@ import {
     ROUTER_DIRECTIVES,
     ROUTER_PROVIDERS,
 } from 'angular2/router';
-import {UserLoginComponent} from "./user-login.component";
-import {UserSubscribeComponent} from "./user-subscribe.component";
 import {UserDashboardComponent} from "./user-dashboard.component";
-import {UserProfileComponent} from "./user-profile.component";
-import {UserProductsListComponent} from "./user-products-list.component";
+import {UserProductsListComponent} from "./Product/products-list.component";
 import {UserProductComponent} from "./user-product-display.component";
+import {RegEx} from "../lib/regex";
+import {AlertService} from "../Tools/alert";
+import {ProductCartComponent} from "../Product/product-cart.component";
+import {ProductFactory} from "../Product/product.factory";
 
 
 
 @Component({
+    providers: [RegEx, AlertService, ProductFactory],
     template:
     "<router-outlet></router-outlet>",
     directives: [ROUTER_DIRECTIVES]
@@ -23,6 +25,7 @@ import {UserProductComponent} from "./user-product-display.component";
 @RouteConfig([
     { path: "/", name: "Dashboard", component: UserDashboardComponent},
     { path: "/shop", name: "Shop", component: UserProductsListComponent},
+    { path: "/cart", name: "Cart", component: ProductCartComponent},
     { path: "/product/:id", name: "Product", component: UserProductComponent}
 ])
 

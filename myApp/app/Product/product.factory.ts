@@ -62,7 +62,7 @@ export class ProductFactory {
             .get(this.apiUrl+'price/count')
             .map(response => response.json())
     }
-    getCommand(){
+    getCommands(){
     return  this.authHttp
         .get(this.commandUrl+'list')
         .map(res => res.json())

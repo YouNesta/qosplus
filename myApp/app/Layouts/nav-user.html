@@ -13,5 +13,11 @@
                 <i class="fa fa-user fa-fw"></i>
             </a>
         </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['User', 'Cart']))"
+               [routerLink]="['User', 'Cart']">Mon Panier
+                <i class="fa fa-shopping-cart fa-fw"></i>
+            </a>
+        </li>
     </ul>
 </div>
