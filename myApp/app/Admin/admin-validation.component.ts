@@ -102,6 +102,7 @@ export class AdminValidationComponent {
     validateForm: ControlGroup;
     alertService: AlertService;
     users = [];
+    isOpen = [];
 
     constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService){
        this.alertService = alertService;
@@ -170,8 +171,11 @@ export class AdminValidationComponent {
 
                             }
                             $this.users[i].isCollapsed = true;
-                        });
 
+                        });
+                        for(var i in this.users){
+                            this.isOpen.push(false);
+                        }
                     }else{
                         console.log(response);
                     }

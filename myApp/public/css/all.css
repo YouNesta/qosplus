@@ -768,60 +768,58 @@ td {
       .user .profile .back-array .row div.col-md-12, .user .profile .back-array .row div.col-md-6 {
         padding: 10px; }
 
-.content.product-list, .content.product-cart, .content.product-command-list {
+.content.product-list, .content.product-cart, .content.product-command-list, .content.admin-validation {
   padding: 20px; }
-  .content.product-list hr, .content.product-cart hr, .content.product-command-list hr {
+  .content.product-list hr, .content.product-cart hr, .content.product-command-list hr, .content.admin-validation hr {
     border: solid 1px #e0e4ea;
     width: 97%; }
-  .content.product-list .col-lg-3 p, .content.product-cart .col-lg-3 p, .content.product-command-list .col-lg-3 p {
-    margin-top: 15%; }
-  .content.product-list .col-lg-2 p, .content.product-cart .col-lg-2 p, .content.product-command-list .col-lg-2 p {
-    margin-top: 25%; }
-  .content.product-list .col-lg-1 p, .content.product-cart .col-lg-1 p, .content.product-command-list .col-lg-1 p {
-    margin-top: 50%; }
-  .content.product-list button, .content.product-cart button, .content.product-command-list button {
+  .content.product-list button, .content.product-cart button, .content.product-command-list button, .content.admin-validation button {
     height: 28px;
     border-radius: 3px;
     background-color: #ffffff;
     border: solid 1px #e0e4ea;
     padding-left: 13px;
     padding-right: 13px; }
-    .content.product-list button:hover, .content.product-cart button:hover, .content.product-command-list button:hover {
+    .content.product-list button:hover, .content.product-cart button:hover, .content.product-command-list button:hover, .content.admin-validation button:hover {
       background-color: #e0e4ea;
       border-color: #878787; }
-    .content.product-list button.add-modale, .content.product-list button.validate-cart, .content.product-cart button.add-modale, .content.product-cart button.validate-cart, .content.product-command-list button.add-modale, .content.product-command-list button.validate-cart {
+    .content.product-list button.add-modale, .content.product-list button.validate-cart, .content.product-cart button.add-modale, .content.product-cart button.validate-cart, .content.product-command-list button.add-modale, .content.product-command-list button.validate-cart, .content.admin-validation button.add-modale, .content.admin-validation button.validate-cart {
       width: 150px;
       height: 36px;
       border-radius: 3px;
       color: #FFF;
       background-color: #10cfbd;
       margin-bottom: 40px; }
-      .content.product-list button.add-modale:hover, .content.product-list button.validate-cart:hover, .content.product-cart button.add-modale:hover, .content.product-cart button.validate-cart:hover, .content.product-command-list button.add-modale:hover, .content.product-command-list button.validate-cart:hover {
+      .content.product-list button.add-modale:hover, .content.product-list button.validate-cart:hover, .content.product-cart button.add-modale:hover, .content.product-cart button.validate-cart:hover, .content.product-command-list button.add-modale:hover, .content.product-command-list button.validate-cart:hover, .content.admin-validation button.add-modale:hover, .content.admin-validation button.validate-cart:hover {
         background-color: rgba(16, 207, 189, 0.6);
         border-color: transparent; }
-  .content.product-list .status, .content.product-cart .status, .content.product-command-list .status {
+  .content.product-list .status, .content.product-cart .status, .content.product-command-list .status, .content.admin-validation .status {
     width: 40px; }
-  .content.product-list .status-color, .content.product-cart .status-color, .content.product-command-list .status-color {
+  .content.product-list .status-color, .content.product-cart .status-color, .content.product-command-list .status-color, .content.admin-validation .status-color {
     height: 10px;
     width: 10px;
     background-color: #48b0f7;
-    border-radius: 10px;
-    display: block; }
-  .content.product-list .collapse-tab, .content.product-cart .collapse-tab, .content.product-command-list .collapse-tab {
+    border-radius: 10px; }
+  .content.product-list .collapse-tab, .content.product-cart .collapse-tab, .content.product-command-list .collapse-tab, .content.admin-validation .collapse-tab {
     margin-bottom: 10px;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: #3e5e76; }
-  .content.product-list .collapse-content .product, .content.product-cart .collapse-content .product, .content.product-command-list .collapse-content .product {
+  .content.product-list .collapse-content .product, .content.product-cart .collapse-content .product, .content.product-command-list .collapse-content .product, .content.admin-validation .collapse-content .product {
     border: 1px solid #e0e4ea;
     border-radius: 3px; }
-    .content.product-list .collapse-content .product input[type="checkbox"], .content.product-cart .collapse-content .product input[type="checkbox"], .content.product-command-list .collapse-content .product input[type="checkbox"] {
+    .content.product-list .collapse-content .product .collapse-head, .content.product-cart .collapse-content .product .collapse-head, .content.product-command-list .collapse-content .product .collapse-head, .content.admin-validation .collapse-content .product .collapse-head {
+      line-height: 80px; }
+    .content.product-list .collapse-content .product .collapse-body .well, .content.product-cart .collapse-content .product .collapse-body .well, .content.product-command-list .collapse-content .product .collapse-body .well, .content.admin-validation .collapse-content .product .collapse-body .well {
+      min-height: 40px; }
+    .content.product-list .collapse-content .product input[type="checkbox"], .content.product-cart .collapse-content .product input[type="checkbox"], .content.product-command-list .collapse-content .product input[type="checkbox"], .content.admin-validation .collapse-content .product input[type="checkbox"] {
       margin-top: 30%;
       width: 40px;
       height: 40px; }
-    .content.product-list .collapse-content .product button, .content.product-cart .collapse-content .product button, .content.product-command-list .collapse-content .product button {
-      margin-top: 40%; }
+    .content.product-list .collapse-content .product button, .content.product-cart .collapse-content .product button, .content.product-command-list .collapse-content .product button, .content.admin-validation .collapse-content .product button {
+      margin-top: 40%;
+      line-height: 0; }
 
 .content.product-cart select {
   margin-bottom: 20px;
@@ -985,6 +983,32 @@ td {
 
 .modal-body .new-product .row {
   margin-bottom: 10px; }
+
+.modal-body .validate-form input {
+  height: 36px;
+  border-radius: 3px;
+  border: solid 1px #e0e4ea; }
+
+.modal-body .validate-form input[type="radio"], .modal-body .validate-form input[type="checkbox"] {
+  height: 15px !important; }
+
+.modal-body .validate-form label {
+  margin-top: 10px; }
+
+.modal-body .validate-form .validate-button {
+  text-align: center;
+  margin-top: 30px; }
+  .modal-body .validate-form .validate-button button {
+    width: 150px;
+    height: 42px;
+    border-radius: 3px;
+    color: #FFF;
+    background-color: #10cfbd;
+    margin-bottom: 40px;
+    border: 0; }
+    .modal-body .validate-form .validate-button button:hover {
+      background-color: rgba(16, 207, 189, 0.6);
+      border-color: transparent; }
 
 @font-face {
   font-family: OpenSans;
