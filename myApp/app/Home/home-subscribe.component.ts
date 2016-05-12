@@ -8,6 +8,7 @@ import {AlertService} from "../Tools/alert";
 
 
 @Component({
+    selector: "user-subscribe",
     providers: [],
     templateUrl: "app/Home/home-subscribe.html",
     providers: [RegEx, UserFactory, AlertService]

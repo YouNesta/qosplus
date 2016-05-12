@@ -16,13 +16,14 @@ import {FormValidator} from "../Config/form-validator";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {UserFactory} from "../User/user.factory";
 import {AlertService} from "../Tools/alert";
+import {HomeSubscribeComponent} from "../Home/home-subscribe.component";
 
 @CanActivate(() => tokenNotExpired('token'))
 
 
 @Component({
     templateUrl: "app/Admin/admin-validation.html",
-    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES],
+    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent],
     providers: [ AdminFactory]
 })
 
@@ -150,7 +151,9 @@ export class AdminValidationComponent {
             );
         
     }
-    
+    closed(){
+        this.getUnvalidateUser();
+    }
     getUnvalidateUser(){
         this.adminService.getUnvalidateUser()
             .subscribe(

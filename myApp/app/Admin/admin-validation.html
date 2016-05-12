@@ -1,5 +1,16 @@
 <div class="content admin-validation">
-    <modal #modal>
+    <button (click)="modalSubscribe.open()" class="add-modale">Add a User</button>
+
+    <modal #modalSubscribe (onClose)="closed()">
+        <modal-body>
+            <user-subscribe></user-subscribe>
+        </modal-body>
+        <modal-footer>
+            <button type="button" class="default" data-dismiss="modal" (click)="modalSubscribe.close()">Fermer</button>
+        </modal-footer>
+    </modal>
+
+    <modal #modal (onDismiss)="dismissed()">
         <modal-body>
             <form class="validate-form" [ngFormModel]="validateForm" >
                 <div class="row">
@@ -262,7 +273,7 @@
                 </div>
                 <div class="row">
                     <div class="validate-button">
-                        <button class="btn" (click)="validateUser()" type="button">Valider</button>
+                        <button class="btn" (click)="validateUser(); modal.close()" type="button">Valider</button>
                     </div>
                 </div>
             </form>
