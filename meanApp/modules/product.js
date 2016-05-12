@@ -224,18 +224,45 @@ module.exports = {
     },
 
     deleteProduct: function(req, res){
-        Product.findOneAndRemove({_id: req.body.product._id}, function(err,product){
-            if(err)
-            {
-                console.log(err);
-                logger.log('error', err);
-                res.res.json({success: false, message:err});
+        var i = 0;
+
+        deleteItem(req.body.product, i);
+        function deleteProduct(product, i){
+            Product.findOneAndRemove({_id: product._id}, function(err,product){
+                if(err)
+                {
+                    console.log(err);
+                    logger.log('error', err);
+                    res.res.json({success: false, message:err});
+                }
+                else
+                {
+                    res.json({success: true, message:"Product Successfully deleted", data: product});
+                }
+            });
+        }
+
+        function deleteItem(product, i){
+            if(i < product.item.length) {
+                delete product.item[i].__v;
+                Item.findOneAndRemove({_id: product.item[i]._id}, function(err,product){
+                    if(err)
+                    {
+                        console.log(err);
+                        logger.log('error', err);
+                        res.res.json({success: false, message:err});
+                    }
+                    else
+                    {
+                        res.json({success: true, message:"Product Successfully deleted", data: product});
+                    }
+                });
+            }else{
+                deleteProduct(product, i);
             }
-            else
-            {
-                res.json({success: true, message:"Product Successfully deleted", data: product});
-            }
-        });
+        }
+
+
 
     },
 
