@@ -1,3 +1,4 @@
+
 .page {
   font-family: 'Roboto', sans-serif;
   color: #000;
@@ -371,49 +372,6 @@
         position: relative;
         margin-bottom: 50px;
         margin-top: 30px;
-        .form-buttons {
-          z-index: 90;
-          width: 100%;
-          text-align: center;
-          button {
-            background-color: transparent;
-            border: 0;
-            color: #7B19F4;
-            font-weight: bold;
-            span {
-              font-size: 20px;
-              width: 35px;
-              height: 35px;
-              display: inline-block;
-              border-radius: 22px;
-              border: 2px solid;
-            }
-            &:hover {
-              color: rgba(123, 29, 255, 0.53);
-            }
-          }
-        }
-        &:before {
-          position: absolute;
-          top: 0;
-          right: 0;
-          content: "";
-          border-top: 3px solid #000;
-          border-right: 3px solid #000;
-          width: 160px;
-          height: 90px;
-        }
-        &:after {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          content: "";
-          border-bottom: 3px solid #000;
-          border-left: 3px solid #000;
-          width: 160px;
-          height: 90px;
-        }
-      }
     }
   }
   &.signin{
@@ -635,35 +593,14 @@ td {
 }
 
 .content {
+
+
+
   &.product-list, &.product-cart, &.product-command-list, &.admin-validation {
     padding: 20px;
     hr {
       border: solid 1px #e0e4ea;
       width: 97%;
-    }
-    button {
-      height: 28px;
-      border-radius: 3px;
-      background-color: #ffffff;
-      border: solid 1px #e0e4ea;
-      padding-left: 13px;
-      padding-right: 13px;
-      &:hover {
-        background-color: #e0e4ea;
-        border-color: #878787;
-      }
-      &.add-modale, &.validate-cart {
-        width: 150px;
-        height: 36px;
-        border-radius: 3px;
-        color: #FFF;
-        background-color: #10cfbd;
-        margin-bottom: 40px;
-        &:hover {
-          background-color: rgba(16, 207, 189, 0.6);
-          border-color: transparent;
-        }
-      }
     }
     .status {
       width: 40px;
