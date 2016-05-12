@@ -1,0 +1,16 @@
+.form-buttons {
+  text-align: center; }
+
+button.add-modale, button.validate-cart, button.default {
+  width: 150px;
+  height: 36px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #10cfbd;
+  margin-bottom: 40px;
+  border: solid 1px #e0e4ea;
+  padding-left: 13px;
+  padding-right: 13px; }
+  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
+    background-color: rgba(16, 207, 189, 0.6);
+    border-color: transparent; }
