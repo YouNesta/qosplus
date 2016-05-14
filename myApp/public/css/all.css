@@ -51,6 +51,12 @@ button.add-modale, button.validate-cart, button.default {
     background-color: rgba(16, 207, 189, 0.6);
     border-color: transparent; }
 
+.icon-button {
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 1px solid #e0e4ea;
+  border-radius: 3px; }
+
 search .row {
   background: white;
   height: 60px; }
@@ -769,6 +775,11 @@ td {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: #3e5e76; }
+  .content.product-list .collapse-content button, .content.product-cart .collapse-content button, .content.product-command-list .collapse-content button, .content.admin-validation .collapse-content button {
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #e0e4ea;
+    border-radius: 3px; }
   .content.product-list .collapse-content .product, .content.product-cart .collapse-content .product, .content.product-command-list .collapse-content .product, .content.admin-validation .collapse-content .product {
     border: 1px solid #e0e4ea;
     border-radius: 3px; }

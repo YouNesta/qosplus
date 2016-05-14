@@ -30,13 +30,15 @@
                     <p>{{ command.product.length }}</p>
                 </div>
                 <div class="col-lg-3">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <button class="status"><span class="status-color status-{{command.status}}"></span></button>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
+                        <button (click)="printPdf(i)"><i class="fa fa-file" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="col-lg-4">
                         <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
-
                 </div>
             </div>
 

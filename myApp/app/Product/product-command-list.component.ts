@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {ProductFactory} from "./product.factory";
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
 import {TagInputComponent} from "angular2-tag-input";
+import {pdf} from "phantom-html2pdf";
 
 @Component({
     providers: [],
@@ -14,7 +15,6 @@ export class ProductCommandComponent {
 
     commands: Object ;
     isOpen = [];
-
     constructor(public service: ProductFactory){
         this.service.getCommands()
             .subscribe(
@@ -31,6 +31,18 @@ export class ProductCommandComponent {
                 err =>  console.log(err),
                 () => console.log('get command list Complete')
             );
+    }
+
+    printPdf(i) {
+        var command = this.commands[i];
+        var options = {
+            "html": "<h3>Hello world</h3>",
+            "deleteOnAction" : true
+        };
+        var path = "../../public/pdf/"+command._id+".pdf";
+        pdf.convert(options, function(result) {
+            result.toFile(path, function() {});
+        });
     }
 
 }

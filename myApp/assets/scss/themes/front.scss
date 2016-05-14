@@ -622,6 +622,12 @@ td {
       color: #3e5e76;
     }
     .collapse-content {
+      button {
+        padding: 5px 10px;
+        background-color: #fff;
+        border: 1px solid #e0e4ea;
+        border-radius: 3px;
+      }
       .product {
         border: 1px solid #e0e4ea;
         border-radius: 3px;
