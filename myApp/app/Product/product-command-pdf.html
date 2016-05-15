@@ -1,0 +1,40 @@
+<div class="content command-pdf">
+
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <address>
+                QosPlus<br>
+                Our Address Here:<br>
+            </address>
+            <p>{{ machin.client }}</p>
+            <div class="clearfix"></div>
+            <p>Bon N°{{ command._id }}</p>
+            <p>Le {{ command.date }}</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <address>
+                Client<br>
+                Your Address Here:<br>
+            </address>
+        </div>
+    </div>
+    <div class="row" *ngFor="#product of command.product">
+        <table>
+            <thead>
+            <td>Porteur</td>
+            <td>Code Produit</td>
+            <td>Nom</td>
+            <td>Sphère</td>
+            <td>Qté.</td>
+            </thead>
+            <tr *ngFor="#product of command.product">
+                <td>{{product.porter}}</td>
+                <td>{{product.reference}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.item.sphere}}</td>
+                <td>{{product.quantity}}</td>
+            </tr>
+        </table>
+    </div>
+
+</div>

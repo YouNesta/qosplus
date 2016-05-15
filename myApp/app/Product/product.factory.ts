@@ -119,6 +119,21 @@ export class ProductFactory {
                 })
         }
 
+    getOneCommand(commandId){
+
+        var data =  JSON.stringify({commandId});
+
+        var headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
+        return  this.authHttp
+            .post(this.commandUrl + 'command/'+commandId,
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json());
+    }
+
 
         createPrice(price){
             var data =  JSON.stringify({price});
@@ -184,6 +199,19 @@ export class ProductFactory {
 
         return this.authHttp
             .post(this.apiUrl + 'delete',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    printPdf(command){
+        var data = JSON.stringify({command});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'printPdf',
                 data, {
                     headers: headers
                 })

@@ -9,10 +9,6 @@ var CommandSchema = new mongoose.Schema({
         type: Date,
         required : false
     },
-    facture:{
-        type: String,
-        required : false
-    },
     orderForm:{
         type: String,
         required : false

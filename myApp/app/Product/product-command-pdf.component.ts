@@ -1,30 +1,27 @@
 import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {ProductFactory} from "./product.factory";
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
-import {TagInputComponent} from "angular2-tag-input";
-import {Path} from "path";
-import {childProcess} from "child_process";
+import {Router, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteParams} from 'angular2/router';
 
 @Component({
     providers: [],
-    templateUrl: "app/Product/product-command-list.html",
-    directives: [ ACCORDION_DIRECTIVES ]
-
+    templateUrl: "app/Product/product-command-pdf.html",
 })
 
-export class ProductCommandComponent {
+export class ProductCommandPdfComponent {
 
-    commands: Object ;
-    isOpen = [];
-    constructor(public service: ProductFactory){
-        this.service.getCommands()
+    id: string ;
+    command: Object;
+
+    constructor(public service: ProductFactory, params: RouteParams){
+
+        this.id = params.get('id');
+
+        this.service.getOneCommand(this.id)
             .subscribe(
                 res => {
                     if(res.success){
-                        this.commands = res.data;
-                        for(var i in this.commands){
-                            this.isOpen.push(false);
-                        }
+                        this.command = res.data;
                     }else{
                         console.log(res);
                     }
@@ -34,9 +31,7 @@ export class ProductCommandComponent {
             );
     }
 
-    printPdf(i) {
-
-        var command = this.commands[i];
+    printPdf(command) {
 
         if (command.commandForm != "" && command.commandForm) {
             window.open(command.commandForm, "_blank");
@@ -45,8 +40,6 @@ export class ProductCommandComponent {
                 res => {
                     if(res.success){
                         command = res.data;
-
-                        this.commands[i] = command;
 
                         window.open(command.commandForm, "_blank");
                     }else{

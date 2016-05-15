@@ -13,6 +13,10 @@ var PaymentSchema = new mongoose.Schema({
         type: Date,
         required : false
     },
+    facture:{
+        type: String,
+        required : false
+    },
     client:{
         type: String,
         required : false

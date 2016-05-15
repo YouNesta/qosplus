@@ -28,9 +28,25 @@ router.get('/list',function(req, res) {
 });
 
 router.post('/list/user',function(req, res) {
-    console.log("hey");
     if(req.body != 'undefined'){
         CommandModule.getCommandsByUser(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/command/:id',function(req, res) {
+    console.log("hey");
+    if(req.body != 'undefined'){
+        CommandModule.getOneCommand(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/printPdf',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.printPdf(req, res);
     }else{
         res.sendStatus(500);
     }
