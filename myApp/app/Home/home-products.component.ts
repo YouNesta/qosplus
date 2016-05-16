@@ -16,15 +16,12 @@ export class HomeProductsComponent {
 
     }
 
-    getProducts(){
-        this.service.getProduct()
+    getProductsSupplier(){
+        this.service.getProductBySupplier()
             .subscribe(
                 response => {
                     if(response.success){
                         this.products = response.data;
-                        for(var i in this.products){
-                            this.isOpen.push(false);
-                        }
                     }else{
                         console.log(response);
                     }

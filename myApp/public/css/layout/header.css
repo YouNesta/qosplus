@@ -1,7 +1,8 @@
 header {
   position: fixed;
   width: 100%;
-  z-index: 100; }
+  z-index: 100;
+  border-bottom: 1px solid #10cfbd; }
   header nav {
     background-color: #fff;
     color: #000;
@@ -12,11 +13,10 @@ header {
     header nav .container, header nav .container-fluid {
       padding: 0 !important; }
     header nav .logo {
-      margin-top: 15px;
+      font-size: 25px;
+      margin-top: 30px;
       margin-bottom: 15px;
-      margin-left: 75px; }
-      header nav .logo img {
-        width: 93px; }
+      margin-left: 50px; }
     header nav .header-navbar {
       height: 93px;
       max-width: 100%; }
@@ -42,7 +42,7 @@ header {
           padding-top: 70px;
           vertical-align: bottom; }
         header nav .header-navbar li a:hover {
-          border-bottom: 2px solid #571885; }
+          border-bottom: 2px solid #10cfbd; }
       header nav .header-navbar li:first-child {
         border: 0;
         margin-right: 80px; }

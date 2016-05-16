@@ -88,76 +88,78 @@ search .row {
     search .row .rightSearch .open .dropdown-toggle {
       box-shadow: none; }
 
-.footer {
-  padding: 20px;
-  background-color: #3F3F3F;
-  color: #FFF;
-  font-family: 'Roboto', sans-serif;
+footer {
   width: 100%;
   clear: both;
   position: relative;
   z-index: 10;
   margin-top: 4em; }
-  .footer .footer-content {
-    border-bottom: 2px solid #FFF;
-    padding: 30px 0px 20px 15px; }
-    .footer .footer-content .col {
-      padding: 0; }
-    .footer .footer-content h6 {
-      font-weight: bold;
-      width: 90%;
-      padding-bottom: 10px; }
-    .footer .footer-content ul {
-      margin-top: 10px; }
-      .footer .footer-content ul li a {
-        color: #FFF; }
-        .footer .footer-content ul li a:hover {
-          cursor: pointer; }
-    .footer .footer-content form input {
-      height: 25px; }
-    .footer .footer-content form input, .footer .footer-content form textarea {
-      padding: 3px 9px 6px 9px;
-      background-color: #e3cefd;
-      color: #000;
-      border-radius: 5px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      border: 0; }
-      .footer .footer-content form input[type="submit"], .footer .footer-content form textarea[type="submit"] {
-        background-color: #000; }
-    .footer .footer-content form ::-webkit-input-placeholder {
-      color: #000; }
-    .footer .footer-content form :-moz-placeholder {
-      color: #000;
-      opacity: 1; }
-    .footer .footer-content form ::-moz-placeholder {
-      color: #000;
-      opacity: 1; }
-    .footer .footer-content form :-ms-input-placeholder {
-      color: #000; }
-    .footer .footer-content form textarea {
-      color: #000;
-      height: 50px; }
-    .footer .footer-content form .center {
-      text-align: center; }
-      .footer .footer-content form .center input {
-        color: #FFF; }
-    .footer .footer-content .useful-link {
-      margin-top: 10px; }
-      .footer .footer-content .useful-link a {
-        text-decoration: none;
-        color: #fff; }
-    .footer .footer-content #map {
-      width: 100%;
-      height: 230px;
-      background-color: #CCC; }
-  .footer .copyright {
-    padding: 20px; }
+  footer .footer {
+    padding: 20px;
+    background-color: #3F3F3F;
+    color: #FFF;
+    font-family: 'Roboto', sans-serif; }
+    footer .footer .footer-content {
+      border-bottom: 2px solid #FFF;
+      padding: 30px 0px 20px 15px; }
+      footer .footer .footer-content .col {
+        padding: 0; }
+      footer .footer .footer-content h6 {
+        font-weight: bold;
+        width: 90%;
+        padding-bottom: 10px; }
+      footer .footer .footer-content ul {
+        margin-top: 10px; }
+        footer .footer .footer-content ul li a {
+          color: #FFF; }
+          footer .footer .footer-content ul li a:hover {
+            cursor: pointer; }
+      footer .footer .footer-content form input {
+        height: 25px; }
+      footer .footer .footer-content form input, footer .footer .footer-content form textarea {
+        padding: 3px 9px 6px 9px;
+        background-color: #e3cefd;
+        color: #000;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 0; }
+        footer .footer .footer-content form input[type="submit"], footer .footer .footer-content form textarea[type="submit"] {
+          background-color: #000; }
+      footer .footer .footer-content form ::-webkit-input-placeholder {
+        color: #000; }
+      footer .footer .footer-content form :-moz-placeholder {
+        color: #000;
+        opacity: 1; }
+      footer .footer .footer-content form ::-moz-placeholder {
+        color: #000;
+        opacity: 1; }
+      footer .footer .footer-content form :-ms-input-placeholder {
+        color: #000; }
+      footer .footer .footer-content form textarea {
+        color: #000;
+        height: 50px; }
+      footer .footer .footer-content form .center {
+        text-align: center; }
+        footer .footer .footer-content form .center input {
+          color: #FFF; }
+      footer .footer .footer-content .useful-link {
+        margin-top: 10px; }
+        footer .footer .footer-content .useful-link a {
+          text-decoration: none;
+          color: #fff; }
+      footer .footer .footer-content #map {
+        width: 100%;
+        height: 230px;
+        background-color: #CCC; }
+    footer .footer .copyright {
+      padding: 20px; }
 
 header {
   position: fixed;
   width: 100%;
-  z-index: 100; }
+  z-index: 100;
+  border-bottom: 1px solid #10cfbd; }
   header nav {
     background-color: #fff;
     color: #000;
@@ -168,11 +170,10 @@ header {
     header nav .container, header nav .container-fluid {
       padding: 0 !important; }
     header nav .logo {
-      margin-top: 15px;
+      font-size: 25px;
+      margin-top: 30px;
       margin-bottom: 15px;
-      margin-left: 75px; }
-      header nav .logo img {
-        width: 93px; }
+      margin-left: 50px; }
     header nav .header-navbar {
       height: 93px;
       max-width: 100%; }
@@ -198,7 +199,7 @@ header {
           padding-top: 70px;
           vertical-align: bottom; }
         header nav .header-navbar li a:hover {
-          border-bottom: 2px solid #571885; }
+          border-bottom: 2px solid #10cfbd; }
       header nav .header-navbar li:first-child {
         border: 0;
         margin-right: 80px; }
@@ -358,6 +359,8 @@ header {
   font-family: 'Roboto', sans-serif;
   color: #000; }
   .page .hero {
+    text-align: center;
+    color: #fff;
     font-weight: bold;
     letter-spacing: 2px;
     padding: 10px;
@@ -587,9 +590,12 @@ header {
       margin-top: 30px; }
       .page.register .page-container form .form-buttons {
         text-align: center; }
-    .page.register.signin .page-container .btn-container {
-      padding: 90px 0px; }
-      .page.register.signin .page-container .btn-container button {
+  .page.signin .page-container .btn-container {
+    padding: 90px 0px; }
+    .page.signin .page-container .btn-container a {
+      text-decoration: none;
+      color: #fff; }
+      .page.signin .page-container .btn-container a button {
         font-size: 23px;
         font-weight: 500;
         letter-spacing: 3px;
@@ -601,9 +607,11 @@ header {
         border-radius: 3px;
         background-color: #10cfbd;
         padding: 20px; }
-        .page.register.signin .page-container .btn-container button a {
-          text-decoration: none;
-          color: #fff; }
+      .page.signin .page-container .btn-container a button:hover {
+        background-color: #fff;
+        border: 1px solid #10cfbd;
+        color: #10cfbd;
+        transition: 0.5s; }
 
 .user .container h1 {
   text-align: center; }

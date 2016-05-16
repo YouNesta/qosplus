@@ -2,6 +2,7 @@ header {
   position: fixed;
   width: 100%;
   z-index: 100;
+  border-bottom: 1px solid #10cfbd;
   nav{
     li {
       display: inline-block;
@@ -14,12 +15,10 @@ header {
     color: #000;
     font-family: 'Roboto', sans-serif;
     .logo {
-      margin-top: 15px;
+      font-size: 25px;
+      margin-top: 30px;
       margin-bottom: 15px;
-      margin-left: 75px;
-      img {
-        width: 93px;
-      }
+      margin-left: 50px;
     }
     .header-navbar {
       height: 93px;
@@ -51,7 +50,7 @@ header {
           vertical-align: bottom;
         }
         a:hover {
-          border-bottom: 2px solid #571885;
+          border-bottom: 2px solid #10cfbd;
         }
       }
       li:first-child {

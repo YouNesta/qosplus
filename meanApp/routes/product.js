@@ -78,4 +78,12 @@ router.post('/deletes', function(req, res){
     }
 });
 
+router.get('/list/supplier/asc', function(req, res){
+    if(req.body.products != "undefined"){
+        product.getProductsBySupplier(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
 module.exports = router;

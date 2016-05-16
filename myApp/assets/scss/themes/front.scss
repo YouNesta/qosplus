@@ -3,6 +3,8 @@
   font-family: 'Roboto', sans-serif;
   color: #000;
   .hero {
+    text-align: center;
+    color: #fff;
     font-weight: bold;
     letter-spacing: 2px;
     padding: 10px;
@@ -316,10 +318,14 @@
         }
       }
     }
-    &.signin {
-      .page-container {
-        .btn-container {
-          padding: 90px 0px;
+  }
+  &.signin {
+    .page-container {
+      .btn-container {
+        padding: 90px 0px;
+        a{
+          text-decoration: none;
+          color: #fff;
           button {
             font-size: 23px;
             font-weight: 500;
@@ -332,16 +338,18 @@
             border-radius: 3px;
             background-color: #10cfbd;
             padding: 20px;
-            a {
-              text-decoration: none;
-              color: #fff;
-            }
+          }
+          button:hover{
+            background-color: #fff;
+            border: 1px solid #10cfbd;
+            color: #10cfbd;
+            transition: 0.5s;
           }
         }
-
       }
     }
   }
+
 }
 
 .user{
