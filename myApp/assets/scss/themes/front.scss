@@ -2,41 +2,41 @@
 .page {
   font-family: 'Roboto', sans-serif;
   color: #000;
+  .hero {
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 10px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
+    background-size: 100% 100%;
+    h1 {
+      letter-spacing: 20px;
+      font-size: 70px;
+    }
+    img {
+      width: 100%;
+    }
+    div {
+      margin-top: 20px;
+      a {
+        border: 1px solid #FFF;
+        color: #FFF;
+        border-radius: 17px;
+        letter-spacing: 2px;
+        padding: 7px 15px;
+        &:hover {
+          background-color: #FFF;
+          color: #000;
+          text-decoration: none;
+        }
+      }
+    }
+  }
   &.product {
     text-align: center;
     color: #FFF;
     background-color: #F5F5F5;
-    .hero {
-      font-weight: bold;
-      letter-spacing: 2px;
-      padding: 10px;
-      padding-top: 80px;
-      padding-bottom: 80px;
-      background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
-      background-size: 100% 100%;
-      h1 {
-        letter-spacing: 20px;
-        font-size: 70px;
-      }
-      img {
-        width: 100%;
-      }
-      div {
-        margin-top: 20px;
-        a {
-          border: 1px solid #FFF;
-          color: #FFF;
-          border-radius: 17px;
-          letter-spacing: 2px;
-          padding: 7px 15px;
-          &:hover {
-            background-color: #FFF;
-            color: #000;
-            text-decoration: none;
-          }
-        }
-      }
-    }
     .container {
       padding: 40px 0px;
       .search-container {
@@ -47,8 +47,16 @@
           display: inline-block;
         }
       }
+      .collapse-tab {
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        color: #3e5e76;
+      }
       .supplier-container {
         padding: 10px;
+        padding-left: 50px;
         padding-top: 0;
         margin-top: 10px;
         background-color: #fff;
@@ -225,37 +233,6 @@
     text-align: center;
     color: #FFF;
     font-family: Roboto, sans-serif;
-    .hero {
-      font-weight: bold;
-      letter-spacing: 2px;
-      padding: 10px;
-      padding-top: 80px;
-      padding-bottom: 80px;
-      background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
-      background-size: 100% 100%;
-      h1 {
-        letter-spacing: 20px;
-        font-size: 70px;
-      }
-      img {
-        width: 100%;
-      }
-      div {
-        margin-top: 20px;
-        a {
-          border: 1px solid #FFF;
-          color: #FFF;
-          border-radius: 17px;
-          letter-spacing: 2px;
-          padding: 7px 15px;
-          &:hover {
-            background-color: #FFF;
-            color: #000;
-            text-decoration: none;
-          }
-        }
-      }
-    }
     .homepage-description {
       color: #000;
       padding: 10px;
@@ -310,44 +287,6 @@
   }
   &.engagement {
     color: #000;
-    .hero {
-      background-color: #efefef;
-      .carousel {
-        height: 400px;
-        overflow: hidden;
-        .carousel-indicators {
-          li {
-            border-color: #000;
-            height: 20px;
-            width: 20px;
-            border-radius: 10px;
-            &.active {
-              background-color: #000;
-            }
-          }
-        }
-        .item {
-          img {
-            width: 100%;
-          }
-        }
-      }
-      .img-overlay {
-        position: absolute;
-        z-index: 90;
-        width: 100%;
-        text-align: center;
-        font-size: 16px;
-        h5 {
-          padding: 50px;
-          font-weight: bold;
-          font-size: 17px;
-        }
-        p {
-          margin-top: 170px;
-        }
-      }
-    }
     .engagement-content {
       padding: 10px;
       h2 {
@@ -378,43 +317,6 @@
       }
     }
     &.signin {
-      .hero {
-        font-weight: bold;
-        letter-spacing: 2px;
-        padding-top: 80px;
-        padding-bottom: 80px;
-        background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
-        background-size: 100% 100%;
-        h1 {
-          letter-spacing: 20px;
-          font-size: 70px;
-          color: #fff;
-          text-align: center;
-        }
-        h3 {
-          color: #fff;
-          text-align: center;
-        }
-        img {
-          width: 100%;
-        }
-        div {
-          margin-top: 20px;
-          a {
-            border: 1px solid #FFF;
-            color: #FFF;
-            border-radius: 17px;
-            letter-spacing: 2px;
-            padding: 7px 15px;
-            &:hover {
-              background-color: #FFF;
-              color: #000;
-              text-decoration: none;
-            }
-          }
-        }
-
-      }
       .page-container {
         .btn-container {
           padding: 90px 0px;
@@ -596,8 +498,6 @@ td {
 }
 
 .content {
-
-
 
   &.product-list, &.product-cart, &.product-command-list, &.admin-validation {
     padding: 20px;

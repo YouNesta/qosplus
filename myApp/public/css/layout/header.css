@@ -58,6 +58,32 @@ header {
       margin-top: 5%; }
       header nav .menu-mobile img {
         height: 100%; }
+    header nav .hero {
+      position: relative;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 10px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
+      background-size: 100% 100%; }
+      header nav .hero h1 {
+        letter-spacing: 20px;
+        font-size: 70px; }
+      header nav .hero img {
+        width: 100%; }
+      header nav .hero div {
+        margin-top: 20px; }
+        header nav .hero div a {
+          border: 1px solid #FFF;
+          color: #FFF;
+          border-radius: 17px;
+          letter-spacing: 2px;
+          padding: 7px 15px; }
+          header nav .hero div a:hover {
+            background-color: #FFF;
+            color: #000;
+            text-decoration: none; }
   header nav-admin #sidebar-wrapper {
     background: #000; }
     header nav-admin #sidebar-wrapper .sidebar-nav {
