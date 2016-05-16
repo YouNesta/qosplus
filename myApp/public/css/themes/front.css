@@ -9,8 +9,7 @@
     padding: 10px;
     padding-top: 80px;
     padding-bottom: 80px;
-    background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
-    background-size: 100% 100%; }
+    background: url("../../public/img/glasses-lenses.jpg") no-repeat center; }
     .page .hero h1 {
       letter-spacing: 20px;
       font-size: 70px; }
@@ -32,6 +31,9 @@
     text-align: center;
     color: #FFF;
     background-color: #F5F5F5; }
+    .page.product .hero {
+      background: url("../../public/img/hero-lens-detail2.jpg") no-repeat center;
+      background-size: 100% auto; }
     .page.product .container {
       padding: 40px 0px; }
       .page.product .container .search-container #product-name {
@@ -70,6 +72,9 @@
               height: 100%; }
           .page.product .container .supplier-container .item-container .item .item-action button {
             background-color: #e0e4ea; }
+  .page.about .hero {
+    background: url("../../public/img/hero-lens-schema.jpg") no-repeat center;
+    background-size: 100% auto; }
   .page.about .president-message {
     padding: 20px;
     margin-top: 30px; }
@@ -143,6 +148,9 @@
     position: relative;
     padding: 20px;
     text-align: center; }
+    .page.login .hero {
+      background: url("../../public/img/hero-lens-sf.jpg") no-repeat center;
+      background-size: 100% auto; }
     .page.login h1 {
       font-weight: bold; }
     .page.login form {
@@ -181,6 +189,9 @@
     text-align: center;
     color: #FFF;
     font-family: Roboto, sans-serif; }
+    .page.home .hero {
+      background: url("../../public/img/hero-lens-detail.jpg") no-repeat center;
+      background-size: 100% auto; }
     .page.home .homepage-description {
       color: #000;
       padding: 10px;
@@ -213,6 +224,9 @@
         background-color: #ffffff; }
   .page.engagement {
     color: #000; }
+    .page.engagement .hero {
+      background: url("../../public/img/hero-lens-sf.jpg") no-repeat center;
+      background-size: 100% auto; }
     .page.engagement .engagement-content {
       padding: 10px; }
       .page.engagement .engagement-content h2 {
@@ -223,6 +237,9 @@
           color: #7B19F4; }
   .page.register {
     padding: 10px; }
+    .page.register .hero {
+      background: url("../../public/img/hero-lens-schema.jpg") no-repeat center;
+      background-size: 100% auto; }
     .page.register .page-container h1 {
       text-align: center;
       font-weight: bold; }
@@ -233,6 +250,9 @@
       margin-top: 30px; }
       .page.register .page-container form .form-buttons {
         text-align: center; }
+  .page.signin .hero {
+    background: url("../../public/img/hero-lens-schema.jpg") no-repeat center;
+    background-size: 100% auto; }
   .page.signin .page-container .btn-container {
     padding: 90px 0px; }
     .page.signin .page-container .btn-container a {

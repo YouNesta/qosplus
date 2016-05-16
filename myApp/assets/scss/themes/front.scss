@@ -11,7 +11,6 @@
     padding-top: 80px;
     padding-bottom: 80px;
     background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
-    background-size: 100% 100%;
     h1 {
       letter-spacing: 20px;
       font-size: 70px;
@@ -36,6 +35,10 @@
     }
   }
   &.product {
+    .hero{
+      background: url("../../public/img/hero-lens-detail2.jpg") no-repeat center;
+      background-size: 100% auto;
+    }
     text-align: center;
     color: #FFF;
     background-color: #F5F5F5;
@@ -95,6 +98,10 @@
     }
   }
   &.about {
+    .hero{
+      background: url("../../public/img/hero-lens-schema.jpg") no-repeat center;
+      background-size: 100% auto;
+    }
     .president-message {
       padding: 20px;
       margin-top: 30px;
@@ -185,6 +192,10 @@
     }
   }
   &.login {
+    .hero{
+      background: url("../../public/img/hero-lens-sf.jpg") no-repeat center;
+      background-size: 100% auto;
+    }
     position: relative;
     padding: 20px;
     text-align: center;
@@ -232,6 +243,10 @@
     }
   }
   &.home {
+    .hero{
+      background: url("../../public/img/hero-lens-detail.jpg") no-repeat center;
+      background-size: 100% auto;
+    }
     text-align: center;
     color: #FFF;
     font-family: Roboto, sans-serif;
@@ -288,6 +303,10 @@
     }
   }
   &.engagement {
+    .hero{
+      background: url("../../public/img/hero-lens-sf.jpg") no-repeat center;
+      background-size: 100% auto;
+    }
     color: #000;
     .engagement-content {
       padding: 10px;
@@ -302,6 +321,10 @@
     }
   }
   &.register {
+    .hero{
+      background: url("../../public/img/hero-lens-schema.jpg") no-repeat center;
+      background-size: 100% auto;
+    }
     padding: 10px;
     .page-container {
       h1 {
@@ -320,6 +343,10 @@
     }
   }
   &.signin {
+    .hero{
+      background: url("../../public/img/hero-lens-schema.jpg") no-repeat center;
+      background-size: 100% auto;
+    }
     .page-container {
       .btn-container {
         padding: 90px 0px;
