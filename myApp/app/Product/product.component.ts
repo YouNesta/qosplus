@@ -12,7 +12,6 @@ import {ProductPriceComponent} from "./product-price.component";
 import {ProductAddCartComponent} from "./product-add-cart.component";
 import {ProductCartComponent} from "./product-cart.component";
 import {ProductCommandComponent} from "./product-command-list.component";
-import {ProductCommandPdfComponent} from "./product-command-pdf.component";
 
 
 
@@ -29,8 +28,7 @@ import {ProductCommandPdfComponent} from "./product-command-pdf.component";
     { path: "/price", name: "Price", component: ProductPriceComponent},
     { path: "/cart", name: "Cart", component: ProductCartComponent},
     { path: "/addCart", name: "AddCart", component: ProductAddCartComponent},
-    { path: "/command", name: "Command", component: ProductCommandComponent},
-    { path: "/command-pdf/:id", name: "CommandPdf", component: ProductCommandPdfComponent},
+    { path: "/command", name: "Command", component: ProductCommandComponent}
 ])
 
 

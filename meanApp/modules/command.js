@@ -4,8 +4,9 @@
 
 var Payment = require("../models/command/payment.js").Payment;
 var Command = require("../models/command/command.js").Command;
-//var webPage = require("webpage").create();
+var pdf = require('phantom-html2pdf');
 var logger = require('winston');
+var http = require('http');
 
 module.exports = {
 
@@ -56,50 +57,55 @@ module.exports = {
 
     printPdf: function(req, res) {
 
-        var page = webPage.create();
-
-        console.log(page);
-
         var command = req.body.command;
-        var path = "../../myApp/public/pdf/"+command._id+".pdf";
+        var id = command._id;
+        var path = "../myApp/public/pdf/"+id+".pdf";
+        var savedPath = "/public/pdf/"+id+".pdf";
+        var html = "<p>Error</p>";
 
-        page.viewportSize = {width: 1920, height: 1080};
+        var reqOptions = {
+            host: '192.168.33.10',
+            port: 3000,
+            path: "/product/command-pdf/"+id
+        };
+        http.get(reqOptions, function(resp){
+            resp.setEncoding('utf8');
+            resp.on('data', function(chunk){
+                html = chunk;
+                var options = {
+                    "html" : html,
+                    "paperSize" : {format: 'A4', orientation: 'portrait', border: '1cm'},
+                    "deleteOnAction" : true
+                };
 
-        page.paperSize = {format: 'Letter', orientation: 'portait', order: '0.5in'};
-
-        page.open('http://nonogramo.com', function(result) {
-            console.log(status);
-            console.log("testouille");
-            if ( status === "success" ) {
-                page.render( 'example.pdf' );
-                command.commandForm = path;
-                Command.findOneAndUpdate({_id: command._id}, command, { 'new': true }, function(err, command){
-                    if(err){
-                        console.log(err);
-                        logger.log('error', err);
-                        res.res.json({success: false, message:error});
-                    }
-                    res.json({success: true, message:"Command updated", data:  command});
-                })
-            } else {
-                res.json({success: false, message:"Error", data:  null});
-            }
-            phantom.exit();
+                pdf.convert(options, function(result) {
+                    result.toFile(path, function() {
+                        command.commandForm = savedPath;
+                        Command.findOneAndUpdate({_id: id}, command, { 'new': true }, function(err, command){
+                            if(err){
+                                console.log(err);
+                                logger.log('error', err);
+                                res.res.json({success: false, message:error});
+                            }
+                            res.json({success: true, message:"Command updated", data:  command});
+                        })
+                    });
+                });
+            });
+        }).on("error", function(e){
+            console.log("Got error: " + e.message);
         });
     },
 
     getOneCommand: function(req, res){
-        console.log(req.params.id);
         Command.findOne({_id: req.params.id}, function(err, command){
-            if(err)
-            {
+            if(err) {
                 console.log(err);
                 logger.log('error', err);
                 res.res.json({success: false, message:err});
-            }else{
-                console.log('testtest');
-                res.json({success: true, message:"User List Find with success", data: command});
+            } else {
+                res.json({success: true, message:"Command find with success", data: command});
             }
         })
-    }
+    },
 };

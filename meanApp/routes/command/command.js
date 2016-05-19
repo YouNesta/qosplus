@@ -36,7 +36,6 @@ router.post('/list/user',function(req, res) {
 });
 
 router.post('/command/:id',function(req, res) {
-    console.log("hey");
     if(req.body != 'undefined'){
         CommandModule.getOneCommand(req, res);
     }else{
