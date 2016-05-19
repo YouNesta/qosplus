@@ -6,33 +6,39 @@
   font-family: HelveticaNeue-Light;
   src: url("./fonts/HelveticaNeue/HelveticaNeue-Light.otf"); }
 
-body {
-  font-family: OpenSans, Helvetica, sans-serif; }
-  body .admin.wrapper, body .user.wrapper {
-    position: fixed;
-    left: 250px;
-    right: 0;
-    bottom: 0;
-    top: 0px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    background: #f1f1f1; }
-  body .admin .content .collapse-content div.product, body .admin .wrapper .content .collapse-content div.product, body .user .content .collapse-content div.product, body .user .wrapper .content .collapse-content div.product {
-    background: white;
-    padding: 10px 10px 0;
-    margin: 15px 0px; }
-    body .admin .content .collapse-content div.product .collapse-head, body .admin .wrapper .content .collapse-content div.product .collapse-head, body .user .content .collapse-content div.product .collapse-head, body .user .wrapper .content .collapse-content div.product .collapse-head {
-      height: 80px; }
-    body .admin .content .collapse-content div.product .collapse-body, body .admin .wrapper .content .collapse-content div.product .collapse-body, body .user .content .collapse-content div.product .collapse-body, body .user .wrapper .content .collapse-content div.product .collapse-body {
-      height: 0px;
-      overflow: scroll;
-      display: block;
-      transition: height 1s ease;
-      background: #f1f1f1;
-      margin-top: 15px; }
-      body .admin .content .collapse-content div.product .collapse-body.active, body .admin .wrapper .content .collapse-content div.product .collapse-body.active, body .user .content .collapse-content div.product .collapse-body.active, body .user .wrapper .content .collapse-content div.product .collapse-body.active {
-        height: 300px;
-        margin-bottom: 15px; }
+html {
+  height: 100%; }
+  html body {
+    font-family: OpenSans, Helvetica, sans-serif;
+    height: 100%; }
+    html body .wrapper {
+      min-height: 80%;
+      background-color: #f5f5f5; }
+    html body .admin.wrapper, html body .user.wrapper {
+      position: fixed;
+      left: 250px;
+      right: 0;
+      bottom: 0;
+      top: 0px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      background: #f1f1f1; }
+    html body .admin .content .collapse-content div.product, html body .admin .wrapper .content .collapse-content div.product, html body .user .content .collapse-content div.product, html body .user .wrapper .content .collapse-content div.product {
+      background: white;
+      padding: 10px 10px 0;
+      margin: 15px 0px; }
+      html body .admin .content .collapse-content div.product .collapse-head, html body .admin .wrapper .content .collapse-content div.product .collapse-head, html body .user .content .collapse-content div.product .collapse-head, html body .user .wrapper .content .collapse-content div.product .collapse-head {
+        height: 80px; }
+      html body .admin .content .collapse-content div.product .collapse-body, html body .admin .wrapper .content .collapse-content div.product .collapse-body, html body .user .content .collapse-content div.product .collapse-body, html body .user .wrapper .content .collapse-content div.product .collapse-body {
+        height: 0px;
+        overflow: scroll;
+        display: block;
+        transition: height 1s ease;
+        background: #f1f1f1;
+        margin-top: 15px; }
+        html body .admin .content .collapse-content div.product .collapse-body.active, html body .admin .wrapper .content .collapse-content div.product .collapse-body.active, html body .user .content .collapse-content div.product .collapse-body.active, html body .user .wrapper .content .collapse-content div.product .collapse-body.active {
+          height: 300px;
+          margin-bottom: 15px; }
 
 .form-buttons {
   text-align: center; }
@@ -93,8 +99,7 @@ footer {
   width: 100%;
   clear: both;
   position: relative;
-  z-index: 10;
-  margin-top: 4em; }
+  z-index: 10; }
   footer .footer {
     padding: 20px;
     background-color: #3F3F3F;
@@ -358,13 +363,12 @@ header {
 
 
 .page {
+  padding-top: 80px;
   font-family: 'Roboto', sans-serif;
   color: #000; }
   .page .row {
     margin-left: 0px;
     margin-right: 0px; }
-  .page .page-container {
-    padding-top: 80px; }
   .page .hero {
     text-align: center;
     color: #fff;
@@ -512,7 +516,6 @@ header {
           margin-bottom: 10px; }
   .page.login {
     position: relative;
-    padding: 20px;
     text-align: center; }
     .page.login .hero {
       background: url("../../public/img/hero-lens-sf.jpg") no-repeat center;

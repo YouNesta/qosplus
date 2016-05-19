@@ -1,11 +1,10 @@
 .page {
+  padding-top: 80px;
   font-family: 'Roboto', sans-serif;
   color: #000; }
   .page .row {
     margin-left: 0px;
     margin-right: 0px; }
-  .page .page-container {
-    padding-top: 80px; }
   .page .hero {
     text-align: center;
     color: #fff;
@@ -153,7 +152,6 @@
           margin-bottom: 10px; }
   .page.login {
     position: relative;
-    padding: 20px;
     text-align: center; }
     .page.login .hero {
       background: url("../../public/img/hero-lens-sf.jpg") no-repeat center;
