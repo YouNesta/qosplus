@@ -1,5 +1,12 @@
 
 .page {
+  .row{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .page-container{
+    padding-top: 80px;
+  }
   font-family: 'Roboto', sans-serif;
   color: #000;
   .hero {
@@ -8,7 +15,7 @@
     font-weight: bold;
     letter-spacing: 2px;
     padding: 10px;
-    padding-top: 80px;
+    padding-top: 10px;
     padding-bottom: 80px;
     background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
     h1 {
@@ -49,6 +56,8 @@
           display: inline-block;
         }
         .btn-search {
+          margin-bottom: 0;
+          width: 90px;
           display: inline-block;
         }
       }
@@ -223,12 +232,6 @@
       }
       .submit {
         margin-bottom: 20px;
-        button {
-          color: #FFF;
-          background-color: #000;
-          width: 120px;
-          padding: 10px;
-        }
         &:before {
           content: "";
           position: absolute;
@@ -288,16 +291,7 @@
           }
         }
         .product-desc {
-          button {
-            margin: 10px;
-            color: #ffffff;
-            background-color: #10cfbd;
 
-          }
-          button:hover {
-            color: #10cfbd;
-            background-color: #ffffff;
-          }
         }
       }
     }
@@ -356,21 +350,22 @@
           button {
             font-size: 23px;
             font-weight: 500;
+            line-height: 10px;
             letter-spacing: 3px;
             margin: 10px;
             display: block;
             margin-left: auto;
             margin-right: auto;
             width: 100%;
+            border: solid 1px #e0e4ea;
             border-radius: 3px;
             background-color: #10cfbd;
             padding: 20px;
+            color: #fff;
           }
           button:hover{
-            background-color: #fff;
-            border: 1px solid #10cfbd;
-            color: #10cfbd;
-            transition: 0.5s;
+            background-color: rgba(16, 207, 189, 0.6);
+            border-color: transparent;
           }
         }
       }

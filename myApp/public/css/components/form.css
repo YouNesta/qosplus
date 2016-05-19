@@ -12,5 +12,6 @@ button.add-modale, button.validate-cart, button.default {
   padding-left: 13px;
   padding-right: 13px; }
   button.add-modale:hover, button.validate-cart:hover, button.default:hover {
+    color: #fff;
     background-color: rgba(16, 207, 189, 0.6);
     border-color: transparent; }

@@ -2,6 +2,7 @@ header {
   position: fixed;
   width: 100%;
   z-index: 100;
+  top:0;
   border-bottom: 1px solid #10cfbd;
   nav{
     li {
@@ -38,7 +39,6 @@ header {
         animation-duration: 1s;
         font-size: 18px;
         a {
-
           clear: both;
           color: #000;
           text-decoration: none;
