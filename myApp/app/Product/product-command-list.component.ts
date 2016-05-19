@@ -38,9 +38,9 @@ export class ProductCommandComponent {
 
         var command = this.commands[i];
 
-        /*if (command.commandForm != "" && command.commandForm) {
+        if (command.commandForm != "" && command.commandForm) {
             window.open(command.commandForm, "_blank");
-        } else {*/
+        } else {
             command = this.service.printPdf(command).subscribe(
                 res => {
                     if(res.success){
@@ -57,7 +57,7 @@ export class ProductCommandComponent {
                 () => console.log('command updated')
             );
 
-        //}
+        }
 
     }
 
