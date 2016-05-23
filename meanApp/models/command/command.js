@@ -38,7 +38,7 @@ var CommandSchema = new mongoose.Schema({
         required: true
     },
     payment:{
-        type: Array,
+        type: String,
         required: false
     }
 });

@@ -51,6 +51,14 @@ router.post('/printPdf',function(req, res) {
     }
 });
 
+router.post('/printFacture',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.printFacture(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
 module.exports = router;
 
 

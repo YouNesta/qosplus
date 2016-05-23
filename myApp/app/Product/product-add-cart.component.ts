@@ -251,6 +251,7 @@ export class ProductAddCartComponent  implements  OnChanges{
 
     addProductToCart(product) {
         this.cartFinal.image = this.product.image;
+        //this.cartFinal.reference = this.product.image;
         this.cartFinal.name = this.product.name;
         this.cartFinal.hydrophily = this.product.hydrophily;
         this.cartFinal.material = this.product.material;
