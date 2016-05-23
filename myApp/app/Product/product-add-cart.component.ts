@@ -256,7 +256,6 @@ export class ProductAddCartComponent  implements  OnChanges{
         this.cartFinal.material = this.product.material;
         this.cartFinal.color = this.product.color;
         this.cartFinal.price = this.product.price;
-        this.cartFinal.item = this.cartProduct;
 
         var cart = [];
         var local = JSON.parse(localStorage.getItem("cart"));

@@ -97,6 +97,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <select id="sphere" #sphereDOM (change)="changeSphere(sphereDOM.value)">
+                            <option value="0">Choose Sphere</option>
                             <option *ngFor="#sphere of sphere; #i = index" [value]="i">{{sphere.sphere}}</option>
                         </select>
                     </div>
