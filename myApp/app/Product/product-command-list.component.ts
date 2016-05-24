@@ -39,25 +39,40 @@ export class ProductCommandComponent {
         var command = this.commands[i];
 
         if (command.commandForm != "" && command.commandForm) {
-            window.open(command.commandForm, "_blank");
+            var url = command.commandForm;
+            if (this.urlExists(url) == true) {
+                window.open(url, "_blank");
+            } else {
+                this.generatePdf(command, i);
+            }
         } else {
-            command = this.service.printPdf(command).subscribe(
-                res => {
-                    if(res.success){
-                        command = res.data;
-
-                        this.commands[i] = command;
-
-                        window.open(command.commandForm, "_blank");
-                    }else{
-                        console.log(res);
-                    }
-                },
-                err =>  console.log(err),
-                () => console.log('command updated')
-            );
-
+            this.generatePdf(command, i);
         }
+    }
+
+    generatePdf(command, i) {
+        command = this.service.printPdf(command).subscribe(
+            res => {
+                if(res.success){
+                    command = res.data;
+
+                    this.commands[i] = command;
+
+                    window.open(command.commandForm, "_blank");
+                }else{
+                    console.log(res);
+                }
+            },
+            err =>  console.log(err),
+            () => console.log('command updated')
+        );
+    }
+
+    urlExists(url) {
+        var http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        return http.status!=404;
     }
 
 }
