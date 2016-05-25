@@ -67,6 +67,11 @@ export class ProductFactory {
         .get(this.commandUrl+'list')
         .map(res => res.json())
     }
+    getPayments(){
+    return  this.authHttp
+        .get(this.commandUrl+'paymentList')
+        .map(res => res.json())
+    }
 
 
     updatePrice(product){
@@ -212,6 +217,19 @@ export class ProductFactory {
 
         return this.authHttp
             .post(this.commandUrl + 'printPdf',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    printFacture(payment){
+        var data = JSON.stringify({payment});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'printFacture',
                 data, {
                     headers: headers
                 })

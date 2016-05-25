@@ -27,6 +27,14 @@ router.get('/list',function(req, res) {
     }
 });
 
+router.get('/paymentList',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.getPayments(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
 router.post('/list/user',function(req, res) {
     if(req.body != 'undefined'){
         CommandModule.getCommandsByUser(req, res);

@@ -42,5 +42,11 @@
                <i class="fa fa-truck fa-fw"></i>
            </a>
         </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Product', 'Payment']))"
+                   [routerLink]="['Admin', 'Product', 'Payment']">Paiements
+               <i class="fa fa-truck fa-fw"></i>
+           </a>
+        </li>
     </ul>
 </div>
