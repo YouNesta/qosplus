@@ -52,19 +52,20 @@ module.exports = {
             if(error){
                 console.log(error);
                 logger.log('error', error);
-            }
-        });
-        var command = new Command(req.body.command);
-        command.save(function(error, command){
-            if(error){
-                console.log(error);
-                logger.log('error', error);
             } else {
-                console.log(command);
+                var command = new Command(req.body.command);
+                command.payment = payment._id;
+                command.save(function(error, command){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                    } else {
+                        console.log(command);
+                        res.json({success: true, message:"Command Added with success", data:  []});
+                    }
+                });
             }
         });
-
-        res.json({success: true, message:"Command Added with success", data:  []});
     },
 
     printPdf: function(req, res) {
