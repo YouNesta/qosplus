@@ -109,7 +109,7 @@ module.exports = {
                     'width: 50%;'+
                     '}'+
                     '.col-md-10 {'+
-                    'width: 83%;'+
+                    'width: 90%;'+
                     '}'+
                     '.col-md-offset-1 {'+
                     'margin-left: 8%;'+
@@ -150,6 +150,22 @@ module.exports = {
 
                 for (var i = 0; i < command.product.length; i++) {
                     var product = command.product[i];
+
+                    var options = "";
+
+                    if (product.item.diameter != null) {
+                        options += "diameter: "+ product.item.diameter + "<br>";
+                    }
+                    if (product.item.radius != null) {
+                        options += "rayon: "+ product.item.radius + "<br>";
+                    }
+                    if (product.item.axis != null) {
+                        options += "axe: "+ product.item.axis + "<br>";
+                    }
+                    if (product.item.cylinder != null) {
+                        options += "cylindre: "+ product.item.cylinder + "<br>";
+                    }
+
                     html += '<div class="row">'+
                         '<div class="col-md-10 text-center">'+
                         '<table>'+
@@ -164,7 +180,10 @@ module.exports = {
                         '<td>'+product.porter+'</td>'+
                         '<td>'+product.reference+'</td>'+
                         '<td>'+product.name+'</td>'+
-                        '<td>'+product.item.sphere+'</td>'+
+                        '<td> sphere: '+product.item.sphere+'<br>' +
+                        'hydrophilie: '+ product.hydrophily+ '<br>' +
+                            options +
+                        '</td>'+
                         '<td>'+product.quantity+'</td>'+
                         '</tr>'+
                         '</table>'+
