@@ -108,11 +108,8 @@ module.exports = {
                     '.col-md-6 {'+
                     'width: 50%;'+
                     '}'+
-                    '.col-md-10 {'+
-                    'width: 90%;'+
-                    '}'+
-                    '.col-md-offset-1 {'+
-                    'margin-left: 8%;'+
+                    '.col-md-12 {'+
+                    'width: 100%;'+
                     '}'+
                     '.text-center {'+
                     'text-align: center;'+
@@ -167,7 +164,7 @@ module.exports = {
                     }
 
                     html += '<div class="row">'+
-                        '<div class="col-md-10 text-center">'+
+                        '<div class="col-md-12 text-center">'+
                         '<table>'+
                         '<thead>'+
                         '<td>Porteur</td>'+
@@ -280,6 +277,21 @@ module.exports = {
                             is_paid = "payée";
                         }
 
+                        var months = [
+                            "janvier",
+                            "fevrier",
+                            "mars",
+                            "avril",
+                            "mai",
+                            "juin",
+                            "juillet",
+                            "aout",
+                            "septembre",
+                            "octobre",
+                            "novembre",
+                            "décembre"
+                        ];
+
                         html = '<html>'+
                             '<head>'+
                             '<style type="text/css">'+
@@ -333,12 +345,13 @@ module.exports = {
                             '75007 Paris'+
                             '</address>'+
                             '<div class="clearfix"></div>'+
-                            '<p>Facture N°'+id+' ('+is_paid+')</p>'+
-                            '<p>'+ date.getUTCDate() +'/'+ (parseInt(date.getUTCMonth()) + 1) +'/'+ date.getUTCFullYear()+'</p>'+
+                            '<p>Facture N°'+id+'</p>' +
+                            '<p>Total: '+payment.amount+'€ (facture '+is_paid+')</p>'+
+                            '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
                             '</div>'+
                             '<div class="col-md-5 text-center">'+
                             '<address>'+
-                            client.firstName + client.lastName +'<br>'+
+                            client.firstName +' '+ client.lastName +'<br>'+
                             client.mail + '<br>'+
                             '</address>'+
                             '</div>'+
@@ -354,14 +367,12 @@ module.exports = {
                                 '<td>Nom</td>'+
                                 '<td>Sphère</td>'+
                                 '<td>Qté.</td>'+
-                                '<td>Prix</td>'+
                                 '</thead>'+
                                 '<tr>'+
                                 '<td>'+product.porter+'</td>'+
                                 '<td>'+product.name+'</td>'+
                                 '<td>'+product.item.sphere+'</td>'+
                                 '<td>'+product.quantity+'</td>'+
-                                '<td>'+product.price.price+'</td>'+
                                 '</tr>'+
                                 '</table>'+
                                 '</div>'+
