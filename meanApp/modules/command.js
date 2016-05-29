@@ -228,15 +228,21 @@ module.exports = {
         })
     },
 
-    validatePayment: function(req, res) {
-        var id = req.params.id;
+    changePaymentStatus: function(req, res) {
+        var id = req.body.id;
+        console.log(id);
         Payment.findOne({_id: id}, function(err, payment){
             if(err) {
                 console.log(err);
                 logger.log('error', err);
                 res.res.json({success: false, message:err});
             } else {
-                payment.status = 1;
+                console.log(payment);
+                if (payment.status == 0) {
+                    payment.status = 1;
+                } else {
+                    payment.status = 0;
+                }
                 Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
                     if(err) {
                         console.log(err);
@@ -406,5 +412,34 @@ module.exports = {
                 });
             }
         });
-    }
+    },
+
+    changeCommandStatus: function(req, res) {
+        var id = req.body.id;
+        Command.findOne({_id: id}, function(err, command){
+            if(err) {
+                console.log(err);
+                logger.log('error', err);
+                res.res.json({success: false, message:err});
+            } else {
+                if (command.status == 0) {
+                    command.status = 1;
+                } else if (command.status == 1) {
+                    command.status = 2;
+                } else {
+                    command.status = 0;
+                }
+
+                Command.findOneAndUpdate({_id: command._id}, command, { 'new': true }, function(err, command){
+                    if(err) {
+                        console.log(err);
+                        logger.log('error', err);
+                        res.res.json({success: false, message:err});
+                    } else {
+                        res.json({success: true, message:"Command updated", data: command});
+                    }
+                })
+            }
+        })
+    },
 };

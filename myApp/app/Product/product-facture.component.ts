@@ -75,4 +75,28 @@ export class ProductPaymentComponent {
         return http.status!=404;
     }
 
+    /*
+    * 0 => unpaid
+    * 1 => paid
+    * */
+
+    changeStatus(i) {
+        var payment = this.payments[i];
+        payment = this.service.changePaymentStatus(payment._id).subscribe(
+            res => {
+                if(res.success){
+                    payment = res.data;
+
+                    this.payments[i] = payment;
+
+
+                }else{
+                    console.log(res);
+                }
+            },
+            err =>  console.log(err),
+            () => console.log('payment updated')
+        );
+    }
+
 }

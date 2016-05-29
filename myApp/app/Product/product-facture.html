@@ -1,4 +1,4 @@
-<div class="content product-command-list">
+<div class="content facture-list">
 
     <div class="col-lg-12 collapse-tab">
         <div class="col-lg-12">
@@ -27,11 +27,11 @@
                     <p>{{ payment.client }}</p>
                 </div>
                 <div class="col-lg-2 text-center">
-                    <p>{{ payment.amount }}</p>
+                    <p>{{ payment.amount }}€</p>
                 </div>
                 <div class="col-lg-3">
                     <div class="col-lg-4">
-                        <button class="status"><span class="status-color status-{{payment.status}}"></span></button>
+                        <button (click)="changeStatus(i)" class="status"><span class="fa status-color status-{{payment.status}}"></span></button>
                     </div>
                     <div class="col-lg-4">
                         <button (click)="printPdf(i)"><i class="fa fa-file" aria-hidden="true"></i></button>

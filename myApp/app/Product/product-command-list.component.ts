@@ -75,4 +75,29 @@ export class ProductCommandComponent {
         return http.status!=404;
     }
 
+    /*
+    * 0 => paid
+    * 1 => unvalidate
+    * 2 => waiting for payment
+    * */
+
+    changeStatus(i) {
+        var command = this.commands[i];
+        command = this.service.changeCommandStatus(command._id).subscribe(
+            res => {
+                if(res.success){
+                    command = res.data;
+
+                    this.commands[i] = command;
+
+
+                }else{
+                    console.log(res);
+                }
+            },
+            err =>  console.log(err),
+            () => console.log('command updated')
+        );
+    }
+
 }

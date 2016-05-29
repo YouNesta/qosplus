@@ -67,6 +67,22 @@ router.post('/printFacture',function(req, res) {
     }
 });
 
+router.post('/changeCommandStatus',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.changeCommandStatus(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/changePaymentStatus',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.changePaymentStatus(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
 module.exports = router;
 
 

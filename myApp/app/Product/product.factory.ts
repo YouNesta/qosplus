@@ -235,4 +235,30 @@ export class ProductFactory {
                 })
             .map(response => response.json())
     }
+
+    changePaymentStatus(id){
+        var data = JSON.stringify({id});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'changePaymentStatus',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    changeCommandStatus(id){
+        var data = JSON.stringify({id});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'changeCommandStatus',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
 }

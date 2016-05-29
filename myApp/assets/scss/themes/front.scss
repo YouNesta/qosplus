@@ -599,7 +599,7 @@ td {
 
 
 
-  &.product-list, &.product-cart, &.product-command-list, &.admin-validation {
+  &.product-list, &.product-cart, &.product-command-list, &.admin-validation, &.facture-list {
     padding: 20px;
     hr {
       border: solid 1px #e0e4ea;
@@ -724,11 +724,25 @@ td {
       font-family: 'Open Sans';
     }
   }
+  &.facture-list {
+    .status-0, .status-false {
+      background-color: #a70e15;
+    }
+    .status-1, .status-true {
+       background-color: #276d1c;
+     }
+  }
   &.product-command-list {
     button {
       margin-top: 40%;
     }
+    .status-0 {
+      background-color: #276d1c;
+    }
     .status-1 {
+      background-color: #a70e15;
+    }
+    .status-2 {
       background-color: #E9DC51;
     }
   }
