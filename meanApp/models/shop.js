@@ -91,6 +91,10 @@ var ShopSchema = new mongoose.Schema({
     closeHour:  {
         type: String,
         required : false
+    },
+    owner:{
+        type: String,
+        required: false
     }
 });
 
