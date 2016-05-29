@@ -121,12 +121,12 @@
                     <h2>spheres</h2>
                     <table>
                         <thead>
-                            <td *ngFor="#sphereIndex of sphereIndexes">{{sphereIndex}}</td>
+                            <td *ngFor="#sphereIndex of sphereIndexes[i]">{{sphereIndex}}</td>
                         </thead>
                         <tr>
-                            <td *ngFor="#sphereIndex of sphereIndexes">
+                            <td *ngFor="#sphereIndex of sphereIndexes[i]">
                                 <ul>
-                                    <li *ngFor="#sphere of spheres[sphereIndex]">{{sphere}}</li>
+                                    <li *ngFor="#sphere of spheres[i][sphereIndex]">{{sphere}}</li>
                                 </ul>
                             </td>
                         </tr>

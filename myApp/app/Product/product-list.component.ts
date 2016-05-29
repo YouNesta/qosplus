@@ -40,6 +40,8 @@ export class ProductListComponent {
                         }
                         console.log(this.products);
                         for (var i in this.products) {
+                            this.spheres[i] = [];
+                            this.sphereIndexes[i] = [];
                             for (var j in this.products[i].item) {
                                 for (var k in this.products[i].item[j].sphere) {
                                     var isNegative = false;
@@ -54,15 +56,15 @@ export class ProductListComponent {
                                         index = "-"+index;
                                         sphere *= -1;
                                     }
-                                    if (this.spheres[index] == null) this.spheres[index] = [];
-                                    if (this.spheres[index].indexOf(sphere) == -1) {
-                                        this.spheres[index].push(sphere);
-                                        this.sphereIndexes = Object.keys(this.spheres);
+                                    if (this.spheres[i][index] == null) this.spheres[i][index] = [];
+                                    if (this.spheres[i][index].indexOf(sphere) == -1) {
+                                        this.spheres[i][index].push(sphere);
+                                        this.sphereIndexes[i] = Object.keys(this.spheres[i]);
                                     }
                                 }
                             }
+                            this.sphereIndexes[i].sort();
                         }
-                        this.sphereIndexes.sort();
                     }else{
                         console.log(response);
                     }
