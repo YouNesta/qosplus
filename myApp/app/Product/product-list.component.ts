@@ -16,7 +16,8 @@ export class ProductListComponent {
     productCart: String;
     isOpen = [];
     selectedProduct = [];
-    
+    spheres = {};
+    sphereIndexes = [];
     
     
     constructor(public service: ProductFactory){
@@ -37,6 +38,31 @@ export class ProductListComponent {
                         for(var i in this.products){
                             this.isOpen.push(false);
                         }
+                        console.log(this.products);
+                        for (var i in this.products) {
+                            for (var j in this.products[i].item) {
+                                for (var k in this.products[i].item[j].sphere) {
+                                    var isNegative = false;
+                                    var sphere = this.products[i].item[j].sphere[k].sphere;
+                                    if (sphere < 0) {
+                                        isNegative = true;
+                                        sphere *= -1;
+                                    }
+                                    var floor = Math.floor(sphere);
+                                    var index = floor.toString();
+                                    if (isNegative) {
+                                        index = "-"+index;
+                                        sphere *= -1;
+                                    }
+                                    if (this.spheres[index] == null) this.spheres[index] = [];
+                                    if (this.spheres[index].indexOf(sphere) == -1) {
+                                        this.spheres[index].push(sphere);
+                                        this.sphereIndexes = Object.keys(this.spheres);
+                                    }
+                                }
+                            }
+                        }
+                        this.sphereIndexes.sort();
                     }else{
                         console.log(response);
                     }

@@ -546,21 +546,21 @@ td {
 .content.product-command-list .status-2 {
   background-color: #E9DC51; }
 
-.content.product-price table, .content.product-command-list table {
+.content.product-price table, .content.product-command-list table, .content.product-list table {
   border-radius: 3px;
   text-align: center;
   margin: auto;
   width: 80%;
   margin-left: 5%;
   margin-top: 20px; }
-  .content.product-price table thead, .content.product-command-list table thead {
+  .content.product-price table thead, .content.product-command-list table thead, .content.product-list table thead {
     background-color: #f8f9fb;
     border: solid 1px #e0e4ea;
     font-weight: bold; }
-  .content.product-price table tr, .content.product-command-list table tr {
+  .content.product-price table tr, .content.product-command-list table tr, .content.product-list table tr {
     background-color: #fff;
     border: solid 1px #e0e4ea; }
-  .content.product-price table td, .content.product-command-list table td {
+  .content.product-price table td, .content.product-command-list table td, .content.product-list table td {
     height: 42px;
     border: 0;
     border-right: 1px solid #e0e4ea;
