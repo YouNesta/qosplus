@@ -38,7 +38,6 @@ export class ProductListComponent {
                         for(var i in this.products){
                             this.isOpen.push(false);
                         }
-                        console.log(this.products);
                         for (var i in this.products) {
                             this.spheres[i] = [];
                             this.sphereIndexes[i] = [];

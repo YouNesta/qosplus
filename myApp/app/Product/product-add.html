@@ -60,6 +60,24 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-4">
+                        <label for="ametropia">Amétropie</label>
+                        <input type="number" [(ngModel)]="products.ametropia" id="ametropia" class="form-control" placeholder="amétropie">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="port">Port</label>
+                        <select [(ngModel)]="products.port" id="port">
+                            <option value="journalier">Journalier</option>
+                            <option value="hebdomadaire">Hebdomadaire</option>
+                            <option value="mensuel">Mensuel</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="portDuration">Durée du port</label>
+                        <input type="text" [(ngModel)]="products.portDuration" id="portDuration" class="form-control" placeholder="durée du port">
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <label>Rayon</label>
                         <tag-input [(ngModel)]="products.param.radius" placeholder="rayon"></tag-input>
