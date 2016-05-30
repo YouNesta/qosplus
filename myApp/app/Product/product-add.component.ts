@@ -97,7 +97,7 @@ export class ProductAddComponent {
         price: [],
         param: {
             diameter: ["11"],
-            addition: ["+25"],
+            addition: ["Low", "Mid", "High"],
             cylinder: ["12"],
             radius: ["5"],
             axis: ["5"],
@@ -207,7 +207,7 @@ export class ProductAddComponent {
             provider: false
         });
     }
-    
+
 
     save() {
         for (var i in this.products.item) {
@@ -233,5 +233,5 @@ export class ProductAddComponent {
     }
     
 
-    
+
 }
