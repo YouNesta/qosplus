@@ -84,6 +84,7 @@ module.exports = {
                             logger.log('error', error);
                             res.json({success: false, message:error});
                         }
+                        console.log(item);
                         delete product[i].item;
                         product[i].item = item;
                         i++;

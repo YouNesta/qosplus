@@ -97,7 +97,7 @@ export class ProductAddComponent {
         price: [],
         param: {
             diameter: ["11"],
-            addition: ["Low", "Mid", "High"],
+            addition: [],
             cylinder: ["12"],
             radius: ["5"],
             axis: ["5"],
@@ -214,6 +214,8 @@ export class ProductAddComponent {
             if (this.products.item[i].provider) {
                 this.products.item[i].stock = -1;
             }
+            if(this.products.param["addition"].indexOf(this.products.item[i].addition) == -1)
+                this.products.param["addition"].push(this.products.item[i].addition);
         }
         this.service.save(this.products)
             .subscribe(
