@@ -94,7 +94,11 @@ export class ProductAddComponent {
         hydrophily: 56,
         material: "Verre",
         color: "Transparent",
-        price: [],
+        price: [{
+            "type": 0,
+            "price": 0,
+            "name": "Catalogue"
+        }],
         param: {
             diameter: ["11"],
             addition: [],

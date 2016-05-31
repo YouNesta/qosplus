@@ -54,12 +54,6 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group" *ngFor="#price of products.price">
-                            <label >Prix Catalogue </label>
-                            <input [(ngModel)]="price.price" name="price"  class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group" *ngFor="#price of products.price">
                             <label >Prix {{price.name}} </label>
                             <input [(ngModel)]="price.price" name="price"  class="form-control">
                         </div>
