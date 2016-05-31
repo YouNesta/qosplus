@@ -186,10 +186,8 @@
                             <input [disabled]="product.provider" type="number" id="stock" [(ngModel)]="product.stock" class="form-control" placeholder="Min Value">
                         </div>
                         <div class="col-md-6">
-                            <label for="addition">Condition</label>
-                            <select [(ngModel)]="product.condition">
-                                <option *ngFor="#item of conditions; #i = index" [value]="item">{{item}}</option>
-                            </select>
+                            <label for="condition">Condition</label>
+                            <input type="text"  id="condition"class="form-control" placeholder="Min Value" [(ngModel)]="product.condition">
                         </div>
                     </div>
                     <div class="row">
