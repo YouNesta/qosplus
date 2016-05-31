@@ -273,7 +273,7 @@ export class ProductAddComponent {
         if(isNaN(response)){
             return 0;
         }else{
-            return response ;
+            return response.toFixed(2) ;
         }
     }
 
