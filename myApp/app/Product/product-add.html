@@ -58,10 +58,31 @@
                             <input [(ngModel)]="price.price" name="price"  class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group" *ngFor="#price of products.price">
-                            <label >Price {{price.name}} </label>
-                            <input [(ngModel)]="price.price" name="price"  class="form-control">
+                    <div class="col-md-12">
+                        <label >Price D'achat Fournisseur </label>
+                        <div class="form-group" *ngFor="#ownerPrice of products.ownerPrice">
+                            <div class="col-md-4">
+                                <label>Fournisseur </label>
+                                <input [(ngModel)]="ownerPrice.owner"  type="text"  name="owner"  cclass="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label>Quantité (en boite)</label>
+                                <input [(ngModel)]="ownerPrice.quantity" type="number" name="ownerQuantity"  class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label>Prix</label>
+                                <input [(ngModel)]="ownerPrice.price" type="number" name="ownerPrice"  class="form-control">
+                            </div>
+                        </div>
+                        <button class="smallButton" (click)="addOwnerPrice()">Ajouter</button>
+                        <button class="smallButton" (click)="deleteOwnerPrice()">Effacer</button>
+                    </div>
+                    <div class="col-md-12">
+                        <label >Price D'achat Moyen Pondéré </label>
+                        <div class="well well-sm">
+                                <span>
+                                   {{middlePrice()}}
+                                </span>
                         </div>
                     </div>
                 </div>
