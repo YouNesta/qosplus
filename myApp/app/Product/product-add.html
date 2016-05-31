@@ -95,7 +95,8 @@
                                 <input type="number" id="axis-interval" class="form-control" [(ngModel)]="int.axis.int"   placeholder="Interval">
                             </div>
                             <div class="col col-md-3">
-                                <button (click)="addParams('axis')">add</button>
+                                <button class="smallButton" (click)="addParams('axis')">Ajouter</button>
+                                <button class="smallButton" (click)="dropParams('axis')">Effacer</button>
                             </div>
                         </div>
                     </div>
@@ -114,7 +115,8 @@
                                 <input type="number"  id="addition-interval" [(ngModel)]="int.addition.int" class="form-control" placeholder="Interval">
                             </div>
                             <div class="col-md-3">
-                                <button (click)="addParams('addition')">add</button>
+                                <button class="smallButton" (click)="addParams('addition')">Ajouter</button>
+                                <button class="smallButton" (click)="dropParams('addition')">Effacer</button>
                             </div>
                         </div>
                     </div>
@@ -133,7 +135,8 @@
                                 <input type="number" id="cylindre-interval" [(ngModel)]="int.cylinder.int" class="form-control" placeholder="Interval">
                             </div>
                             <div class="col-md-3">
-                                <button (click)="addParams('cylinder')">add</button>
+                                <button class="smallButton" (click)="addParams('cylinder')">Ajouter</button>
+                                <button class="smallButton" (click)="dropParams('cylinder')">Effacer</button>
                             </div>
                         </div>
                     </div>

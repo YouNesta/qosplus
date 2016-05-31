@@ -233,7 +233,10 @@ export class ProductAddComponent {
                 () => console.log('Product Added')
             );
     }
-    
 
+
+    dropParams(type) {
+        this.products.param[type] = [];
+    }
 
 }
