@@ -83,6 +83,21 @@ module.exports = {
                 res.res.json({success: false, message:err});
             } else {
 
+                var months = [
+                    "janvier",
+                    "fevrier",
+                    "mars",
+                    "avril",
+                    "mai",
+                    "juin",
+                    "juillet",
+                    "aout",
+                    "septembre",
+                    "octobre",
+                    "novembre",
+                    "décembre"
+                ];
+
                 var date = new Date(command.date);
                 html = '<html>'+
                     '<head>'+
@@ -135,7 +150,7 @@ module.exports = {
                     '</address>'+
                     '<div class="clearfix"></div>'+
                     '<p>Bon N°'+command._id+'</p>'+
-                    '<p>'+ date.getUTCDate() +'/'+ (parseInt(date.getUTCMonth()) + 1) +'/'+ date.getUTCFullYear()+'</p>'+
+                    '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
                     '</div>'+
                     '<div class="col-md-5 text-center">'+
                     '<address>'+

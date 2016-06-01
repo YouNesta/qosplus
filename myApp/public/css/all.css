@@ -40,6 +40,132 @@ html {
           height: 300px;
           margin-bottom: 15px; }
 
+.form-buttons {
+  text-align: center; }
+
+.modal-body label {
+  font-weight: bold;
+  font-family: HelveticaNeue-Medium;
+  font-size: 14px;
+  color: #22282b; }
+
+.modal-body select, .modal-body input[type="text"], .modal-body input[type="number"] {
+  height: 36px;
+  border-radius: 3px;
+  border: solid 1px #e0e4ea;
+  width: 100%;
+  background-color: #FFF;
+  margin-bottom: 25px; }
+
+.modal-body h2 {
+  font-family: HelveticaNeue;
+  font-size: 21px;
+  color: #22282b;
+  text-align: center;
+  margin-bottom: 40px; }
+
+.modal-body .add-product h3 {
+  font-family: HelveticaNeue-Medium;
+  font-size: 16px;
+  color: #22282b;
+  text-align: center; }
+
+.modal-body .add-product button {
+  width: 150px;
+  height: 36px;
+  border-radius: 3px;
+  background-color: #10cfbd;
+  color: #FFF;
+  border-color: transparent;
+  font-family: HelveticaNeue-Medium;
+  font-size: 13px; }
+
+.modal-body .new-product button {
+  width: 100%;
+  height: 36px;
+  border-radius: 3px;
+  background-color: #10cfbd;
+  color: #FFF;
+  border-color: transparent;
+  font-family: HelveticaNeue-Medium;
+  font-size: 13px; }
+  .modal-body .new-product button.smallButton {
+    width: auto;
+    font-size: 11px; }
+
+.modal-body .new-product input[type="checkbox"] {
+  margin-left: 10px;
+  margin-right: 10px; }
+
+.modal-body .new-product .photo {
+  border-radius: 5px;
+  border: solid 1px #e0e4ea;
+  width: 100px;
+  height: 100px;
+  margin-left: 50px;
+  overflow: hidden; }
+  .modal-body .new-product .photo img {
+    height: 100%; }
+
+.modal-body .new-product .upload-button {
+  border-radius: 3px;
+  background-color: #48b0f7;
+  padding: 5px;
+  color: #FFF;
+  width: 80%;
+  text-align: center;
+  margin-top: 15%; }
+
+.modal-body .new-product .row {
+  margin-bottom: 10px; }
+
+.modal-body .validate-form input {
+  height: 36px;
+  border-radius: 3px;
+  border: solid 1px #e0e4ea; }
+
+.modal-body .validate-form input[type="radio"], .modal-body .validate-form input[type="checkbox"] {
+  height: 15px !important; }
+
+.modal-body .validate-form label {
+  margin-top: 10px; }
+
+.modal-body .validate-form .validate-button {
+  text-align: center;
+  margin-top: 30px; }
+  .modal-body .validate-form .validate-button button {
+    width: 150px;
+    height: 42px;
+    border-radius: 3px;
+    color: #FFF;
+    background-color: #10cfbd;
+    margin-bottom: 40px;
+    border: 0; }
+    .modal-body .validate-form .validate-button button:hover {
+      background-color: rgba(16, 207, 189, 0.6);
+      border-color: transparent; }
+
+button.add-modale, button.validate-cart, button.default {
+  width: 150px;
+  height: 36px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #10cfbd;
+  margin-bottom: 40px;
+  border: solid 1px #e0e4ea;
+  padding-left: 13px;
+  padding-right: 13px; }
+  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
+    color: #fff;
+    background-color: rgba(16, 207, 189, 0.6);
+    border-color: transparent; }
+
+.icon-button {
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 1px solid #e0e4ea;
+  border-radius: 3px; }
+
 search .row {
   background: white;
   height: 60px; }
@@ -343,132 +469,6 @@ header {
   header nav .menu-mobile {
     display: block; } }
 
-
-.form-buttons {
-  text-align: center; }
-
-.modal-body label {
-  font-weight: bold;
-  font-family: HelveticaNeue-Medium;
-  font-size: 14px;
-  color: #22282b; }
-
-.modal-body select, .modal-body input[type="text"], .modal-body input[type="number"] {
-  height: 36px;
-  border-radius: 3px;
-  border: solid 1px #e0e4ea;
-  width: 100%;
-  background-color: #FFF;
-  margin-bottom: 25px; }
-
-.modal-body h2 {
-  font-family: HelveticaNeue;
-  font-size: 21px;
-  color: #22282b;
-  text-align: center;
-  margin-bottom: 40px; }
-
-.modal-body .add-product h3 {
-  font-family: HelveticaNeue-Medium;
-  font-size: 16px;
-  color: #22282b;
-  text-align: center; }
-
-.modal-body .add-product button {
-  width: 150px;
-  height: 36px;
-  border-radius: 3px;
-  background-color: #10cfbd;
-  color: #FFF;
-  border-color: transparent;
-  font-family: HelveticaNeue-Medium;
-  font-size: 13px; }
-
-.modal-body .new-product button {
-  width: 100%;
-  height: 36px;
-  border-radius: 3px;
-  background-color: #10cfbd;
-  color: #FFF;
-  border-color: transparent;
-  font-family: HelveticaNeue-Medium;
-  font-size: 13px; }
-  .modal-body .new-product button.smallButton {
-    width: auto;
-    font-size: 11px; }
-
-.modal-body .new-product input[type="checkbox"] {
-  margin-left: 10px;
-  margin-right: 10px; }
-
-.modal-body .new-product .photo {
-  border-radius: 5px;
-  border: solid 1px #e0e4ea;
-  width: 100px;
-  height: 100px;
-  margin-left: 50px;
-  overflow: hidden; }
-  .modal-body .new-product .photo img {
-    height: 100%; }
-
-.modal-body .new-product .upload-button {
-  border-radius: 3px;
-  background-color: #48b0f7;
-  padding: 5px;
-  color: #FFF;
-  width: 80%;
-  text-align: center;
-  margin-top: 15%; }
-
-.modal-body .new-product .row {
-  margin-bottom: 10px; }
-
-.modal-body .validate-form input {
-  height: 36px;
-  border-radius: 3px;
-  border: solid 1px #e0e4ea; }
-
-.modal-body .validate-form input[type="radio"], .modal-body .validate-form input[type="checkbox"] {
-  height: 15px !important; }
-
-.modal-body .validate-form label {
-  margin-top: 10px; }
-
-.modal-body .validate-form .validate-button {
-  text-align: center;
-  margin-top: 30px; }
-  .modal-body .validate-form .validate-button button {
-    width: 150px;
-    height: 42px;
-    border-radius: 3px;
-    color: #FFF;
-    background-color: #10cfbd;
-    margin-bottom: 40px;
-    border: 0; }
-    .modal-body .validate-form .validate-button button:hover {
-      background-color: rgba(16, 207, 189, 0.6);
-      border-color: transparent; }
-
-button.add-modale, button.validate-cart, button.default {
-  width: 150px;
-  height: 36px;
-  border-radius: 3px;
-  color: #FFF;
-  background-color: #10cfbd;
-  margin-bottom: 40px;
-  border: solid 1px #e0e4ea;
-  padding-left: 13px;
-  padding-right: 13px; }
-  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
-    color: #fff;
-    background-color: rgba(16, 207, 189, 0.6);
-    border-color: transparent; }
-
-.icon-button {
-  padding: 5px 10px;
-  background-color: #fff;
-  border: 1px solid #e0e4ea;
-  border-radius: 3px; }
 
 .page {
   padding-top: 80px;
