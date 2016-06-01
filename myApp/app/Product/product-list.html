@@ -16,20 +16,20 @@
     <div class="col-lg-12 collapse-tab">
         <div class="col-lg-12">
             <div class="col-lg-1">
-                <button (click)="deleteProducts()">
+                <button (click)="deleteProducts()" class="icon-button">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="col-lg-2">
                 Visuel Produit
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                Nom Commercial
             </div>
             <div class="col-lg-2">
                 Prix
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-1">
                 Réference
             </div>
             <div class="col-lg-3">
@@ -48,7 +48,7 @@
                 <div class="col-lg-2">
                     <img class="img-responsive" [src]="product.image[0].small" alt="{{product.name}}">
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-3">
                     <h3> {{product.name}}</h3>
                 </div>
                 <div class="col-lg-2">
@@ -56,7 +56,7 @@
                         {{product.name}}
                     </p>
                 </div>
-                <div class="col-lg-2">
+                <div class="col-lg-1">
                     <h3>
                         {{product.reference}}
                     </h3>
@@ -75,71 +75,62 @@
                 </div>
             </div>
 
-            <div class="col-lg-12 collapse-body" [ngClass]="{active: isOpen[i]}">
-                <div class="col-lg-12">
-                    <div class="col-lg-4">
-                        <img class="img-responsive" [src]="product.image[0].medium" alt="{{product.name}}">
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="col-lg-12"></div>
-                        <div class="col-lg-12">
-                            <h3>Prix</h3>
-                            <div class="col-lg-3" *ngFor="#price of product.price">
-                                <div class="well well-sm">
-                                    {{price.name}}: <br>
-                                    {{price.price}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-lg-12 collapse-body text-center" [ngClass]="{active: isOpen[i]}">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <img class="img-responsive" [src]="product.image[0].medium" alt="{{product.name}}">
                 </div>
                 <div class="col-lg-12">
-                    <div class="col-lg-12">
-                        <div class="col-lg-4">
-                            <h3>Hydrophylie:</h3>
-                            <div class="well well-sm">
-                                {{product.hydrophily}}
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <h3>Teinte:</h3>
-                            <div class="well well-sm">
-                                {{product.color}}
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <h3>Matériaux:</h3>
-                            <div class="well well-sm">
-                                {{product.material}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="col-lg-4">
-                            <h3>Diametre:</h3>
-                            <div class="well well-sm">
-                                <span *ngFor="#diameter of product.param[0].diameter">
-                                    {{diameter}}mm
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <h3>Rayon:</h3>
-                            <div class="well well-sm">
-                                <span *ngFor="#radius of product.param[0].radius">
-                                    {{radius}}mm
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <h3>Addition:</h3>
-                            <div class="well well-sm">
-                              <span *ngFor="#addition of product.param[0].addition">
-                                    {{addition}}mm
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    <table>
+                        <thead>
+                            <td>axis</td>
+                            <td>radius</td>
+                            <td>diameter</td>
+                            <td>cylinder</td>
+                            <td>addition</td>
+                        </thead>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li *ngFor="#axis of product.param[0].axis">{{axis}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="#radius of product.param[0].radius">{{radius}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="#diameter of product.param[0].diameter">{{diameter}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="#cylinder of product.param[0].cylinder">{{cylinder}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="#addition of product.param[0].addition">{{addition}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-lg-12">
+                    <h2>spheres</h2>
+                    <table>
+                        <thead>
+                            <td *ngFor="#sphereIndex of sphereIndexes[i]">{{sphereIndex}}</td>
+                        </thead>
+                        <tr>
+                            <td *ngFor="#sphereIndex of sphereIndexes[i]">
+                                <ul>
+                                    <li *ngFor="#sphere of spheres[i][sphereIndex]">{{sphere}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

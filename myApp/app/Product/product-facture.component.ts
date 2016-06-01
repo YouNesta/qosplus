@@ -7,22 +7,22 @@ import {childProcess} from "child_process";
 
 @Component({
     providers: [],
-    templateUrl: "app/Product/product-command-list.html",
+    templateUrl: "app/Product/product-facture.html",
     directives: [ ACCORDION_DIRECTIVES ]
 
 })
 
-export class ProductCommandComponent {
+export class ProductPaymentComponent {
 
-    commands: Object ;
+    payments: Object ;
     isOpen = [];
     constructor(public service: ProductFactory){
-        this.service.getCommands()
+        this.service.getPayments()
             .subscribe(
                 res => {
                     if(res.success){
-                        this.commands = res.data;
-                        for(var i in this.commands){
+                        this.payments = res.data;
+                        for(var i in this.payments){
                             this.isOpen.push(false);
                         }
                     }else{
@@ -30,35 +30,35 @@ export class ProductCommandComponent {
                     }
                 },
                 err =>  console.log(err),
-                () => console.log('get command list Complete')
+                () => console.log('get payment list Complete')
             );
     }
 
     printPdf(i) {
 
-        var command = this.commands[i];
+        var payment = this.payments[i];
 
-        if (command.commandForm != "" && command.commandForm) {
-            var url = command.commandForm;
+        if (payment.facture != "" && payment.facture) {
+            var url = payment.facture;
             if (this.urlExists(url) == true) {
                 window.open(url, "_blank");
             } else {
-                this.generatePdf(command, i);
+                this.generatePdf(payment, i);
             }
         } else {
-            this.generatePdf(command, i);
+            this.generatePdf(payment, i);
         }
     }
 
-    generatePdf(command, i) {
-        command = this.service.printPdf(command).subscribe(
+    generatePdf(payment, i) {
+        payment = this.service.printFacture(payment).subscribe(
             res => {
                 if(res.success){
-                    command = res.data;
+                    payment = res.data;
 
-                    this.commands[i] = command;
+                    this.payments[i] = payment;
 
-                    window.open(command.commandForm, "_blank");
+                    window.open(payment.facture, "_blank");
                 }else{
                     console.log(res);
                 }
@@ -76,19 +76,18 @@ export class ProductCommandComponent {
     }
 
     /*
-    * 0 => paid
-    * 1 => unvalidate
-    * 2 => waiting for payment
+    * 0 => unpaid
+    * 1 => paid
     * */
 
     changeStatus(i) {
-        var command = this.commands[i];
-        command = this.service.changeCommandStatus(command._id).subscribe(
+        var payment = this.payments[i];
+        payment = this.service.changePaymentStatus(payment._id).subscribe(
             res => {
                 if(res.success){
-                    command = res.data;
+                    payment = res.data;
 
-                    this.commands[i] = command;
+                    this.payments[i] = payment;
 
 
                 }else{
@@ -96,7 +95,7 @@ export class ProductCommandComponent {
                 }
             },
             err =>  console.log(err),
-            () => console.log('command updated')
+            () => console.log('payment updated')
         );
     }
 

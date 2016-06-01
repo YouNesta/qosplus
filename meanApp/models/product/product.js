@@ -49,6 +49,18 @@ var ProductSchema = new mongoose.Schema({
     supplier: {
         type: String,
         required: false
+    },
+    ametropia: {
+        type: Number,
+        required: false
+    },
+    port: {
+        type: String,
+        required: false
+    },
+    portDuration: {
+        type: Number,
+        required: false
     }
 });
 
