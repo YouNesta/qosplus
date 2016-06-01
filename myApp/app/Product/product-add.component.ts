@@ -94,10 +94,22 @@ export class ProductAddComponent {
         hydrophily: 56,
         material: "Verre",
         color: "Transparent",
-        price: [],
+        price: [{
+            "type": 0,
+            "price": 0,
+            "name": "Catalogue"
+        }],
+        ownerPrice: [
+            {
+                owner: null,
+                quantity: 0,
+                price: 0
+            }
+        ],
+        middlePrice: 0,
         param: {
             diameter: ["11"],
-            addition: ["+25"],
+            addition: [],
             cylinder: ["12"],
             radius: ["5"],
             axis: ["5"],
@@ -207,14 +219,17 @@ export class ProductAddComponent {
             provider: false
         });
     }
-    
+
 
     save() {
         for (var i in this.products.item) {
             if (this.products.item[i].provider) {
                 this.products.item[i].stock = -1;
             }
+            if(this.products.param["addition"].indexOf(this.products.item[i].addition) == -1)
+                this.products.param["addition"].push(this.products.item[i].addition);
         }
+        this.products.middlePrice = this.middlePrice();
         this.service.save(this.products)
             .subscribe(
                 res => {
@@ -231,7 +246,35 @@ export class ProductAddComponent {
                 () => console.log('Product Added')
             );
     }
-    
 
-    
+
+    dropParams(type) {
+        this.products.param[type] = [];
+    }
+    addOwnerPrice(type) {
+        this.products.ownerPrice.push({
+            owner: null,
+            quantity: 0,
+            price: 0
+        });
+    }
+    deleteOwnerPrice(type) {
+        this.products.ownerPrice.pop();
+    }
+
+    middlePrice(){
+        var nbBox = 0;
+        var total = 0;
+        for(var i in this.products.ownerPrice){
+            nbBox += this.products.ownerPrice[i].quantity;
+            total += this.products.ownerPrice[i].price *  this.products.ownerPrice[i].quantity;
+        }
+        var response = total / nbBox
+        if(isNaN(response)){
+            return 0;
+        }else{
+            return response.toFixed(2) ;
+        }
+    }
+
 }

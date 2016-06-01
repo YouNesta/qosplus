@@ -30,6 +30,14 @@ var ProductSchema = new mongoose.Schema({
         type: Array, 
         required : false 
     },
+    ownerPrice:{ 
+        type: Array, 
+        required : false 
+    },
+    middlePrice:{ 
+        type: Number, 
+        required : false 
+    },
     param: { 
         type: Array,
         required : false

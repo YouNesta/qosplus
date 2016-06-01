@@ -80,6 +80,58 @@
                     <img class="img-responsive" [src]="product.image[0].medium" alt="{{product.name}}">
                 </div>
                 <div class="col-lg-12">
+                    <div class="col-lg-8">
+                        <div class="col-lg-12"></div>
+                        <div class="col-lg-12">
+                            <h3>Prix</h3>
+                            <div class="col-lg-3" *ngFor="#price of product.price">
+                                <div class="well well-sm">
+                                    {{price.name}}: <br>
+                                    {{price.price}} €
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <h3>Price D'achat Moyen Pondéré</h3>
+                            <div class="col-lg-3">
+                                <div class="well well-sm">
+                                    {{product.middlePrice}} €
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <h3>Prix Fournisseur</h3>
+                            <div class="col-lg-3" *ngFor="#ownerPrice of product.ownerPrice">
+                                <div class="well well-sm">
+                                    {{ownerPrice.owner}}: <br>
+                                    {{ownerPrice.price}}€ pour {{ownerPrice.quantity}} boites
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <h3>Hydrophylie:</h3>
+                            <div class="well well-sm">
+                                {{product.hydrophily}}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>Teinte:</h3>
+                            <div class="well well-sm">
+                                {{product.color}}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>Matériaux:</h3>
+                            <div class="well well-sm">
+                                {{product.material}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
                     <table>
                         <thead>
                             <td>axis</td>

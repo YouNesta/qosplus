@@ -79,6 +79,7 @@ module.exports = {
         });
         function setShop(user, shops){
             if(shops.length >= 1){
+                shops[0].owner = user._id;
                 var shop = new Shop(shops[0]);
                 shop.save(function(error, shop){
                     if(error){
