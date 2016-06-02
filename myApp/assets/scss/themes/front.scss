@@ -609,6 +609,39 @@ td {
         height: 36px;
       }
     }
+    .m-b-20 {
+      margin-bottom: 20px;
+    }
+    .filter-input {
+      width: 300px;
+      height: 40px;
+    }
+    .suggestions {
+      position: absolute;
+      top: 40px;
+      background-color: #FFF;
+      z-index: 9;
+      border: 1px solid #6D6D6D;
+      ul {
+        width: 298px;
+        border-bottom: 1px solid;
+        margin-bottom: 0;
+        text-align: center;
+        li {
+          a {
+            display: block;
+            width: 100%;
+            padding: 5px 10px;
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+        &:hover {
+          background-color: #E0E4EA;
+        }
+      }
+    }
   }
   &.admin-subscribe, &.product-price {
     h2 {

@@ -1,10 +1,16 @@
 <div class="content product-cart">
-    <div class="row">
+    <div class="row m-b-20">
         <div class="col-md-4 col-md-offset-4">
-            <select type="text" *ngIf="user.role == 1" [(ngModel)]="client">
-                <option value="{{user.mail}}">Choisissez un client</option>
-                <option *ngFor="#mail of mails; #i = index " value="{{mail}}">{{mail}}</option>
-            </select>
+            <div class="input-field">
+                <input id="country" type="text" class="validate filter-input" [(ngModel)]=query (keyup)=filter()>
+            </div>
+            <div class="suggestions" *ngIf="filteredList.length > 0">
+                <ul *ngFor="#item of filteredList" >
+                    <li >
+                        <a (click)="select(item)">{{item}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="row">

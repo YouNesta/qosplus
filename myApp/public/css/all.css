@@ -913,6 +913,33 @@ td {
     width: 180px;
     height: 36px; }
 
+.content.product-cart .m-b-20 {
+  margin-bottom: 20px; }
+
+.content.product-cart .filter-input {
+  width: 300px;
+  height: 40px; }
+
+.content.product-cart .suggestions {
+  position: absolute;
+  top: 40px;
+  background-color: #FFF;
+  z-index: 9;
+  border: 1px solid #6D6D6D; }
+  .content.product-cart .suggestions ul {
+    width: 298px;
+    border-bottom: 1px solid;
+    margin-bottom: 0;
+    text-align: center; }
+    .content.product-cart .suggestions ul li a {
+      display: block;
+      width: 100%;
+      padding: 5px 10px; }
+      .content.product-cart .suggestions ul li a:hover {
+        text-decoration: none; }
+    .content.product-cart .suggestions ul:hover {
+      background-color: #E0E4EA; }
+
 .content.admin-subscribe h2, .content.product-price h2 {
   width: 95%;
   margin: auto;

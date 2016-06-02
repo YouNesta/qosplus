@@ -1,4 +1,4 @@
-import {Component, forwardRef, Inject, Input} from 'angular2/core';
+import {Component, forwardRef, Inject, Input, ElementRef} from 'angular2/core';
 import {ProductFactory} from "./product.factory";
 import {UserFactory} from "./../User/user.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
@@ -8,6 +8,10 @@ import {AlertService} from "../Tools/alert";
 
 
 @Component({
+    selector: 'autocomplete',
+    host: {
+        '(document:click)': 'handleClick($event)',
+    },
     providers: [],
     templateUrl: "app/Product/product-cart.html",
     directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES]
@@ -23,7 +27,14 @@ export class ProductCartComponent {
     isOpen = [];
     client = "";
     selectedProductCard = [];
-    constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService, public userService: UserFactory){
+
+    public query = '';
+    public filteredList = [];
+    public elementRef;
+
+    constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService, public userService: UserFactory, myElement: ElementRef){
+
+        this.elementRef = myElement;
         this.alertService = alertService;
         this.user = JSON.parse(localStorage.getItem("user"));
         this.client = this.user.mail;
@@ -96,6 +107,32 @@ export class ProductCartComponent {
             this.selectedProductCard.splice(n, 1);
         }else{
             this.selectedProductCard.push(index);
+        }
+    }
+    filter() {
+        if (this.query !== ""){
+            this.filteredList = this.mails.filter(function(el){
+                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+            }.bind(this));
+        }else{
+            this.filteredList = [];
+        }
+    }
+    select(item){
+        this.query = item;
+        this.filteredList = [];
+    }
+    handleClick(event){
+        var clickedComponent = event.target;
+        var inside = false;
+        do {
+            if (clickedComponent === this.elementRef.nativeElement) {
+                inside = true;
+            }
+            clickedComponent = clickedComponent.parentNode;
+        } while (clickedComponent);
+        if(!inside){
+            this.filteredList = [];
         }
     }
 }
