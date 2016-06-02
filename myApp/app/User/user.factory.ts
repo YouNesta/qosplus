@@ -77,6 +77,19 @@ export class UserFactory {
             .map(response => response.json())
     }
 
+    getUserById(id){
+        var data =  JSON.stringify({id});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'getById',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
     getShops(ids){
         var data =  JSON.stringify({ids});
         var headers = new Headers();

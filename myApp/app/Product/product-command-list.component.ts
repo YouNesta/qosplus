@@ -87,7 +87,6 @@ export class ProductCommandComponent {
             res => {
                 if(res.success){
                     command = res.data;
-
                     this.commands[i] = command;
 
 

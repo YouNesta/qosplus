@@ -150,6 +150,14 @@ router.post('/getByMail', function(req,res,next){
   }
 });
 
+router.post('/getById', function(req,res,next){
+  if(req.body != 'undefined'){
+    users.getById(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
 router.post('/getShops', function(req,res,next){
   if(req.body != 'undefined'){
     shops.getShops(req, res);

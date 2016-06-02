@@ -2,7 +2,7 @@
     <div class="row m-b-20">
         <div class="col-md-4 col-md-offset-4">
             <div class="input-field">
-                <input id="country" type="text" class="validate filter-input" [(ngModel)]=query (keyup)=filter()>
+                <input id="country" type="text" class="validate filter-input" [(ngModel)]=query (keyup)=filter() placeholder="Choisissez un magasin">
             </div>
             <div class="suggestions" *ngIf="filteredList.length > 0">
                 <ul *ngFor="#item of filteredList" >

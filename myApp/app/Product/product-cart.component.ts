@@ -207,6 +207,17 @@ export class ProductCartComponent {
                 console.log('not found');
         }
 
+        this.userService.getUserById(this.selectedShop.owner)
+            .subscribe(
+                res => {
+                    if(res.success){
+                        this.client = res.data.mail;
+                    }else{
+                        console.log(res);
+                    }
+                },
+                err =>  console.log(err),
+                () => console.log('get mail list Complete')
+            );
     }
-
 }
