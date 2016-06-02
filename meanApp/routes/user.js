@@ -158,6 +158,14 @@ router.post('/getShops', function(req,res,next){
   }
 });
 
+router.get('/getAllShops', function(req,res,next){
+  if(req.body != 'undefined'){
+    shops.getAllShops(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
 router.post('/commands', function(req, res, next){
   if(req.body != 'undefined'){
     users.getUserCommands(req, res);

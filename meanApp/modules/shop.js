@@ -29,7 +29,19 @@ module.exports = {
                 logger.log('error', error);
                 res.json({ success: false, message: "Shop not Found", data:error});
             }
-            res.json({success: true, message: "User found", data: shops})
+            res.json({success: true, message: "Shops found", data: shops})
+
+        });
+    },
+
+    getAllShops: function(req, res){
+        Shop.find({}, function(error, shops){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "Shop not Found", data:error});
+            }
+            res.json({success: true, message: "Shops found", data: shops})
 
         });
     },

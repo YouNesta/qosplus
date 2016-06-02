@@ -117,6 +117,11 @@ export class UserFactory {
             .get(this.apiUrl+'getMails')
             .map(res => res.json())
     }
+    getAllShops(){
+        return  this.authHttp
+            .get(this.apiUrl+'getAllShops')
+            .map(res => res.json())
+    }
 
 
     login(user) {
