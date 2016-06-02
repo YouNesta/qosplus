@@ -17,6 +17,7 @@ import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {UserFactory} from "../User/user.factory";
 import {AlertService} from "../Tools/alert";
 import {HomeSubscribeComponent} from "../Home/home-subscribe.component";
+import {ProductFactory} from "../Product/product.factory";
 
 @CanActivate(() => tokenNotExpired('token'))
 
@@ -24,7 +25,7 @@ import {HomeSubscribeComponent} from "../Home/home-subscribe.component";
 @Component({
     templateUrl: "app/Admin/admin-validation.html",
     directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent],
-    providers: [ AdminFactory]
+    providers: [AdminFactory]
 })
 
 
@@ -34,6 +35,7 @@ export class AdminValidationComponent {
         "_id":"",
         "state":0,
         "role":1,
+        "type":[],
         "lastName":"fdvcx ",
         "firstName":"efvdscxw erzdcxw",
         "phone":"06.59.90.12.05",
@@ -105,7 +107,9 @@ export class AdminValidationComponent {
     users = [];
     isOpen = [];
 
-    constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService){
+    userType: [];
+    currentType: number;
+    constructor(public adminService: AdminFactory,public productService: ProductFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService){
        this.alertService = alertService;
         this.validateForm = fb.group({
             'name': ['', Validators.compose([
@@ -127,6 +131,22 @@ export class AdminValidationComponent {
             'mobile': ['', Validators.compose([
             ])]
         });
+        this.productService.countProductPrice()
+            .subscribe(
+                response => {
+                    if(response.success){
+                        this.userType = response.data;
+                        this.alertService.addAlert('success', response.message);
+                    }else{
+                        this.alertService.addAlert('warning', response.message);
+                    }
+                },
+                err => {
+                    this.alertService.addAlert('danger', 500);
+                },
+                () => console.log('Authentification')
+            );
+
 
         this.getUnvalidateUser();
     }
@@ -135,6 +155,14 @@ export class AdminValidationComponent {
         this.model = this.users[i];
     }
     validateUser(){
+        for(var i in this.userType){
+            if(this.userType[this.currentType] != 'undefined'){
+                this.model.type = this.userType[this.currentType]
+            }else{
+                this.model.type = this.userType[0];
+            }
+        }
+
         this.service.updateUser(this.model)
             .subscribe(
                 response => {
@@ -147,7 +175,7 @@ export class AdminValidationComponent {
                 err => {
                     this.alertService.addAlert('danger', 500);
                 },
-                () => console.log('Authentification')
+                () => {this.getUnvalidateUser()}
             );
         
     }
