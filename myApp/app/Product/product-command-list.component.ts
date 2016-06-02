@@ -99,4 +99,21 @@ export class ProductCommandComponent {
         );
     }
 
+    cancelCommand(i) {
+        var command = this.commands[i];
+        command = this.service.deleteCommand(command).subscribe(
+            res => {
+                if(res.success){
+                    command = res.data;
+                    this.commands.splice(i, 1);
+
+                }else{
+                    console.log(res);
+                }
+            },
+            err =>  console.log(err),
+            () => console.log('command updated')
+        );
+    }
+
 }

@@ -83,6 +83,14 @@ router.post('/changePaymentStatus',function(req, res) {
     }
 });
 
+router.post('/deleteCommand', function(req, res){
+    if(req.body.product != "undefined"){
+        CommandModule.deleteCommand(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
 module.exports = router;
 
 

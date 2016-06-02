@@ -34,6 +34,19 @@ export class ProductFactory {
             .map(response => response.json())
     }
 
+    deleteCommand(command) {
+        var data = JSON.stringify({command});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'deleteCommand',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
     save(products) {
         var data = JSON.stringify({products});
         var headers = new Headers();

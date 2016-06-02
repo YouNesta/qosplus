@@ -457,4 +457,25 @@ module.exports = {
             }
         })
     },
+
+    deleteCommand: function(req, res) {
+        var command = req.body.command;
+        Command.findOneAndRemove({_id: command._id}, function (err, command) {
+            if (err) {
+                console.log(err);
+                logger.log('error', err);
+                res.res.json({success: false, message: err});
+            } else {
+                Payment.findOneAndRemove({_id: command.payment}, function (err, payment) {
+                    if (err) {
+                        console.log(err);
+                        logger.log('error', err);
+                        res.res.json({success: false, message: err});
+                    } else {
+                        res.json({success: true, message:"Command deleted", data: {}});
+                    }
+                });
+            }
+        });
+    }
 };
