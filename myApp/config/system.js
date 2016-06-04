@@ -30,14 +30,13 @@ System.config({
     "angular2-jwt": "node_modules/angular2-jwt/angular2-jwt.js",
     "angular2-tag-input": "npm:angular2-tag-input@0.1.5",
     "bootstrap-sass": "github:twbs/bootstrap-sass@3.3.6",
-    "es6-promise": "npm:es6-promise@3.2.1",
+    "es6-promise": "npm:es6-promise@3.1.2",
     "font-awesome": "npm:font-awesome@4.6.1",
     "html-pdf": "npm:html-pdf@2.0.1",
     "jquery": "npm:jquery@2.2.3",
     "moment": "npm:moment@2.12.0",
     "ng2-bootstrap": "npm:ng2-bootstrap@1.0.13",
     "ng2-bs3-modal": "npm:ng2-bs3-modal@0.5.1",
-    "ng2-material": "npm:ng2-material@0.4.1",
     "ng2-uploader": "node_modules/ng2-uploader/ng2-uploader",
     "phantom-html2pdf": "npm:phantom-html2pdf@2.0.2",
     "phantomjs": "npm:phantomjs@2.1.7",
@@ -48,12 +47,12 @@ System.config({
     "ts": "github:frankwallis/plugin-typescript@4.0.5",
     "typescript": "npm:typescript@1.8.9",
     "typings": "npm:typings@0.7.12",
-    "zone.js": "npm:zone.js@0.6.12",
+    "zone.js": "npm:zone.js@0.6.11",
     "github:frankwallis/plugin-typescript@4.0.5": {
       "typescript": "npm:typescript@1.8.9"
     },
     "github:jspm/nodelibs-assert@0.1.0": {
-      "assert": "npm:assert@1.4.1"
+      "assert": "npm:assert@1.3.0"
     },
     "github:jspm/nodelibs-buffer@0.1.0": {
       "buffer": "npm:buffer@3.6.0"
@@ -95,7 +94,7 @@ System.config({
       "path-browserify": "npm:path-browserify@0.0.0"
     },
     "github:jspm/nodelibs-process@0.1.2": {
-      "process": "npm:process@0.11.3"
+      "process": "npm:process@0.11.2"
     },
     "github:jspm/nodelibs-punycode@0.1.0": {
       "punycode": "npm:punycode@1.3.2"
@@ -127,60 +126,6 @@ System.config({
     "github:jspm/nodelibs-zlib@0.1.0": {
       "browserify-zlib": "npm:browserify-zlib@0.1.4"
     },
-    "npm:@angular/common@2.0.0-rc.1": {
-      "@angular/core": "npm:@angular/core@2.0.0-rc.1",
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:@angular/compiler@2.0.0-rc.1": {
-      "@angular/core": "npm:@angular/core@2.0.0-rc.1",
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:@angular/core@2.0.0-rc.1": {
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "rxjs": "npm:rxjs@5.0.0-beta.6",
-      "zone.js": "npm:zone.js@0.6.12"
-    },
-    "npm:@angular/platform-browser-dynamic@2.0.0-rc.1": {
-      "@angular/common": "npm:@angular/common@2.0.0-rc.1",
-      "@angular/compiler": "npm:@angular/compiler@2.0.0-rc.1",
-      "@angular/core": "npm:@angular/core@2.0.0-rc.1",
-      "@angular/platform-browser": "npm:@angular/platform-browser@2.0.0-rc.1",
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:@angular/platform-browser@2.0.0-rc.1": {
-      "@angular/common": "npm:@angular/common@2.0.0-rc.1",
-      "@angular/compiler": "npm:@angular/compiler@2.0.0-rc.1",
-      "@angular/core": "npm:@angular/core@2.0.0-rc.1",
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:@angular/router@2.0.0-rc.1": {
-      "@angular/common": "npm:@angular/common@2.0.0-rc.1",
-      "@angular/core": "npm:@angular/core@2.0.0-rc.1",
-      "@angular/platform-browser": "npm:@angular/platform-browser@2.0.0-rc.1"
-    },
-    "npm:@angular2-material/checkbox@2.0.0-alpha.5-2": {
-      "@angular2-material/core": "npm:@angular2-material/core@2.0.0-alpha.5-2"
-    },
-    "npm:@angular2-material/core@2.0.0-alpha.5-2": {
-      "@angular/common": "npm:@angular/common@2.0.0-rc.1",
-      "@angular/core": "npm:@angular/core@2.0.0-rc.1"
-    },
-    "npm:@angular2-material/progress-bar@2.0.0-alpha.5-2": {
-      "@angular2-material/core": "npm:@angular2-material/core@2.0.0-alpha.5-2",
-      "buffer": "github:jspm/nodelibs-buffer@0.1.0"
-    },
-    "npm:@angular2-material/progress-circle@2.0.0-alpha.5-2": {
-      "@angular2-material/core": "npm:@angular2-material/core@2.0.0-alpha.5-2"
-    },
-    "npm:@angular2-material/radio@2.0.0-alpha.5-2": {
-      "@angular2-material/core": "npm:@angular2-material/core@2.0.0-alpha.5-2"
-    },
-    "npm:@angular2-material/sidenav@2.0.0-alpha.5-2": {
-      "@angular2-material/core": "npm:@angular2-material/core@2.0.0-alpha.5-2"
-    },
-    "npm:@angular2-material/toolbar@2.0.0-alpha.5-2": {
-      "@angular2-material/core": "npm:@angular2-material/core@2.0.0-alpha.5-2"
-    },
     "npm:abbrev@1.0.7": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
@@ -201,7 +146,7 @@ System.config({
     "npm:angular2@2.0.0-beta.15": {
       "reflect-metadata": "npm:reflect-metadata@0.1.2",
       "rxjs": "npm:rxjs@5.0.0-beta.6",
-      "zone.js": "npm:zone.js@0.6.12"
+      "zone.js": "npm:zone.js@0.6.11"
     },
     "npm:any-promise@1.1.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -235,10 +180,7 @@ System.config({
       "stream": "github:jspm/nodelibs-stream@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:assert@1.4.1": {
-      "assert": "github:jspm/nodelibs-assert@0.1.0",
-      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
-      "process": "github:jspm/nodelibs-process@0.1.2",
+    "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
     "npm:async@1.5.2": {
@@ -522,10 +464,7 @@ System.config({
       "is-arrayish": "npm:is-arrayish@0.2.1",
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:es6-promise@3.2.1": {
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
-    "npm:es6-shim@0.35.1": {
+    "npm:es6-promise@3.1.2": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:evp_bytestokey@1.0.0": {
@@ -873,26 +812,6 @@ System.config({
       "angular2": "npm:angular2@2.0.0-beta.15",
       "bootstrap": "npm:bootstrap@3.3.6"
     },
-    "npm:ng2-material@0.4.1": {
-      "@angular/common": "npm:@angular/common@2.0.0-rc.1",
-      "@angular/compiler": "npm:@angular/compiler@2.0.0-rc.1",
-      "@angular/core": "npm:@angular/core@2.0.0-rc.1",
-      "@angular/platform-browser": "npm:@angular/platform-browser@2.0.0-rc.1",
-      "@angular/platform-browser-dynamic": "npm:@angular/platform-browser-dynamic@2.0.0-rc.1",
-      "@angular/router": "npm:@angular/router@2.0.0-rc.1",
-      "@angular2-material/checkbox": "npm:@angular2-material/checkbox@2.0.0-alpha.5-2",
-      "@angular2-material/core": "npm:@angular2-material/core@2.0.0-alpha.5-2",
-      "@angular2-material/progress-bar": "npm:@angular2-material/progress-bar@2.0.0-alpha.5-2",
-      "@angular2-material/progress-circle": "npm:@angular2-material/progress-circle@2.0.0-alpha.5-2",
-      "@angular2-material/radio": "npm:@angular2-material/radio@2.0.0-alpha.5-2",
-      "@angular2-material/sidenav": "npm:@angular2-material/sidenav@2.0.0-alpha.5-2",
-      "@angular2-material/toolbar": "npm:@angular2-material/toolbar@2.0.0-alpha.5-2",
-      "es6-promise": "npm:es6-promise@3.2.1",
-      "es6-shim": "npm:es6-shim@0.35.1",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "rxjs": "npm:rxjs@5.0.0-beta.6",
-      "zone.js": "npm:zone.js@0.6.12"
-    },
     "npm:node-uuid@1.4.7": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "crypto": "github:jspm/nodelibs-crypto@0.1.0"
@@ -1061,9 +980,6 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:process@0.11.2": {
-      "assert": "github:jspm/nodelibs-assert@0.1.0"
-    },
-    "npm:process@0.11.3": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"
     },
     "npm:progress@1.1.8": {
@@ -1453,7 +1369,7 @@ System.config({
       "util": "github:jspm/nodelibs-util@0.1.0",
       "zlib": "github:jspm/nodelibs-zlib@0.1.0"
     },
-    "npm:zone.js@0.6.12": {
+    "npm:zone.js@0.6.11": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     }
