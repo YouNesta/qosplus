@@ -31,6 +31,7 @@ export class ProductCartComponent {
     selectedProductCard = [];
     shops = Object;
     selectedShop = {};
+    price = 0;
 
     public query = '';
     public filteredList = [];
@@ -67,6 +68,7 @@ export class ProductCartComponent {
     }
     getCart(){
         this.products = JSON.parse(localStorage.getItem("cart"));
+        console.log(this.products);
         for(var i in this.products){
             this.isOpen.push(false);
         }
@@ -100,8 +102,20 @@ export class ProductCartComponent {
         );;
     }
 
-    getPrice() {
-        return 17345;
+    getPrice(user) {
+
+        var price = 0;
+        var priceType = user.type.type;
+
+        for (var i in this.products) {
+            var product = this.products[i];
+            var productPrice = product.price[priceType].price;
+            var quantity = product.quantity;
+
+            price += (productPrice * quantity);
+        }
+
+        this.price = price;
     }
     deleteProductsCard(){
 
@@ -212,6 +226,7 @@ export class ProductCartComponent {
                 res => {
                     if(res.success){
                         this.client = res.data.mail;
+                        this.getPrice(res.data);
                     }else{
                         console.log(res);
                     }

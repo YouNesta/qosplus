@@ -35,7 +35,7 @@ export class AdminValidationComponent {
         "_id":"",
         "state":0,
         "role":1,
-        "type":[],
+        "type":{},
         "lastName":"fdvcx ",
         "firstName":"efvdscxw erzdcxw",
         "phone":"06.59.90.12.05",
@@ -107,7 +107,7 @@ export class AdminValidationComponent {
     users = [];
     isOpen = [];
 
-    userType: [];
+    userType: {};
     currentType: number;
     constructor(public adminService: AdminFactory,public productService: ProductFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService){
        this.alertService = alertService;
@@ -157,11 +157,13 @@ export class AdminValidationComponent {
     validateUser(){
         for(var i in this.userType){
             if(this.userType[this.currentType] != 'undefined'){
-                this.model.type = this.userType[this.currentType]
+                this.model.type = this.userType[this.currentType-1];
             }else{
                 this.model.type = this.userType[0];
             }
         }
+
+        console.log(this.model);
 
         this.service.updateUser(this.model)
             .subscribe(
