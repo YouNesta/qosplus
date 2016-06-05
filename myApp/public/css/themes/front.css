@@ -243,6 +243,21 @@
       margin-top: 30px; }
       .page.register .page-container form .form-buttons {
         text-align: center; }
+      .page.register .page-container form .time-display .timepicker-container label {
+        display: block; }
+      .page.register .page-container form .time-display .timepicker-container .timepicker {
+        display: inline-block; }
+        .page.register .page-container form .time-display .timepicker-container .timepicker .glyphicon {
+          color: #6BDED3; }
+      .page.register .page-container form .time-display .timepicker-container p {
+        display: inline-block;
+        vertical-align: middle; }
+      .page.register .page-container form .time-display button {
+        display: block;
+        margin-right: auto;
+        margin-left: auto; }
+      .page.register .page-container form .resume-hours {
+        margin-bottom: 10px; }
   .page.signin .hero {
     background: url("../../public/img/hero-lens-schema.jpg") no-repeat center;
     background-size: 100% auto; }
