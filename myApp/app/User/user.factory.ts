@@ -20,6 +20,8 @@ export class UserFactory {
     save(user, shops, director, option){
       var data =  JSON.stringify({user, shops, director, option});
         var headers = new Headers();
+        console.log(headers);
+        console.log(this.apiUrl);
         headers.append('Content-Type', 'application/json');
 
         this.authHttp
@@ -66,9 +68,12 @@ export class UserFactory {
     }
 
     getUserByMail(mail){
+        console.log(mail);
         var data =  JSON.stringify({mail});
         var headers = new Headers();
+        console.log(headers);
         headers.append('Content-Type', 'application/json');
+
         return this.authHttp
             .post(this.apiUrl + 'getByMail',
                 data, {

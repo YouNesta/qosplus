@@ -6,6 +6,7 @@ import {ControlGroup, CORE_DIRECTIVES, FORM_DIRECTIVES} from "angular2/common";
 import {RegEx} from "../lib/regex";
 import {AlertService} from "../Tools/alert";
 import {Timepicker} from "ng2-bootstrap";
+//import {subscribeValidator} from "../lib/subscribeValidator"
 
 @Component({
     selector: "user-subscribe",
@@ -218,10 +219,10 @@ export class HomeSubscribeComponent {
                 Validators.maxLength(30)*/
             ])],
             'mail': ['', Validators.compose([
-                /*
                 Validators.required,
-                Validators.minLength(10),
-                Validators.maxLength(100)*/
+                /*Validators.minLength(10),
+                Validators.maxLength(100)
+                subscribeValidator.usernameTaken*/
             ])],
             'phone': ['', Validators.compose([
             ])],
@@ -261,6 +262,9 @@ export class HomeSubscribeComponent {
             }else{
                 this.user.financialMail = this.associateShop[0].mail;
             }
+                if(this.checkUserExist(this.user.mail)){
+                    console.log('exists');
+                }
                 this.service.save(this.user, this.associateShop, this.director, this.isSame);
         }
 
