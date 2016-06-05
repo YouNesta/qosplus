@@ -27,7 +27,7 @@ export class ProductCartComponent {
     shopRS = [];
     shopNames = [];
     isOpen = [];
-    client = "";
+    client: {};
     selectedProductCard = [];
     shops = Object;
     selectedShop = {};
@@ -42,7 +42,6 @@ export class ProductCartComponent {
         this.elementRef = myElement;
         this.alertService = alertService;
         this.user = JSON.parse(localStorage.getItem("user"));
-        this.client = this.user.mail;
         if (this.user.role == 1) {
             userService.getAllShops()
                 .subscribe(
@@ -83,23 +82,26 @@ export class ProductCartComponent {
     }
 
     validateCart() {
-        this.service.createCommand(this.client)
-            .subscribe(
-            res => {
-                if(res.success){
-                    var cart = [];
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    this.getCart();
-                    this.alertService.addAlert('success', res.message);
-                }else{
-                    this.alertService.addAlert('warning', res.message);
-                }
-            },
-            err => {
-                this.alertService.addAlert('danger', 500);
-            },
-            () => console.log('Command Added')
-        );;
+        if (this.client != null) {
+            this.service.createCommand(this.client, this.price)
+                .subscribe(
+                    res => {
+                        if(res.success){
+                            var cart = [];
+                            localStorage.setItem("cart", JSON.stringify(cart));
+                            this.getCart();
+                            this.alertService.addAlert('success', res.message);
+                        }else{
+                            this.alertService.addAlert('warning', res.message);
+                        }
+                    },
+                    err => {
+                        this.alertService.addAlert('danger', 500);
+                    },
+                    () => console.log('Command Added')
+                );
+        }
+
     }
 
     getPrice(user) {
@@ -225,8 +227,8 @@ export class ProductCartComponent {
             .subscribe(
                 res => {
                     if(res.success){
-                        this.client = res.data.mail;
-                        this.getPrice(res.data);
+                        this.client = res.data;
+                        this.getPrice(this.client);
                     }else{
                         console.log(res);
                     }

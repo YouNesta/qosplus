@@ -172,33 +172,22 @@ export class ProductFactory {
     }
 
 
-    createCommand(client = "") {
+    createCommand(client, amount) {
         var cart = JSON.parse(localStorage.getItem("cart"));
-        var user = JSON.parse(localStorage.getItem("user"));
-
-        if (client == "") {
-            client = user.mail;
-        }
-
-        var price = 150;
-
-        for (var i = 0; i < cart.length; i++) {
-            //price += cart[i].price * cart[i].quantity;
-        }
 
         var command = {
             date: new Date(),
-            client: client,
+            client: client.mail,
             product: cart,
             status: 1,
         };
 
         var payment = {
             date: new Date(),
-            IBAN: 12345678,
+            IBAN: client.IBAN,
             status: 0,
-            client: client,
-            amount: price
+            client: client.mail,
+            amount: amount
         };
 
         var data = JSON.stringify({command, payment});
