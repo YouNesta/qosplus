@@ -262,35 +262,10 @@ export class HomeSubscribeComponent {
             }else{
                 this.user.financialMail = this.associateShop[0].mail;
             }
-                if(this.checkUserExist(this.user.mail)){
-                    console.log('exists');
-                }
                 this.service.save(this.user, this.associateShop, this.director, this.isSame);
         }
 
 
-    }
-
-    checkUserExist(mail){
-        var exist = false;
-
-        this.service.getUserByMail(mail).subscribe(
-            res => {
-                if(res.success){
-                    if(res.data){
-                        this.alertService.addAlert('warning', 'Un compte avec cette addresse mail existe déjà');
-                      exist = true;
-                    }
-                }else{
-                    console.log(res.message);
-                }
-            },
-            err => {
-                console.log("error");
-            }
-        );
-
-        console.log(exist);
     }
 
     addShop(){

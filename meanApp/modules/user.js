@@ -31,52 +31,76 @@ module.exports = {
     },
 
     setUser: function(req, res){
-        var user = new User(req.body.user);
-        var shops = req.body.shops;
-        user.state = 0;
-        user.save(function(error) {
-            if (error) {
-                console.log(error);
-                logger.log('error', error);
-            }
-            if (user) {
-                if (req.body.option.director) {
-                    //Is director
-                    User.findOneAndUpdate({_id: user._id}, {$set: {director: user._id}}, function (error, user) {
-                        if (error) {
-                            console.log(error);
-                            logger.log('error', error);
-                            res.json({success: false, message: "Subscribe Failed", data: error});
 
+        saveUser(req.body, function(err, doesExists){
+            var user = new User(req.body.user);
+            if(!doesExists){
+                var shops = req.body.shops;
+                user.state = 0;
+                user.save(function(error) {
+                    if (error) {
+                        console.log(error);
+                        logger.log('error', error);
+                    }
+                    if (user) {
+                        if (req.body.option.director) {
+                            //Is director
+                            User.findOneAndUpdate({_id: user._id}, {$set: {director: user._id}}, function (error, user) {
+                                if (error) {
+                                    console.log(error);
+                                    logger.log('error', error);
+                                    res.json({success: false, message: "Subscribe Failed", data: error});
+
+                                }
+                                setShop(user, shops);
+                            })
+                        } else {
+                            //is Pute
+                            var Director = new User(req.body.director);
+
+                            Director.save(function (error) {
+                                if (error) {
+                                    console.log(error);
+                                    logger.log('error', error);
+                                    res.json({success: false, message: "Subscribe Failed", data: error});
+
+                                }
+                                user.director = Director._id;
+                                User.findOneAndUpdate({_id: user._id}, {director: Director._id}, {upsert: true}, function (error, data) {
+                                    if (error) {
+                                        console.log(error);
+                                        logger.log('error', error);
+                                        res.json({success: false, message: "Subscribe Failed", data: error});
+
+                                    }
+                                    setShop(user, shops);
+                                })
+                            });
                         }
-                        setShop(user, shops);
-                    })
-                } else {
-                    //is Pute
-                    var Director = new User(req.body.director);
+                    }
 
-                    Director.save(function (error) {
-                        if (error) {
-                            console.log(error);
-                            logger.log('error', error);
-                            res.json({success: false, message: "Subscribe Failed", data: error});
-
-                        }
-                        user.director = Director._id;
-                        User.findOneAndUpdate({_id: user._id}, {director: Director._id}, {upsert: true}, function (error, data) {
-                            if (error) {
-                                console.log(error);
-                                logger.log('error', error);
-                                res.json({success: false, message: "Subscribe Failed", data: error});
-
-                            }
-                            setShop(user, shops);
-                        })
-                    });
-                }
+                });
+            }else{
+                res.json({success: false, message: "User already Exist"});
             }
-
         });
+
+
+        function saveUser(body, callback){
+            User.findOne({mail: body.user.mail}, function(error, user){
+                if(error){
+                    console.log(error);
+                    logger.log('error', error);
+                    callback(error, false);
+                }
+                if(user){
+                    callback(null, true);
+                }else{
+                    callback("",false);
+                }
+            })
+        }
+
         function setShop(user, shops){
             if(shops.length >= 1){
                 var shop = new Shop(shops[0]);
@@ -101,7 +125,6 @@ module.exports = {
             }
 
         }
-
     },
 
     update: function(req, res){
@@ -218,19 +241,6 @@ module.exports = {
                 res.json({ success: false, message: "Commands not Found", data:error});
             }
             res.json({success: true, message: "Commands found", data:command})
-        })
-    },
-
-    getByMail: function(req, res){
-        console.log(req);
-        var user_mail = req.body.mail;
-        User.findOne({mail: user_mail}, function(error, user){
-            if(error){
-                console.log(error);
-                logger.log('error', error);
-                res.json({ success: false, message: "User not Found", data:error});
-            }
-            res.json({success: true, message: "User found", data: user})
         })
     },
 
