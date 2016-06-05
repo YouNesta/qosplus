@@ -6,6 +6,7 @@ import {Headers} from "angular2/http";
 import {AuthHttp, JwtHelper} from 'angular2-jwt';
 import {Router} from "angular2/router";
 import {API} from "../Config/api";
+import {User} from "./user";
 
 @Injectable()
 
@@ -68,7 +69,6 @@ export class UserFactory {
         var data =  JSON.stringify({mail});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
         return this.authHttp
             .post(this.apiUrl + 'getByMail',
                 data, {
@@ -123,6 +123,7 @@ export class UserFactory {
         var data =  JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        console.log(headers);
         console.log(this.apiUrl);
         return this.authHttp
             .post(this.apiUrl + 'login',
@@ -145,6 +146,7 @@ export class UserFactory {
         var data =  JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        console.log(headers);
         console.log(this.apiUrl);
         return this.authHttp
             .post(this.apiUrl + 'login',

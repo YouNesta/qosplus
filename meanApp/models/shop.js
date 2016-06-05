@@ -76,22 +76,19 @@ var ShopSchema = new mongoose.Schema({
         type: String,
         required : false
     },
-    openDay:  {
-        type: String,
-        required : false
-    },
-    closeDay:  {
-        type: String,
-        required : false
-    },
-    openHour:  {
-        type: String,
-        required : false
-    },
-    closeHour:  {
-        type: String,
-        required : false
-    }
+    disponibility: [{
+        day: String,
+        data: {
+            morning: {
+                opening: Date,
+                closing: Date
+            },
+            afternoon: {
+                opening: Date,
+                closing: Date
+            }
+        }
+    }]
 });
 
 var Shop = mongoose.model('Shop', ShopSchema);

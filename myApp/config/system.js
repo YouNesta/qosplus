@@ -33,22 +33,22 @@ System.config({
     "es6-promise": "npm:es6-promise@3.1.2",
     "font-awesome": "npm:font-awesome@4.6.1",
     "jquery": "npm:jquery@2.2.3",
-    "moment": "npm:moment@2.12.0",
+    "moment": "npm:moment@2.13.0",
     "ng2-bootstrap": "npm:ng2-bootstrap@1.0.13",
     "ng2-bs3-modal": "npm:ng2-bs3-modal@0.5.1",
     "ng2-uploader": "node_modules/ng2-uploader/ng2-uploader",
     "reflect-metadata": "npm:reflect-metadata@0.1.3",
     "rxjs": "npm:rxjs@5.0.0-beta.6",
-    "systemjs": "npm:systemjs@0.19.26",
+    "systemjs": "npm:systemjs@0.19.27",
     "ts": "github:frankwallis/plugin-typescript@4.0.5",
     "typescript": "npm:typescript@1.8.9",
     "typings": "npm:typings@0.7.12",
-    "zone.js": "npm:zone.js@0.6.11",
+    "zone.js": "npm:zone.js@0.6.12",
     "github:frankwallis/plugin-typescript@4.0.5": {
       "typescript": "npm:typescript@1.8.9"
     },
     "github:jspm/nodelibs-assert@0.1.0": {
-      "assert": "npm:assert@1.3.0"
+      "assert": "npm:assert@1.4.1"
     },
     "github:jspm/nodelibs-buffer@0.1.0": {
       "buffer": "npm:buffer@3.6.0"
@@ -90,7 +90,7 @@ System.config({
       "path-browserify": "npm:path-browserify@0.0.0"
     },
     "github:jspm/nodelibs-process@0.1.2": {
-      "process": "npm:process@0.11.2"
+      "process": "npm:process@0.11.3"
     },
     "github:jspm/nodelibs-querystring@0.1.0": {
       "querystring": "npm:querystring@0.2.0"
@@ -103,9 +103,6 @@ System.config({
     },
     "github:jspm/nodelibs-timers@0.1.0": {
       "timers-browserify": "npm:timers-browserify@1.4.2"
-    },
-    "github:jspm/nodelibs-tty@0.1.0": {
-      "tty-browserify": "npm:tty-browserify@0.0.0"
     },
     "github:jspm/nodelibs-url@0.1.0": {
       "url": "npm:url@0.10.3"
@@ -139,7 +136,7 @@ System.config({
     "npm:angular2@2.0.0-beta.15": {
       "reflect-metadata": "npm:reflect-metadata@0.1.2",
       "rxjs": "npm:rxjs@5.0.0-beta.6",
-      "zone.js": "npm:zone.js@0.6.11"
+      "zone.js": "npm:zone.js@0.6.12"
     },
     "npm:any-promise@1.1.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"
@@ -153,7 +150,10 @@ System.config({
       "minimalistic-assert": "npm:minimalistic-assert@1.0.0",
       "vm": "github:jspm/nodelibs-vm@0.1.0"
     },
-    "npm:assert@1.3.0": {
+    "npm:assert@1.4.1": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0",
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2",
       "util": "npm:util@0.10.3"
     },
     "npm:bluebird@3.3.5": {
@@ -331,12 +331,7 @@ System.config({
       "randombytes": "npm:randombytes@2.0.3"
     },
     "npm:debug@2.2.0": {
-      "fs": "github:jspm/nodelibs-fs@0.1.2",
-      "ms": "npm:ms@0.7.1",
-      "net": "github:jspm/nodelibs-net@0.1.2",
-      "process": "github:jspm/nodelibs-process@0.1.2",
-      "tty": "github:jspm/nodelibs-tty@0.1.0",
-      "util": "github:jspm/nodelibs-util@0.1.0"
+      "ms": "npm:ms@0.7.1"
     },
     "npm:deep-extend@0.4.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
@@ -540,7 +535,7 @@ System.config({
     },
     "npm:ng2-bootstrap@1.0.13": {
       "angular2": "npm:angular2@2.0.0-beta.15",
-      "moment": "npm:moment@2.12.0"
+      "moment": "npm:moment@2.13.0"
     },
     "npm:ng2-bs3-modal@0.5.1": {
       "angular2": "npm:angular2@2.0.0-beta.15",
@@ -650,6 +645,9 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:process@0.11.2": {
+      "assert": "github:jspm/nodelibs-assert@0.1.0"
+    },
+    "npm:process@0.11.3": {
       "assert": "github:jspm/nodelibs-assert@0.1.0"
     },
     "npm:promise-finally@2.1.0": {
@@ -782,10 +780,10 @@ System.config({
     "npm:supports-color@2.0.0": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:systemjs@0.19.26": {
+    "npm:systemjs@0.19.27": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.2",
-      "systemjs-json": "github:systemjs/plugin-json@0.1.0",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.2",
       "when": "npm:when@3.7.7"
     },
     "npm:thenify@3.2.0": {
@@ -918,7 +916,7 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:zone.js@0.6.11": {
+    "npm:zone.js@0.6.12": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     }

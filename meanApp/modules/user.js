@@ -222,6 +222,7 @@ module.exports = {
     },
 
     getByMail: function(req, res){
+        console.log(req);
         var user_mail = req.body.mail;
         User.findOne({mail: user_mail}, function(error, user){
             if(error){

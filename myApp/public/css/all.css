@@ -40,24 +40,6 @@ html {
           height: 300px;
           margin-bottom: 15px; }
 
-.form-buttons {
-  text-align: center; }
-
-button.add-modale, button.validate-cart, button.default {
-  width: 150px;
-  height: 36px;
-  border-radius: 3px;
-  color: #FFF;
-  background-color: #10cfbd;
-  margin-bottom: 40px;
-  border: solid 1px #e0e4ea;
-  padding-left: 13px;
-  padding-right: 13px; }
-  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
-    color: #fff;
-    background-color: rgba(16, 207, 189, 0.6);
-    border-color: transparent; }
-
 search .row {
   background: white;
   height: 60px; }
@@ -361,6 +343,24 @@ header {
   header nav .menu-mobile {
     display: block; } }
 
+
+.form-buttons {
+  text-align: center; }
+
+button.add-modale, button.validate-cart, button.default {
+  width: 150px;
+  height: 36px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #10cfbd;
+  margin-bottom: 40px;
+  border: solid 1px #e0e4ea;
+  padding-left: 13px;
+  padding-right: 13px; }
+  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
+    color: #fff;
+    background-color: rgba(16, 207, 189, 0.6);
+    border-color: transparent; }
 
 .page {
   padding-top: 80px;
