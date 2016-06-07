@@ -66,7 +66,19 @@ export class HomeSubscribeComponent {
         adeli: null,
         nightBox: true,
         transporteur:'',
-        disponibility: []
+        disponibility: [{
+            day: "",
+            data: {
+                morning: {
+                    opening: new Date(),
+                    closing: new Date()
+                },
+                afternoon: {
+                    opening: new Date(),
+                    closing: new Date()
+                }
+            }
+        }]
 
     }];
     director = {
@@ -232,21 +244,49 @@ export class HomeSubscribeComponent {
     }
 
     addDay(i, day){
-        this.associateShop[i].disponibility.push({
-            day: this.selectedDay,
-            data: {
-                morning: {
-                    opening: this.timepickerDay.data.morning.opening,
-                    closing: this.timepickerDay.data.morning.closing
-                },
-                afternoon: {
-                    opening: this.timepickerDay.data.afternoon.opening,
-                    closing: this.timepickerDay.data.afternoon.closing
+
+        //
+        if(this.timepickerDay.data.morning.closing.getTime() < this.timepickerDay.data.morning.opening.getTime()){
+            this.alertService.addAlert('warning', 'La date d\'ouverture du matin doit etre plus tot que la date de fermeture');
+        }else if(this.timepickerDay.data.morning.closing.getTime() < this.timepickerDay.data.morning.opening.getTime()){
+            this.alertService.addAlert('warning', 'La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
+        }else if(this.checkDayExist(this.associateShop[i])){
+            this.associateShop[i].disponibility.indexOf(this.selectedDay);
+            this.associateShop[i].disponibility.push({
+                day: this.selectedDay,
+                data: {
+                    morning: {
+                        opening: this.timepickerDay.data.morning.opening,
+                        closing: this.timepickerDay.data.morning.closing
+                    },
+                    afternoon: {
+                        opening: this.timepickerDay.data.afternoon.opening,
+                        closing: this.timepickerDay.data.afternoon.closing
+                    }
                 }
-            }
-        });
-        console.log(this.associateShop[i].disponibility);
+            });
+        }
+        else{
+            this.associateShop[i].disponibility.push({
+                day: this.selectedDay,
+                data: {
+                    morning: {
+                        opening: this.timepickerDay.data.morning.opening,
+                        closing: this.timepickerDay.data.morning.closing
+                    },
+                    afternoon: {
+                        opening: this.timepickerDay.data.afternoon.opening,
+                        closing: this.timepickerDay.data.afternoon.closing
+                    }
+                }
+            });
+            console.log(this.associateShop[i].disponibility);
+        }
     };
+
+    checkDayExist(shop){
+        return shop.disponibility.day === this.selectedDay;
+    }
 
     changeCurrentDay(value){
         this.selectedDay = value;
