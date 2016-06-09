@@ -120,9 +120,7 @@ export class ProductFactory {
 
     }
 
-
     getOneProduct(productId) {
-        console.log(productId);
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         return this.authHttp
@@ -139,6 +137,20 @@ export class ProductFactory {
                 }
                 return response;
             })
+    }
+
+    getProductsById(productIds) {
+        var data = JSON.stringify({productIds});
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'getProductsById',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json());
     }
 
     getOneCommand(commandId) {

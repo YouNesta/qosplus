@@ -332,6 +332,20 @@ module.exports = {
         })
     },
 
+    getProductsById: function(req, res){
+        Product.find({_id: {$in: req.body.productIds}}, function(err, products){
+            if(err)
+            {
+                console.log(err);
+                logger.log('error', err);
+                res.res.json({success: false, message:err});
+            }
+
+            res.json({success: true, message:"Products List Find with success", data: products});
+
+        })
+    },
+
     getProductsBySupplier: function(req, res){
         Product.find().sort({supplier: 1}, function(error, product){
             if(err)

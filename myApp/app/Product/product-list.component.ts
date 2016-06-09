@@ -26,6 +26,7 @@ export class ProductListComponent {
 
     loadModalProduct(product, modal) {
         modal.open();
+        console.log(product);
         this.productCart = JSON.stringify(product);
     }
 

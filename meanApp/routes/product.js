@@ -61,6 +61,14 @@ router.post('/price/create', function(req, res, next) {
     }
 });
 
+router.post('/getProductsById', function(req, res, next) {
+    if(req.body.price != 'undefined'){
+        product.getProductsById(req, res);
+    } else {
+        res.sendStatus(500);
+    }
+});
+
 
 router.post('/delete', function(req, res){
     if(req.body.product != "undefined"){

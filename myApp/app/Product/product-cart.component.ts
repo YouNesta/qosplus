@@ -32,6 +32,8 @@ export class ProductCartComponent {
     shops = Object;
     selectedShop = {};
     price = 0;
+    priceType = 0;
+    productPrice = [];
 
     public query = '';
     public filteredList = [];
@@ -67,10 +69,31 @@ export class ProductCartComponent {
     }
     getCart(){
         this.products = JSON.parse(localStorage.getItem("cart"));
-        console.log(this.products);
         for(var i in this.products){
             this.isOpen.push(false);
         }
+
+        var productsId = [];
+
+        for (var i in this.products) {
+            productsId.push(this.products[i]._id);
+        }
+
+        this.service.getProductsById(productsId).subscribe(
+            res => {
+                if(res.success){
+
+                    this.productPrice = res.data;
+
+                }else{
+                    this.alertService.addAlert('warning', res.message);
+                }
+            },
+            err => {
+                this.alertService.addAlert('danger', 500);
+            },
+            () => console.log('Prices get')
+        );
     };
     removeFromCart(index) {
         var cart = [];
@@ -104,20 +127,29 @@ export class ProductCartComponent {
 
     }
 
-    getPrice(user) {
+    getPrice() {
 
         var price = 0;
-        var priceType = user.type.type;
 
-        for (var i in this.products) {
-            var product = this.products[i];
-            var productPrice = product.price[priceType].price;
-            var quantity = product.quantity;
+        for (var i in this.productPrice) {
+            var product = this.productPrice[i];
+            var productPrice = parseInt(product.price[this.priceType].price);
+            var quantity = 0;
+
+            for (var i in this.products) {
+                var myProduct = this.products[i];
+
+                if (myProduct._id == product._id) {
+                    quantity = myProduct.quantity;
+                    this.products[i].actualPrice = productPrice;
+                }
+            }
 
             price += (productPrice * quantity);
         }
 
         this.price = price;
+        return price;
     }
     deleteProductsCard(){
 
@@ -228,7 +260,7 @@ export class ProductCartComponent {
                 res => {
                     if(res.success){
                         this.client = res.data;
-                        this.getPrice(this.client);
+                        this.priceType = this.client.type.type;
                     }else{
                         console.log(res);
                     }
