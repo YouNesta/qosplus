@@ -79,21 +79,24 @@ export class ProductCartComponent {
             productsId.push(this.products[i]._id);
         }
 
-        this.service.getProductsById(productsId).subscribe(
-            res => {
-                if(res.success){
+        if (productsId.length > 0) {
+            this.service.getProductsById(productsId).subscribe(
+                res => {
+                    if(res.success){
 
-                    this.productPrice = res.data;
+                        this.productPrice = res.data;
 
-                }else{
-                    this.alertService.addAlert('warning', res.message);
-                }
-            },
-            err => {
-                this.alertService.addAlert('danger', 500);
-            },
-            () => console.log('Prices get')
-        );
+                    }else{
+                        this.alertService.addAlert('warning', res.message);
+                    }
+                },
+                err => {
+                    this.alertService.addAlert('danger', 500);
+                },
+                () => console.log('Prices get')
+            );
+        }
+
     };
     removeFromCart(index) {
         var cart = [];
