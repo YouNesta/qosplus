@@ -71,6 +71,7 @@ module.exports = {
     printPdf: function(req, res) {
 
         var command = req.body.command;
+        var shop = command.shop;
         var id = command._id;
         var path = "../myApp/public/pdf/"+id+".pdf";
         var savedPath = "/public/pdf/"+id+".pdf";
@@ -155,7 +156,10 @@ module.exports = {
                     '<div class="col-md-5 text-center">'+
                     '<address>'+
                     client.firstName + client.lastName +'<br>'+
-                    client.mail + '<br>'+
+                    client.mail + '<br><br>'+
+                    shop.name + '<br>'+
+                    shop.adress + '<br>'+
+                    shop.zipCode + ' ' + shop.city + '<br>'+
                     '</address>'+
                     '</div>'+
                     '</div>';
@@ -283,6 +287,7 @@ module.exports = {
                 var path = "../myApp/public/pdf/"+id+".pdf";
                 var savedPath = "/public/pdf/"+id+".pdf";
                 var html = "<p>Error</p>";
+                var shop = command.shop;
 
                 User.findOne({mail: command.client}, function(err, client){
                     if(err) {
@@ -373,7 +378,10 @@ module.exports = {
                             '<div class="col-md-5 text-center">'+
                             '<address>'+
                             client.firstName +' '+ client.lastName +'<br>'+
-                            client.mail + '<br>'+
+                            client.mail + '<br><br>'+
+                            shop.name + '<br>'+
+                            shop.adress + '<br>'+
+                            shop.zipCode + ' ' + shop.city + '<br>'+
                             '</address>'+
                             '</div>'+
                             '</div>';

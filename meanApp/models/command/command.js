@@ -21,6 +21,10 @@ var CommandSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    shop:{
+        type: Object,
+        required: false
+    },
     product: {
         type: Array,
         required: true

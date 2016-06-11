@@ -1,6 +1,6 @@
 import {Component, forwardRef, Inject, Input, ElementRef} from 'angular2/core';
-import {ProductFactory} from "./product.factory";
-import {UserFactory} from "./../User/user.factory";
+import {ProductFactory} from "./../Product/product.factory";
+import {UserFactory} from "./user.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
 import {TagInputComponent} from "angular2-tag-input";
@@ -12,12 +12,12 @@ import {AlertService} from "../Tools/alert";
         '(document:click)': 'handleClick($event)',
     },
     providers: [],
-    templateUrl: "app/Product/product-cart.html",
+    templateUrl: "app/User/user-cart.html",
     directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES]
 
 })
 
-export class ProductCartComponent {
+export class UserCartComponent {
 
     products = [];
     alertService: AlertService;
@@ -160,7 +160,7 @@ export class ProductCartComponent {
     deleteProductsCard(){
 
         for(var i in this.selectedProductCard){
-           this.removeFromCart(this.selectedProductCard[i]);
+            this.removeFromCart(this.selectedProductCard[i]);
         }
 
         this.getCart();
