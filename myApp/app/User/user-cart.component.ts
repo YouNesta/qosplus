@@ -45,11 +45,11 @@ export class UserCartComponent {
         this.alertService = alertService;
         this.user = JSON.parse(localStorage.getItem("user"));
         if (this.user.role == 1) {
-            userService.getAllShops()
+            userService.getUserShops(this.user)
                 .subscribe(
                     res => {
                         if(res.success){
-                            this.shops = res.data;
+                            this.shops = res.data[0];
                             for (var i in this.shops) {
                                 var shop = this.shops[i];
                                 this.shopMobiles.push(shop.mobile);

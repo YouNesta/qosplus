@@ -170,9 +170,50 @@ module.exports = {
         }
     },
 
+    getUserShops: function(req, res) {
+        var user = req.body.user;
+        var shops = [];
+        var i = 0;
+        User.findOne({_id: user._id}, function(error, user){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "User Not Found", data:error});
+            }
+            findShop(user, i);
+        });
+
+        function findShop(user, i){
+            if(i < user.associateShop.length) {
+
+                delete user.associateShop[i].__v;
+
+                Shop.find({_id: user.associateShop[i]}, function(error, shop){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({ success: false, message: "Subscribe Failed", data:error});
+                    }
+                    shops.push(shop);
+                    i++;
+                    findShop(user, i);
+                });
+
+
+            }else{
+                sendRes();
+            }
+        }
+
+        function sendRes() {
+            res.json({ success: true, message: "Shops Found", data:shops});
+        }
+    },
+
     getProfile: function(req, res){
         var i = 0;
-        var user = JSON.parse(req.body.user);
+        var user = req.body.user;
+        console.log(user);
         findShop(user, i);
         function findUser(user){
             User.findOne({_id: user._id}, function(error, user){

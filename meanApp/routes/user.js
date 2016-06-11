@@ -142,6 +142,14 @@ router.post('/profile', function(req,response,next){
   }
 });
 
+router.post('/getUserShops', function(req,response,next){
+  if(req.body != 'undefined'){
+    users.getUserShops(req, response);
+  }else{
+    response.sendStatus(500);
+  }
+});
+
 router.post('/getByMail', function(req,res,next){
   if(req.body != 'undefined'){
     users.getByMail(req, res);
