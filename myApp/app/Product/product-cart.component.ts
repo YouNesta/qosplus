@@ -19,7 +19,7 @@ import {AlertService} from "../Tools/alert";
 
 export class ProductCartComponent {
 
-    products: Object;
+    products = [];
     alertService: AlertService;
     user = Object;
     shopMobiles = [];
@@ -69,17 +69,20 @@ export class ProductCartComponent {
     }
     getCart(){
         this.products = JSON.parse(localStorage.getItem("cart"));
-        for(var i in this.products){
-            this.isOpen.push(false);
-        }
 
-        var productsId = [];
+        if (this.products.length > 0) {
 
-        for (var i in this.products) {
-            productsId.push(this.products[i]._id);
-        }
+            for(var i in this.products){
+                this.isOpen.push(false);
+            }
 
-        if (productsId.length > 0) {
+            var productsId = [];
+
+            for (var i in this.products) {
+                productsId.push(this.products[i]._id);
+            }
+
+
             this.service.getProductsById(productsId).subscribe(
                 res => {
                     if(res.success){
@@ -263,7 +266,9 @@ export class ProductCartComponent {
                 res => {
                     if(res.success){
                         this.client = res.data;
-                        this.priceType = this.client.type.type;
+                        if (this.client) {
+                            this.priceType = this.client.type.type;
+                        }
                     }else{
                         console.log(res);
                     }
