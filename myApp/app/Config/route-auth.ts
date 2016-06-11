@@ -92,5 +92,4 @@ constructor(public service: UserFactory, public router: Router) {
             }
         }
     }
-
 }

@@ -1,13 +1,13 @@
 header {
-  position: fixed;
+  background: url("../../public/img/header-bk.png") no-repeat center;
+  background-size: cover;
   width: 100%;
   z-index: 100;
   top: 0;
-  border-bottom: 1px solid #10cfbd; }
+  border-bottom: 1px solid #10cfbd;
+  color: #fff; }
   header nav {
-    background-color: #fff;
-    color: #000;
-    font-family: 'Roboto', sans-serif; }
+    font-family: 'Open Sans', sans-serif; }
     header nav li {
       display: inline-block;
       float: right; }
@@ -19,34 +19,38 @@ header {
       margin-bottom: 15px;
       margin-left: 50px; }
     header nav .header-navbar {
-      height: 93px;
+      margin-top: 30px;
       max-width: 100%; }
       header nav .header-navbar li {
-        border-right: 1px solid #FFF;
-        height: 93px;
         text-transform: uppercase;
         padding: 0;
-        animation-duration: 1s;
-        font-size: 18px; }
+        font-size: 15px;
+        font-weight: 600; }
         header nav .header-navbar li.selected a {
           background-color: #CCA6FB;
-          color: #fff;
-          border-bottom: 2px solid #571885; }
+          color: #fff; }
         header nav .header-navbar li a {
           clear: both;
-          color: #000;
+          color: #fff;
           text-decoration: none;
           display: block;
+          letter-spacing: 1px;
           height: 100%;
           width: 100%;
           padding: 15px;
-          padding-top: 70px;
           vertical-align: bottom; }
         header nav .header-navbar li a:hover {
           border-bottom: 2px solid #10cfbd; }
       header nav .header-navbar li:first-child {
-        border: 0;
-        margin-right: 80px; }
+        border: 0; }
+    header nav .login-button {
+      width: auto;
+      font-weight: 100;
+      margin-top: 30px;
+      padding-left: 40px;
+      padding-right: 40px;
+      background-color: transparent;
+      border: solid 1px rgba(255, 255, 255, 0.4); }
     header nav .menu-mobile {
       background-color: transparent;
       border: 0;
@@ -85,6 +89,24 @@ header {
             background-color: #FFF;
             color: #000;
             text-decoration: none; }
+    header nav .header-content {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center; }
+      header nav .header-content h1 {
+        letter-spacing: 1px;
+        font-weight: 300;
+        font-size: 36px;
+        margin-top: 80px;
+        font-family: "Roboto";
+        margin-bottom: 40px; }
+      header nav .header-content span {
+        font-weight: normal;
+        font-size: 17px;
+        display: block; }
+      header nav .header-content .header-button {
+        margin-top: 40px;
+        margin-bottom: 100px; }
   header nav-admin #sidebar-wrapper {
     background: #000; }
     header nav-admin #sidebar-wrapper .sidebar-nav {
