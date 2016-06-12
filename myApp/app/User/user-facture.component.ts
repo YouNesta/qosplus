@@ -8,7 +8,7 @@ import {childProcess} from "child_process";
 
 @Component({
     providers: [],
-    templateUrl: "app/Product/product-facture.html",
+    templateUrl: "app/User/user-facture.html",
     directives: [ ACCORDION_DIRECTIVES ]
 
 })

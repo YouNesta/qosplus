@@ -44,27 +44,25 @@ export class UserCartComponent {
         this.elementRef = myElement;
         this.alertService = alertService;
         this.user = JSON.parse(localStorage.getItem("user"));
-        if (this.user.role == 1) {
-            userService.getUserShops(this.user)
-                .subscribe(
-                    res => {
-                        if(res.success){
-                            this.shops = res.data[0];
-                            for (var i in this.shops) {
-                                var shop = this.shops[i];
-                                this.shopMobiles.push(shop.mobile);
-                                this.shopPhones.push(shop.phone);
-                                this.shopRS.push(shop.socialReason);
-                                this.shopNames.push(shop.name);
-                            }
-                        }else{
-                            console.log(res);
+        userService.getUserShops(this.user)
+            .subscribe(
+                res => {
+                    if(res.success){
+                        this.shops = res.data[0];
+                        for (var i in this.shops) {
+                            var shop = this.shops[i];
+                            this.shopMobiles.push(shop.mobile);
+                            this.shopPhones.push(shop.phone);
+                            this.shopRS.push(shop.socialReason);
+                            this.shopNames.push(shop.name);
                         }
-                    },
-                    err =>  console.log(err),
-                    () => console.log('get mail list Complete')
-                );
-        }
+                    }else{
+                        console.log(res);
+                    }
+                },
+                err =>  console.log(err),
+                () => console.log('get mail list Complete')
+            );
         this.getCart();
     }
     getCart(){

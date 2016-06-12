@@ -10,8 +10,10 @@ import {UserProductsListComponent} from "./Product/products-list.component";
 import {UserProductComponent} from "./user-product-display.component";
 import {RegEx} from "../lib/regex";
 import {AlertService} from "../Tools/alert";
-import {ProductCartComponent} from "../Product/product-cart.component";
 import {ProductFactory} from "../Product/product.factory";
+import {UserCartComponent} from "./user-cart.component";
+import {UserCommandComponent} from "./user-command.component";
+import {UserFactureComponent} from "./user-facture.component";
 
 
 
@@ -25,7 +27,9 @@ import {ProductFactory} from "../Product/product.factory";
 @RouteConfig([
     { path: "/", name: "Dashboard", component: UserDashboardComponent},
     { path: "/shop", name: "Shop", component: UserProductsListComponent},
-    { path: "/cart", name: "Cart", component: ProductCartComponent},
+    { path: "/cart", name: "Cart", component: UserCartComponent},
+    { path: "/commands", name: "Command", component: UserCommandComponent},
+    { path: "/payments", name: "Payment", component: UserFactureComponent},
     { path: "/product/:id", name: "Product", component: UserProductComponent}
 ])
 

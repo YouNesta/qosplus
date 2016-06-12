@@ -229,7 +229,6 @@ export class UserFactory {
     };
 
     getUserShops(user){
-
         var data =  JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');

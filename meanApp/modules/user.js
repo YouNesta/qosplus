@@ -288,14 +288,14 @@ module.exports = {
     },
 
     getUserPayments: function(req, res){
-        var user_Id = req.body.user._id;
-        Payment.find({client: user_Id}, function(error, payment){
+        var user_mail = req.body.user.mail;
+        Payment.find({client: user_mail}, function(error, payment){
             if(error){
                 console.log(error);
                 logger.log('error', error);
-                res.json({ success: false, message: "Commands not Found", data:error});
+                res.json({ success: false, message: "Payments not Found", data:error});
             }
-            res.json({success: true, message: "Commands found", data:payment})
+            res.json({success: true, message: "Payments found", data:payment})
         })
     }
 
