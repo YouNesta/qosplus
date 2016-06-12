@@ -1,5 +1,6 @@
 
 var mongoose = require('mongoose');
+var MailDataSchema = require('mailData');
 
 var MailSchema = new mongoose.Schema({
 
@@ -8,7 +9,7 @@ var MailSchema = new mongoose.Schema({
         required: true
     },
     date: {
-        type: Date,
+        type: MailDataSchema,
         required: true
     },
     isSended: {
