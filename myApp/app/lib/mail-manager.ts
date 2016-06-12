@@ -2,6 +2,8 @@
 
 export class MailManager{
 
+constructor(){
 
+}
 
 }
