@@ -91,6 +91,21 @@ export class ProductFactory {
             .map(res => res.json())
     }
 
+    getUserPayments(user) {
+
+        var data = JSON.stringify({user});
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'getUserPayments',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json());
+    }
+
 
     updatePrice(product) {
         var data = JSON.stringify({product});

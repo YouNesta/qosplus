@@ -69,7 +69,6 @@ router.post('/getProductsById', function(req, res, next) {
     }
 });
 
-
 router.post('/delete', function(req, res){
     if(req.body.product != "undefined"){
         product.deleteProduct(req, res);
