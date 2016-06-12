@@ -4,6 +4,10 @@ var MailDataSchema = require('mailData');
 
 var MailSchema = new mongoose.Schema({
 
+    type: {
+      type: String,
+        required: true
+    },
     data: {
         type: Object,
         required: true
