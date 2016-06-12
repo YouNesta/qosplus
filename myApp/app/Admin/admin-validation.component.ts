@@ -17,6 +17,7 @@ import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {UserFactory} from "../User/user.factory";
 import {AlertService} from "../Tools/alert";
 import {HomeSubscribeComponent} from "../Home/home-subscribe.component";
+import {MailManager} from "../lib/mail-manager";
 
 @CanActivate(() => tokenNotExpired('token'))
 
@@ -105,8 +106,8 @@ export class AdminValidationComponent {
     users = [];
     isOpen = [];
 
-    constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService){
-       this.alertService = alertService;
+    constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService, public mailService: MailManager){
+        this.alertService = alertService;
         this.validateForm = fb.group({
             'name': ['', Validators.compose([
                 /* Validators.required,
@@ -134,12 +135,16 @@ export class AdminValidationComponent {
     modifyUser(i){
         this.model = this.users[i];
     }
-    validateUser(){
+
+
+    validateUser(user){
+        user.state = true;
         this.service.updateUser(this.model)
             .subscribe(
                 response => {
                     if(response.success){
                         this.alertService.addAlert('success', response.message);
+                        this.mailService.validateUser(user);
                     }else{
                         this.alertService.addAlert('warning', response.message);
                     }

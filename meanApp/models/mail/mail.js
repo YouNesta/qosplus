@@ -1,6 +1,6 @@
 
 var mongoose = require('mongoose');
-var MailDataSchema = require('mailData');
+var MailDataSchema = require('mailData').MailData;
 
 var MailSchema = new mongoose.Schema({
 
