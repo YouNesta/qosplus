@@ -40,60 +40,6 @@ html {
           height: 300px;
           margin-bottom: 15px; }
 
-search .row {
-  background: white;
-  height: 60px; }
-  search .row .search {
-    padding: 0;
-    height: 20px;
-    position: relative;
-    top: 20px;
-    font-size: 20px;
-    font-family: HelveticaNeue-Light; }
-    search .row .search .input-group-addon {
-      background: white;
-      border: none;
-      color: #3e5e76;
-      font-size: 20px;
-      padding: 0; }
-    search .row .search input {
-      height: 20px;
-      box-shadow: none;
-      border: none; }
-  search .row .rightSearch {
-    height: 60px;
-    line-height: 60px; }
-    search .row .rightSearch .user {
-      color: #3e5e76;
-      border-right: 3px solid #e0e4ea;
-      padding: 0 20px;
-      margin: 0 20px; }
-    search .row .rightSearch .dropdown-toggle {
-      font-size: 20px;
-      padding: 0;
-      border: 0;
-      background: none;
-      height: 60px; }
-    search .row .rightSearch .open .dropdown-toggle {
-      box-shadow: none; }
-
-.form-buttons {
-  text-align: center; }
-
-button.add-modale, button.validate-cart, button.default {
-  width: 210px;
-  height: 46px;
-  border-radius: 3px;
-  color: #FFF;
-  background-color: #7570ff;
-  margin-bottom: 40px;
-  padding-left: 13px;
-  padding-right: 13px; }
-  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
-    color: #fff;
-    background-color: rgba(16, 207, 189, 0.6);
-    border-color: transparent; }
-
 footer {
   width: 100%;
   clear: both;
@@ -344,6 +290,60 @@ header {
     display: block; } }
 
 
+.form-buttons {
+  text-align: center; }
+
+button.add-modale, button.validate-cart, button.default {
+  width: 210px;
+  height: 46px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #7570ff;
+  margin-bottom: 40px;
+  padding-left: 13px;
+  padding-right: 13px; }
+  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
+    color: #fff;
+    background-color: rgba(16, 207, 189, 0.6);
+    border-color: transparent; }
+
+search .row {
+  background: white;
+  height: 60px; }
+  search .row .search {
+    padding: 0;
+    height: 20px;
+    position: relative;
+    top: 20px;
+    font-size: 20px;
+    font-family: HelveticaNeue-Light; }
+    search .row .search .input-group-addon {
+      background: white;
+      border: none;
+      color: #3e5e76;
+      font-size: 20px;
+      padding: 0; }
+    search .row .search input {
+      height: 20px;
+      box-shadow: none;
+      border: none; }
+  search .row .rightSearch {
+    height: 60px;
+    line-height: 60px; }
+    search .row .rightSearch .user {
+      color: #3e5e76;
+      border-right: 3px solid #e0e4ea;
+      padding: 0 20px;
+      margin: 0 20px; }
+    search .row .rightSearch .dropdown-toggle {
+      font-size: 20px;
+      padding: 0;
+      border: 0;
+      background: none;
+      height: 60px; }
+    search .row .rightSearch .open .dropdown-toggle {
+      box-shadow: none; }
+
 .page {
   font-family: "Open Sans";
   padding-top: 80px;
@@ -532,36 +532,25 @@ header {
           border-right: 2px solid #000;
           width: 200px;
           height: 80px; }
-  .page.home {
-    text-align: center;
-    color: #FFF;
-    font-family: Roboto, sans-serif; }
-    .page.home .hero {
-      background: url("../../public/img/hero-lens-detail.jpg") no-repeat center;
-      background-size: 100% auto; }
-    .page.home .homepage-description {
-      color: #000;
-      padding: 10px;
-      padding-bottom: 60px; }
-      .page.home .homepage-description h4 {
-        padding: 40px 0 30px;
-        font-weight: bold; }
-      .page.home .homepage-description .display-glass .img-container {
-        background: url("../../public/img/optical-glass.jpg") no-repeat center;
-        background-size: 100% 100%; }
-      .page.home .homepage-description .display-lens .img-container {
-        background: url("../../public/img/optical-lens.jpg") no-repeat center;
-        background-size: 100% 100%; }
-      .page.home .homepage-description .products-display .product-display {
-        padding: 0px !important;
-        background-color: #F5F5F5;
-        border: solid 1px #e0e4ea; }
-        .page.home .homepage-description .products-display .product-display .img-container {
-          width: 100%;
-          height: 170px; }
-        .page.home .homepage-description .products-display .product-display .product-desc span {
-          display: block;
-          padding: 5px; }
+  .page.home .homepage-description {
+    padding: 40px 250px;
+    text-align: center; }
+    .page.home .homepage-description h1 {
+      font-size: 30px;
+      font-weight: 300;
+      font-family: Roboto;
+      color: #23252e; }
+    .page.home .homepage-description p {
+      color: #697782;
+      font-size: 18px;
+      font-weight: normal;
+      margin-bottom: 50px;
+      margin-top: 40px; }
+    .page.home .homepage-description .homepage-element img {
+      width: 100%;
+      margin-bottom: 40px; }
+    .page.home .homepage-description .homepage-element h1 {
+      font-size: 27px; }
   .page.engagement {
     color: #000; }
     .page.engagement .hero {

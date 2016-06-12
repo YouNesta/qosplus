@@ -186,36 +186,25 @@
           border-right: 2px solid #000;
           width: 200px;
           height: 80px; }
-  .page.home {
-    text-align: center;
-    color: #FFF;
-    font-family: Roboto, sans-serif; }
-    .page.home .hero {
-      background: url("../../public/img/hero-lens-detail.jpg") no-repeat center;
-      background-size: 100% auto; }
-    .page.home .homepage-description {
-      color: #000;
-      padding: 10px;
-      padding-bottom: 60px; }
-      .page.home .homepage-description h4 {
-        padding: 40px 0 30px;
-        font-weight: bold; }
-      .page.home .homepage-description .display-glass .img-container {
-        background: url("../../public/img/optical-glass.jpg") no-repeat center;
-        background-size: 100% 100%; }
-      .page.home .homepage-description .display-lens .img-container {
-        background: url("../../public/img/optical-lens.jpg") no-repeat center;
-        background-size: 100% 100%; }
-      .page.home .homepage-description .products-display .product-display {
-        padding: 0px !important;
-        background-color: #F5F5F5;
-        border: solid 1px #e0e4ea; }
-        .page.home .homepage-description .products-display .product-display .img-container {
-          width: 100%;
-          height: 170px; }
-        .page.home .homepage-description .products-display .product-display .product-desc span {
-          display: block;
-          padding: 5px; }
+  .page.home .homepage-description {
+    padding: 40px 250px;
+    text-align: center; }
+    .page.home .homepage-description h1 {
+      font-size: 30px;
+      font-weight: 300;
+      font-family: Roboto;
+      color: #23252e; }
+    .page.home .homepage-description p {
+      color: #697782;
+      font-size: 18px;
+      font-weight: normal;
+      margin-bottom: 50px;
+      margin-top: 40px; }
+    .page.home .homepage-description .homepage-element img {
+      width: 100%;
+      margin-bottom: 40px; }
+    .page.home .homepage-description .homepage-element h1 {
+      font-size: 27px; }
   .page.engagement {
     color: #000; }
     .page.engagement .hero {
