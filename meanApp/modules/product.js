@@ -67,7 +67,7 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:error});
+                res.json({success: false, message:error});
             }
             var i = 0;
             getItem(product, i);
@@ -103,7 +103,7 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:error});
+                res.json({success: false, message:error});
             }
             res.json({success: true, message:"Product Price Count with success", data: count});
         });
@@ -114,7 +114,7 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:error});
+                res.json({success: false, message:error});
             }
             res.json({success: true, message:"Product Price Find with success", data: product});
         });
@@ -234,7 +234,7 @@ module.exports = {
                 {
                     console.log(err);
                     logger.log('error', err);
-                    res.res.json({success: false, message:err});
+                    res.json({success: false, message:err});
                 }
                 else
                 {
@@ -251,7 +251,7 @@ module.exports = {
                     {
                         console.log(err);
                         logger.log('error', err);
-                        res.res.json({success: false, message:err});
+                        res.json({success: false, message:err});
                     }
                     else
                     {
@@ -281,7 +281,7 @@ module.exports = {
                     if (err) {
                         console.log(err);
                         logger.log('error', err);
-                        res.res.json({success: false, message: err});
+                        res.json({success: false, message: err});
                     }
                     i++;
                     deleteProduct(i);
@@ -301,7 +301,7 @@ module.exports = {
             {
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:err});
+                res.json({success: false, message:err});
             }
             console.log('win2');
             var i = 0;
@@ -338,7 +338,7 @@ module.exports = {
             {
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:err});
+                res.json({success: false, message:err});
             }
 
             res.json({success: true, message:"Products List Find with success", data: products});
@@ -352,7 +352,7 @@ module.exports = {
             {
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:err});
+                res.json({success: false, message:err});
             }
             console.log('win2');
             var i = 0;

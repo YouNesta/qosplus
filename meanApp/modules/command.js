@@ -16,7 +16,7 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:error});
+                res.json({success: false, message:error});
             }
             res.json({success: true, message:"Command List Find with success", data:  commands});
         });
@@ -27,7 +27,7 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:error});
+                res.json({success: false, message:error});
             }
             res.json({success: true, message:"Payments List Find with success", data:  payments});
         });
@@ -39,7 +39,7 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:error});
+                res.json({success: false, message:error});
             }
             res.json({success: true, message:"Command List Find with success", data:  commands});
         })
@@ -81,7 +81,7 @@ module.exports = {
             if(err) {
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:err});
+                res.json({success: false, message:err});
             } else {
 
                 var months = [
@@ -224,7 +224,7 @@ module.exports = {
                             if(err){
                                 console.log(err);
                                 logger.log('error', err);
-                                res.res.json({success: false, message:error});
+                                res.json({success: false, message:error});
                             }
                             res.json({success: true, message:"Command updated", data:  command});
                         })
@@ -240,7 +240,7 @@ module.exports = {
             if(err) {
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:err});
+                res.json({success: false, message:err});
             } else {
                 res.json({success: true, message:"Command find with success", data: command});
             }
@@ -254,7 +254,7 @@ module.exports = {
             if(err) {
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:err});
+                res.json({success: false, message:err});
             } else {
                 console.log(payment);
                 if (payment.status == 0) {
@@ -266,7 +266,7 @@ module.exports = {
                     if(err) {
                         console.log(err);
                         logger.log('error', err);
-                        res.res.json({success: false, message:err});
+                        res.json({success: false, message:err});
                     } else {
                         res.json({success: true, message:"Payment updated", data: payment});
                     }
@@ -282,7 +282,7 @@ module.exports = {
             if(err) {
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:err});
+                res.json({success: false, message:err});
             } else {
                 var path = "../myApp/public/pdf/"+id+".pdf";
                 var savedPath = "/public/pdf/"+id+".pdf";
@@ -293,7 +293,7 @@ module.exports = {
                     if(err) {
                         console.log(err);
                         logger.log('error', err);
-                        res.res.json({success: false, message:err});
+                        res.json({success: false, message:err});
                     } else {
 
                         var date = new Date(payment.date);
@@ -425,7 +425,7 @@ module.exports = {
                                     if(err){
                                         console.log(err);
                                         logger.log('error', err);
-                                        res.res.json({success: false, message:error});
+                                        res.json({success: false, message:error});
                                     }
                                     res.json({success: true, message:"Facture updated", data:  command});
                                 })
@@ -443,7 +443,7 @@ module.exports = {
             if(err) {
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:err});
+                res.json({success: false, message:err});
             } else {
                 if (command.status == 0) {
                     command.status = 1;
@@ -457,7 +457,7 @@ module.exports = {
                     if(err) {
                         console.log(err);
                         logger.log('error', err);
-                        res.res.json({success: false, message:err});
+                        res.json({success: false, message:err});
                     } else {
                         res.json({success: true, message:"Command updated", data: command});
                     }
@@ -472,13 +472,13 @@ module.exports = {
             if (err) {
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message: err});
+                res.json({success: false, message: err});
             } else {
                 Payment.findOneAndRemove({_id: command.payment}, function (err, payment) {
                     if (err) {
                         console.log(err);
                         logger.log('error', err);
-                        res.res.json({success: false, message: err});
+                        res.json({success: false, message: err});
                     } else {
                         res.json({success: true, message:"Command deleted", data: {}});
                     }

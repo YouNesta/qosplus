@@ -24,7 +24,7 @@ router.get('/get', function(req, res) {   // Get user
       if(err){
         console.log(error);
         logger.log('error', error);
-        res.res.json({success: false, message:error
+        res.json({success: false, message:error
         });
       }
       if (!user) {
@@ -54,7 +54,7 @@ router.post('/login', function(req, res) {   // Login
       if(err){
         console.log(error);
         logger.log('error', error);
-        res.res.json({success: false, message:error});
+        res.json({success: false, message:error});
       }
       if (!user) {
         User.findOne({
@@ -63,7 +63,7 @@ router.post('/login', function(req, res) {   // Login
           if(err){
             console.log(error);
             logger.log('error', error);
-            res.res.json({success: false, message:error});
+            res.json({success: false, message:error});
           }
           if (!user) {
             res.json({ success: false, message: 'Authentication failed. User not found.' });
@@ -205,7 +205,7 @@ router.get('/getMails', function(req, res) {   // Get user mails
     if(err){
       console.log(error);
       logger.log('error', error);
-      res.res.json({success: false, message:error
+      res.json({success: false, message:error
       });
     }
     if (!users) {
