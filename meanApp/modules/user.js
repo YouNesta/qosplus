@@ -140,6 +140,7 @@ module.exports = {
         }
 
         updateShop(req.body.user, i);
+
         function updateUser(user, i){
             if(user._id == user.director._id){
                 user.director = user.director._id;
@@ -164,6 +165,8 @@ module.exports = {
                             console.log(error);
                             logger.log('error', error);
                             res.json({ success: false, message: "Subscribe Failed", data:error});
+                        }else{
+                            res.json({success: true, message: 'User Updated!', user: user});
                         }
                     });
                 });

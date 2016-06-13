@@ -178,7 +178,7 @@ export class UserFactory {
         headers.append('Content-Type', 'application/json');
 
         return this.authHttp
-            .put(this.apiUrl + "",
+            .put(this.apiUrl + "/edit",
                 data, {
                     headers: headers
                 })

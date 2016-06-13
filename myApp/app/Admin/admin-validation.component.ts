@@ -25,7 +25,8 @@ import {MailManager} from "../lib/mail-manager";
 @Component({
     templateUrl: "app/Admin/admin-validation.html",
     directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent],
-    providers: [ AdminFactory]
+    providers: [ AdminFactory],
+    bindings: [MailManager]
 })
 
 
@@ -103,11 +104,13 @@ export class AdminValidationComponent {
     };
     validateForm: ControlGroup;
     alertService: AlertService;
+    mailService: MailManager;
     users = [];
     isOpen = [];
 
-    constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService, public mailService: MailManager){
+    constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => MailManager)) mailService, @Inject(forwardRef(() => AlertService)) alertService){
         this.alertService = alertService;
+        this.mailService = mailService;
         this.validateForm = fb.group({
             'name': ['', Validators.compose([
                 /* Validators.required,
@@ -138,12 +141,15 @@ export class AdminValidationComponent {
 
 
     validateUser(user){
+        console.log('test2');
         user.state = true;
-        this.service.updateUser(this.model)
+        this.service.updateUser(user)
             .subscribe(
                 response => {
                     if(response.success){
+                        console.log('testSuccess');
                         this.alertService.addAlert('success', response.message);
+                        console.log(user);
                         this.mailService.validateUser(user);
                     }else{
                         this.alertService.addAlert('warning', response.message);

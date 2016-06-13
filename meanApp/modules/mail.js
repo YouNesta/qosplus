@@ -26,7 +26,7 @@ module.exports = {
         var mailOptions = {
             from: 'default', // sender address
             to: mail.data.to, // list of receivers
-            subject: mail.data.object, // Subject line
+             subject: mail.data.object, // Subject line
             html: mail.data.content // html body
         };
 
@@ -60,6 +60,10 @@ module.exports = {
             }
             res.json({ success: true, message: "User Found", data:mails});
         })
+    },
+
+    getMailTemplate: function(template, data){
+        //TODO
     }
 
 };

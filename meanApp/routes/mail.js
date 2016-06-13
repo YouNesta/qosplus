@@ -16,8 +16,10 @@ var Token    = require('../modules/jsonwebtoken/module');
 
 router.post('/add', function(req, res){
     if(req.body != 'undefined'){
+        console.log('win');
         mails.saveMail(req, res);
     }else{
+        console.log('fail');
         res.sendStatus(500);
     }
 });
