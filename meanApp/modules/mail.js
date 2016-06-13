@@ -8,7 +8,8 @@ var nodemailer = require('nodemailer');
 module.exports = {
 
     saveMail: function(req, res){
-        var mail = new Mail(req.body.mailSender);
+        console.log(req.body.mail);
+        var mail = new Mail(req.body.mail);
 
         mail.save(function(error){
             if (error) {

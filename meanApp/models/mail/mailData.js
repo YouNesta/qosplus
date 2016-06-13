@@ -24,5 +24,6 @@ var MailDataSchema = new mongoose.Schema({
 var MailData = mongoose.model('MailData', MailDataSchema);
 
 module.exports = {
-    MailData: MailData
+    MailData: MailData,
+    MailDataSchema: MailDataSchema
 };

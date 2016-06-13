@@ -1,5 +1,3 @@
-
-
 import {Injectable} from 'angular2/core';
 import {Http} from 'angular2/http';
 import 'rxjs/Rx';
@@ -17,19 +15,18 @@ export class MailManager{
     }
 
     validateUser(user){
-        console.log('testmanager');
-        var data = JSON.stringify({
+        var data = JSON.stringify({mail: {
             type: 'validateUser',
             data: {
                 to: user.mail,
                 object: 'X-Vision - Confirmation d\'Inscription'
             },
             date: new Date()
-        });
-        console.log('test1');
+        }});
+
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
+        console.log(this.apiUrl);
         return this.authHttp
             .post(this.apiUrl + "add",
                 data, {
@@ -38,12 +35,14 @@ export class MailManager{
             .map(response => response.json())
             .map(response => {
                 if (response) {
+                    console.log(response);
                     return response
                 }else{
+                    console.log('testFail');
                     console.log("Error")
                 }
+                console.log('fail');
                 return response;
             })
     }
-
 }

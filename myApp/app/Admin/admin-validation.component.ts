@@ -141,16 +141,24 @@ export class AdminValidationComponent {
 
 
     validateUser(user){
-        console.log('test2');
         user.state = true;
         this.service.updateUser(user)
             .subscribe(
                 response => {
                     if(response.success){
-                        console.log('testSuccess');
                         this.alertService.addAlert('success', response.message);
-                        console.log(user);
-                        this.mailService.validateUser(user);
+                        this.mailService.validateUser(user)
+                            .subscribe(
+                                response => {
+                                    if(response.success){
+                                        console.log(response);
+                                    }
+                                },
+                                err => {
+                                    console.log(err);
+                                },
+                                () => console.log('Sended')
+                            )
                     }else{
                         this.alertService.addAlert('warning', response.message);
                     }

@@ -6,15 +6,14 @@ var logger = require('winston');
 
 var User = require("../models/user.js").User;
 var Mail = require("../models/mail/mail.js").Mail;
-var MailData = require("../models/mail/mail.js").MailData;
+var MailData = require("../models/mail/mailData.js").MailData;
 var Admin = require("../models/admin/admin.js").Admin;
-var Shop = require("../models/shop.js").Shop;
 var users = require("../modules/user.js");
 var mails = require('../modules/mail.js');
-var shops = require("../modules/shop.js");
 var Token    = require('../modules/jsonwebtoken/module');
 
 router.post('/add', function(req, res){
+    console.log('route');
     if(req.body != 'undefined'){
         console.log('win');
         mails.saveMail(req, res);
@@ -31,3 +30,5 @@ router.get('/crashed', function(req, res){
         res.sendStatus(500);
     }
 });
+
+module.exports = router;
