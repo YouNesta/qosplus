@@ -69,6 +69,10 @@ pm2 start /vagrant/meanApp/bin/www;
 * Install Upload Server 
 
 ```bash
+apt-get update;
+apt-get install imagemagick graphicsmagick;
+sudo npm install -g gm;
+
 cd /vagrant/upload;
 npm install;
 ```
