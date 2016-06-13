@@ -135,16 +135,16 @@ export class UserCartComponent {
 
         var price = 0;
 
-        for (var i in this.productPrice) {
-            var product = this.productPrice[i];
-            var productPrice = parseInt(product.price[this.priceType].price);
-            var quantity = 0;
+        for (var i in this.products) {
+            var product = this.products[i];
+            var productPrice = 0;
+            var quantity = product.quantity;
 
-            for (var i in this.products) {
-                var myProduct = this.products[i];
+            for (var j in this.productPrice) {
+                var myProduct = this.productPrice[j];
 
                 if (myProduct._id == product._id) {
-                    quantity = myProduct.quantity;
+                    productPrice = parseInt(myProduct.price[this.priceType].price);
                     this.products[i].actualPrice = productPrice;
                 }
             }
