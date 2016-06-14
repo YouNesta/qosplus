@@ -13,14 +13,16 @@ var mails = require('../modules/mail.js');
 var Token    = require('../modules/jsonwebtoken/module');
 
 router.post('/add', function(req, res){
-    console.log('route');
     if(req.body != 'undefined'){
-        console.log('win');
         mails.saveMail(req, res);
+        mails.sendNonSended();
     }else{
-        console.log('fail');
         res.sendStatus(500);
     }
+});
+
+router.get('/send', function(req, res){
+    mails.sendNonSended();
 });
 
 router.get('/crashed', function(req, res){

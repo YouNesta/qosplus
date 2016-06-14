@@ -1,9 +1,12 @@
 var crypto    = require('crypto');
 var Mail = require("../models/mail/mail.js").Mail;
 var MailData = require("../models/mail/mailData.js").MailData;
+var User = require("../models/user.js").User;
+var UserModule    = require('./user');
 var logger = require('winston');
 var mongo = require('mongodb');
 var nodemailer = require('nodemailer');
+var smtpConfig = require('../config/smtpConfig');
 
 module.exports = {
 
@@ -16,19 +19,24 @@ module.exports = {
                 console.log(error);
                 logger.log('error', error);
                 res.json({success: false, message: "Mail Failed to be saved", data: error})
+            }else{
+                res.json({success: true, message: "Mail saved!"});
             }
-            res.json({success: true, message: "Mail saved!"})
         })
     },
 
-    sendMail: function(type, mail){
-        var transporter = nodemailer.createTransport();
+    generateTemplate: function(mail){
+        //TODO
+    },
+
+    send: function(variables, mail){
+        var transporter = nodemailer.createTransport(smtpConfig);
 
         var mailOptions = {
-            from: 'default', // sender address
+            from: smtpConfig.auth.user, // sender address
             to: mail.data.to, // list of receivers
              subject: mail.data.object, // Subject line
-            html: mail.data.content // html body
+            html: mail.data.variables.toString() // html body
         };
 
         transporter.sendMail(mailOptions, function(error, info){
@@ -38,16 +46,45 @@ module.exports = {
               logger.log('error', error);
           }else{
               console.log('Message sent: ' + info.response);
+              mail.hasCrashed = false;
               mail.isSended = true;
           }
-            var updatedMail = new Mail(mail);
-            updatedMail.save(function(error){
+            mail.save(function(error){
                 if (error) {
                     console.log(error);
                     logger.log('error', error);
+                    res.json({success: false, meassge: 'sendFailed', error:error});
                 }
             })
         })
+    },
+
+    sendNonSended: function(){
+        var thus = this;
+        console.log('nonSended');
+        Mail.find({isSended: false}, function(error, nonSendedMails){
+            console.log('testtest');
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "User Not Found", data:error});
+            }
+                nonSendedMails.forEach(function(mail){
+                    var password = UserModule.generateClearPassword();
+                    console.log(mail);
+                    user = new User();
+                    User.findOneAndUpdate({mail: mail.data.to}, {$set: {hash: password.hash, password: password.password}}, function(error, user){
+                        if (error) {
+                            console.log(error);
+                            logger.log('error', error);
+                            res.json({success: false, message: "Subscribe Failed", data: error});
+                        }
+                    });
+                    thus.send(password.clear, mail);
+                });
+
+        });
+        res.json({success: true, message: "User Found", data: user});
     },
 
     getCrashedMail: function () {
@@ -61,10 +98,6 @@ module.exports = {
             }
             res.json({ success: true, message: "User Found", data:mails});
         })
-    },
-
-    getMailTemplate: function(template, data){
-        //TODO
     }
 
 };

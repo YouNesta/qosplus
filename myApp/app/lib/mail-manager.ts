@@ -45,4 +45,23 @@ export class MailManager{
                 return response;
             })
     }
+
+    sendMails(){
+        console.log('first');
+        return this.authHttp
+            .get(this.apiUrl + "send")
+            .map((response) => response.json())
+            .map(response => {
+                if (response) {
+                    console.log('testwin');
+                    console.log(response);
+                    return response
+                }else{
+                    console.log('testFail');
+                    console.log("Error")
+                }
+                console.log('fail');
+                return response;
+            })
+    }
 }

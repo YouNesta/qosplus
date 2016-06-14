@@ -13,6 +13,23 @@ var generatePassword = require('password-generator');
 
 module.exports = {
 
+    generateClearPassword: function(){
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( var i=0; i < 8; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        var password = this.generatePassword(text);
+
+        var data = {
+            clear: text,
+            password: password.password,
+            hash: password.hash
+        };
+
+        return data;
+    },
+
     generatePassword: function(password){
         var buf = crypto.randomBytes(16);
         var txt = buf.toString('hex');

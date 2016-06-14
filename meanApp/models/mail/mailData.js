@@ -15,6 +15,10 @@ var MailDataSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    variables: {
+        type: Array,
+        required: false
+    },
     attachment: {
         type: String,
         required: false
