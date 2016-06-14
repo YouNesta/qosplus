@@ -15,7 +15,6 @@ var Token    = require('../modules/jsonwebtoken/module');
 router.post('/add', function(req, res){
     if(req.body != 'undefined'){
         mails.saveMail(req, res);
-        mails.sendNonSended();
     }else{
         res.sendStatus(500);
     }

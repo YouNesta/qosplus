@@ -26,7 +26,6 @@ export class MailManager{
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        console.log(this.apiUrl);
         return this.authHttp
             .post(this.apiUrl + "add",
                 data, {
@@ -38,29 +37,22 @@ export class MailManager{
                     console.log(response);
                     return response
                 }else{
-                    console.log('testFail');
                     console.log("Error")
                 }
-                console.log('fail');
                 return response;
             })
     }
 
     sendMails(){
-        console.log('first');
         return this.authHttp
             .get(this.apiUrl + "send")
             .map((response) => response.json())
             .map(response => {
                 if (response) {
-                    console.log('testwin');
-                    console.log(response);
                     return response
                 }else{
-                    console.log('testFail');
                     console.log("Error")
                 }
-                console.log('fail');
                 return response;
             })
     }

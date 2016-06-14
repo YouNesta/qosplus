@@ -139,15 +139,6 @@ export class AdminValidationComponent {
         this.model = this.users[i];
     }
 
-    testSendMail(){
-        this.mailService.sendMails()
-            .subscribe(
-                response => {
-                    console.log(response.message);
-                }
-            )
-    }
-
     validateUser(user){
         user.state = true;
         this.service.updateUser(user)

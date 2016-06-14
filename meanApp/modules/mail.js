@@ -11,8 +11,8 @@ var smtpConfig = require('../config/smtpConfig');
 module.exports = {
 
     saveMail: function(req, res){
-        console.log(req.body.mail);
         var mail = new Mail(req.body.mail);
+        var thus = this;
 
         mail.save(function(error){
             if (error) {
@@ -20,6 +20,18 @@ module.exports = {
                 logger.log('error', error);
                 res.json({success: false, message: "Mail Failed to be saved", data: error})
             }else{
+                if(mail.type == 'validateUser'){
+                    var password = UserModule.generateClearPassword();
+                    user = new User();
+                    User.findOneAndUpdate({mail: mail.data.to}, {$set: {hash: password.hash, password: password.password}}, function(error, user){
+                        if (error) {
+                            console.log(error);
+                            logger.log('error', error);
+                            res.json({success: false, message: "Subscribe Failed", data: error});
+                        }
+                    });
+                    thus.send(password.clear, mail);
+                }
                 res.json({success: true, message: "Mail saved!"});
             }
         })
@@ -61,26 +73,14 @@ module.exports = {
 
     sendNonSended: function(){
         var thus = this;
-        console.log('nonSended');
         Mail.find({isSended: false}, function(error, nonSendedMails){
-            console.log('testtest');
             if(error){
                 console.log(error);
                 logger.log('error', error);
                 res.json({ success: false, message: "User Not Found", data:error});
             }
                 nonSendedMails.forEach(function(mail){
-                    var password = UserModule.generateClearPassword();
-                    console.log(mail);
-                    user = new User();
-                    User.findOneAndUpdate({mail: mail.data.to}, {$set: {hash: password.hash, password: password.password}}, function(error, user){
-                        if (error) {
-                            console.log(error);
-                            logger.log('error', error);
-                            res.json({success: false, message: "Subscribe Failed", data: error});
-                        }
-                    });
-                    thus.send(password.clear, mail);
+                    thus.send("", mail);
                 });
 
         });
