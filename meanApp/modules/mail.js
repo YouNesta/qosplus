@@ -43,12 +43,13 @@ module.exports = {
 
     send: function(variables, mail){
         var transporter = nodemailer.createTransport(smtpConfig);
-
+        console.log(variables);
+        console.log(mail);
         var mailOptions = {
             from: smtpConfig.auth.user, // sender address
             to: mail.data.to, // list of receivers
              subject: mail.data.object, // Subject line
-            html: mail.data.variables.toString() // html body
+            html: variables // html body || suposed to be: mail.data.variables
         };
 
         transporter.sendMail(mailOptions, function(error, info){
