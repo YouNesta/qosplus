@@ -8,6 +8,7 @@ var User = require("../models/user.js").User;
 var pdf = require('phantom-html2pdf');
 var logger = require('winston');
 var http = require('http');
+var fs = require('fs');
 
 module.exports = {
 
@@ -259,18 +260,45 @@ module.exports = {
                 console.log(payment);
                 if (payment.status == 0) {
                     payment.status = 1;
+                    updateCommandAndPayment(0);
                 } else {
                     payment.status = 0;
+                    updateCommandAndPayment(2);
                 }
-                Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
-                    if(err) {
-                        console.log(err);
-                        logger.log('error', err);
-                        res.json({success: false, message:err});
-                    } else {
-                        res.json({success: true, message:"Payment updated", data: payment});
-                    }
-                })
+
+                function updateCommandAndPayment(status) {
+                    Command.findOne({payment: payment._id}, function(err, command){
+                        if(err) {
+                            console.log(err);
+                            logger.log('error', err);
+                            res.json({success: false, message:err});
+                        } else {
+                            command.status = status;
+
+                            Command.findOneAndUpdate({_id: command._id}, command, { 'new': true }, function(err, command){
+                                if(err) {
+                                    console.log(err);
+                                    logger.log('error', err);
+                                    res.json({success: false, message:err});
+                                } else {
+                                    var path_facture = "../myApp/public/pdf/"+payment._id+".pdf";
+                                    fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
+                                        if (!err) fs.unlinkSync(path_facture);
+                                    });
+                                    Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
+                                        if(err) {
+                                            console.log(err);
+                                            logger.log('error', err);
+                                            res.json({success: false, message:err});
+                                        } else {
+                                            res.json({success: true, message:"Payment updated", data: payment});
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    });
+                }
             }
         })
     },
@@ -447,21 +475,47 @@ module.exports = {
             } else {
                 if (command.status == 0) {
                     command.status = 1;
+                    updatePaymentAndCommand(0);
                 } else if (command.status == 1) {
                     command.status = 2;
+                    updatePaymentAndCommand(0);
                 } else {
                     command.status = 0;
+                    updatePaymentAndCommand(1);
                 }
 
-                Command.findOneAndUpdate({_id: command._id}, command, { 'new': true }, function(err, command){
-                    if(err) {
-                        console.log(err);
-                        logger.log('error', err);
-                        res.json({success: false, message:err});
-                    } else {
-                        res.json({success: true, message:"Command updated", data: command});
-                    }
-                })
+                function updatePaymentAndCommand(status) {
+                    Command.findOneAndUpdate({_id: command._id}, command, { 'new': true }, function(err, command){
+                        if(err) {
+                            console.log(err);
+                            logger.log('error', err);
+                            res.json({success: false, message:err});
+                        } else {
+                            Payment.findOne({_id: command.payment}, function(err, payment){
+                                if(err) {
+                                    console.log(err);
+                                    logger.log('error', err);
+                                    res.json({success: false, message:err});
+                                } else {
+                                    payment.status = status;
+                                    Payment.findOneAndUpdate({_id: command.payment}, payment, { 'new': true }, function(err, payment){
+                                        if(err) {
+                                            console.log(err);
+                                            logger.log('error', err);
+                                            res.json({success: false, message:err});
+                                        } else {
+                                            var path_facture = "../myApp/public/pdf/"+payment._id+".pdf";
+                                            fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
+                                                if (!err) fs.unlinkSync(path_facture);
+                                        });
+                                            res.json({success: true, message:"Command updated", data: command});
+                                        }
+                                    })
+                                }
+                            });
+                        }
+                    })
+                }
             }
         })
     },
@@ -474,12 +528,20 @@ module.exports = {
                 logger.log('error', err);
                 res.json({success: false, message: err});
             } else {
+                var path = "../myApp/public/pdf/"+command._id+".pdf";
+                fs.access(path, fs.R_OK | fs.W_OK, (err) => {
+                    if (!err) fs.unlinkSync(path);
+                });
                 Payment.findOneAndRemove({_id: command.payment}, function (err, payment) {
                     if (err) {
                         console.log(err);
                         logger.log('error', err);
                         res.json({success: false, message: err});
                     } else {
+                        var path_facture = "../myApp/public/pdf/"+payment._id+".pdf";
+                        fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
+                            if (!err) fs.unlinkSync(path_facture);
+                        });
                         res.json({success: true, message:"Command deleted", data: {}});
                     }
                 });
