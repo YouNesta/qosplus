@@ -188,17 +188,17 @@ export class UserCartComponent {
             }.bind(this)));
             if (phones != null) {
                 for (var i = 0; i < phones.length; i++) {
-                    this.filteredList.push(phones[i]);
+                    if (this.filteredList.indexOf(phones[i]) == -1) this.filteredList.push(phones[i]);
                 }
             }
             if (rs != null) {
                 for (var i = 0; i < rs.length; i++) {
-                    this.filteredList.push(rs[i]);
+                    if (this.filteredList.indexOf(rs[i]) == -1) this.filteredList.push(rs[i]);
                 }
             }
             if (names != null) {
                 for (var i = 0; i < names.length; i++) {
-                    this.filteredList.push(names[i]);
+                    if (this.filteredList.indexOf(names[i]) == -1) this.filteredList.push(names[i]);
                 }
             }
         }else{
