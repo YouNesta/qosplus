@@ -11,6 +11,9 @@ html{
         background-color: #f5f5f5;
       }
     .admin, .user {
+      &.footer{
+        display: none;
+      }
       &.wrapper{
         position: fixed;
         left: 250px;
