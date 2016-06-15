@@ -540,3 +540,6 @@ td {
     border: 0;
     border-right: 1px solid #e0e4ea;
     padding: 15px; }
+
+.faFile:before {
+  content: "\f016" !important; }

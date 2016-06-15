@@ -16,6 +16,7 @@ export class ProductPaymentComponent {
 
     payments: Object ;
     isOpen = [];
+    loader = [];
     constructor(public service: ProductFactory){
         this.service.getPayments()
             .subscribe(
@@ -24,6 +25,7 @@ export class ProductPaymentComponent {
                         this.payments = res.data;
                         for(var i in this.payments){
                             this.isOpen.push(false);
+                            this.loader.push(true);
                         }
                     }else{
                         console.log(res);
@@ -51,6 +53,8 @@ export class ProductPaymentComponent {
     }
 
     generatePdf(payment, i) {
+        this.loader[i] = false;
+
         payment = this.service.printFacture(payment).subscribe(
             res => {
                 if(res.success){
@@ -58,6 +62,7 @@ export class ProductPaymentComponent {
 
                     this.payments[i] = payment;
 
+                    this.loader[i] = true;
                     window.open(payment.facture, "_blank");
                 }else{
                     console.log(res);

@@ -16,6 +16,7 @@ export class ProductCommandComponent {
 
     commands: Object ;
     isOpen = [];
+    loader = [];
     constructor(public service: ProductFactory){
         this.service.getCommands()
             .subscribe(
@@ -24,6 +25,7 @@ export class ProductCommandComponent {
                         this.commands = res.data;
                         for(var i in this.commands){
                             this.isOpen.push(false);
+                            this.loader.push(true);
                         }
                     }else{
                         console.log(res);
@@ -51,6 +53,7 @@ export class ProductCommandComponent {
     }
 
     generatePdf(command, i) {
+        this.loader[i] = false;
         command = this.service.printPdf(command).subscribe(
             res => {
                 if(res.success){
@@ -58,6 +61,7 @@ export class ProductCommandComponent {
 
                     this.commands[i] = command;
 
+                    this.loader[i] = true;
                     window.open(command.commandForm, "_blank");
                 }else{
                     console.log(res);

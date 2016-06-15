@@ -17,6 +17,8 @@ export class UserCommandComponent {
 
     commands: Object ;
     isOpen = [];
+    loader = [];
+
     constructor(public service: ProductFactory, public userService: UserFactory){
 
         var user = JSON.parse(localStorage.getItem("user"));
@@ -28,6 +30,7 @@ export class UserCommandComponent {
                         this.commands = res.data;
                         for(var i in this.commands){
                             this.isOpen.push(false);
+                            this.loader.push(true);
                         }
                     }else{
                         console.log(res);
@@ -55,6 +58,7 @@ export class UserCommandComponent {
     }
 
     generatePdf(command, i) {
+        this.loader[i] = false;
         command = this.service.printPdf(command).subscribe(
             res => {
                 if(res.success){
@@ -62,6 +66,7 @@ export class UserCommandComponent {
 
                     this.commands[i] = command;
 
+                    this.loader[i] = true;
                     window.open(command.commandForm, "_blank");
                 }else{
                     console.log(res);
