@@ -47,7 +47,7 @@ import {API} from "./Config/api";
     selector: "app",
     template:   "<header [connected]='service.isConnected()' [admin]='service.isAdmin()'></header>" +
                 "<div class='wrapper {{routeAuth.base}}'><search *ngIf='routeAuth.auth == true'></search><alert></alert><router-outlet></router-outlet></div>" +
-                "<footer>{{title}}</footer>",
+                "<footer *ngIf='routeAuth.auth == false'>{{title}}</footer>",
 
     directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent, SearchComponent, AlertComponent]
 })

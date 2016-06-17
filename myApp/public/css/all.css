@@ -14,7 +14,7 @@ html {
     html body .wrapper {
       min-height: 80%;
       background-color: #f5f5f5; }
-    html body .admin.footer, html body .user.footer {
+    html body .adminfooter, html body .userfooter {
       display: none; }
     html body .admin.wrapper, html body .user.wrapper {
       position: fixed;
@@ -41,6 +41,23 @@ html {
         html body .admin .content .collapse-content div.product .collapse-body.active, html body .admin .wrapper .content .collapse-content div.product .collapse-body.active, html body .user .content .collapse-content div.product .collapse-body.active, html body .user .wrapper .content .collapse-content div.product .collapse-body.active {
           height: 300px;
           margin-bottom: 15px; }
+
+.form-buttons {
+  text-align: center; }
+
+button.add-modale, button.validate-cart, button.default {
+  width: 210px;
+  height: 46px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #7570ff;
+  margin-bottom: 40px;
+  padding-left: 13px;
+  padding-right: 13px; }
+  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
+    color: #fff;
+    background-color: rgba(16, 207, 189, 0.6);
+    border-color: transparent; }
 
 search .row {
   background: white;
@@ -78,23 +95,6 @@ search .row {
       height: 60px; }
     search .row .rightSearch .open .dropdown-toggle {
       box-shadow: none; }
-
-.form-buttons {
-  text-align: center; }
-
-button.add-modale, button.validate-cart, button.default {
-  width: 210px;
-  height: 46px;
-  border-radius: 3px;
-  color: #FFF;
-  background-color: #7570ff;
-  margin-bottom: 40px;
-  padding-left: 13px;
-  padding-right: 13px; }
-  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
-    color: #fff;
-    background-color: rgba(16, 207, 189, 0.6);
-    border-color: transparent; }
 
 footer {
   width: 100%;
