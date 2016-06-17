@@ -251,20 +251,24 @@ export class HomeSubscribeComponent {
         }else if(this.timepickerDay.data.morning.closing.getTime() < this.timepickerDay.data.morning.opening.getTime()){
             this.alertService.addAlert('warning', 'La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
         }else if(this.checkDayExist(this.associateShop[i])){
-            this.associateShop[i].disponibility.indexOf(this.selectedDay);
-            this.associateShop[i].disponibility.push({
-                day: this.selectedDay,
-                data: {
-                    morning: {
-                        opening: this.timepickerDay.data.morning.opening,
-                        closing: this.timepickerDay.data.morning.closing
-                    },
-                    afternoon: {
-                        opening: this.timepickerDay.data.afternoon.opening,
-                        closing: this.timepickerDay.data.afternoon.closing
-                    }
+
+            this.associateShop[i].disponibility.forEach(function(disponibility){
+                if(disponibility.day == this.selectedDay){
+                    disponibility.push({
+                        data: {
+                            morning: {
+                                opening: this.timepickerDay.data.morning.opening,
+                                closing: this.timepickerDay.data.morning.closing
+                            },
+                            afternoon: {
+                                opening: this.timepickerDay.data.afternoon.opening,
+                                closing: this.timepickerDay.data.afternoon.closing
+                            }
+                        }
+                    })
                 }
             });
+
         }
         else{
             this.associateShop[i].disponibility.push({

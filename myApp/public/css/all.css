@@ -42,23 +42,6 @@ html {
           height: 300px;
           margin-bottom: 15px; }
 
-.form-buttons {
-  text-align: center; }
-
-button.add-modale, button.validate-cart, button.default {
-  width: 210px;
-  height: 46px;
-  border-radius: 3px;
-  color: #FFF;
-  background-color: #7570ff;
-  margin-bottom: 40px;
-  padding-left: 13px;
-  padding-right: 13px; }
-  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
-    color: #fff;
-    background-color: rgba(16, 207, 189, 0.6);
-    border-color: transparent; }
-
 search .row {
   background: white;
   height: 60px; }
@@ -95,6 +78,23 @@ search .row {
       height: 60px; }
     search .row .rightSearch .open .dropdown-toggle {
       box-shadow: none; }
+
+.form-buttons {
+  text-align: center; }
+
+button.add-modale, button.validate-cart, button.default {
+  width: 210px;
+  height: 46px;
+  border-radius: 3px;
+  color: #FFF;
+  background-color: #7570ff;
+  margin-bottom: 40px;
+  padding-left: 13px;
+  padding-right: 13px; }
+  button.add-modale:hover, button.validate-cart:hover, button.default:hover {
+    color: #fff;
+    background-color: rgba(16, 207, 189, 0.6);
+    border-color: transparent; }
 
 footer {
   width: 100%;
