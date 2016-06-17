@@ -66,19 +66,7 @@ export class HomeSubscribeComponent {
         adeli: null,
         nightBox: true,
         transporteur:'',
-        disponibility: [{
-            day: "",
-            data: {
-                morning: {
-                    opening: new Date(),
-                    closing: new Date()
-                },
-                afternoon: {
-                    opening: new Date(),
-                    closing: new Date()
-                }
-            }
-        }]
+        disponibility: []
 
     }];
     director = {
