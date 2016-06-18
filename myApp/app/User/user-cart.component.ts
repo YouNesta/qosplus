@@ -34,6 +34,7 @@ export class UserCartComponent {
     price = 0;
     priceType = 0;
     productPrice = [];
+    porter = "";
 
     public query = '';
     public filteredList = [];
@@ -110,7 +111,7 @@ export class UserCartComponent {
 
     validateCart() {
         if (this.client != null) {
-            this.service.createCommand(this.client, this.price, this.selectedShop)
+            this.service.createCommand(this.client, this.price, this.selectedShop, this.porter)
                 .subscribe(
                     res => {
                         if(res.success){

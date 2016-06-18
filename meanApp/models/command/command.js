@@ -44,6 +44,10 @@ var CommandSchema = new mongoose.Schema({
     payment:{
         type: String,
         required: false
+    },
+    porter:{
+        type: String,
+        required: true
     }
 });
 

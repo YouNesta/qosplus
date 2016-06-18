@@ -152,6 +152,7 @@ module.exports = {
                     '</address>'+
                     '<div class="clearfix"></div>'+
                     '<p>Bon N°'+command._id+'</p>'+
+                    '<p>Porteur: '+command.porter+'</p>'+
                     '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
                     '</div>'+
                     '<div class="col-md-5 text-center">'+
@@ -187,14 +188,12 @@ module.exports = {
                         '<div class="col-md-12 text-center">'+
                         '<table>'+
                         '<thead>'+
-                        '<td>Porteur</td>'+
                         '<td>Code Produit</td>'+
                         '<td>Nom</td>'+
                         '<td>Sphère</td>'+
                         '<td>Qté.</td>'+
                         '</thead>'+
                         '<tr>'+
-                        '<td>'+product.porter+'</td>'+
                         '<td>'+product.reference+'</td>'+
                         '<td>'+product.name+'</td>'+
                         '<td> sphere: '+product.item.sphere+'<br>' +
@@ -401,6 +400,7 @@ module.exports = {
                             '<div class="clearfix"></div>'+
                             '<p>Facture N°'+id+'</p>' +
                             '<p>Total: '+payment.amount+'€ (facture '+is_paid+')</p>'+
+                            '<p>Porteur: '+command.porter+'</p>'+
                             '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
                             '</div>'+
                             '<div class="col-md-5 text-center">'+
@@ -420,13 +420,11 @@ module.exports = {
                                 '<div class="col-md-10 text-center">'+
                                 '<table>'+
                                 '<thead>'+
-                                '<td>Porteur</td>'+
                                 '<td>Nom</td>'+
                                 '<td>Sphère</td>'+
                                 '<td>Qté.</td>'+
                                 '</thead>'+
                                 '<tr>'+
-                                '<td>'+product.porter+'</td>'+
                                 '<td>'+product.name+'</td>'+
                                 '<td>'+product.item.sphere+'</td>'+
                                 '<td>'+product.quantity+'</td>'+
