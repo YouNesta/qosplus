@@ -115,7 +115,8 @@ export class ProductAddCartComponent  implements  OnChanges{
         color: '',
         price: [],
         item: Object,
-        quantity: 0
+        quantity: 0,
+        eye: 'droit'
     };
 
 

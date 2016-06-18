@@ -96,11 +96,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <select id="sphere" #sphereDOM (change)="changeSphere(sphereDOM.value)">
-                            <option value="0">Choose Sphere</option>
+                            <option value="0">Choisisser une Sphère</option>
                             <option *ngFor="#sphere of sphere; #i = index" [value]="i">{{sphere.sphere}}</option>
                         </select>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="radio" [ngModel]="{checked: cartFinal.eye == 'droit'}" (change)="cartFinal.eye=$event.target.value" name="eye" value="droit"> Oeil Droit<br>
+                        <input type="radio" [ngModel]="{checked: cartFinal.eye == 'gauche'}" (change)="cartFinal.eye=$event.target.value" name="eye" value="gauche"> Oeil Gauche<br>
                     </div>
                 </div>
                 <div class="row">

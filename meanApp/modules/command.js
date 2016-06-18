@@ -190,12 +190,14 @@ module.exports = {
                         '<thead>'+
                         '<td>Code Produit</td>'+
                         '<td>Nom</td>'+
+                        '<td>Oeil</td>'+
                         '<td>Sphère</td>'+
                         '<td>Qté.</td>'+
                         '</thead>'+
                         '<tr>'+
                         '<td>'+product.reference+'</td>'+
                         '<td>'+product.name+'</td>'+
+                        '<td>'+product.eye+'</td>'+
                         '<td> sphere: '+product.item.sphere+'<br>' +
                         'hydrophilie: '+ product.hydrophily+ '<br>' +
                             options +
