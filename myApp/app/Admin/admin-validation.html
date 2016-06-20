@@ -278,7 +278,7 @@
                 </div>
                 <div class="row">
                     <div class="validate-button">
-                        <button class="btn" (click)="validateUser(); modal.close()" type="button">Valider</button>
+                        <button class="btn" (click)="validateUser(model); modal.close()" type="button">Valider</button>
                     </div>
                 </div>
             </form>
@@ -313,13 +313,12 @@
                     </p>
                 </div>
                 <div class="col-lg-3">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <button (click)="modal.open(); modifyUser(i)"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
-
                 </div>
             </div>
 

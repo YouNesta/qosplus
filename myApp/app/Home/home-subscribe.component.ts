@@ -1,23 +1,54 @@
-import {Component} from 'angular2/core';
+import {Component, forwardRef, Inject} from 'angular2/core';
 import {User} from "../User/user";
 import {UserFactory} from "../User/user.factory";
 import {FormBuilder, Validators} from "angular2/common";
-import {ControlGroup} from "angular2/common";
+import {ControlGroup, CORE_DIRECTIVES, FORM_DIRECTIVES} from "angular2/common";
 import {RegEx} from "../lib/regex";
 import {AlertService} from "../Tools/alert";
-
+import {Timepicker} from "ng2-bootstrap";
+//import {subscribeValidator} from "../lib/subscribeValidator"
 
 @Component({
     selector: "user-subscribe",
-    providers: [],
     templateUrl: "app/Home/home-subscribe.html",
-    providers: [RegEx, UserFactory, AlertService]
-
+    providers: [RegEx, UserFactory, AlertService, CORE_DIRECTIVES, FORM_DIRECTIVES],
+    directives: [CORE_DIRECTIVES, FORM_DIRECTIVES, Timepicker]
 })
 
 export class HomeSubscribeComponent {
     service: UserFactory ;
     subscribeForm: ControlGroup;
+    alertService: AlertService;
+
+    public hstep:number = 1;
+    public mstep:number = 1;
+    public ismeridian:boolean = false;
+    public hour:Array = [];
+    public mytime:Date = new Date();
+
+    public days = [
+        { name: "Lundi" },
+        { name: "Mardi" },
+        { name: "Mercredi" },
+        { name: "Jeudi" },
+        { name: "Vendredi" },
+        { name: "Samedi" },
+        { name: "Dimanche" },
+    ];
+    public selectedDay = "Lundi";
+    public timepickerDay = {
+        day: "",
+        data: {
+            morning: {
+                opening: new Date,
+                closing: new Date
+            },
+            afternoon: {
+                opening: new Date,
+                closing: new Date
+            }
+        }
+    };
 
     associateShop = [{
         name: "",
@@ -35,18 +66,14 @@ export class HomeSubscribeComponent {
         adeli: null,
         nightBox: true,
         transporteur:'',
-        openDay: "",
-        closeDay: "",
-        openHour: "",
-        closeHour: ""
+        disponibility: []
+
     }];
     director = {
-
         lastName: 'ezd,c',
         firstName: 'ezlkd,',
         phone: 'dk,q',
         mail: 'd,qs;',
-
     };
     model = {
         role: null,
@@ -62,7 +89,7 @@ export class HomeSubscribeComponent {
         IBAN: null,
         BIC: null,
         financialMail:'',
-        paymentState: true,
+        paymentState: false,
         deliverShop: "",
         central: '',
         comment: ''
@@ -174,13 +201,14 @@ export class HomeSubscribeComponent {
         comment: ''
     };*/
 
-    constructor(userFactory: UserFactory, fb: FormBuilder, regEx: RegEx){
+    constructor(userFactory: UserFactory, fb: FormBuilder, regEx: RegEx, @Inject(forwardRef(() => AlertService)) alertService){
 
 
 
 
 
         this.service = userFactory;
+        this.alertService = alertService;
         this.subscribeForm = fb.group({
             'name': ['', Validators.compose([
                /* Validators.required,
@@ -191,10 +219,10 @@ export class HomeSubscribeComponent {
                 Validators.maxLength(30)*/
             ])],
             'mail': ['', Validators.compose([
-               /*
                 Validators.required,
-                Validators.minLength(10),
-                Validators.maxLength(100)*/
+                /*Validators.minLength(10),
+                Validators.maxLength(100)
+                subscribeValidator.usernameTaken*/
             ])],
             'phone': ['', Validators.compose([
             ])],
@@ -203,6 +231,58 @@ export class HomeSubscribeComponent {
         });
     }
 
+    addDay(i, day){
+
+        //
+        if(this.timepickerDay.data.morning.closing.getTime() < this.timepickerDay.data.morning.opening.getTime()){
+            this.alertService.addAlert('warning', 'La date d\'ouverture du matin doit etre plus tot que la date de fermeture');
+        }else if(this.timepickerDay.data.morning.closing.getTime() < this.timepickerDay.data.morning.opening.getTime()){
+            this.alertService.addAlert('warning', 'La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
+        }else if(this.checkDayExist(this.associateShop[i])){
+
+            this.associateShop[i].disponibility.forEach(function(disponibility){
+                if(disponibility.day == this.selectedDay){
+                    disponibility.push({
+                        data: {
+                            morning: {
+                                opening: this.timepickerDay.data.morning.opening,
+                                closing: this.timepickerDay.data.morning.closing
+                            },
+                            afternoon: {
+                                opening: this.timepickerDay.data.afternoon.opening,
+                                closing: this.timepickerDay.data.afternoon.closing
+                            }
+                        }
+                    })
+                }
+            });
+
+        }
+        else{
+            this.associateShop[i].disponibility.push({
+                day: this.selectedDay,
+                data: {
+                    morning: {
+                        opening: this.timepickerDay.data.morning.opening,
+                        closing: this.timepickerDay.data.morning.closing
+                    },
+                    afternoon: {
+                        opening: this.timepickerDay.data.afternoon.opening,
+                        closing: this.timepickerDay.data.afternoon.closing
+                    }
+                }
+            });
+            console.log(this.associateShop[i].disponibility);
+        }
+    };
+
+    checkDayExist(shop){
+        return shop.disponibility.day === this.selectedDay;
+    }
+
+    changeCurrentDay(value){
+        this.selectedDay = value;
+    }
 
     subscribe(){
         if(this.subscribeForm.valid){

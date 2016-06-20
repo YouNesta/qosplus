@@ -146,13 +146,13 @@ html {
       border-color: transparent; }
 
 button.add-modale, button.validate-cart, button.default {
-  width: 150px;
-  height: 36px;
+  width: 210px;
+  height: 46px;
   border-radius: 3px;
+  border: 1px solid transparent;
   color: #FFF;
-  background-color: #10cfbd;
+  background-color: #7570ff;
   margin-bottom: 40px;
-  border: solid 1px #e0e4ea;
   padding-left: 13px;
   padding-right: 13px; }
   button.add-modale:hover, button.validate-cart:hover, button.default:hover {
@@ -207,78 +207,38 @@ footer {
   width: 100%;
   clear: both;
   position: relative;
-  z-index: 10; }
-  footer .footer {
-    padding: 20px;
-    background-color: #3F3F3F;
-    color: #FFF;
-    font-family: 'Roboto', sans-serif; }
-    footer .footer .footer-content {
-      border-bottom: 2px solid #FFF;
-      padding: 30px 0px 20px 15px; }
-      footer .footer .footer-content .col {
-        padding: 0; }
-      footer .footer .footer-content h6 {
-        font-weight: bold;
-        width: 90%;
-        padding-bottom: 10px; }
-      footer .footer .footer-content ul {
-        margin-top: 10px; }
-        footer .footer .footer-content ul li a {
-          color: #FFF; }
-          footer .footer .footer-content ul li a:hover {
-            cursor: pointer; }
-      footer .footer .footer-content form input {
-        height: 25px; }
-      footer .footer .footer-content form input, footer .footer .footer-content form textarea {
-        padding: 3px 9px 6px 9px;
-        background-color: #e3cefd;
-        color: #000;
-        border-radius: 5px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        border: 0; }
-        footer .footer .footer-content form input[type="submit"], footer .footer .footer-content form textarea[type="submit"] {
-          background-color: #000; }
-      footer .footer .footer-content form ::-webkit-input-placeholder {
-        color: #000; }
-      footer .footer .footer-content form :-moz-placeholder {
-        color: #000;
-        opacity: 1; }
-      footer .footer .footer-content form ::-moz-placeholder {
-        color: #000;
-        opacity: 1; }
-      footer .footer .footer-content form :-ms-input-placeholder {
-        color: #000; }
-      footer .footer .footer-content form textarea {
-        color: #000;
-        height: 50px; }
-      footer .footer .footer-content form .center {
-        text-align: center; }
-        footer .footer .footer-content form .center input {
-          color: #FFF; }
-      footer .footer .footer-content .useful-link {
-        margin-top: 10px; }
-        footer .footer .footer-content .useful-link a {
-          text-decoration: none;
-          color: #fff; }
-      footer .footer .footer-content #map {
-        width: 100%;
-        height: 230px;
-        background-color: #CCC; }
-    footer .footer .copyright {
-      padding: 20px; }
+  z-index: 10;
+  background-color: #23252e;
+  color: #FFF;
+  padding: 80px 500px;
+  text-align: center;
+  font-family: "Open Sans"; }
+  footer .logo {
+    margin-bottom: 20px; }
+  footer .footer-link li {
+    display: inline-block;
+    list-style: none; }
+    footer .footer-link li a {
+      color: #cacdd9; }
+  footer .footer-link li:first-child {
+    text-align: right; }
+  footer .footer-link li:nth-child(2) {
+    text-align: left; }
+  footer span {
+    display: block;
+    color: #7f828f;
+    font-size: 14px; }
 
 header {
-  position: fixed;
+  background: url("../../public/img/header-bk.png") no-repeat center;
+  background-size: cover;
   width: 100%;
   z-index: 100;
   top: 0;
-  border-bottom: 1px solid #10cfbd; }
+  border-bottom: 1px solid #10cfbd;
+  color: #fff; }
   header nav {
-    background-color: #fff;
-    color: #000;
-    font-family: 'Roboto', sans-serif; }
+    font-family: 'Open Sans', sans-serif; }
     header nav li {
       display: inline-block;
       float: right; }
@@ -290,34 +250,38 @@ header {
       margin-bottom: 15px;
       margin-left: 50px; }
     header nav .header-navbar {
-      height: 93px;
+      margin-top: 30px;
       max-width: 100%; }
       header nav .header-navbar li {
-        border-right: 1px solid #FFF;
-        height: 93px;
         text-transform: uppercase;
         padding: 0;
-        animation-duration: 1s;
-        font-size: 18px; }
+        font-size: 15px;
+        font-weight: 600; }
         header nav .header-navbar li.selected a {
           background-color: #CCA6FB;
-          color: #fff;
-          border-bottom: 2px solid #571885; }
+          color: #fff; }
         header nav .header-navbar li a {
           clear: both;
-          color: #000;
+          color: #fff;
           text-decoration: none;
           display: block;
+          letter-spacing: 1px;
           height: 100%;
           width: 100%;
           padding: 15px;
-          padding-top: 70px;
           vertical-align: bottom; }
         header nav .header-navbar li a:hover {
           border-bottom: 2px solid #10cfbd; }
       header nav .header-navbar li:first-child {
-        border: 0;
-        margin-right: 80px; }
+        border: 0; }
+    header nav .login-button {
+      width: auto;
+      font-weight: 100;
+      margin-top: 30px;
+      padding-left: 40px;
+      padding-right: 40px;
+      background-color: transparent;
+      border: solid 1px rgba(255, 255, 255, 0.4); }
     header nav .menu-mobile {
       background-color: transparent;
       border: 0;
@@ -356,6 +320,25 @@ header {
             background-color: #FFF;
             color: #000;
             text-decoration: none; }
+    header nav .header-content {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center; }
+      header nav .header-content h1 {
+        letter-spacing: 1px;
+        font-weight: 300;
+        font-size: 36px;
+        margin-top: 80px;
+        font-family: "Roboto";
+        margin-bottom: 40px; }
+      header nav .header-content span {
+        font-weight: normal;
+        font-size: 17px;
+        display: block; }
+      header nav .header-content .header-button {
+        margin-top: 40px;
+        margin-bottom: 100px;
+        font-weight: 300; }
   header nav-admin #sidebar-wrapper {
     background: #000; }
     header nav-admin #sidebar-wrapper .sidebar-nav {
@@ -471,6 +454,7 @@ header {
 
 
 .page {
+  font-family: "Open Sans";
   padding-top: 80px;
   font-family: 'Roboto', sans-serif;
   color: #000; }
@@ -657,36 +641,25 @@ header {
           border-right: 2px solid #000;
           width: 200px;
           height: 80px; }
-  .page.home {
-    text-align: center;
-    color: #FFF;
-    font-family: Roboto, sans-serif; }
-    .page.home .hero {
-      background: url("../../public/img/hero-lens-detail.jpg") no-repeat center;
-      background-size: 100% auto; }
-    .page.home .homepage-description {
-      color: #000;
-      padding: 10px;
-      padding-bottom: 60px; }
-      .page.home .homepage-description h4 {
-        padding: 40px 0 30px;
-        font-weight: bold; }
-      .page.home .homepage-description .display-glass .img-container {
-        background: url("../../public/img/optical-glass.jpg") no-repeat center;
-        background-size: 100% 100%; }
-      .page.home .homepage-description .display-lens .img-container {
-        background: url("../../public/img/optical-lens.jpg") no-repeat center;
-        background-size: 100% 100%; }
-      .page.home .homepage-description .products-display .product-display {
-        padding: 0px !important;
-        background-color: #F5F5F5;
-        border: solid 1px #e0e4ea; }
-        .page.home .homepage-description .products-display .product-display .img-container {
-          width: 100%;
-          height: 170px; }
-        .page.home .homepage-description .products-display .product-display .product-desc span {
-          display: block;
-          padding: 5px; }
+  .page.home .homepage-description {
+    padding: 40px 250px;
+    text-align: center; }
+    .page.home .homepage-description h1 {
+      font-size: 30px;
+      font-weight: 300;
+      font-family: Roboto;
+      color: #23252e; }
+    .page.home .homepage-description p {
+      color: #697782;
+      font-size: 18px;
+      font-weight: normal;
+      margin-bottom: 50px;
+      margin-top: 40px; }
+    .page.home .homepage-description .homepage-element img {
+      width: 100%;
+      margin-bottom: 40px; }
+    .page.home .homepage-description .homepage-element h1 {
+      font-size: 27px; }
   .page.engagement {
     color: #000; }
     .page.engagement .hero {
@@ -715,6 +688,21 @@ header {
       margin-top: 30px; }
       .page.register .page-container form .form-buttons {
         text-align: center; }
+      .page.register .page-container form .time-display .timepicker-container label {
+        display: block; }
+      .page.register .page-container form .time-display .timepicker-container .timepicker {
+        display: inline-block; }
+        .page.register .page-container form .time-display .timepicker-container .timepicker .glyphicon {
+          color: #6BDED3; }
+      .page.register .page-container form .time-display .timepicker-container p {
+        display: inline-block;
+        vertical-align: middle; }
+      .page.register .page-container form .time-display button {
+        display: block;
+        margin-right: auto;
+        margin-left: auto; }
+      .page.register .page-container form .resume-hours {
+        margin-bottom: 10px; }
   .page.signin .hero {
     background: url("../../public/img/hero-lens-schema.jpg") no-repeat center;
     background-size: 100% auto; }

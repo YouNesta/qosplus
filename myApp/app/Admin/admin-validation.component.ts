@@ -18,6 +18,7 @@ import {UserFactory} from "../User/user.factory";
 import {AlertService} from "../Tools/alert";
 import {HomeSubscribeComponent} from "../Home/home-subscribe.component";
 import {ProductFactory} from "../Product/product.factory";
+import {MailManager} from "../lib/mail-manager";
 
 @CanActivate(() => tokenNotExpired('token'))
 
@@ -25,7 +26,8 @@ import {ProductFactory} from "../Product/product.factory";
 @Component({
     templateUrl: "app/Admin/admin-validation.html",
     directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent],
-    providers: [AdminFactory]
+    providers: [ AdminFactory],
+    bindings: [MailManager]
 })
 
 
@@ -104,13 +106,16 @@ export class AdminValidationComponent {
     };
     validateForm: ControlGroup;
     alertService: AlertService;
+    mailService: MailManager;
     users = [];
     isOpen = [];
 
     userType: {};
     currentType: number;
-    constructor(public adminService: AdminFactory,public productService: ProductFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService){
-       this.alertService = alertService;
+
+    constructor(public adminService: AdminFactory,public productService: ProductFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => MailManager)) mailService, @Inject(forwardRef(() => AlertService)) alertService){
+        this.alertService = alertService;
+        this.mailService = mailService;
         this.validateForm = fb.group({
             'name': ['', Validators.compose([
                 /* Validators.required,
@@ -154,22 +159,34 @@ export class AdminValidationComponent {
     modifyUser(i){
         this.model = this.users[i];
     }
+
     validateUser(){
-        for(var i in this.userType){
-            if(this.userType[this.currentType] != 'undefined'){
-                this.model.type = this.userType[this.currentType-1];
-            }else{
-                this.model.type = this.userType[0];
-            }
-        }
+                this.model.state = true;
+                for(var i in this.userType){
+                    if(this.userType[this.currentType] != 'undefined'){
+                        this.model.type = this.userType[this.currentType-1];
+                    }else{
+                        this.model.type = this.userType[0];
+                    }
+                }
 
-        console.log(this.model);
-
-        this.service.updateUser(this.model)
+                this.service.updateUser( this.model)
             .subscribe(
                 response => {
                     if(response.success){
                         this.alertService.addAlert('success', response.message);
+                        this.mailService.validateUser( this.model)
+                            .subscribe(
+                                response => {
+                                    if(response.success){
+                                        console.log(response);
+                                    }
+                                },
+                                err => {
+                                    console.log(err);
+                                },
+                                () => console.log('Sended')
+                            )
                     }else{
                         this.alertService.addAlert('warning', response.message);
                     }

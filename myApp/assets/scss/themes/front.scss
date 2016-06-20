@@ -1,5 +1,6 @@
 
 .page {
+  font-family: "Open Sans";
   padding-top: 80px;
   .row{
     margin-left: 0px;
@@ -243,54 +244,32 @@
     }
   }
   &.home {
-    .hero{
-      background: url("../../public/img/hero-lens-detail.jpg") no-repeat center;
-      background-size: 100% auto;
-    }
-    text-align: center;
-    color: #FFF;
-    font-family: Roboto, sans-serif;
-    .homepage-description {
-      color: #000;
-      padding: 10px;
-      padding-bottom: 60px;
-      h4 {
-        padding: 40px 0 30px;
-        font-weight: bold;
+    .homepage-description{
+      padding: 40px 250px;
+      text-align: center;
+      h1{
+        font-size: 30px;
+        font-weight: 300;
+        font-family: Roboto;
+        color: #23252e;
       }
-      .display-glass {
-        .img-container {
-          background: url("../../public/img/optical-glass.jpg") no-repeat center;
-          background-size: 100% 100%;
+      p{
+        color: #697782;
+        font-size: 18px;
+        font-weight: normal;
+        margin-bottom: 50px;
+        margin-top: 40px;
+      }
+      .homepage-element{
+        img{
+          width: 100%;
+          margin-bottom: 40px;
+        }
+        h1{
+          font-size: 27px;
         }
       }
-      .display-lens {
-        .img-container {
-          background: url("../../public/img/optical-lens.jpg") no-repeat center;
-          background-size: 100% 100%;
-        }
-      }
-      .products-display {
-        .product-display {
-          padding: 0px !important;
-          background-color: #F5F5F5;
-          border: solid 1px #e0e4ea;
-          .img-container {
-            width: 100%;
-            height: 170px;
-          }
-          .product-desc {
-            span {
-              display: block;
-              padding: 5px;
-            }
 
-          }
-        }
-        .product-desc {
-
-        }
-      }
     }
   }
   &.engagement {
@@ -329,6 +308,31 @@
         margin-top: 30px;
         .form-buttons {
           text-align: center;
+        }
+        .time-display{
+          .timepicker-container{
+            label{
+              display: block;
+            }
+            .timepicker{
+              display: inline-block;
+              .glyphicon{
+                color: #6BDED3;
+              }
+            }
+            p{
+              display: inline-block;
+              vertical-align: middle;
+            }
+          }
+          button{
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+          }
+        }
+        .resume-hours{
+          margin-bottom: 10px;
         }
       }
     }

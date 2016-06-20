@@ -120,13 +120,13 @@
 
 button {
   &.add-modale, &.validate-cart, &.default {
-    width: 150px;
-    height: 36px;
+    width: 210px;
+    height: 46px;
     border-radius: 3px;
+    border: 1px solid transparent;
     color: #FFF;
-    background-color: #10cfbd;
+    background-color: #7570ff;
     margin-bottom: 40px;
-    border: solid 1px #e0e4ea;
     padding-left: 13px;
     padding-right: 13px;
     &:hover {

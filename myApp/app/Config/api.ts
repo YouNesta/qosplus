@@ -13,4 +13,5 @@ export class API {
     product = 'product/';
     upload = 'upload/';
     command = 'command/';
+    mail = 'mail/'
 }

@@ -117,14 +117,6 @@ router.post('/subscribe', function(req, res, next) {
   }
 });
 
-router.put('/', function(req, res, next) {
-  if(req.body != 'undefined'){
-    users.update(req, res);
-  }else{
-    res.sendStatus(500);
-  }
-});
-
 router.put('/edit', function(req,res,next){
   if(req.body != 'undefined'){
     users.update(req, res);
