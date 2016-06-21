@@ -294,7 +294,7 @@ export class ProductFactory {
                 data, {
                     headers: headers
                 })
-
+            .map(response => response.json())
     }
 
     getProductBySupplier(){
