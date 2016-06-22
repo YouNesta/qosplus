@@ -1,4 +1,4 @@
-import {Component, forwardRef, Inject, Input} from 'angular2/core';
+import {Component, forwardRef, Inject, Input, ElementRef} from 'angular2/core';
 import {ProductFactory} from "./product.factory";
 import {UserFactory} from "./../User/user.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
@@ -6,8 +6,11 @@ import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
 import {TagInputComponent} from "angular2-tag-input";
 import {AlertService} from "../Tools/alert";
 
-
 @Component({
+    selector: 'autocomplete',
+    host: {
+        '(document:click)': 'handleClick($event)',
+    },
     providers: [],
     templateUrl: "app/Product/product-cart.html",
     directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES]
@@ -16,23 +19,44 @@ import {AlertService} from "../Tools/alert";
 
 export class ProductCartComponent {
 
-    products: Object;
+    products = [];
     alertService: AlertService;
     user = Object;
-    mails = [];
+    shopMobiles = [];
+    shopPhones = [];
+    shopRS = [];
+    shopNames = [];
     isOpen = [];
-    client = "";
+    client: {};
     selectedProductCard = [];
-    constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService, public userService: UserFactory){
+    shops = Object;
+    selectedShop = {};
+    price = 0;
+    priceType = 0;
+    productPrice = [];
+
+    public query = '';
+    public filteredList = [];
+    public elementRef;
+
+    constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService, public userService: UserFactory, myElement: ElementRef){
+
+        this.elementRef = myElement;
         this.alertService = alertService;
         this.user = JSON.parse(localStorage.getItem("user"));
-        this.client = this.user.mail;
         if (this.user.role == 1) {
-            userService.getMails()
+            userService.getAllShops()
                 .subscribe(
                     res => {
                         if(res.success){
-                            this.mails = res.data;
+                            this.shops = res.data;
+                            for (var i in this.shops) {
+                                var shop = this.shops[i];
+                                this.shopMobiles.push(shop.mobile);
+                                this.shopPhones.push(shop.phone);
+                                this.shopRS.push(shop.socialReason);
+                                this.shopNames.push(shop.name);
+                            }
                         }else{
                             console.log(res);
                         }
@@ -45,9 +69,37 @@ export class ProductCartComponent {
     }
     getCart(){
         this.products = JSON.parse(localStorage.getItem("cart"));
-        for(var i in this.products){
-            this.isOpen.push(false);
+
+        if (this.products.length > 0) {
+
+            for(var i in this.products){
+                this.isOpen.push(false);
+            }
+
+            var productsId = [];
+
+            for (var i in this.products) {
+                productsId.push(this.products[i]._id);
+            }
+
+
+            this.service.getProductsById(productsId).subscribe(
+                res => {
+                    if(res.success){
+
+                        this.productPrice = res.data;
+
+                    }else{
+                        this.alertService.addAlert('warning', res.message);
+                    }
+                },
+                err => {
+                    this.alertService.addAlert('danger', 500);
+                },
+                () => console.log('Prices get')
+            );
         }
+
     };
     removeFromCart(index) {
         var cart = [];
@@ -59,27 +111,51 @@ export class ProductCartComponent {
     }
 
     validateCart() {
-        this.service.createCommand(this.client)
-            .subscribe(
-            res => {
-                if(res.success){
-                    var cart = [];
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    this.getCart();
-                    this.alertService.addAlert('success', res.message);
-                }else{
-                    this.alertService.addAlert('warning', res.message);
-                }
-            },
-            err => {
-                this.alertService.addAlert('danger', 500);
-            },
-            () => console.log('Command Added')
-        );;
+        if (this.client != null) {
+            this.service.createCommand(this.client, this.price, this.selectedShop)
+                .subscribe(
+                    res => {
+                        if(res.success){
+                            var cart = [];
+                            localStorage.setItem("cart", JSON.stringify(cart));
+                            this.getCart();
+                            this.alertService.addAlert('success', res.message);
+                        }else{
+                            this.alertService.addAlert('warning', res.message);
+                        }
+                    },
+                    err => {
+                        this.alertService.addAlert('danger', 500);
+                    },
+                    () => console.log('Command Added')
+                );
+        }
+
     }
 
     getPrice() {
-        return 17345;
+
+        var price = 0;
+
+        for (var i in this.products) {
+            var product = this.products[i];
+            var productPrice = 0;
+            var quantity = product.quantity;
+
+            for (var j in this.productPrice) {
+                var myProduct = this.productPrice[j];
+
+                if (myProduct._id == product._id) {
+                    productPrice = parseInt(myProduct.price[this.priceType].price);
+                    this.products[i].actualPrice = productPrice;
+                }
+            }
+
+            price += (productPrice * quantity);
+        }
+
+        this.price = price;
+        return price;
     }
     deleteProductsCard(){
 
@@ -97,5 +173,108 @@ export class ProductCartComponent {
         }else{
             this.selectedProductCard.push(index);
         }
+    }
+    filter() {
+        if (this.query !== ""){
+            this.filteredList = this.shopMobiles.filter(function(el){
+                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+            }.bind(this));
+            var phones = (this.shopPhones.filter(function(el){
+                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+            }.bind(this)));
+            var rs = (this.shopRS.filter(function(el){
+                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+            }.bind(this)));
+            var names = (this.shopNames.filter(function(el){
+                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+            }.bind(this)));
+            if (phones != null) {
+                for (var i = 0; i < phones.length; i++) {
+                    if (this.filteredList.indexOf(phones[i]) == -1) this.filteredList.push(phones[i]);
+                }
+            }
+            if (rs != null) {
+                for (var i = 0; i < rs.length; i++) {
+                    if (this.filteredList.indexOf(rs[i]) == -1) this.filteredList.push(rs[i]);
+                }
+            }
+            if (names != null) {
+                for (var i = 0; i < names.length; i++) {
+                    if (this.filteredList.indexOf(names[i]) == -1) this.filteredList.push(names[i]);
+                }
+            }
+        }else{
+            this.filteredList = [];
+        }
+    }
+    select(item){
+        this.query = item;
+        this.filteredList = [];
+    }
+    handleClick(event){
+        var clickedComponent = event.target;
+        var inside = false;
+        do {
+            if (clickedComponent === this.elementRef.nativeElement) {
+                inside = true;
+            }
+            clickedComponent = clickedComponent.parentNode;
+        } while (clickedComponent);
+        if(!inside){
+            this.selectShop();
+            this.filteredList = [];
+        }
+    }
+    selectShop() {
+        var type = "";
+        if (this.shopMobiles.indexOf(this.query) != -1) type = "mobile";
+        if (this.shopPhones.indexOf(this.query) != -1) type = "phone";
+        if (this.shopRS.indexOf(this.query) != -1) type = "rs";
+        if (this.shopNames.indexOf(this.query) != -1) type = "name";
+
+        switch (type) {
+            case "mobile":
+                for (var i in this.shops) {
+                    var shop = this.shops[i];
+                    if (shop.mobile == this.query) this.selectedShop = shop;
+                }
+                break;
+            case "phone":
+                for (var i in this.shops) {
+                    var shop = this.shops[i];
+                    if (shop.phone == this.query) this.selectedShop = shop;
+                }
+                break;
+            case "rs":
+                for (var i in this.shops) {
+                    var shop = this.shops[i];
+                    if (shop.socialReason == this.query) this.selectedShop = shop;
+                }
+                break;
+            case "name":
+                for (var i in this.shops) {
+                    var shop = this.shops[i];
+                    if (shop.name == this.query) this.selectedShop = shop;
+                }
+                break;
+            default:
+                console.log('not found');
+        }
+
+        this.userService.getUserById(this.selectedShop.owner)
+            .subscribe(
+                res => {
+                    if(res.success){
+                        this.client = res.data;
+                        if (this.client) {
+                            this.priceType = this.client.type.type;
+                        }
+                    }else{
+                        console.log(res);
+                    }
+                },
+                err =>  console.log(err),
+                () => console.log('get mail list Complete')
+            );
     }
 }

@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col col-md-12">
                 <h2>Ajouter au Panier</h2>
+                <h1 class="text-center">{{product.name}}</h1>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="diameter">
@@ -97,6 +98,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <select id="sphere" #sphereDOM (change)="changeSphere(sphereDOM.value)">
+                            <option value="0">Choose Sphere</option>
                             <option *ngFor="#sphere of sphere; #i = index" [value]="i">{{sphere.sphere}}</option>
                         </select>
                     </div>

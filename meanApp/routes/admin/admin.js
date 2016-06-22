@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
     if(err){
       console.log(err);
       logger.log('error', err);
-      res.res.json({success: false, message:error});
+      res.json({success: false, message:error});
     }
     res.json({success: true, message:"User List Find with success", data: users});
   });

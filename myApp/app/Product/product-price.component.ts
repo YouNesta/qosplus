@@ -50,8 +50,10 @@ export class ProductPriceComponent {
                         this.products = [];
                         this.tableHead = [];
                         this.products = response.data;
-                        for(var i in this.products[0].price){
-                            this.tableHead.push(this.products[0].price[i].name);
+                        if(this.products.length > 0){
+                            for(var i in this.products[0].price){
+                                this.tableHead.push(this.products[0].price[i].name);
+                            }
                         }
                     }else{
                         console.log(response);

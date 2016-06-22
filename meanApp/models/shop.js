@@ -76,6 +76,10 @@ var ShopSchema = new mongoose.Schema({
         type: String,
         required : false
     },
+    owner:{
+        type: String,
+        required: false
+    },
     disponibility: [{
         day: String,
         data: {

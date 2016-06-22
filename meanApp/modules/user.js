@@ -120,12 +120,15 @@ module.exports = {
 
         function setShop(user, shops){
             if(shops.length >= 1){
+                shops[0].owner = user._id;
                 var shop = new Shop(shops[0]);
                 shop.save(function(error, shop){
                     if(error){
                         console.log(error);
                         logger.log('error', error);
                     }
+                    console.log(user)
+                    console.log(shop)
                     User.findOneAndUpdate({_id: user._id}, {$push: { associateShop:  shop._id} }, { 'new': true },  function(error, data){
                         if(error){
                             console.log(error);
@@ -135,7 +138,6 @@ module.exports = {
                         shops.shift();
                         setShop(data, shops);
                     })
-
                 });
             }else{
                 res.json({ success: true, message: "Subscribe Success", data:user});
@@ -212,9 +214,50 @@ module.exports = {
         }
     },
 
+    getUserShops: function(req, res) {
+        var user = req.body.user;
+        var shops = [];
+        var i = 0;
+        User.findOne({_id: user._id}, function(error, user){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "User Not Found", data:error});
+            }
+            findShop(user, i);
+        });
+
+        function findShop(user, i){
+            if(i < user.associateShop.length) {
+
+                delete user.associateShop[i].__v;
+
+                Shop.find({_id: user.associateShop[i]}, function(error, shop){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({ success: false, message: "Subscribe Failed", data:error});
+                    }
+                    shops.push(shop);
+                    i++;
+                    findShop(user, i);
+                });
+
+
+            }else{
+                sendRes();
+            }
+        }
+
+        function sendRes() {
+            res.json({ success: true, message: "Shops Found", data:shops});
+        }
+    },
+
     getProfile: function(req, res){
         var i = 0;
-        var user = JSON.parse(req.body.user);
+        var user = req.body.user;
+        console.log(user);
         findShop(user, i);
         function findUser(user){
             User.findOne({_id: user._id}, function(error, user){
@@ -264,15 +307,39 @@ module.exports = {
         })
     },
 
-    getUserPayments: function(req, res){
-        var user_Id = req.body.user._id;
-        Payment.find({client: user_Id}, function(error, payment){
+    getByMail: function(req, res){
+        var user_mail = req.body.mail;
+        User.findOne({mail: user_mail}, function(error, user){
             if(error){
                 console.log(error);
                 logger.log('error', error);
-                res.json({ success: false, message: "Commands not Found", data:error});
+                res.json({ success: false, message: "User not Found", data:error});
             }
-            res.json({success: true, message: "Commands found", data:payment})
+            res.json({success: true, message: "User found", data: user})
+        })
+    },
+
+    getById: function(req, res){
+        var id = req.body.id;
+        User.findOne({_id: id}, function(error, user){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "User not Found", data:error});
+            }
+            res.json({success: true, message: "User found", data: user})
+        })
+    },
+
+    getUserPayments: function(req, res){
+        var user_mail = req.body.user.mail;
+        Payment.find({client: user_mail}, function(error, payment){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "Payments not Found", data:error});
+            }
+            res.json({success: true, message: "Payments found", data:payment})
         })
     }
 

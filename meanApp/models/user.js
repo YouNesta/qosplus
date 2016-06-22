@@ -12,6 +12,10 @@ var UserSchema = new mongoose.Schema({
         type: Number,
         required : false
     },
+    type:{
+        type: Object,
+        required : false
+    },
     lastName:{
         type: String,
         index: true,

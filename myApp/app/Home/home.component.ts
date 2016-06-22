@@ -15,6 +15,7 @@ import {tokenNotExpired} from "angular2-jwt";
 import {RouteAuth} from "../Config/route-auth";
 import {HomeLoginComponent} from "./home-login.component";
 import {HomeSubscribeComponent} from "./home-subscribe.component";
+import {ProductCommandPdfComponent} from "./product-command-pdf.component";
 
 @Component({
     template:
@@ -29,7 +30,8 @@ import {HomeSubscribeComponent} from "./home-subscribe.component";
     { path: "/login", name: "Login", component: HomeLoginComponent},
     { path: "/subscribe", name: "Subscribe", component: HomeSubscribeComponent},
     { path: "/engagements", name: "Contact", component: HomeContactComponent},
-    { path: "/signin", name: "Sign", component: HomeSigninComponent}
+    { path: "/signin", name: "Sign", component: HomeSigninComponent},
+    { path: "/product/command-pdf/:id", name: "CommandPdf", component: ProductCommandPdfComponent}
 ])
 
 export class HomeComponent  implements OnInit{

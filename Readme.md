@@ -52,6 +52,10 @@ npm install;
 * Run Node Server
 
 ```bash
+qosNode; (Vagrant)
+
+OR
+
 cd /vagrant/meanApp;
 nodemon;
 
@@ -65,6 +69,10 @@ pm2 start /vagrant/meanApp/bin/www;
 * Install Upload Server 
 
 ```bash
+apt-get update;
+apt-get install imagemagick graphicsmagick;
+sudo npm install -g gm;
+
 cd /vagrant/upload;
 npm install;
 ```
@@ -72,6 +80,11 @@ npm install;
 * Run Upload Server 
 
 ```bash
+
+qosUpload; (Vagrant)
+
+OR
+
 cd /vagrant/upload;
 node server.js;
 
@@ -98,6 +111,10 @@ chmod -R 755 jspm_packages/npm/angular2@2.0.0-beta.15/ // For nginx only
 * Run Angular App 
 
 ```bash
+qosApp; (Vagrant)
+
+OR
+
 cd /vagrant/myApp;
 lite-server;
 
@@ -145,6 +162,19 @@ vagrant ssh
 - Port: 27017
 
 
+* Run AdminMongo App 
+
+```bash
+adminMongo; (Vagrant)
+```
+
+* Access AdminMongo at  [http://192.168.33.10:1234/][5]
+
+
+
+
+
+
 ## SSH Access
 
 - Hostname: 127.0.0.1:2222
@@ -187,3 +217,4 @@ Or if you want "www" to work as well, do:
  [2]: https://www.virtualbox.org/wiki/Downloads
  [3]: https://github.com/YounesBoulkaddid/qosplus
  [4]: http://192.168.33.10:3000/
+ [5]: http://192.168.33.10:1234/

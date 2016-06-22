@@ -18,6 +18,11 @@
                         <h2>Information Client</h2>
                         <hr>
                         <div class="row user">
+                            <div class="col-md-12">
+                                <select [(ngModel)]="currentType">
+                                    <option *ngFor="#type of userType; #i = index" [value]="type.type">{{type.name}}</option>
+                                </select>
+                            </div>
                             <div class="col-md-6">
                                 <div>
                                     <label for="lastName">Nom</label>

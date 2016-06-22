@@ -24,7 +24,7 @@ router.get('/get', function(req, res) {   // Get user
       if(err){
         console.log(error);
         logger.log('error', error);
-        res.res.json({success: false, message:error
+        res.json({success: false, message:error
         });
       }
       if (!user) {
@@ -54,7 +54,7 @@ router.post('/login', function(req, res) {   // Login
       if(err){
         console.log(error);
         logger.log('error', error);
-        res.res.json({success: false, message:error});
+        res.json({success: false, message:error});
       }
       if (!user) {
         User.findOne({
@@ -63,7 +63,7 @@ router.post('/login', function(req, res) {   // Login
           if(err){
             console.log(error);
             logger.log('error', error);
-            res.res.json({success: false, message:error});
+            res.json({success: false, message:error});
           }
           if (!user) {
             res.json({ success: false, message: 'Authentication failed. User not found.' });
@@ -134,6 +134,14 @@ router.post('/profile', function(req,response,next){
   }
 });
 
+router.post('/getUserShops', function(req,response,next){
+  if(req.body != 'undefined'){
+    users.getUserShops(req, response);
+  }else{
+    response.sendStatus(500);
+  }
+});
+
 router.post('/getByMail', function(req,res,next){
   if(req.body != 'undefined'){
     users.getByMail(req, res);
@@ -142,9 +150,25 @@ router.post('/getByMail', function(req,res,next){
   }
 });
 
+router.post('/getById', function(req,res,next){
+  if(req.body != 'undefined'){
+    users.getById(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
 router.post('/getShops', function(req,res,next){
   if(req.body != 'undefined'){
     shops.getShops(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
+router.get('/getAllShops', function(req,res,next){
+  if(req.body != 'undefined'){
+    shops.getAllShops(req, res);
   }else{
     res.sendStatus(500);
   }
@@ -173,7 +197,7 @@ router.get('/getMails', function(req, res) {   // Get user mails
     if(err){
       console.log(error);
       logger.log('error', error);
-      res.res.json({success: false, message:error
+      res.json({success: false, message:error
       });
     }
     if (!users) {

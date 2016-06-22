@@ -379,36 +379,41 @@ td {
       .user .profile .back-array .row div.col-md-12, .user .profile .back-array .row div.col-md-6 {
         padding: 10px; }
 
-.content.product-list, .content.product-cart, .content.product-command-list, .content.admin-validation {
+.content.product-list, .content.product-cart, .content.product-command-list, .content.admin-validation, .content.facture-list {
   padding: 20px; }
-  .content.product-list hr, .content.product-cart hr, .content.product-command-list hr, .content.admin-validation hr {
+  .content.product-list hr, .content.product-cart hr, .content.product-command-list hr, .content.admin-validation hr, .content.facture-list hr {
     border: solid 1px #e0e4ea;
     width: 97%; }
-  .content.product-list .status, .content.product-cart .status, .content.product-command-list .status, .content.admin-validation .status {
+  .content.product-list .status, .content.product-cart .status, .content.product-command-list .status, .content.admin-validation .status, .content.facture-list .status {
     width: 40px; }
-  .content.product-list .status-color, .content.product-cart .status-color, .content.product-command-list .status-color, .content.admin-validation .status-color {
+  .content.product-list .status-color, .content.product-cart .status-color, .content.product-command-list .status-color, .content.admin-validation .status-color, .content.facture-list .status-color {
     height: 10px;
     width: 10px;
     background-color: #48b0f7;
     border-radius: 10px; }
-  .content.product-list .collapse-tab, .content.product-cart .collapse-tab, .content.product-command-list .collapse-tab, .content.admin-validation .collapse-tab {
+  .content.product-list .collapse-tab, .content.product-cart .collapse-tab, .content.product-command-list .collapse-tab, .content.admin-validation .collapse-tab, .content.facture-list .collapse-tab {
     margin-bottom: 10px;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: #3e5e76; }
-  .content.product-list .collapse-content .product, .content.product-cart .collapse-content .product, .content.product-command-list .collapse-content .product, .content.admin-validation .collapse-content .product {
+  .content.product-list .collapse-content button, .content.product-cart .collapse-content button, .content.product-command-list .collapse-content button, .content.admin-validation .collapse-content button, .content.facture-list .collapse-content button {
+    padding: 5px 10px;
+    background-color: #fff;
     border: 1px solid #e0e4ea;
     border-radius: 3px; }
-    .content.product-list .collapse-content .product .collapse-head, .content.product-cart .collapse-content .product .collapse-head, .content.product-command-list .collapse-content .product .collapse-head, .content.admin-validation .collapse-content .product .collapse-head {
+  .content.product-list .collapse-content .product, .content.product-cart .collapse-content .product, .content.product-command-list .collapse-content .product, .content.admin-validation .collapse-content .product, .content.facture-list .collapse-content .product {
+    border: 1px solid #e0e4ea;
+    border-radius: 3px; }
+    .content.product-list .collapse-content .product .collapse-head, .content.product-cart .collapse-content .product .collapse-head, .content.product-command-list .collapse-content .product .collapse-head, .content.admin-validation .collapse-content .product .collapse-head, .content.facture-list .collapse-content .product .collapse-head {
       line-height: 80px; }
-    .content.product-list .collapse-content .product .collapse-body .well, .content.product-cart .collapse-content .product .collapse-body .well, .content.product-command-list .collapse-content .product .collapse-body .well, .content.admin-validation .collapse-content .product .collapse-body .well {
+    .content.product-list .collapse-content .product .collapse-body .well, .content.product-cart .collapse-content .product .collapse-body .well, .content.product-command-list .collapse-content .product .collapse-body .well, .content.admin-validation .collapse-content .product .collapse-body .well, .content.facture-list .collapse-content .product .collapse-body .well {
       min-height: 40px; }
-    .content.product-list .collapse-content .product input[type="checkbox"], .content.product-cart .collapse-content .product input[type="checkbox"], .content.product-command-list .collapse-content .product input[type="checkbox"], .content.admin-validation .collapse-content .product input[type="checkbox"] {
+    .content.product-list .collapse-content .product input[type="checkbox"], .content.product-cart .collapse-content .product input[type="checkbox"], .content.product-command-list .collapse-content .product input[type="checkbox"], .content.admin-validation .collapse-content .product input[type="checkbox"], .content.facture-list .collapse-content .product input[type="checkbox"] {
       margin-top: 30%;
       width: 40px;
       height: 40px; }
-    .content.product-list .collapse-content .product button, .content.product-cart .collapse-content .product button, .content.product-command-list .collapse-content .product button, .content.admin-validation .collapse-content .product button {
+    .content.product-list .collapse-content .product button, .content.product-cart .collapse-content .product button, .content.product-command-list .collapse-content .product button, .content.admin-validation .collapse-content .product button, .content.facture-list .collapse-content .product button {
       margin-top: 40%;
       line-height: 0; }
 
@@ -440,6 +445,33 @@ td {
   .content.product-cart .total button {
     width: 180px;
     height: 36px; }
+
+.content.product-cart .m-b-20 {
+  margin-bottom: 20px; }
+
+.content.product-cart .filter-input {
+  width: 300px;
+  height: 40px; }
+
+.content.product-cart .suggestions {
+  position: absolute;
+  top: 40px;
+  background-color: #FFF;
+  z-index: 9;
+  border: 1px solid #6D6D6D; }
+  .content.product-cart .suggestions ul {
+    width: 298px;
+    border-bottom: 1px solid;
+    margin-bottom: 0;
+    text-align: center; }
+    .content.product-cart .suggestions ul li a {
+      display: block;
+      width: 100%;
+      padding: 5px 10px; }
+      .content.product-cart .suggestions ul li a:hover {
+        text-decoration: none; }
+    .content.product-cart .suggestions ul:hover {
+      background-color: #E0E4EA; }
 
 .content.admin-subscribe h2, .content.product-price h2 {
   width: 95%;
@@ -476,127 +508,43 @@ td {
   font-weight: bold;
   font-family: 'Open Sans'; }
 
+.content.facture-list .status-0, .content.facture-list .status-false {
+  background-color: #a70e15; }
+
+.content.facture-list .status-1, .content.facture-list .status-true {
+  background-color: #276d1c; }
+
 .content.product-command-list button {
   margin-top: 40%; }
 
+.content.product-command-list .status-0 {
+  background-color: #276d1c; }
+
 .content.product-command-list .status-1 {
+  background-color: #a70e15; }
+
+.content.product-command-list .status-2 {
   background-color: #E9DC51; }
 
-.content.product-price table, .content.product-command-list table {
+.content.product-price table, .content.product-command-list table, .content.product-list table {
   border-radius: 3px;
   text-align: center;
   margin: auto;
   width: 80%;
   margin-left: 5%;
   margin-top: 20px; }
-  .content.product-price table thead, .content.product-command-list table thead {
+  .content.product-price table thead, .content.product-command-list table thead, .content.product-list table thead {
     background-color: #f8f9fb;
     border: solid 1px #e0e4ea;
     font-weight: bold; }
-  .content.product-price table tr, .content.product-command-list table tr {
+  .content.product-price table tr, .content.product-command-list table tr, .content.product-list table tr {
     background-color: #fff;
     border: solid 1px #e0e4ea; }
-  .content.product-price table td, .content.product-command-list table td {
+  .content.product-price table td, .content.product-command-list table td, .content.product-list table td {
     height: 42px;
     border: 0;
     border-right: 1px solid #e0e4ea;
     padding: 15px; }
 
-.modal-body label {
-  font-weight: bold;
-  font-family: HelveticaNeue-Medium;
-  font-size: 14px;
-  color: #22282b; }
-
-.modal-body select, .modal-body input[type="text"], .modal-body input[type="number"] {
-  height: 36px;
-  border-radius: 3px;
-  border: solid 1px #e0e4ea;
-  width: 100%;
-  background-color: #FFF;
-  margin-bottom: 25px; }
-
-.modal-body h2 {
-  font-family: HelveticaNeue;
-  font-size: 21px;
-  color: #22282b;
-  text-align: center;
-  margin-bottom: 40px; }
-
-.modal-body .add-product h3 {
-  font-family: HelveticaNeue-Medium;
-  font-size: 16px;
-  color: #22282b;
-  text-align: center; }
-
-.modal-body .add-product button {
-  width: 150px;
-  height: 36px;
-  border-radius: 3px;
-  background-color: #10cfbd;
-  color: #FFF;
-  border-color: transparent;
-  font-family: HelveticaNeue-Medium;
-  font-size: 13px; }
-
-.modal-body .new-product button {
-  width: 100%;
-  height: 36px;
-  border-radius: 3px;
-  background-color: #10cfbd;
-  color: #FFF;
-  border-color: transparent;
-  font-family: HelveticaNeue-Medium;
-  font-size: 13px; }
-
-.modal-body .new-product input[type="checkbox"] {
-  margin-left: 10px;
-  margin-right: 10px; }
-
-.modal-body .new-product .photo {
-  border-radius: 5px;
-  border: solid 1px #e0e4ea;
-  width: 100px;
-  height: 100px;
-  margin-left: 50px;
-  overflow: hidden; }
-  .modal-body .new-product .photo img {
-    height: 100%; }
-
-.modal-body .new-product .upload-button {
-  border-radius: 3px;
-  background-color: #48b0f7;
-  padding: 5px;
-  color: #FFF;
-  width: 80%;
-  text-align: center;
-  margin-top: 15%; }
-
-.modal-body .new-product .row {
-  margin-bottom: 10px; }
-
-.modal-body .validate-form input {
-  height: 36px;
-  border-radius: 3px;
-  border: solid 1px #e0e4ea; }
-
-.modal-body .validate-form input[type="radio"], .modal-body .validate-form input[type="checkbox"] {
-  height: 15px !important; }
-
-.modal-body .validate-form label {
-  margin-top: 10px; }
-
-.modal-body .validate-form .validate-button {
-  text-align: center;
-  margin-top: 30px; }
-  .modal-body .validate-form .validate-button button {
-    width: 150px;
-    height: 42px;
-    border-radius: 3px;
-    color: #FFF;
-    background-color: #10cfbd;
-    margin-bottom: 40px;
-    border: 0; }
-    .modal-body .validate-form .validate-button button:hover {
-      background-color: rgba(16, 207, 189, 0.6);
-      border-color: transparent; }
+.faFile:before {
+  content: "\f016" !important; }

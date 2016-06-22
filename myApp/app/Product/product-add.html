@@ -54,9 +54,54 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group" *ngFor="#price of products.price">
-                            <label >Price {{price.name}} </label>
+                            <label >Prix {{price.name}} </label>
                             <input [(ngModel)]="price.price" name="price"  class="form-control">
                         </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label >Price D'achat Fournisseur </label>
+                        <div class="form-group" *ngFor="#ownerPrice of products.ownerPrice">
+                            <div class="col-md-4">
+                                <label>Fournisseur </label>
+                                <input [(ngModel)]="ownerPrice.owner"  type="text"  name="owner"  cclass="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label>Quantité (en boite)</label>
+                                <input [(ngModel)]="ownerPrice.quantity" type="number" name="ownerQuantity"  class="form-control">
+                            </div>
+                            <div class="col-md-4">
+                                <label>Prix</label>
+                                <input [(ngModel)]="ownerPrice.price" type="number" name="ownerPrice"  class="form-control">
+                            </div>
+                        </div>
+                        <button class="smallButton" (click)="addOwnerPrice()">Ajouter</button>
+                        <button class="smallButton" (click)="deleteOwnerPrice()">Effacer</button>
+                    </div>
+                    <div class="col-md-12">
+                        <label >Price D'achat Moyen Pondéré </label>
+                        <div class="well well-sm">
+                                <span>
+                                   {{middlePrice()}}
+                                </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="ametropia">Amétropie</label>
+                        <input type="number" [(ngModel)]="products.ametropia" id="ametropia" class="form-control" placeholder="amétropie">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="port">Port</label>
+                        <select [(ngModel)]="products.port" id="port">
+                            <option value="journalier">Journalier</option>
+                            <option value="hebdomadaire">Hebdomadaire</option>
+                            <option value="mensuel">Mensuel</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="portDuration">Durée du port</label>
+                        <input type="text" [(ngModel)]="products.portDuration" id="portDuration" class="form-control" placeholder="durée du port">
                     </div>
                 </div>
                 <div class="row">
@@ -83,7 +128,8 @@
                                 <input type="number" id="axis-interval" class="form-control" [(ngModel)]="int.axis.int"   placeholder="Interval">
                             </div>
                             <div class="col col-md-3">
-                                <button (click)="addParams('axis')">add</button>
+                                <button class="smallButton" (click)="addParams('axis')">Ajouter</button>
+                                <button class="smallButton" (click)="dropParams('axis')">Effacer</button>
                             </div>
                         </div>
                     </div>
@@ -102,7 +148,8 @@
                                 <input type="number"  id="addition-interval" [(ngModel)]="int.addition.int" class="form-control" placeholder="Interval">
                             </div>
                             <div class="col-md-3">
-                                <button (click)="addParams('addition')">add</button>
+                                <button class="smallButton" (click)="addParams('addition')">Ajouter</button>
+                                <button class="smallButton" (click)="dropParams('addition')">Effacer</button>
                             </div>
                         </div>
                     </div>
@@ -121,7 +168,8 @@
                                 <input type="number" id="cylindre-interval" [(ngModel)]="int.cylinder.int" class="form-control" placeholder="Interval">
                             </div>
                             <div class="col-md-3">
-                                <button (click)="addParams('cylinder')">add</button>
+                                <button class="smallButton" (click)="addParams('cylinder')">Ajouter</button>
+                                <button class="smallButton" (click)="dropParams('cylinder')">Effacer</button>
                             </div>
                         </div>
                     </div>
@@ -152,6 +200,9 @@
                         <div class="col-md-4">
                             <label for="cylindre">Addition</label><br>
                             <select [(ngModel)]="product.addition">
+                                <option value="Low">Low</option>
+                                <option value="Mid">Mid</option>
+                                <option value="High">High</option>
                                 <option *ngFor="#item of products.param.addition; #i = index" [value]="item">{{item}}</option>
                             </select>
                         </div>
@@ -186,10 +237,8 @@
                             <input [disabled]="product.provider" type="number" id="stock" [(ngModel)]="product.stock" class="form-control" placeholder="Min Value">
                         </div>
                         <div class="col-md-6">
-                            <label for="addition">Condition</label>
-                            <select [(ngModel)]="product.condition">
-                                <option *ngFor="#item of conditions; #i = index" [value]="item">{{item}}</option>
-                            </select>
+                            <label for="condition">Condition</label>
+                            <input type="text"  id="condition"class="form-control" placeholder="Min Value" [(ngModel)]="product.condition">
                         </div>
                     </div>
                     <div class="row">

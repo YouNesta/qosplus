@@ -8,7 +8,7 @@
             <div class="col-lg-4">
                 Client
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-2 text-center">
                 Nb produits
             </div>
             <div class="col-lg-3">
@@ -23,20 +23,25 @@
                 <div class="col-lg-3">
                     <p>{{ command.date }}</p>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <p>{{ command.client }}</p>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-2 text-center">
                     <p>{{ command.product.length }}</p>
                 </div>
                 <div class="col-lg-3">
-                    <div class="col-lg-6">
-                        <button class="status"><span class="status-color status-{{command.status}}"></span></button>
+                    <div class="col-lg-3">
+                        <button (click)="changeStatus(i)" class="status"><span class="fa status-color status-{{command.status}}"></span></button>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-3">
+                        <button (click)="printPdf(i)"><i class="fa fa-spinner" [ngClass]="{faFile: loader[i]}" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="col-lg-3">
+                        <button (click)="cancelCommand(i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="col-lg-3">
                         <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
-
                 </div>
             </div>
 

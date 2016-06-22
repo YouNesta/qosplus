@@ -529,8 +529,7 @@ td {
 }
 
 .content {
-
-  &.product-list, &.product-cart, &.product-command-list, &.admin-validation {
+  &.product-list, &.product-cart, &.product-command-list, &.admin-validation, &.facture-list {
     padding: 20px;
     hr {
       border: solid 1px #e0e4ea;
@@ -553,6 +552,12 @@ td {
       color: #3e5e76;
     }
     .collapse-content {
+      button {
+        padding: 5px 10px;
+        background-color: #fff;
+        border: 1px solid #e0e4ea;
+        border-radius: 3px;
+      }
       .product {
         border: 1px solid #e0e4ea;
         border-radius: 3px;
@@ -608,6 +613,39 @@ td {
         height: 36px;
       }
     }
+    .m-b-20 {
+      margin-bottom: 20px;
+    }
+    .filter-input {
+      width: 300px;
+      height: 40px;
+    }
+    .suggestions {
+      position: absolute;
+      top: 40px;
+      background-color: #FFF;
+      z-index: 9;
+      border: 1px solid #6D6D6D;
+      ul {
+        width: 298px;
+        border-bottom: 1px solid;
+        margin-bottom: 0;
+        text-align: center;
+        li {
+          a {
+            display: block;
+            width: 100%;
+            padding: 5px 10px;
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
+        &:hover {
+          background-color: #E0E4EA;
+        }
+      }
+    }
   }
   &.admin-subscribe, &.product-price {
     h2 {
@@ -649,15 +687,29 @@ td {
       font-family: 'Open Sans';
     }
   }
+  &.facture-list {
+    .status-0, .status-false {
+      background-color: #a70e15;
+    }
+    .status-1, .status-true {
+       background-color: #276d1c;
+     }
+  }
   &.product-command-list {
     button {
       margin-top: 40%;
     }
+    .status-0 {
+      background-color: #276d1c;
+    }
     .status-1 {
+      background-color: #a70e15;
+    }
+    .status-2 {
       background-color: #E9DC51;
     }
   }
-  &.product-price, &.product-command-list {
+  &.product-price, &.product-command-list, &.product-list {
     table {
       border-radius: 3px;
       text-align: center;
@@ -683,114 +735,6 @@ td {
     }
   }
 }
-
-.modal-body {
-  label {
-    font-weight: bold;
-    font-family: HelveticaNeue-Medium;
-    font-size: 14px;
-    color: #22282b;
-  }
-  select, input[type="text"], input[type="number"] {
-    height: 36px;
-    border-radius: 3px;
-    border: solid 1px #e0e4ea;
-    width: 100%;
-    background-color: #FFF;
-    margin-bottom: 25px;
-  }
-  h2 {
-    font-family: HelveticaNeue;
-    font-size: 21px;
-    color: #22282b;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  .add-product {
-    h3 {
-      font-family: HelveticaNeue-Medium;
-      font-size: 16px;
-      color: #22282b;
-      text-align: center;
-    }
-    button {
-      width: 150px;
-      height: 36px;
-      border-radius: 3px;
-      background-color: #10cfbd;
-      color: #FFF;
-      border-color: transparent;
-      font-family: HelveticaNeue-Medium;
-      font-size: 13px;
-    }
-  }
-  .new-product {
-    button {
-      width: 100%;
-      height: 36px;
-      border-radius: 3px;
-      background-color: #10cfbd;
-      color: #FFF;
-      border-color: transparent;
-      font-family: HelveticaNeue-Medium;
-      font-size: 13px;
-    }
-    input[type="checkbox"] {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-    .photo {
-      border-radius: 5px;
-      border: solid 1px #e0e4ea;
-      width: 100px;
-      height: 100px;
-      margin-left: 50px;
-      overflow: hidden;
-      img {
-        height: 100%;
-      }
-    }
-    .upload-button {
-      border-radius: 3px;
-      background-color: #48b0f7;
-      padding: 5px;
-      color: #FFF;
-      width: 80%;
-      text-align: center;
-      margin-top: 15%;
-    }
-    .row {
-      margin-bottom: 10px;
-    }
-  }
-  .validate-form {
-    input {
-      height: 36px;
-      border-radius: 3px;
-      border: solid 1px #e0e4ea;
-    }
-    input[type="radio"], input[type="checkbox"] {
-      height: 15px !important;
-    }
-    label {
-      margin-top: 10px;
-    }
-    .validate-button {
-      text-align: center;
-      margin-top: 30px;
-      button {
-        width: 150px;
-        height: 42px;
-        border-radius: 3px;
-        color: #FFF;
-        background-color: #10cfbd;
-        margin-bottom: 40px;
-        border: 0;
-        &:hover {
-          background-color: rgba(16, 207, 189, 0.6);
-          border-color: transparent;
-        }
-      }
-    }
-  }
+.faFile:before{
+  content:"\f016" !important;
 }

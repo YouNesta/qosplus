@@ -13,19 +13,20 @@ export class ProductFactory {
     apiUrl = "";
     uploadUrl = "";
     commandUrl = "";
-    constructor(public authHttp: AuthHttp, public router : Router, api : API) {
-        this.apiUrl = api.url+api.product;
-        this.uploadUrl = api.url+api.upload+api.product;
-        this.commandUrl = api.url+api.command;
+
+    constructor(public authHttp:AuthHttp, public router:Router, api:API) {
+        this.apiUrl = api.url + api.product;
+        this.uploadUrl = api.url + api.upload + api.product;
+        this.commandUrl = api.url + api.command;
 
     }
 
-    deleteProducts(products){
-        var data =  JSON.stringify({products});
+    deleteProducts(products) {
+        var data = JSON.stringify({products});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return  this.authHttp
+        return this.authHttp
             .post(this.apiUrl + 'deletes',
                 data, {
                     headers: headers
@@ -33,12 +34,25 @@ export class ProductFactory {
             .map(response => response.json())
     }
 
-    save(products){
-        var data =  JSON.stringify({products});
+    deleteCommand(command) {
+        var data = JSON.stringify({command});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-      return  this.authHttp
+        return this.authHttp
+            .post(this.commandUrl + 'deleteCommand',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    save(products) {
+        var data = JSON.stringify({products});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
             .post(this.apiUrl + 'add',
                 data, {
                     headers: headers
@@ -47,43 +61,67 @@ export class ProductFactory {
 
     }
 
-    getProduct(){
-        return  this.authHttp
-            .get(this.apiUrl+'list')
+    getProduct() {
+        return this.authHttp
+            .get(this.apiUrl + 'list')
             .map(response => response.json())
-    }
-    getPrice(){
-        return  this.authHttp
-            .get(this.apiUrl+'price/list')
-            .map(response => response.json())
-    }
-    countProductPrice(){
-        return  this.authHttp
-            .get(this.apiUrl+'price/count')
-            .map(response => response.json())
-    }
-    getCommands(){
-    return  this.authHttp
-        .get(this.commandUrl+'list')
-        .map(res => res.json())
     }
 
+    getPrice() {
+        return this.authHttp
+            .get(this.apiUrl + 'price/list')
+            .map(response => response.json())
+    }
 
-    updatePrice(product){
-        var data =  JSON.stringify({product});
+    countProductPrice() {
+        return this.authHttp
+            .get(this.apiUrl + 'price/count')
+            .map(response => response.json())
+    }
+
+    getCommands() {
+        return this.authHttp
+            .get(this.commandUrl + 'list')
+            .map(res => res.json())
+    }
+
+    getPayments() {
+        return this.authHttp
+            .get(this.commandUrl + 'paymentList')
+            .map(res => res.json())
+    }
+
+    getUserPayments(user) {
+
+        var data = JSON.stringify({user});
+
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return  this.authHttp
+        return this.authHttp
+            .post(this.commandUrl + 'getUserPayments',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json());
+    }
+
+
+    updatePrice(product) {
+        var data = JSON.stringify({product});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
             .post(this.apiUrl + 'price/update',
                 data, {
                     headers: headers
                 })
-                .map(response => response.json())
+            .map(response => response.json())
 
     }
 
-    editProduct(product){
+    editProduct(product) {
         var data = JSON.stringify({product});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -93,75 +131,91 @@ export class ProductFactory {
                 data, {
                     headers: headers
                 })
-                .map(response => response.json())
+            .map(response => response.json())
 
-        }
+    }
 
-
-
-    getOneProduct(productId){
-        console.log(productId);
+    getOneProduct(productId) {
         var headers = new Headers();
-            headers.append('Content-Type', 'application/json');
-            return this.authHttp
-                .get(this.apiUrl + 'product/'+productId,
-                     {
-                        headers: headers
-                    })
-                .map(response => response.json())
-                .map(response => {
-                    if (response) {
-                        return response
-                    }else{
-                        console.log("Error")
-                    }
-                    return response;
+        headers.append('Content-Type', 'application/json');
+        return this.authHttp
+            .get(this.apiUrl + 'product/' + productId,
+                {
+                    headers: headers
                 })
-        }
+            .map(response => response.json())
+            .map(response => {
+                if (response) {
+                    return response
+                } else {
+                    console.log("Error")
+                }
+                return response;
+            })
+    }
+
+    getProductsById(productIds) {
+        var data = JSON.stringify({productIds});
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'getProductsById',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json());
+    }
+
+    getOneCommand(commandId) {
+
+        var data = JSON.stringify({commandId});
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'command/' + commandId,
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json());
+    }
 
 
-        createPrice(price){
-            var data =  JSON.stringify({price});
-            var headers = new Headers();
-            headers.append('Content-Type', 'application/json');
+    createPrice(price) {
+        var data = JSON.stringify({price});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
 
-            return  this.authHttp
-                .post(this.apiUrl + 'price/create',
-                    data, {
-                        headers: headers
-                    })
-                .map(response => response.json())
+        return this.authHttp
+            .post(this.apiUrl + 'price/create',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
 
-        }
+    }
 
 
-    createCommand(client = ""){
+    createCommand(client, amount, shop) {
         var cart = JSON.parse(localStorage.getItem("cart"));
-        var user = JSON.parse(localStorage.getItem("user"));
-
-        if (client == "") {
-            client = user.mail;
-        }
-
-        var price = 150;
-
-        for(var i=0; i < cart.length; i++) {
-            //price += cart[i].price * cart[i].quantity;
-        }
 
         var command = {
             date: new Date(),
-            client: client,
+            client: client.mail,
             product: cart,
             status: 1,
+            shop: shop
         };
 
         var payment = {
             date: new Date(),
-            IBAN: 12345678,
+            IBAN: client.IBAN,
             status: 0,
-            client: client,
-            amount: price
+            client: client.mail,
+            amount: amount
         };
 
         var data = JSON.stringify({command, payment});
@@ -177,7 +231,7 @@ export class ProductFactory {
             .map(response => response.json())
     }
 
-    deleteProduct(product){
+    deleteProduct(product) {
         var data = JSON.stringify({product});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -188,6 +242,58 @@ export class ProductFactory {
                     headers: headers
                 })
             .map(response => response.json())
+    }
+
+    printPdf(command) {
+        var data = JSON.stringify({command});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'printPdf',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    printFacture(payment) {
+        var data = JSON.stringify({payment});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'printFacture',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    changePaymentStatus(id) {
+        var data = JSON.stringify({id});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'changePaymentStatus',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    changeCommandStatus(id) {
+        var data = JSON.stringify({id});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'changeCommandStatus',
+                data, {
+                    headers: headers
+                })
+
     }
 
     getProductBySupplier(){

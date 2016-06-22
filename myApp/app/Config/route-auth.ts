@@ -31,6 +31,7 @@ constructor(public service: UserFactory, public router: Router) {
             { "route": "subscribe", "auth": true },
             { "route": "validation", "auth": true },
             { "route": "product", "auth": true },
+            { "route": "product/command-pdf/:id", "auth": false },
         ],
 
         "user": [
