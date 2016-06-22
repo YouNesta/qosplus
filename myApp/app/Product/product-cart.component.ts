@@ -112,7 +112,19 @@ export class ProductCartComponent {
     }
 
     validateCart() {
-        if (this.client != null) {
+        var rightEye = false;
+        var leftEye = false;
+        var isCommandLegit = true;
+        for (var i in this.products) {
+            if (this.products[i].eye == 0 ) rightEye = true;
+            if (this.products[i].eye == 1 ) leftEye = true;
+        }
+
+        if (rightEye == false || leftEye == false) {
+            isCommandLegit = confirm("Attention, vous n'avez des lentilles que pour un oeil, valider ?");
+        }
+
+        if (this.client != null && this.products.length > 0 && isCommandLegit == true) {
             this.service.createCommand(this.client, this.price, this.selectedShop, this.porter)
                 .subscribe(
                     res => {
