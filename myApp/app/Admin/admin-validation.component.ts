@@ -26,8 +26,8 @@ import {Timepicker} from "ng2-bootstrap";
 
 @Component({
     templateUrl: "app/Admin/admin-validation.html",
-    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent],
-    providers: [ AdminFactory],
+    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent, Timepicker],
+    providers: [ AdminFactory ],
     bindings: [MailManager]
 })
 
@@ -203,7 +203,7 @@ export class AdminValidationComponent {
                 response => {
                     if(response.success){
                         this.alertService.addAlert('success', response.message);
-                        this.mailService.validateUser( this.model)
+                        this.mailService.validateUser(this.model)
                             .subscribe(
                                 response => {
                                     if(response.success){
