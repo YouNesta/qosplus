@@ -65,11 +65,11 @@ var UserSchema = new mongoose.Schema({
         index: true
     },
     IBAN:{
-        type: Number,
+        type: String,
         required : false
     },
     BIC:{
-        type: Number,
+        type: String,
         required : false
 
     },

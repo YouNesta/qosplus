@@ -55,16 +55,16 @@ var ShopSchema = new mongoose.Schema({
         required : true
     },
     tva: {
-        type: Number,
+        type: String,
         required : false
     },
     siret: {
-        type: Number,
+        type: String,
         index: true,
         required : false
     },
     adeli: {
-        type: Number,
+        type: String,
         index: true,
         required : false
     },
