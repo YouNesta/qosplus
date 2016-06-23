@@ -139,6 +139,10 @@ module.exports = {
                     'margin-top: 20px;'+
                     'margin-bottom: 20px;'+
                     '}'+
+                    'footer {' +
+                    'text-align: center;' +
+                    'font-weight: bold;' +
+                    '}'+
                     '</style>'+
                     '</head>'+
                     '<body>'+
@@ -146,12 +150,14 @@ module.exports = {
                     '<div class="row">'+
                     '<div class="col-md-6">'+
                     '<address>'+
-                    'QosPlus<br>'+
-                    '10, rue des mimosas<br>'+
-                    '75007 Paris'+
+                    'X-VISION<br>'+
+                    '54, boulevard Michel<br>'+
+                    '75018 PARIS<br>'+
+                    'Tél. : 01.53.39.19.30 '+
                     '</address>'+
                     '<div class="clearfix"></div>'+
                     '<p>Bon N°'+command._id+'</p>'+
+                    '<p>Porteur: '+command.porter+'</p>'+
                     '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
                     '</div>'+
                     '<div class="col-md-5 text-center">'+
@@ -169,34 +175,37 @@ module.exports = {
                     var product = command.product[i];
 
                     var options = "";
-
+                    if (product.item.cylinder != null) {
+                        options += "cylindre: "+ product.item.cylinder + "<br>";
+                    }
+                    if (product.item.axis != null) {
+                        options += "axe: "+ product.item.axis + "<br>";
+                    }
+                    if (product.item.addition != null) {
+                        options += "addition: "+ product.item.addition + "<br>";
+                    }
                     if (product.item.diameter != null) {
                         options += "diameter: "+ product.item.diameter + "<br>";
                     }
                     if (product.item.radius != null) {
                         options += "rayon: "+ product.item.radius + "<br>";
                     }
-                    if (product.item.axis != null) {
-                        options += "axe: "+ product.item.axis + "<br>";
-                    }
-                    if (product.item.cylinder != null) {
-                        options += "cylindre: "+ product.item.cylinder + "<br>";
-                    }
+
 
                     html += '<div class="row">'+
                         '<div class="col-md-12 text-center">'+
                         '<table>'+
                         '<thead>'+
-                        '<td>Porteur</td>'+
                         '<td>Code Produit</td>'+
                         '<td>Nom</td>'+
+                        '<td>Oeil</td>'+
                         '<td>Sphère</td>'+
                         '<td>Qté.</td>'+
                         '</thead>'+
                         '<tr>'+
-                        '<td>'+product.porter+'</td>'+
                         '<td>'+product.reference+'</td>'+
                         '<td>'+product.name+'</td>'+
+                        '<td>'+product.eye+'</td>'+
                         '<td> sphere: '+product.item.sphere+'<br>' +
                         'hydrophilie: '+ product.hydrophily+ '<br>' +
                             options +
@@ -209,6 +218,11 @@ module.exports = {
                 }
 
                 html += '</div>'+
+                    '<hr>' +
+                    '<footer>' +
+                    shop.name + ', ' + shop.adress + ' ' + shop.zipCode + ' ' + shop.city + '<br>' +
+                    'Siret: ' + shop.siret +
+                    '</footer>'+
                     '</body>'+
                     '</html>';
 
@@ -386,6 +400,10 @@ module.exports = {
                             '.clearfix {'+
                             'margin-top: 20px;'+
                             'margin-bottom: 20px;'+
+                            '}' +
+                            'footer {' +
+                            'text-align: center;' +
+                            'font-weight: bold;' +
                             '}'+
                             '</style>'+
                             '</head>'+
@@ -394,13 +412,15 @@ module.exports = {
                             '<div class="row">'+
                             '<div class="col-md-6">'+
                             '<address>'+
-                            'QosPlus<br>'+
-                            '10, rue des mimosas<br>'+
-                            '75007 Paris'+
+                            'X-VISION<br>'+
+                            '54, boulevard Michel<br>'+
+                            '75018 PARIS<br>'+
+                            'Tél. : 01.53.39.19.30 '+
                             '</address>'+
                             '<div class="clearfix"></div>'+
                             '<p>Facture N°'+id+'</p>' +
                             '<p>Total: '+payment.amount+'€ (facture '+is_paid+')</p>'+
+                            '<p>Porteur: '+command.porter+'</p>'+
                             '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
                             '</div>'+
                             '<div class="col-md-5 text-center">'+
@@ -420,13 +440,11 @@ module.exports = {
                                 '<div class="col-md-10 text-center">'+
                                 '<table>'+
                                 '<thead>'+
-                                '<td>Porteur</td>'+
                                 '<td>Nom</td>'+
                                 '<td>Sphère</td>'+
                                 '<td>Qté.</td>'+
                                 '</thead>'+
                                 '<tr>'+
-                                '<td>'+product.porter+'</td>'+
                                 '<td>'+product.name+'</td>'+
                                 '<td>'+product.item.sphere+'</td>'+
                                 '<td>'+product.quantity+'</td>'+
@@ -436,7 +454,12 @@ module.exports = {
                                 '</div>';
                         }
 
-                        html += '</div>'+
+                        html += '</div>' +
+                            '<hr>' +
+                            '<footer>' +
+                            shop.name + ', ' + shop.adress + ' ' + shop.zipCode + ' ' + shop.city + '<br>' +
+                            'Siret: ' + shop.siret +
+                            '</footer>'+
                             '</body>'+
                             '</html>';
 

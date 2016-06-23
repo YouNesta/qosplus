@@ -34,6 +34,7 @@ export class UserCartComponent {
     price = 0;
     priceType = 0;
     productPrice = [];
+    porter = "";
 
     public query = '';
     public filteredList = [];
@@ -109,8 +110,21 @@ export class UserCartComponent {
     }
 
     validateCart() {
-        if (this.client != null) {
-            this.service.createCommand(this.client, this.price, this.selectedShop)
+
+        var rightEye = false;
+        var leftEye = false;
+        var isCommandLegit = true;
+        for (var i in this.products) {
+            if (this.products[i].eye == "droit" ) rightEye = true;
+            if (this.products[i].eye == "gauche" ) leftEye = true;
+        }
+
+        if (rightEye == false || leftEye == false) {
+            isCommandLegit = confirm("Attention, vous n'avez des lentilles que pour un oeil, valider ?");
+        }
+
+        if (this.client != null && this.products.length > 0 && isCommandLegit == true) {
+            this.service.createCommand(this.client, this.price, this.selectedShop, this.porter)
                 .subscribe(
                     res => {
                         if(res.success){

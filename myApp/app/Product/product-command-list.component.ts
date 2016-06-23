@@ -92,8 +92,6 @@ export class ProductCommandComponent {
                 if(res.success){
                     command = res.data;
                     this.commands[i] = command;
-
-
                 }else{
                     console.log(res);
                 }

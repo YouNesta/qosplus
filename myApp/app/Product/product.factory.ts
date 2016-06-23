@@ -199,7 +199,7 @@ export class ProductFactory {
     }
 
 
-    createCommand(client, amount, shop) {
+    createCommand(client, amount, shop, porter) {
         var cart = JSON.parse(localStorage.getItem("cart"));
 
         var command = {
@@ -207,7 +207,8 @@ export class ProductFactory {
             client: client.mail,
             product: cart,
             status: 1,
-            shop: shop
+            shop: shop,
+            porter: porter
         };
 
         var payment = {
@@ -293,7 +294,7 @@ export class ProductFactory {
                 data, {
                     headers: headers
                 })
-
+            .map(response => response.json())
     }
 
     getProductBySupplier(){

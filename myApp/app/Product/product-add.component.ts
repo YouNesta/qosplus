@@ -94,6 +94,7 @@ export class ProductAddComponent {
         hydrophily: 56,
         material: "Verre",
         color: "Transparent",
+        ametropia: "",
         price: [{
             "type": 0,
             "price": 0,
