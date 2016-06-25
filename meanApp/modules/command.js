@@ -48,13 +48,55 @@ module.exports = {
 
     addCommand: function(req, res) {
 
-        var payment = new Payment(req.body.payment);
-        payment.save(function(error, payment){
-            if(error){
-                console.log(error);
-                logger.log('error', error);
+        var payment = req.body.payment;
+        var date = payment.date;
+        var client = payment.client;
+        var IBAN = payment.IBAN;
+        var amount = payment.amount;
+
+        Payment.findOne({client: client, date: date}, function(err, payment){
+            if(err){
+                console.log(err);
+                logger.log('error', err);
+                res.json({success: false, message:error});
+            }
+            if (payment == null) {
+                payment = new Payment();
+                payment.amount = amount;
+                payment.date = date;
+                payment.client = client;
+                payment.IBAN = IBAN;
+                payment.facture = "";
+
+                payment.save(function(error, payment){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                    } else {
+                        createCommand(payment);
+                    }
+                });
             } else {
+                var path_facture = "../myApp/public/pdf/"+payment._id+".pdf";
+                fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
+                    if (!err) fs.unlinkSync(path_facture);
+                });
+                payment.facture = "";
+                payment.amount += amount;
+                Payment.findOneAndUpdate({_id: payment._id}, payment, { 'new': true }, function(err, payment){
+                    if(err) {
+                        console.log(err);
+                        logger.log('error', err);
+                        res.json({success: false, message:err});
+                    } else {
+                        createCommand(payment);
+                    }
+                });
+            }
+
+            function createCommand(payment) {
                 var command = new Command(req.body.command);
+                console.log(payment);
                 command.payment = payment._id;
                 command.save(function(error, command){
                     if(error){
@@ -67,6 +109,7 @@ module.exports = {
                 });
             }
         });
+
     },
 
     printPdf: function(req, res) {
@@ -207,8 +250,8 @@ module.exports = {
                         '<td>'+product.name+'</td>'+
                         '<td>'+product.eye+'</td>'+
                         '<td> sphere: '+product.item.sphere+'<br>' +
-                        'hydrophilie: '+ product.hydrophily+ '<br>' +
                             options +
+                        'hydrophilie: '+ product.hydrophily+ '<br>' +
                         '</td>'+
                         '<td>'+product.quantity+'</td>'+
                         '</tr>'+
@@ -320,7 +363,7 @@ module.exports = {
     printFacture: function(req, res) {
         var payment = req.body.payment;
         var id = payment._id;
-        Command.findOne({payment: id}, function(err, command){
+        Command.find({payment: id}, function(err, command){
             if(err) {
                 console.log(err);
                 logger.log('error', err);
@@ -329,9 +372,9 @@ module.exports = {
                 var path = "../myApp/public/pdf/"+id+".pdf";
                 var savedPath = "/public/pdf/"+id+".pdf";
                 var html = "<p>Error</p>";
-                var shop = command.shop;
+                var shop = command[0].shop;
 
-                User.findOne({mail: command.client}, function(err, client){
+                User.findOne({mail: command[0].client}, function(err, client){
                     if(err) {
                         console.log(err);
                         logger.log('error', err);
@@ -420,7 +463,7 @@ module.exports = {
                             '<div class="clearfix"></div>'+
                             '<p>Facture N°'+id+'</p>' +
                             '<p>Total: '+payment.amount+'€ (facture '+is_paid+')</p>'+
-                            '<p>Porteur: '+command.porter+'</p>'+
+                            //'<p>Porteur: '+command.porter+'</p>'+
                             '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
                             '</div>'+
                             '<div class="col-md-5 text-center">'+
@@ -434,24 +477,33 @@ module.exports = {
                             '</div>'+
                             '</div>';
 
-                        for (var i = 0; i < command.product.length; i++) {
-                            var product = command.product[i];
-                            html += '<div class="row">'+
-                                '<div class="col-md-10 text-center">'+
-                                '<table>'+
-                                '<thead>'+
-                                '<td>Nom</td>'+
-                                '<td>Sphère</td>'+
-                                '<td>Qté.</td>'+
-                                '</thead>'+
-                                '<tr>'+
-                                '<td>'+product.name+'</td>'+
-                                '<td>'+product.item.sphere+'</td>'+
-                                '<td>'+product.quantity+'</td>'+
-                                '</tr>'+
-                                '</table>'+
-                                '</div>'+
-                                '</div>';
+                        for (var j = 0; j < command.length; j++) {
+                            for (var i = 0; i < command[j].product.length; i++) {
+                                var product = command[j].product[i];
+                                var command_date = new Date(command[j].date);
+                                html += '<div class="row">'+
+                                    '<div class="col-md-10 text-center">'+
+                                    '<table>'+
+                                    '<thead>'+
+                                    '<td>Nom</td>'+
+                                    '<td>Sphère</td>'+
+                                    '<td>Qté.</td>'+
+                                    '<td>Prix commande</td>'+
+                                    '<td>Magasin associé</td>'+
+                                    '<td>Date</td>'+
+                                    '</thead>'+
+                                    '<tr>'+
+                                    '<td>'+product.name+'</td>'+
+                                    '<td>'+product.item.sphere+'</td>'+
+                                    '<td>'+product.quantity+'</td>'+
+                                    '<td>'+command[j].amount+'€ </td>'+
+                                    '<td>'+command[j].shop.name+'</td>'+
+                                    '<td>'+command_date.getDate()+ ' ' + months[command_date.getMonth()] + ' ' + command_date.getFullYear() + '</td>'+
+                                    '</tr>'+
+                                    '</table>'+
+                                    '</div>'+
+                                    '</div>';
+                            }
                         }
 
                         html += '</div>' +
@@ -472,13 +524,13 @@ module.exports = {
                         pdf.convert(options, function(result) {
                             result.toFile(path, function() {
                                 payment.facture = savedPath;
-                                Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, command){
+                                Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
                                     if(err){
                                         console.log(err);
                                         logger.log('error', err);
                                         res.json({success: false, message:error});
                                     }
-                                    res.json({success: true, message:"Facture updated", data:  command});
+                                    res.json({success: true, message:"Facture updated", data:  payment});
                                 })
                             });
                         });
@@ -555,7 +607,7 @@ module.exports = {
                 fs.access(path, fs.R_OK | fs.W_OK, (err) => {
                     if (!err) fs.unlinkSync(path);
                 });
-                Payment.findOneAndRemove({_id: command.payment}, function (err, payment) {
+                Payment.findOne({_id: command.payment}, function (err, payment) {
                     if (err) {
                         console.log(err);
                         logger.log('error', err);
@@ -565,7 +617,17 @@ module.exports = {
                         fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
                             if (!err) fs.unlinkSync(path_facture);
                         });
-                        res.json({success: true, message:"Command deleted", data: {}});
+                        payment.facture = "";
+                        payment.amount -= command.amount;
+                        Payment.findOneAndUpdate({_id: command.payment}, payment, { 'new': true }, function(err, payment){
+                            if(err) {
+                                console.log(err);
+                                logger.log('error', err);
+                                res.json({success: false, message:err});
+                            } else {
+                                res.json({success: true, message:"Command deleted", data: {}});
+                            }
+                        })
                     }
                 });
             }

@@ -115,9 +115,10 @@ export class ProductCartComponent {
         var rightEye = false;
         var leftEye = false;
         var isCommandLegit = true;
+
         for (var i in this.products) {
-            if (this.products[i].eye == 0 ) rightEye = true;
-            if (this.products[i].eye == 1 ) leftEye = true;
+            if (this.products[i].eye == "droit" ) rightEye = true;
+            if (this.products[i].eye == "gauche" ) leftEye = true;
         }
 
         if (rightEye == false || leftEye == false) {

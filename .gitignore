@@ -1,3 +1,7 @@
+/node_modules
+/meanApp/jspm_packages
+/ProductExample.pages
+/npm-debug.log
 /.idea/
 /.vagrant/
 meanbox.box

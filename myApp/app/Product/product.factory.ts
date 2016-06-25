@@ -202,22 +202,33 @@ export class ProductFactory {
     createCommand(client, amount, shop, porter) {
         var cart = JSON.parse(localStorage.getItem("cart"));
 
+        var d = new Date();
+        var m = d.getMonth();
+        var y = d.getFullYear();
+
+        if (d.getDate() >= 15) {
+            m++;
+        }
+
         var command = {
-            date: new Date(),
+            date: d,
             client: client.mail,
             product: cart,
             status: 1,
             shop: shop,
-            porter: porter
+            porter: porter,
+            amount: amount
         };
 
         var payment = {
-            date: new Date(),
+            date: new Date(y, m, 15),
             IBAN: client.IBAN,
             status: 0,
             client: client.mail,
             amount: amount
         };
+
+        console.log(payment);
 
         var data = JSON.stringify({command, payment});
 

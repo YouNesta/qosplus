@@ -48,6 +48,10 @@ var CommandSchema = new mongoose.Schema({
     porter:{
         type: String,
         required: true
+    },
+    amount:{
+        type: Number,
+        required: true
     }
 });
 
