@@ -18,6 +18,9 @@ export class UserProductsListComponent {
     isOpen = [];
     user = {};
     type = 0;
+    selectedProduct = [];
+    spheres = {};
+    sphereIndexes = [];
 
     constructor(public service: ProductFactory, public userService: UserFactory){
 
@@ -55,6 +58,32 @@ export class UserProductsListComponent {
                             if (this.user.role == 0) {
                                 this.products[i].price = [this.products[i].price[this.type]];
                             }
+                        }
+                        for (var i in this.products) {
+                            this.spheres[i] = [];
+                            this.sphereIndexes[i] = [];
+                            for (var j in this.products[i].item) {
+                                for (var k in this.products[i].item[j].sphere) {
+                                    var isNegative = false;
+                                    var sphere = this.products[i].item[j].sphere[k].sphere;
+                                    if (sphere < 0) {
+                                        isNegative = true;
+                                        sphere *= -1;
+                                    }
+                                    var floor = Math.floor(sphere);
+                                    var index = floor.toString();
+                                    if (isNegative) {
+                                        index = "-"+index;
+                                        sphere *= -1;
+                                    }
+                                    if (this.spheres[i][index] == null) this.spheres[i][index] = [];
+                                    if (this.spheres[i][index].indexOf(sphere) == -1) {
+                                        this.spheres[i][index].push(sphere);
+                                        this.sphereIndexes[i] = Object.keys(this.spheres[i]);
+                                    }
+                                }
+                            }
+                            this.sphereIndexes[i].sort();
                         }
                     }else{
                         console.log(response);
