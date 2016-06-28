@@ -1,438 +1,487 @@
-<modal #modal>
-    <modal-header [keyboard]="false" [backdrop]="'static'" [show-close]="true">
-        <h4 class="modal-title">I'm a modal!</h4>
-    </modal-header>
-    <modal-body>
-        <form [ngFormModel]="validateForm" >
-            <div class="col-xs-12 col-md-6 col-sm-6 userInfo">
-                <h2>Information Client</h2>
-                <div class="row user">
-                    <div class="col-xs-12 col-md-6 col-sm-6">
-                        <div class="form-group ">
-                            <label for="lastName">Nom</label>
-                            <input   [(ngModel)]="model.lastName" id="lastName" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="firstName">Prénom</label>
-                            <input  [(ngModel)]="model.firstName"  id="firstName" class="form-control">
-                        </div>
-                    </div>
+<div class="content admin-validation">
+    <button (click)="modalSubscribe.open(lg)" class="add-modale">Add a User</button>
 
-                    <div class="col-xs-12 col-md-6 col-sm-6">
-                        <div class="form-group ">
-                            <label for="phone">Téléphone</label>
-                            <input  [(ngModel)]="model.phone"  id="phone" class="form-control">
+    <modal #modalSubscribe (onClose)="closed()">
+        <modal-body>
+            <user-subscribe></user-subscribe>
+        </modal-body>
+        <modal-footer>
+            <button type="button" class="default" data-dismiss="modal" (click)="modalSubscribe.close()">Fermer</button>
+        </modal-footer>
+    </modal>
+
+    <modal #modal (onDismiss)="dismissed()">
+        <modal-body>
+            <form class="validate-form" [ngFormModel]="validateForm" >
+                <div class="row">
+                    <div class="col-md-12 userInfo">
+                        <h2>Information Client</h2>
+                        <hr>
+                        <div class="row user">
+                            <div class="col-md-12">
+                                <select [(ngModel)]="currentType">
+                                    <option *ngFor="#type of userType; #i = index" [value]="type.type">{{type.name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="lastName">Nom</label>
+                                    <input   [(ngModel)]="model.lastName" id="lastName" class="form-control">
+                                </div>
+                                <div>
+                                    <label for="firstName">Prénom</label>
+                                    <input  [(ngModel)]="model.firstName"  id="firstName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="phone">Téléphone</label>
+                                    <input  [(ngModel)]="model.phone"  id="phone" class="form-control">
+                                </div>
+                                <div>
+                                    <label for="mail">E-mail</label>
+                                    <input  [(ngModel)]="model.mail"  id="mail" class="form-control">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="mail">E-mail</label>
-                            <input  [(ngModel)]="model.mail"  id="mail" class="form-control">
+                        <div *ngIf="model.director.mail">
+                            <h2>Directeur</h2>
+                            <hr>
+                            <div class="row user director">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="directorLastName">Nom</label>
+                                        <input  [(ngModel)]="model.director.lastName"  id="directorLastName" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="directorFirstName">Prénom</label>
+                                        <input  [(ngModel)]="model.director.firstName"  id="directorFirstName" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="directorPhone">Téléphone</label>
+                                        <input  [(ngModel)]="model.director.phone"  id="directorPhone" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="directorMail">E-mail</label>
+                                        <input  [(ngModel)]="model.director.mail"  id="directorMail" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Banque</h2>
+                        <hr>
+                        <div class="row bankInfo">
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="iban">IBAN</label>
+                                    <input  [(ngModel)]="model.IBAN" id="iban" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="bic">BIC</label>
+                                    <input  [(ngModel)]="model.BIC" id="bic" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="financialMail">BIC</label>
+                                    <input  [(ngModel)]="model.financialMail" id="financialMail" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="checkbox ">
+                                    <label for="paymentState"><input id="paymentState" type="checkbox" [(ngModel)]="model.paymentState"> Metre en place le paiement</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="central">Central ou Enseigne</label>
+                                    <input  [(ngModel)]="model.central"  id="central" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="comment">Commentaire</label>
+                                    <input  [(ngModel)]="model.central"  id="comment" class="form-control">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row user director">
-                    <div *ngIf="model.director" class="col-xs-12 col-md-12 col-sm-12">
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="directorLastName">Nom</label>
-                                <input  [(ngModel)]="model.director.lastName"  id="directorLastName" class="form-control">
+                <div class="row userInfo">
+                    <div class="col-md-12">
+                        <h2>Magasin Associés</h2>
+                        <hr>
+                        <div *ngFor="#shop of model.associateShop">
+                            <div class="row shop">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="socialReason">Raison Social</label>
+                                        <input  [(ngModel)]="shop.socialReason"  id="socialReason" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="shopName">Nom du magasin</label>
+                                        <input  [(ngModel)]="shop.name"  id="shopName" class="form-control">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="directorFirstName">Prénom</label>
-                                <input  [(ngModel)]="model.director.firstName"  id="directorFirstName" class="form-control">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="shopAdress">Adresse</label>
+                                        <input  [(ngModel)]="shop.adress" id="shopAdress" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="shopAdress2">Adresse 2</label>
+                                        <input  [(ngModel)]="shop.adress2" id="shopAdress2" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="shopCity">Ville</label>
+                                        <input  [(ngModel)]="shop.city" id="shopCity" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="shopZipCode">Code Postal</label>
+                                        <input  [(ngModel)]="shop.zipCode"  id="shopZipCode" class="form-control">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="directorPhone">Téléphone</label>
-                                <input  [(ngModel)]="model.director.phone"  id="directorPhone" class="form-control">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="shopMobile">Numéro de Portable du magasin</label>
+                                        <input  [(ngModel)]="shop.mobile"  id="shopMobile" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="shopPhone">Numéro de Téléphone Fix</label>
+                                        <input  [(ngModel)]="shop.phone"  id="shopPhone" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="shopFax">Numéro de Fax</label>
+                                        <input  [(ngModel)]="shop.fax" id="shopFax" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="shopMail">Email du magasin</label>
+                                        <input  [(ngModel)]="shop.mail"  id="shopMail" class="form-control">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="directorMail">E-mail</label>
-                                <input  [(ngModel)]="model.director.mail"  id="directorMail" class="form-control">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="tva">TVA</label>
+                                        <input  [(ngModel)]="shop.tva" id="tva" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="siret">Numéro Siret</label>
+                                        <input  [(ngModel)]="shop.siret" id="siret" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="adeli">Numéro Adeli</label>
+                                        <input  [(ngModel)]="shop.adeli" id="adeli" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label >Présence d'un coffre de nuit ?</label><br>
+                                        <label class="radio-inline"><input type="radio" name="nightBox"  (click)="shop.nightBox='true'">Oui</label>
+                                        <label class="radio-inline"><input type="radio" name="nightBox" (click)="shop.nightBox='false'"b>Non</label>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row bankInfo">
-                    <div class="col-xs-12 col-md-6 col-sm-6">
-                        <div class="form-group ">
-                            <label for="iban">IBAN</label>
-                            <input  [(ngModel)]="model.IBAN" id="iban" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6 col-sm-6">
-                        <div class="form-group ">
-                            <label for="bic">BIC</label>
-                            <input  [(ngModel)]="model.BIC" id="bic" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6 col-sm-6">
-                        <div class="form-group ">
-                            <label for="financialMail">BIC</label>
-                            <input  [(ngModel)]="model.financialMail" id="financialMail" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6 col-sm-6">
-                        <div class="checkbox ">
-                            <label for="paymentState"><input id="paymentState" type="checkbox" [(ngModel)]="model.paymentState"> Metre en place le paiement</label>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <select id="day-selector" #s (change)="changeCurrentDay(s.value)">
+                                        <option *ngFor="#day of days; #j = index" [value]="day.name">{{day.name}}</option>
+                                    </select>
+                                    <div class="row time-display">
+                                        <div class="col-sm-6 timepicker-container">
+                                            <label>Matin</label>
+                                            <timepicker class="timepicker" [(ngModel)]="timepickerDay.data.morning.opening" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]=ismeridian></timepicker>
+                                            <p>à</p>
+                                            <timepicker class="timepicker" [(ngModel)]="timepickerDay.data.morning.closing" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+                                        </div>
+                                        <div class="col-sm-6 timepicker-container">
+                                            <label>Après-Midi</label>
+                                            <timepicker class="timepicker" [(ngModel)]="timepickerDay.data.afternoon.opening" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+                                            <p>à</p>
+                                            <timepicker class="timepicker" [(ngModel)]="timepickerDay.data.afternoon.closing" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+                                        </div>
+                                        <button class="default" (click)="addDay(i)">Valider Horaires</button>
+                                    </div>
+                                    <div class="resume-hours" *ngFor="#disponibility of shop.disponibility">
+                                        <h3>{{disponibility.day}}</h3>
+                                        <span>De {{disponibility.data.morning.opening|date:'HHmm'}} à {{disponibility.data.morning.closing|date:'HHmm'}}</span>
+                                        et
+                                        <span>De {{disponibility.data.afternoon.opening|date:'HHmm'}} à {{disponibility.data.afternoon.closing|date:'HHmm'}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="openHour">Heure d'ouberture</label>
+                                        <input type="time"  [(ngModel)]="shop.openHour" id="openHour" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="closeHour">Heure de fermeture</label>
+                                        <input  type="time" [(ngModel)]="shop.closeHour" id="closeHour" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-md-12 col-sm-12">
-                        <div class="form-group ">
-                            <label for="central">Central ou Enseigne</label>
-                            <input  [(ngModel)]="model.central"  id="central" class="form-control">
+                    <h2>Infos Administrateur</h2>
+                    <hr>
+                    <div class="col-md-12">
+                        <div class="row adminInfo">
+                            <div class="col-md-4">
+                                <div>
+                                    <label for="commercial">Commercial Associé</label>
+                                    <input  [(ngModel)]="model.commercial"  id="commercial" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <label for="lensPoint">Point Lentille</label>
+                                    <input  [(ngModel)]="model.lensPoint"  id="lensPoint" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <label for="giftPoint">Point Cadeaux</label>
+                                    <input  [(ngModel)]="model.giftPoint"  id="giftPoint" class="form-control">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-md-12 col-sm-12">
-                        <div class="form-group ">
-                            <label for="comment">Commentaire</label>
-                            <input  [(ngModel)]="model.central"  id="comment" class="form-control">
-                        </div>
+                    <div class="validate-button">
+                        <button class="btn" (click)="validateUser(model); modal.close()" type="button">Valider</button>
+                    </div>
+                </div>
+            </form>
+        </modal-body>
+    </modal>
+
+    <div class="col-lg-12 collapse-tab">
+        <div class="col-lg-12">
+            <div class="col-lg-4">
+                Name
+            </div>
+            <div class="col-lg-5">
+                Mail
+            </div>
+            <div class="col-lg-3">
+                Actions
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="col-lg-12 collapse-content">
+        <div class="product col-lg-12"  *ngFor='#user of users; #i = index;'>
+
+            <div class="collapse-head col-lg-12">
+                <div class="col-lg-4">
+                    <p>{{ user.firstName }} {{ user.lastName }}</p>
+                </div>
+                <div class="col-lg-5">
+                    <p>
+                        {{user.mail}}
+                    </p>
+                </div>
+                <div class="col-lg-3">
+                    <div class="col-lg-4">
+                        <button (click)="modal.open(); modifyUser(i)"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="col-lg-4">
+                        <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <h2>Magasin Associés</h2>
-                <div class="row associateShop" >
-                    <div class="row shop" *ngFor="#shop of model.associateShop">
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <div class="form-group ">
-                                <label for="socialReason">Raison Social</label>
-                                <input  [(ngModel)]="shop.socialReason"  id="socialReason" class="form-control">
-                            </div>
 
-                            <div class="form-group ">
-                                <label for="shopName">Nom du magasin</label>
-                                <input  [(ngModel)]="shop.name"  id="shopName" class="form-control">
-                            </div>
-
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-
-                            <div class="form-group ">
-                                <label for="shopAdress">Adresse</label>
-                                <input  [(ngModel)]="shop.adress" id="shopAdress" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="shopAdress2">Adresse 2</label>
-                                <input  [(ngModel)]="shop.adress2" id="shopAdress2" class="form-control">
-                            </div>
-
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="shopCity">Ville</label>
-                                <input  [(ngModel)]="shop.city" id="shopCity" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="shopZipCode">Code Postal</label>
-                                <input  [(ngModel)]="shop.zipCode"  id="shopZipCode" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="shopMobile">Numéro de Portable du magasin</label>
-                                <input  [(ngModel)]="shop.mobile"  id="shopMobile" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="shopPhone">Numéro de Téléphone Fix</label>
-                                <input  [(ngModel)]="shop.phone"  id="shopPhone" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="shopFax">Numéro de Fax</label>
-                                <input  [(ngModel)]="shop.fax" id="shopFax" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="shopMail">Email du magasin</label>
-                                <input  [(ngModel)]="shop.mail"  id="shopMail" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="tva">TVA</label>
-                                <input  [(ngModel)]="shop.tva" id="tva" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="siret">Numéro Siret</label>
-                                <input  [(ngModel)]="shop.siret" id="siret" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="adeli">Numéro Adeli</label>
-                                <input  [(ngModel)]="shop.adeli" id="adeli" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label >Présence d'un coffre de nuit ?</label>
-                                <label class="radio-inline"><input type="radio" name="nightBox"  (click)="shop.nightBox='true'">Oui</label>
-                                <label class="radio-inline"><input type="radio" name="nightBox" (click)="shop.nightBox='false'"b>Non</label>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <label>Jour d'ouverture</label>
-
-                            <div class="form-group ">
-                                <select class="form-control" id="openDay" [(ngModel)]="shop.openDay">
-                                    <option value="Lundi">Lundi</option>
-                                    <option value="Mardi">Mardi</option>
-                                    <option value="Mercredi">Mercredi</option>
-                                    <option value="Jeudi">Jeudi</option>
-                                    <option value="Vendredi">Vendredi</option>
-                                    <option value="Samedi">Samedi</option>
-                                    <option value="Dimanche">Dimanche</option>
-                                </select>
-                            </div>
-                            <p>au</p>
-                            <div class="form-group ">
-                                <select class="form-control" id="closeDay" [(ngModel)]="shop.closeDay">
-                                    <option value="Lundi">Lundi</option>
-                                    <option value="Mardi">Mardi</option>
-                                    <option value="Mercredi">Mercredi</option>
-                                    <option value="Jeudi">Jeudi</option>
-                                    <option value="Vendredi">Vendredi</option>
-                                    <option value="Samedi">Samedi</option>
-                                    <option value="Dimanche">Dimanche</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <div class="form-group ">
-                                <label for="openHour">Heure d'ouberture</label>
-                                <input type="time"  [(ngModel)]="shop.openHour" id="openHour" class="form-control">
-                            </div>
-                            <p>à</p>
-                            <div class="form-group ">
-                                <label for="closeHour">Heure de fermeture</label>
-                                <input  type="time" [(ngModel)]="shop.closeHour" id="closeHour" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-12 col-sm-12">
-                <div class="row adminInfo">
-                    <div class="col-xs-12 col-md-4 col-sm-4">
-                        <div class="form-group ">
-                            <label for="commercial">Commercial Associé</label>
-                            <input  [(ngModel)]="model.commercial"  id="commercial" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-4 col-sm-4">
-                        <div class="form-group ">
-                            <label for="lensPoint">Point Lentille</label>
-                            <input  [(ngModel)]="model.lensPoint"  id="lensPoint" class="form-control">
-                        </div>
-
-                    </div>
-                    <div class="col-xs-12 col-md-4 col-sm-4">
-                        <div class="form-group">
-                            <label for="giftPoint">Point Cadeaux</label>
-                            <input  [(ngModel)]="model.giftPoint"  id="giftPoint" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </modal-body>
-    <modal-footer>
-        <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="modal.dismiss()">Fermer</button>
-        <button class="btn btn-primary" (click)="validateUser()" type="button">Envoyé</button>
-    </modal-footer>
-</modal>
-
-<accordion [closeOthers]="true">
-
-
-    <accordion-group heading="{{i}} - {{user.central}}"  *ngFor='#user of users; #i = index'>
-        <button type="button" class="btn btn-default" (click)="modal.open(); modifyUser(i)">
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-        </button>
-            <div class="col-xs-12 col-md-6 col-sm-6 userInfo">
-                <h2>Information Client</h2>
-                <div class="row user">
-                    <div class="col-xs-12 col-md-6 col-sm-6">
-                        <label>Nom</label>
-                        <div class="well well-sm">
-                            {{user.lastName}}
-                        </div>
-                        <label>Prénom</label>
-                        <div class="well well-sm">
-                            {{user.firstName}}
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-md-6 col-sm-6">
-                        <label>Téléphone</label>
-                        <div class="well well-sm">
-                            {{user.phone}}
-                        </div>
-                        <label>E-mail</label>
-                        <div class="well well-sm">
-                            {{user.mail}}
-                        </div>
-                    </div>
-                </div>
-                <div class="row user director">
-                    <div *ngIf="user.director" class="col-xs-12 col-md-12 col-sm-12">
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <label>Nom</label>
+            <div class="col-lg-12 collapse-body" [ngClass]="{active: isOpen[i]}">
+                <div class="col-lg-12">
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <label>Téléphone:</label>
                             <div class="well well-sm">
-                                {{user.director.lastName}}
-                            </div>
-                            <label>Prénom</label>
-                            <div class="well well-sm">
-                                {{user.director.firstName}}
+                                {{ user.phone }}
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <label>Téléphone</label>
+                        <div class="col-lg-4">
+                            <label>IBAN:</label>
                             <div class="well well-sm">
-                                {{user.director.phone}}
+                                {{ user.IBAN }}
                             </div>
-                            <label>E-mail</label>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>BIC:</label>
                             <div class="well well-sm">
-                                {{user.director.mail}}
+                                {{ user.BIC }}
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row bankInfo">
-                    <div class="col-xs-12 col-md-6 col-sm-6">
-                        <label>IBAN</label>
-                        <div class="well well-sm">
-                            {{user.IBAN}}
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <label>Email financier:</label>
+                            <div class="well well-sm">
+                                {{ user.financialMail }}
+                            </div>
                         </div>
-                        <label>BIC</label>
-                        <div class="well well-sm">
-                            {{user.BIC}}
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6 col-sm-6">
-                        <label>E-mail Financier</label>
-                        <div class="well well-sm">
-                            {{user.financialMail}}
-                        </div>
-                        <div class="checkbox ">
-                            <label>Mise en place du paiement</label>
+                        <div class="col-lg-4">
+                            <label>Mise en place du paiement:</label>
                             <div class="well well-sm">
                                 <span *ngIf="user.paymentState">Oui</span>
                                 <span *ngIf="!user.paymentState">Non</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-md-12 col-sm-12">
-                        <label>Central ou Enseigne</label>
-                        <div class="well well-sm">
-                            {{user.central}}
+                        <div class="col-lg-4">
+                            <label>Enseigne:</label>
+                            <div class="well well-sm">
+                                {{ user.central }}
+                            </div>
                         </div>
-                        <label>Commentaire</label>
-                        <div class="well well-sm">
-                            {{user.comment}}
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <label>Commentaire:</label>
+                            <div class="well well-sm">
+                                {{ user.comment }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <h3>Magasin(s) associé(s)</h3>
+                        <div class="row shop" *ngFor="#shop of user.associateShop">
+                            <div class="col-xs-12 col-md-12 col-sm-12">
+                                <label>Raison Social</label>
+                                <div class="well well-sm">
+                                    {{shop.socialReason}}
+                                </div>
+                                <label>Nom du magasin</label>
+                                <div class="well well-sm">
+                                    {{shop.name}}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Adresse</label>
+                                <div class="well well-sm">
+                                    {{shop.adress}}
+                                </div>
+                                <label>Adresse 2</label>
+                                <div class="well well-sm">
+                                    {{shop.adress2}}
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Ville</label>
+                                <div class="well well-sm">
+                                    {{shop.city}}
+                                </div>
+                                <label>Code Postal</label>
+                                <div class="well well-sm">
+                                    {{shop.zipCode}}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Numéro de Portable du magasin</label>
+                                <div class="well well-sm">
+                                    {{shop.mobile}}
+                                </div>
+                                <label>Numéro de Téléphone Fix</label>
+                                <div class="well well-sm">
+                                    {{shop.phone}}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Numéro de Fax</label>
+                                <div class="well well-sm">
+                                    {{shop.fax}}
+                                </div>
+                                <label>Email du magasin</label>
+                                <div class="well well-sm">
+                                    {{shop.mail}}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>TVA</label>
+                                <div class="well well-sm">
+                                    {{shop.tva}}
+                                </div>
+                                <label>Numéro Siret</label>
+                                <div class="well well-sm">
+                                    {{shop.siret}}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Numéro Adeli</label>
+                                <div class="well well-sm">
+                                    {{shop.adeli}}
+                                </div>
+                                <label>Présence d'un coffre de nuit</label>
+                                <div class="well well-sm">
+                                    <span *ngIf="shop.nightBox">Oui</span>
+                                    <span *ngIf="!shop.nightBox">Non</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Jours d'ouverture</label>
+                                <div class="well well-sm">
+                                    {{shop.openDay}} au {{shop.closeDay}}
+                                </div>
+                                <label>Heures d'ouverture</label>
+                                <div class="well well-sm">
+                                    {{shop.openHour}} au {{shop.closeHour}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" *ngIf="user.director.mail">
+                        <h2>Directeur</h2>
+                        <div class="col-lg-4">
+                            <h3>Nom:</h3>
+                            <div class="well well-sm">
+                                {{user.director.lastName}} {{user.director.firstName}}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>Téléphone:</h3>
+                            <div class="well well-sm">
+                                {{user.director.phone}}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>Mail:</h3>
+                            <div class="well well-sm">
+                                {{user.director.phone}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6 col-sm-6">
-                <h2>Magasin Associés</h2>
-                <div class="row associateShop" >
-                    <div class="row shop" *ngFor="#shop of user.associateShop">
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <label>Raison Social</label>
-                            <div class="well well-sm">
-                                {{shop.socialReason}}
-                            </div>
-                            <label>Nom du magasin</label>
-                            <div class="well well-sm">
-                                {{shop.name}}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <label>Adresse</label>
-                            <div class="well well-sm">
-                                {{shop.adress}}
-                            </div>
-                            <label>Adresse 2</label>
-                            <div class="well well-sm">
-                                {{shop.adress2}}
-                            </div>
-
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <label>Ville</label>
-                            <div class="well well-sm">
-                                {{shop.city}}
-                            </div>
-                            <label>Code Postal</label>
-                            <div class="well well-sm">
-                                {{shop.zipCode}}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <label>Numéro de Portable du magasin</label>
-                            <div class="well well-sm">
-                                {{shop.mobile}}
-                            </div>
-                            <label>Numéro de Téléphone Fix</label>
-                            <div class="well well-sm">
-                                {{shop.phone}}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <label>Numéro de Fax</label>
-                            <div class="well well-sm">
-                                {{shop.fax}}
-                            </div>
-                            <label>Email du magasin</label>
-                            <div class="well well-sm">
-                                {{shop.mail}}
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <label>TVA</label>
-                            <div class="well well-sm">
-                                {{shop.tva}}
-                            </div>
-                            <label>Numéro Siret</label>
-                            <div class="well well-sm">
-                                {{shop.siret}}
-                            </div>
-                        </div>
-
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <label>Numéro Adeli</label>
-                            <div class="well well-sm">
-                                {{shop.adeli}}
-                            </div>
-                            <label>Présence d'un coffre de nuit</label>
-                            <div class="well well-sm">
-                                <span *ngIf="shop.nightBox">Oui</span>
-                                <span *ngIf="!shop.nightBox">Non</span>
-                            </div>
-
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-sm-6">
-                            <label>Jours d'ouverture</label>
-                            <div class="well well-sm">
-                                {{shop.openDay}} au {{shop.closeDay}}
-                            </div>
-                            <label>Heures d'ouverture</label>
-                            <div class="well well-sm">
-                                {{shop.openHour}} au {{shop.closeHour}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </accordion-group>
-
-
-</accordion>
-
+        </div>
+    </div>
+</div>

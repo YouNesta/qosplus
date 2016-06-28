@@ -12,6 +12,7 @@ import {ProductPriceComponent} from "./product-price.component";
 import {ProductAddCartComponent} from "./product-add-cart.component";
 import {ProductCartComponent} from "./product-cart.component";
 import {ProductCommandComponent} from "./product-command-list.component";
+import {ProductPaymentComponent} from "./product-facture.component";
 
 
 
@@ -19,7 +20,7 @@ import {ProductCommandComponent} from "./product-command-list.component";
 @Component({
     template:
         "<router-outlet></router-outlet>",
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
 })
 
 @RouteConfig([
@@ -28,7 +29,8 @@ import {ProductCommandComponent} from "./product-command-list.component";
     { path: "/price", name: "Price", component: ProductPriceComponent},
     { path: "/cart", name: "Cart", component: ProductCartComponent},
     { path: "/addCart", name: "AddCart", component: ProductAddCartComponent},
-    { path: "/command", name: "Command", component: ProductCommandComponent}
+    { path: "/command", name: "Command", component: ProductCommandComponent},
+    { path: "/paiements", as: "Payment", component: ProductPaymentComponent},
 ])
 
 

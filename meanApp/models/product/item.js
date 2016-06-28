@@ -22,7 +22,7 @@ var ItemSchema = new mongoose.Schema({
         required : false
     },
     addition:{
-        type: Number,
+        type: String,
         required : false
     },
     sphere:{

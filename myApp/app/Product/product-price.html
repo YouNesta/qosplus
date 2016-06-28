@@ -1,7 +1,4 @@
 <modal #modal>
-    <modal-header>
-        <h4 class="modal-title">I'm a modal!</h4>
-    </modal-header>
     <modal-body>
         <h2>{{product.name}}</h2>
         <h2>{{product.reference}}</h2>
@@ -12,10 +9,6 @@
             </div>
         </form>
     </modal-body>
-    <modal-footer>
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close()">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="updatePrice(); modal.close()">Ok</button>
-    </modal-footer>
 </modal>
 
 
@@ -54,24 +47,35 @@
     </modal-footer>
 </modal>
 
+<div class="content product-price">
+    <h2>Price</h2>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button  (click)="addPrice(modalAdd)" class="modale-button">Open</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table>
+                    <thead>
+                        <td>Nom</td>
+                        <td>Reference</td>
+                        <td *ngFor="#price of tableHead"> {{price}}</td>
+                        <td></td>
+                    </thead>
+                    <tr  *ngFor='#product of products; #i = index'>
+                        <td>{{product.name}}</td>
+                        <td>{{product.reference}}</td>
+                        <td *ngFor="#price of product.price"> {{price.price}}</td>
+                        <td>
+                            <button  (click)="editPrice(modal, product)">Open</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-<td><button  (click)="addPrice(modalAdd)">Open</button></td>
-<h1>Price</h1>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Nom</th>
-        <th>Reference</th>
-        <th *ngFor="#price of tableHead"> {{price}}</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-        <tr  *ngFor='#product of products; #i = index'>
-            <td>{{product.name}}</td>
-            <td>{{product.reference}}</td>
-            <td *ngFor="#price of product.price"> {{price.price}}</td>
-            <td><button  (click)="editPrice(modal, product)">Open</button></td>
-        </tr>
-    </tbody>
-</table>

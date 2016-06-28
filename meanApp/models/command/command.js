@@ -9,10 +9,6 @@ var CommandSchema = new mongoose.Schema({
         type: Date,
         required : false
     },
-    facture:{
-        type: String,
-        required : false
-    },
     orderForm:{
         type: String,
         required : false
@@ -23,6 +19,10 @@ var CommandSchema = new mongoose.Schema({
     },
     client:{
         type: String,
+        required: false
+    },
+    shop:{
+        type: Object,
         required: false
     },
     product: {
@@ -42,8 +42,12 @@ var CommandSchema = new mongoose.Schema({
         required: true
     },
     payment:{
-        type: Array,
+        type: String,
         required: false
+    },
+    porter:{
+        type: String,
+        required: true
     }
 });
 

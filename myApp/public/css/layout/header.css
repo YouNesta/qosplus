@@ -1,114 +1,204 @@
-header nav li, header nav-user li {
-  display: inline-block;
-  float: right; }
-
-header nav {
-  background-color: #7B19F4;
-  color: #FFF;
-  font-family: 'Roboto', sans-serif; }
-  header nav .container, header nav .container-fluid {
-    padding: 0 !important; }
-  header nav .logo {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 75px; }
-    header nav .logo img {
-      width: 93px; }
-  header nav .header-navbar {
-    height: 93px;
-    max-width: 100%; }
-    header nav .header-navbar li {
-      border-right: 1px solid #FFF;
-      height: 93px;
-      text-transform: uppercase;
-      padding: 0;
-      animation-duration: 1s;
-      font-size: 12px; }
-      header nav .header-navbar li.selected a {
-        background-color: #CCA6FB;
-        color: #000; }
-      header nav .header-navbar li a {
-        clear: both;
-        color: #FFF;
-        text-decoration: none;
-        display: block;
-        height: 100%;
-        width: 100%;
-        padding: 15px;
-        padding-top: 40px;
-        vertical-align: middle; }
-      header nav .header-navbar li a:hover {
-        background-color: #CCA6FB;
-        color: #000; }
-    header nav .header-navbar li:first-child {
-      border: 0;
-      margin-right: 20px; }
-  header nav .menu-mobile {
-    background-color: transparent;
-    border: 0;
-    height: 40px;
-    float: right;
-    display: none;
-    position: absolute;
-    width: 10%;
-    margin-left: 90%;
-    margin-top: 5%; }
-    header nav .menu-mobile img {
-      height: 100%; }
-
-header nav-admin #sidebar-wrapper {
-  z-index: 1000;
-  position: fixed;
+header {
+  background: url("../../public/img/header-bk.png") no-repeat center;
+  background-size: cover;
+  width: 100%;
+  z-index: 100;
   top: 0;
-  width: 250px;
-  bottom: 0;
-  background: #000; }
-  header nav-admin #sidebar-wrapper .sidebar-nav {
-    background: #2b303b;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: rgba(120, 129, 149, 0.92); }
-    header nav-admin #sidebar-wrapper .sidebar-nav li {
-      line-height: 40px; }
+  border-bottom: 1px solid #10cfbd;
+  color: #fff; }
+  header nav {
+    font-family: 'Open Sans', sans-serif; }
+    header nav li {
+      display: inline-block;
+      float: right; }
+    header nav .container, header nav .container-fluid {
+      padding: 0 !important; }
+    header nav .logo {
+      font-size: 25px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      margin-left: 50px; }
+    header nav .header-navbar {
+      margin-top: 30px;
+      max-width: 100%; }
+      header nav .header-navbar li {
+        text-transform: uppercase;
+        padding: 0;
+        font-size: 15px;
+        font-weight: 600; }
+        header nav .header-navbar li.selected a {
+          background-color: #CCA6FB;
+          color: #fff; }
+        header nav .header-navbar li a {
+          clear: both;
+          color: #fff;
+          text-decoration: none;
+          display: block;
+          letter-spacing: 1px;
+          height: 100%;
+          width: 100%;
+          padding: 15px;
+          vertical-align: bottom; }
+        header nav .header-navbar li a:hover {
+          border-bottom: 2px solid #10cfbd; }
+      header nav .header-navbar li:first-child {
+        border: 0; }
+    header nav .login-button {
+      width: auto;
+      font-weight: 100;
+      margin-top: 30px;
+      padding-left: 40px;
+      padding-right: 40px;
+      background-color: transparent;
+      border: solid 1px rgba(255, 255, 255, 0.4); }
+    header nav .menu-mobile {
+      background-color: transparent;
+      border: 0;
+      height: 40px;
+      float: right;
+      display: none;
+      position: absolute;
+      width: 10%;
+      margin-left: 90%;
+      margin-top: 5%; }
+      header nav .menu-mobile img {
+        height: 100%; }
+    header nav .hero {
+      position: relative;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 10px;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      background: url("../../public/img/glasses-lenses.jpg") no-repeat center;
+      background-size: 100% 100%; }
+      header nav .hero h1 {
+        letter-spacing: 20px;
+        font-size: 70px; }
+      header nav .hero img {
+        width: 100%; }
+      header nav .hero div {
+        margin-top: 20px; }
+        header nav .hero div a {
+          border: 1px solid #FFF;
+          color: #FFF;
+          border-radius: 17px;
+          letter-spacing: 2px;
+          padding: 7px 15px; }
+          header nav .hero div a:hover {
+            background-color: #FFF;
+            color: #000;
+            text-decoration: none; }
+    header nav .header-content {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center; }
+      header nav .header-content h1 {
+        letter-spacing: 1px;
+        font-weight: 300;
+        font-size: 36px;
+        margin-top: 80px;
+        font-family: "Roboto";
+        margin-bottom: 40px; }
+      header nav .header-content span {
+        font-weight: normal;
+        font-size: 17px;
+        display: block; }
+      header nav .header-content .header-button {
+        margin-top: 40px;
+        margin-bottom: 100px;
+        font-weight: 300; }
+  header nav-admin #sidebar-wrapper {
+    background: #000; }
+    header nav-admin #sidebar-wrapper .sidebar-nav {
+      background: #2b303b;
+      color: rgba(120, 129, 149, 0.92); }
       header nav-admin #sidebar-wrapper .sidebar-nav li a {
-        display: block;
         color: #999999; }
         header nav-admin #sidebar-wrapper .sidebar-nav li a:hover {
-          text-decoration: none;
           color: #fff;
           background: rgba(255, 255, 255, 0.2); }
-        header nav-admin #sidebar-wrapper .sidebar-nav li a:active, header nav-admin #sidebar-wrapper .sidebar-nav li a:focus {
-          text-decoration: none; }
-      header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) {
+      header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a.active {
+        color: white; }
+      header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa {
+        background: #21252d;
+        color: rgba(120, 129, 149, 0.92); }
+      header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand {
+        height: 60px;
         margin-bottom: 30px; }
-        header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a {
-          padding-left: 20px; }
-          header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a.active {
+        header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a {
+          text-align: center;
+          font-size: 16px;
+          line-height: 60px;
+          background-color: #242731;
+          color: #9eacb5; }
+          header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover {
+            color: #fff; }
+  header nav-user #sidebar-wrapper {
+    background: #ffffff; }
+    header nav-user #sidebar-wrapper .sidebar-nav {
+      background: rgba(130, 146, 179, 0.35);
+      color: white; }
+      header nav-user #sidebar-wrapper .sidebar-nav li a {
+        color: black; }
+        header nav-user #sidebar-wrapper .sidebar-nav li a:hover {
+          color: white;
+          background: rgba(108, 108, 108, 0.69); }
+      header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a.active {
+        color: white; }
+      header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa {
+        background: rgba(165, 185, 225, 0);
+        color: black; }
+      header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand {
+        height: 60px;
+        margin-bottom: 30px; }
+        header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand a {
+          text-align: center;
+          font-size: 16px;
+          line-height: 60px;
+          background-color: rgba(186, 204, 255, 0);
+          color: black; }
+          header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover {
             color: white; }
-          header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa {
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            line-height: 40px;
-            background: #21252d;
-            color: rgba(120, 129, 149, 0.92);
-            font-size: 18px;
-            position: absolute;
-            right: 30px; }
-    header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand {
-      height: 60px;
-      margin-bottom: 30px; }
-      header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a {
-        text-align: center;
-        font-size: 16px;
-        line-height: 60px;
-        background-color: #242731;
-        color: #9eacb5; }
-        header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a:hover {
-          color: #fff; }
+  header nav-admin #sidebar-wrapper, header nav-user #sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    width: 250px;
+    bottom: 0; }
+    header nav-admin #sidebar-wrapper .sidebar-nav, header nav-user #sidebar-wrapper .sidebar-nav {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0; }
+      header nav-admin #sidebar-wrapper .sidebar-nav li, header nav-user #sidebar-wrapper .sidebar-nav li {
+        line-height: 40px; }
+        header nav-admin #sidebar-wrapper .sidebar-nav li a, header nav-user #sidebar-wrapper .sidebar-nav li a {
+          display: block; }
+          header nav-admin #sidebar-wrapper .sidebar-nav li a:hover, header nav-user #sidebar-wrapper .sidebar-nav li a:hover {
+            text-decoration: none; }
+          header nav-admin #sidebar-wrapper .sidebar-nav li a:active, header nav-admin #sidebar-wrapper .sidebar-nav li a:focus, header nav-user #sidebar-wrapper .sidebar-nav li a:active, header nav-user #sidebar-wrapper .sidebar-nav li a:focus {
+            text-decoration: none; }
+        header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand), header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) {
+          margin-bottom: 30px; }
+          header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a, header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a {
+            padding-left: 20px; }
+            header nav-admin #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa, header nav-user #sidebar-wrapper .sidebar-nav li:not(.sidebar-brand) a .fa {
+              width: 40px;
+              height: 40px;
+              text-align: center;
+              line-height: 40px;
+              font-size: 18px;
+              position: absolute;
+              right: 30px; }
+      header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand, header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand {
+        height: 60px;
+        margin-bottom: 30px; }
+        header nav-admin #sidebar-wrapper .sidebar-nav .sidebar-brand a, header nav-user #sidebar-wrapper .sidebar-nav .sidebar-brand a {
+          text-align: center;
+          font-size: 16px;
+          line-height: 60px; }
 
 @media screen and (max-width: 991px) {
   header nav li, header nav-user li {

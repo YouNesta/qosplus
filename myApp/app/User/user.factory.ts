@@ -6,6 +6,7 @@ import {Headers} from "angular2/http";
 import {AuthHttp, JwtHelper} from 'angular2-jwt';
 import {Router} from "angular2/router";
 import {API} from "../Config/api";
+import {User} from "./user";
 
 @Injectable()
 
@@ -19,6 +20,8 @@ export class UserFactory {
     save(user, shops, director, option){
       var data =  JSON.stringify({user, shops, director, option});
         var headers = new Headers();
+        console.log(headers);
+        console.log(this.apiUrl);
         headers.append('Content-Type', 'application/json');
 
         this.authHttp
@@ -64,6 +67,47 @@ export class UserFactory {
             })
     }
 
+    getUserByMail(mail){
+        console.log(mail);
+        var data =  JSON.stringify({mail});
+        var headers = new Headers();
+        console.log(headers);
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'getByMail',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    getUserById(id){
+        var data =  JSON.stringify({id});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'getById',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    getShops(ids){
+        var data =  JSON.stringify({ids});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'getShops',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
     logout(){
         localStorage.removeItem('token');
         localStorage.removeItem('user');
@@ -87,8 +131,13 @@ export class UserFactory {
         return 0;
     }
     getMails(){
-        return  this.authHttp
+        return this.authHttp
             .get(this.apiUrl+'getMails')
+            .map(res => res.json())
+    }
+    getAllShops(){
+        return  this.authHttp
+            .get(this.apiUrl+'getAllShops')
             .map(res => res.json())
     }
 
@@ -97,6 +146,7 @@ export class UserFactory {
         var data =  JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        console.log(headers);
         console.log(this.apiUrl);
         return this.authHttp
             .post(this.apiUrl + 'login',
@@ -119,6 +169,7 @@ export class UserFactory {
         var data =  JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        console.log(headers);
         console.log(this.apiUrl);
         return this.authHttp
             .post(this.apiUrl + 'login',
@@ -145,7 +196,7 @@ export class UserFactory {
         headers.append('Content-Type', 'application/json');
 
         return this.authHttp
-            .put(this.apiUrl + "",
+            .put(this.apiUrl + "edit",
                 data, {
                     headers: headers
                 })
@@ -163,12 +214,34 @@ export class UserFactory {
     };
 
     getProfile(user){
+
         var data =  JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
         return this.authHttp
             .post(this.apiUrl + "profile",
+            data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .map(response => {
+                if (response) {
+                    return response
+                }else{
+                    console.log("Error")
+                }
+                return response;
+            })
+    };
+
+    getUserShops(user){
+        var data =  JSON.stringify({user});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + "getUserShops",
             data, {
                     headers: headers
                 })
@@ -204,14 +277,14 @@ export class UserFactory {
             })
     };
 
-    getUserCommands(user){
+    getUserPayments(user){
         var data = JSON.stringify({user});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
         return this.authHttp
             .post(this.apiUrl + "payments",
-                data, {
+            data, {
                     headers: headers
                 })
             .map(response => response.json())

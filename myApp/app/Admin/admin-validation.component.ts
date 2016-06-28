@@ -16,22 +16,60 @@ import {FormValidator} from "../Config/form-validator";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {UserFactory} from "../User/user.factory";
 import {AlertService} from "../Tools/alert";
+import {HomeSubscribeComponent} from "../Home/home-subscribe.component";
+import {ProductFactory} from "../Product/product.factory";
+import {MailManager} from "../lib/mail-manager";
+import {Timepicker} from "ng2-bootstrap";
 
 @CanActivate(() => tokenNotExpired('token'))
 
 
 @Component({
     templateUrl: "app/Admin/admin-validation.html",
-    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES]
+    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent, Timepicker],
+    providers: [ AdminFactory],
+    bindings: [MailManager]
 })
 
 
 
 export class AdminValidationComponent {
+
+    public hstep:number = 1;
+    public mstep:number = 1;
+    public ismeridian:boolean = false;
+    public hour:Array = [];
+    public mytime:Date = new Date();
+
+    public days = [
+            { name: "Lundi" },
+            { name: "Mardi" },
+            { name: "Mercredi" },
+            { name: "Jeudi" },
+            { name: "Vendredi" },
+            { name: "Samedi" },
+            { name: "Dimanche" },
+        ];
+    public selectedDay = "Lundi";
+    public timepickerDay = {
+            day: "",
+        data: {
+                morning: {
+                        opening: new Date,
+                        closing: new Date
+                    },
+                afternoon: {
+                        opening: new Date,
+                        closing: new Date
+                    }
+            }
+    };
+
     model = {
         "_id":"",
         "state":0,
         "role":1,
+        "type":{},
         "lastName":"fdvcx ",
         "firstName":"efvdscxw erzdcxw",
         "phone":"06.59.90.12.05",
@@ -64,10 +102,6 @@ export class AdminValidationComponent {
                 "adeli":876545678987654,
                 "nightBox":true,
                 "transporteur":"Mathieu",
-                "openDay":"Lun",
-                "closeDay":"Lun",
-                "openHour":"10:30",
-                "closeHour":"10:11",
                 "__v":0
             }
         ],
@@ -100,10 +134,16 @@ export class AdminValidationComponent {
     };
     validateForm: ControlGroup;
     alertService: AlertService;
+    mailService: MailManager;
     users = [];
+    isOpen = [];
 
-    constructor(public adminService: AdminFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => AlertService)) alertService){
-       this.alertService = alertService;
+    userType: {};
+    currentType: number;
+
+    constructor(public adminService: AdminFactory,public productService: ProductFactory, public service: UserFactory, fb: FormBuilder, formValidator: FormValidator, @Inject(forwardRef(() => MailManager)) mailService, @Inject(forwardRef(() => AlertService)) alertService){
+        this.alertService = alertService;
+        this.mailService = mailService;
         this.validateForm = fb.group({
             'name': ['', Validators.compose([
                 /* Validators.required,
@@ -124,21 +164,14 @@ export class AdminValidationComponent {
             'mobile': ['', Validators.compose([
             ])]
         });
-
-        this.getUnvalidateUser();
-    }
-
-    modifyUser(i){
-        this.model = this.users[i];
-    }
-    validateUser(){
-        this.service.updateUser(this.model)
+        this.productService.countProductPrice()
             .subscribe(
-                res => {
-                    if(res.success){
-                        this.alertService.addAlert('success', res.message);
+                response => {
+                    if(response.success){
+                        this.userType = response.data;
+                        this.alertService.addAlert('success', response.message);
                     }else{
-                        this.alertService.addAlert('warning', res.message);
+                        this.alertService.addAlert('warning', response.message);
                     }
                 },
                 err => {
@@ -146,9 +179,56 @@ export class AdminValidationComponent {
                 },
                 () => console.log('Authentification')
             );
+
+
+        this.getUnvalidateUser();
+    }
+
+    modifyUser(i){
+        this.model = this.users[i];
+    }
+
+    validateUser(){
+                this.model.state = true;
+                for(var i in this.userType){
+                    if(this.userType[this.currentType] != 'undefined'){
+                        this.model.type = this.userType[this.currentType-1];
+                    }else{
+                        this.model.type = this.userType[0];
+                    }
+                }
+
+                this.service.updateUser( this.model)
+            .subscribe(
+                response => {
+                    if(response.success){
+                        this.alertService.addAlert('success', response.message);
+                        this.mailService.validateUser( this.model)
+                            .subscribe(
+                                response => {
+                                    if(response.success){
+                                        console.log(response);
+                                    }
+                                },
+                                err => {
+                                    console.log(err);
+                                },
+                                () => console.log('Sended')
+                            )
+                    }else{
+                        this.alertService.addAlert('warning', response.message);
+                    }
+                },
+                err => {
+                    this.alertService.addAlert('danger', 500);
+                },
+                () => {this.getUnvalidateUser()}
+            );
         
     }
-    
+    closed(){
+        this.getUnvalidateUser();
+    }
     getUnvalidateUser(){
         this.adminService.getUnvalidateUser()
             .subscribe(
@@ -169,8 +249,11 @@ export class AdminValidationComponent {
 
                             }
                             $this.users[i].isCollapsed = true;
-                        });
 
+                        });
+                        for(var i in this.users){
+                            this.isOpen.push(false);
+                        }
                     }else{
                         console.log(response);
                     }

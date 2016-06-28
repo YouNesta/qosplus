@@ -1,61 +1,190 @@
-<modal #modal>
-    <modal-header>
-        <h4 class="modal-title">I'm a modal!</h4>
-    </modal-header>
-    <modal-body>
-<product-add [modal]="modal"></product-add>
-    </modal-body>
-    <modal-footer>
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="modal.close()">Ok</button>
-    </modal-footer>
-</modal>
+<div class="content product-list">
+    <modal #modal>
+        <modal-body>
+            <product-add [modal]="modal"></product-add>
+        </modal-body>
+    </modal>
 
-<modal #modalCart>
-    <modal-header>
-        <h4 class="modal-title">Add a product to the cart</h4>
-    </modal-header>
-    <modal-body>
-        <product-add-cart [modal]="modalCart" [productCart]="productCart"></product-add-cart>
-    </modal-body>
-    <modal-footer>
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalCart.dismiss()">Cancel</button>
-        <button type="button" class="btn btn-primary" (click)="modalCart.close()">Ok</button>
-    </modal-footer>
-</modal>
+    <modal #modalCart>
+        <modal-body>
+            <product-add-cart [modal]="modalCart" [productCart]="productCart"></product-add-cart>
+        </modal-body>
+    </modal>
 
-<h1>Products</h1>
-<button (click)="modal.open()">Open</button>
+    <button (click)="modal.open()" class="add-modale">Add a product</button>
 
+    <div class="col-lg-12 collapse-tab">
+        <div class="col-lg-12">
+            <div class="col-lg-1">
+                <button (click)="deleteProducts()" class="icon-button">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="col-lg-2">
+                Visuel Produit
+            </div>
+            <div class="col-lg-3">
+               Nom Commercial
+            </div>
+            <div class="col-lg-2">
+                Prix
+            </div>
+            <div class="col-lg-1">
+                Réference
+            </div>
+            <div class="col-lg-3">
+                Status
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-lg-12 collapse-content">
+        <div class="product col-lg-12"  *ngFor='#product of products; #i = index;'>
 
-<accordion [closeOthers]="true">
+            <div class="collapse-head col-lg-12">
+                <div class="col-lg-1">
+                    <input  (change)="selectProduct(i)" type="checkbox">
+                </div>
+                <div class="col-lg-2">
+                    <img class="img-responsive" [src]="product.image[0].small" alt="{{product.name}}">
+                </div>
+                <div class="col-lg-3">
+                    <h3> {{product.name}}</h3>
+                </div>
+                <div class="col-lg-2">
+                    <p>
+                        {{product.name}}
+                    </p>
+                </div>
+                <div class="col-lg-1">
+                    <h3>
+                        {{product.reference}}
+                    </h3>
+                </div>
+                <div class="col-lg-3">
+                    <div class="col-lg-4">
+                        <button class="status"><span class="fa status-color status-{{product.status}}"></span></button>
+                    </div>
+                    <div class="col-lg-4">
+                        <button (click)="loadModalProduct(product, modalCart);"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="col-lg-4">
+                        <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    </div>
 
-
-
-    <accordion-group heading="{{product.reference}} - {{product.name}}"  *ngFor='#product of products; #i = index '>
-
-        <img [src]="product.image" alt="">
-
-        {{product.name}}
-        {{product.material}}
-        {{product.color}}
-        {{product.hydrophily}}
-        {{product.price}}
-        <button (click)="loadModalProduct(product, modalCart);">Cart</button>
-
-        <div *ngFor="#item of product.item">
-           {{item.axis}}
-           {{item.condition}}
-           {{item.cylinder}}
-           {{item.diameter}}
-           {{item.radius}}
-            <div *ngFor="#sphere of item.sphere">
-               {{sphere.reference}}
-               {{sphere.stock}}
-               {{sphere.sphere}}
+                </div>
             </div>
 
-       </div>
-    </accordion-group>
-</accordion>
+            <div class="col-lg-12 collapse-body text-center" [ngClass]="{active: isOpen[i]}">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <img class="img-responsive" [src]="product.image[0].medium" alt="{{product.name}}">
+                </div>
+                <div class="col-lg-12">
+                    <div class="col-lg-8">
+                        <div class="col-lg-12"></div>
+                        <div class="col-lg-12">
+                            <h3>Prix</h3>
+                            <div class="col-lg-3" *ngFor="#price of product.price">
+                                <div class="well well-sm">
+                                    {{price.name}}: <br>
+                                    {{price.price}} €
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <h3>Price D'achat Moyen Pondéré</h3>
+                            <div class="col-lg-3">
+                                <div class="well well-sm">
+                                    {{product.middlePrice}} €
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <h3>Prix Fournisseur</h3>
+                            <div class="col-lg-3" *ngFor="#ownerPrice of product.ownerPrice">
+                                <div class="well well-sm">
+                                    {{ownerPrice.owner}}: <br>
+                                    {{ownerPrice.price}}€ pour {{ownerPrice.quantity}} boites
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <h3>Hydrophylie:</h3>
+                            <div class="well well-sm">
+                                {{product.hydrophily}}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>Teinte:</h3>
+                            <div class="well well-sm">
+                                {{product.color}}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>Matériaux:</h3>
+                            <div class="well well-sm">
+                                {{product.material}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-lg-12">
+                    <table>
+                        <thead>
+                            <td>axis</td>
+                            <td>radius</td>
+                            <td>diameter</td>
+                            <td>cylinder</td>
+                            <td>addition</td>
+                        </thead>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li *ngFor="#axis of product.param[0].axis">{{axis}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="#radius of product.param[0].radius">{{radius}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="#diameter of product.param[0].diameter">{{diameter}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="#cylinder of product.param[0].cylinder">{{cylinder}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="#addition of product.param[0].addition">{{addition}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-lg-12">
+                    <h2>spheres</h2>
+                    <table>
+                        <thead>
+                            <td *ngFor="#sphereIndex of sphereIndexes[i]">{{sphereIndex}}</td>
+                        </thead>
+                        <tr>
+                            <td *ngFor="#sphereIndex of sphereIndexes[i]">
+                                <ul>
+                                    <li *ngFor="#sphere of spheres[i][sphereIndex]">{{sphere}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

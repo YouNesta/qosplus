@@ -17,6 +17,10 @@ router.get('/list', function(req, res, next) {
    product.getProducts(req, res);
 });
 
+router.get('/product/:id', function(req, res, next){
+    product.getOneProduct(req, res);
+});
+
 router.post('/add', function(req, res, next) {
     if(req.body.product != 'undefined'){
         product.addProduct(req, res);
@@ -57,10 +61,33 @@ router.post('/price/create', function(req, res, next) {
     }
 });
 
+router.post('/getProductsById', function(req, res, next) {
+    if(req.body.price != 'undefined'){
+        product.getProductsById(req, res);
+    } else {
+        res.sendStatus(500);
+    }
+});
 
 router.post('/delete', function(req, res){
     if(req.body.product != "undefined"){
         product.deleteProduct(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/deletes', function(req, res){
+    if(req.body.products != "undefined"){
+        product.deleteProducts(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.get('/list/supplier/asc', function(req, res){
+    if(req.body.products != "undefined"){
+        product.getProductsBySupplier(req, res);
     }else{
         res.sendStatus(500);
     }

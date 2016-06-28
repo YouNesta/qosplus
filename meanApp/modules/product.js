@@ -31,7 +31,6 @@ module.exports = {
                     var item = new Item(product.item[i]);
                     item.save(function(error, data) {
                         if (error) {
-                            console.log('estt');
                             console.log(error);
                             logger.log('error', error);
                             res.json({success: false, message:error});
@@ -68,7 +67,7 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:error});
+                res.json({success: false, message:error});
             }
             var i = 0;
             getItem(product, i);
@@ -85,6 +84,7 @@ module.exports = {
                             logger.log('error', error);
                             res.json({success: false, message:error});
                         }
+                        console.log(item);
                         delete product[i].item;
                         product[i].item = item;
                         i++;
@@ -103,7 +103,7 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:error});
+                res.json({success: false, message:error});
             }
             res.json({success: true, message:"Product Price Count with success", data: count});
         });
@@ -114,7 +114,7 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:error});
+                res.json({success: false, message:error});
             }
             res.json({success: true, message:"Product Price Find with success", data: product});
         });
@@ -225,18 +225,161 @@ module.exports = {
     },
 
     deleteProduct: function(req, res){
-        Product.findOneAndRemove({_id: req.body.product._id}, function(err,product){
+        var i = 0;
+
+        deleteItem(req.body.product, i);
+        function deleteProduct(product, i){
+            Product.findOneAndRemove({_id: product._id}, function(err,product){
+                if(err)
+                {
+                    console.log(err);
+                    logger.log('error', err);
+                    res.json({success: false, message:err});
+                }
+                else
+                {
+                    res.json({success: true, message:"Product Successfully deleted", data: product});
+                }
+            });
+        }
+
+        function deleteItem(product, i){
+            if(i < product.item.length) {
+                delete product.item[i].__v;
+                Item.findOneAndRemove({_id: product.item[i]._id}, function(err,product){
+                    if(err)
+                    {
+                        console.log(err);
+                        logger.log('error', err);
+                        res.json({success: false, message:err});
+                    }
+                    else
+                    {
+                        res.json({success: true, message:"Product Successfully deleted", data: product});
+                    }
+                });
+            }else{
+                deleteProduct(product, i);
+            }
+        }
+
+
+
+    },
+
+    deleteProducts: function(req, res) {
+
+        var i = 0;
+
+        deleteProduct(req.body.products, i);
+
+        function deleteProduct(index) {
+            console.log(req.body.products[index]);
+            if (i < req.body.products.length) {
+                console.log('lalala');
+                Product.findOneAndRemove({_id: req.body.products[i]}, function (err, product) {
+                    if (err) {
+                        console.log(err);
+                        logger.log('error', err);
+                        res.json({success: false, message: err});
+                    }
+                    i++;
+                    deleteProduct(i);
+
+                });
+            } else {
+                res.json({success: true, message: "Product Successfully deleted", data: req.body.products});
+            }
+        }
+    },
+
+    getOneProduct: function(req, res){
+        console.log(req.params.id);
+        console.log('win');
+        Product.findOne({_id: req.params.id}, function(err, product){
             if(err)
             {
                 console.log(err);
                 logger.log('error', err);
-                res.res.json({success: false, message:err});
+                res.json({success: false, message:err});
             }
-            else
+            console.log('win2');
+            var i = 0;
+            getItem(product, i);
+
+            function getItem(product, i){
+                if(i < product.length){
+
+                    Item.find({
+                        '_id': { $in: product[i].item}
+                    }, function(error, item){
+                        if (error) {
+                            console.log(error);
+                            logger.log('error', error);
+                            res.json({success: false, message:error});
+                        }
+                        delete product[i].item;
+                        product[i].item = item;
+                        i++;
+                        getItem(product, i);
+                    });
+
+                }else{
+                    console.log('testtest');
+                    res.json({success: true, message:"User List Find with success", data: product});
+                }
+            };
+        })
+    },
+
+    getProductsById: function(req, res){
+        Product.find({_id: {$in: req.body.productIds}}, function(err, products){
+            if(err)
             {
-                res.json({success: true, message:"Product Successfully deleted", data: product});
+                console.log(err);
+                logger.log('error', err);
+                res.json({success: false, message:err});
             }
-        });
+
+            res.json({success: true, message:"Products List Find with success", data: products});
+
+        })
+    },
+
+    getProductsBySupplier: function(req, res){
+        Product.find().sort({supplier: 1}, function(error, product){
+            if(err)
+            {
+                console.log(err);
+                logger.log('error', err);
+                res.json({success: false, message:err});
+            }
+            console.log('win2');
+            var i = 0;
+            getItem(product, i);
+
+            function getItem(product, i){
+                if(i < product.length){
+
+                    Item.find({
+                        '_id': { $in: product[i].item}
+                    }, function(error, item){
+                        if (error) {
+                            console.log(error);
+                            logger.log('error', error);
+                            res.json({success: false, message:error});
+                        }
+                        delete product[i].item;
+                        product[i].item = item;
+                        i++;
+                        getItem(product, i);
+                    });
+
+                }else{
+                    res.json({success: true, message:"User List Find with success", data: product});
+                }
+            };
+        })
 
     }
 

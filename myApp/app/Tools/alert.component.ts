@@ -11,6 +11,7 @@ import {AlertService} from './alert';
     selector: "alert",
     templateUrl: "app/Tools/alert.html",
     directives: [Alert, CORE_DIRECTIVES],
+    providers: [AlertService]
 
 })
 

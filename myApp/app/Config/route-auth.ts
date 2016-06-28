@@ -19,8 +19,11 @@ constructor(public service: UserFactory, public router: Router) {
     this.route = {
         " ": [
             { "route": "/", "auth": false },
+            { "route": "404", "auth": false },
             { "route": "contact", "auth": false },
             { "route": "about", "auth": false },
+            { "route": "subscribe", "auth": false },
+            { "route": "login", "auth": false }
         ],
 
         "admin": [
@@ -28,12 +31,11 @@ constructor(public service: UserFactory, public router: Router) {
             { "route": "subscribe", "auth": true },
             { "route": "validation", "auth": true },
             { "route": "product", "auth": true },
+            { "route": "product/command-pdf/:id", "auth": false },
         ],
 
         "user": [
-            { "route": "/", "auth": true },
-            { "route": "subscribe", "auth": false },
-            { "route": "login", "auth": false },
+            { "route": "/", "auth": true }
         ]
     }
 
@@ -91,5 +93,4 @@ constructor(public service: UserFactory, public router: Router) {
             }
         }
     }
-
 }

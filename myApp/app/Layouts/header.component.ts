@@ -16,7 +16,7 @@ import {NavUserComponent} from "./nav-user.component";
 
 export class HeaderComponent implements OnChanges{
     title: string;
-    routeAuth= '';
+    routeAuth= {};
     role: number;
     @Input() connected: boolean;
     @Input() admin: number;

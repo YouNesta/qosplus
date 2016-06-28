@@ -6,12 +6,12 @@ import {Admin} from "./admin";
 import {ControlGroup} from "angular2/common";
 import {tokenNotExpired} from 'angular2-jwt';
 import {CanActivate} from "angular2/router";
-import {AlertComponent} from "../Tools/alert.component";
-import {Input} from "angular2/core";
 import {AlertService} from "../Tools/alert";
+
 @CanActivate(() => tokenNotExpired('token'))
+
 @Component({
-    templateUrl: "app/Admin/admin-subscribe.html",
+    templateUrl: "app/Admin/admin-subscribe.html"
 })
 
 export class AdminSubscribeComponent {
@@ -67,7 +67,7 @@ export class AdminSubscribeComponent {
             this.service.save(this.model)
                 .subscribe(
                     response => {
-                        if(response.success == true){
+                        if(response.success){
                             this.alertService.addAlert('success', response.message);
                         }else{
                             this.alertService.addAlert('warning', response.message);

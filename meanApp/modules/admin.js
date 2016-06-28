@@ -15,7 +15,7 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                 res.res.json({success: false, message:error});
+                 res.json({success: false, message:error});
             }
             var i = 0;
             getUsers(users, i);
@@ -71,14 +71,14 @@ module.exports = {
             if(err){
                 console.log(error);
                 logger.log('error', error);
-                res.res.json({success: false, message:error});
+                res.json({success: false, message:error});
             }
             if (!user) {
                 admin.save( function(error) {
                     if(error){
                         console.log(error);
                         logger.log('error', error);
-                        res.res.json({success: false, message:error});
+                        res.json({success: false, message:error});
                     }
                     delete req.body.admin.password;
                     var data = req.body.admin;

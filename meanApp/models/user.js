@@ -12,6 +12,10 @@ var UserSchema = new mongoose.Schema({
         type: Number,
         required : false
     },
+    type:{
+        type: Object,
+        required : false
+    },
     lastName:{
         type: String,
         index: true,
@@ -61,11 +65,11 @@ var UserSchema = new mongoose.Schema({
         index: true
     },
     IBAN:{
-        type: Number,
+        type: String,
         required : false
     },
     BIC:{
-        type: Number,
+        type: String,
         required : false
 
     },

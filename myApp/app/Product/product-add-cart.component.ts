@@ -55,7 +55,9 @@ export class ProductAddCartComponent  implements  OnChanges{
     };
 
     product = {
+        _id: "",
         name: "Younestaaa",
+        status: 1,
         image: "public/uploads/no_image.png",
         hydrophily: 56,
         material: "Verre",
@@ -112,7 +114,9 @@ export class ProductAddCartComponent  implements  OnChanges{
         material: '',
         color: '',
         price: [],
-        item: []
+        item: Object,
+        quantity: 0,
+        eye: 'droit'
     };
 
 
@@ -136,7 +140,6 @@ export class ProductAddCartComponent  implements  OnChanges{
         this.condition = [];
         this.radius = [];
         for (var i in this.product.item) {
-            console.log(this.product.item[i])
             if(this.product.item[i].diameter == diameter){
                 if(this.axis.indexOf(this.product.item[i].axis) == -1){
                     this.axis.push(this.product.item[i].axis);
@@ -152,9 +155,7 @@ export class ProductAddCartComponent  implements  OnChanges{
         this.addition = [];
 
         for (var i in this.product.item) {
-            console.log(axis, this.product.item[i].axis);
             if(this.product.item[i].axis == axis && this.product.item[i].diameter == this.cartProduct.diameter){
-                console.log('equal');
                 if(this.cylinder.indexOf(this.product.item[i].cylinder) == -1){
                     this.cylinder.push(this.product.item[i].cylinder);
                 }
@@ -247,7 +248,9 @@ export class ProductAddCartComponent  implements  OnChanges{
     }
 
     addProductToCart(product) {
+        this.cartFinal._id = this.product._id;
         this.cartFinal.image = this.product.image;
+        //this.cartFinal.reference = this.product.image;
         this.cartFinal.name = this.product.name;
         this.cartFinal.hydrophily = this.product.hydrophily;
         this.cartFinal.material = this.product.material;
@@ -272,8 +275,6 @@ export class ProductAddCartComponent  implements  OnChanges{
                             this.diameter.push(this.product.item[i].diameter);
                         }
                 }
-
-                console.log(this.product)
             }
 
         }

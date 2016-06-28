@@ -1,3 +1,4 @@
+
 <div id="sidebar-wrapper">
 
     <ul class="sidebar-nav">
@@ -7,9 +8,27 @@
             </a>
         </li>
         <li>
-            <a [class.active]="router.isRouteActive(router.generate(['User', 'Subscribe']))"
-               [routerLink]="['User', 'Subscribe']">Ajouter un Employé
+            <a [class.active]="router.isRouteActive(router.generate(['User', 'Shop']))"
+               [routerLink]="['User', 'Shop']">Voir nos Produits
                 <i class="fa fa-user fa-fw"></i>
+            </a>
+        </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['User', 'Cart']))"
+               [routerLink]="['User', 'Cart']">Mon Panier
+                <i class="fa fa-shopping-cart fa-fw"></i>
+            </a>
+        </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['User', 'Command']))"
+               [routerLink]="['User', 'Command']">Mes commandes
+                <i class="fa fa-truck fa-fw"></i>
+            </a>
+        </li>
+        <li>
+            <a [class.active]="router.isRouteActive(router.generate(['User', 'Payment']))"
+               [routerLink]="['User', 'Payment']">Mes Factures
+                <i class="fa fa-file-o fa-fw"></i>
             </a>
         </li>
     </ul>

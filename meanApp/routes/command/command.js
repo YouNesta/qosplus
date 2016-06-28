@@ -27,9 +27,65 @@ router.get('/list',function(req, res) {
     }
 });
 
-router.get('/list/user',function(req, res) {
+router.get('/paymentList',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.getPayments(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/list/user',function(req, res) {
     if(req.body != 'undefined'){
         CommandModule.getCommandsByUser(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/command/:id',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.getOneCommand(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/printPdf',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.printPdf(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/printFacture',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.printFacture(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/changeCommandStatus',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.changeCommandStatus(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/changePaymentStatus',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.changePaymentStatus(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/deleteCommand', function(req, res){
+    if(req.body.product != "undefined"){
+        CommandModule.deleteCommand(req, res);
     }else{
         res.sendStatus(500);
     }

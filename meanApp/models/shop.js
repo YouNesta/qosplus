@@ -55,16 +55,16 @@ var ShopSchema = new mongoose.Schema({
         required : true
     },
     tva: {
-        type: Number,
+        type: String,
         required : false
     },
     siret: {
-        type: Number,
+        type: String,
         index: true,
         required : false
     },
     adeli: {
-        type: Number,
+        type: String,
         index: true,
         required : false
     },
@@ -76,22 +76,23 @@ var ShopSchema = new mongoose.Schema({
         type: String,
         required : false
     },
-    openDay:  {
+    owner:{
         type: String,
-        required : false
+        required: false
     },
-    closeDay:  {
-        type: String,
-        required : false
-    },
-    openHour:  {
-        type: String,
-        required : false
-    },
-    closeHour:  {
-        type: String,
-        required : false
-    }
+    disponibility: [{
+        day: String,
+        data: {
+            morning: {
+                opening: Date,
+                closing: Date
+            },
+            afternoon: {
+                opening: Date,
+                closing: Date
+            }
+        }
+    }]
 });
 
 var Shop = mongoose.model('Shop', ShopSchema);
