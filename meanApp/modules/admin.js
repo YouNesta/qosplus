@@ -88,5 +88,18 @@ module.exports = {
                 res.json({ success: false, message: 'Subscribe failed. User Already exist.' });
             }
         });
-    }
+    },
+
+    getAdmin: function(req, res){
+        var id = req.body.admin;
+
+        Admin.findOne({_id: id}, function(error, admin){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "Admin not Found", data:error});
+            }
+            res.json({success: true, message: "Admin found", data:admin})
+        })
+    },
 };

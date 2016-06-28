@@ -282,8 +282,8 @@ export class ProductFactory {
             .map(response => response.json())
     }
 
-    changePaymentStatus(id) {
-        var data = JSON.stringify({id});
+    changePaymentStatus(id, status) {
+        var data = JSON.stringify({id, status});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
@@ -295,8 +295,8 @@ export class ProductFactory {
             .map(response => response.json())
     }
 
-    changeCommandStatus(id) {
-        var data = JSON.stringify({id});
+    changeCommandStatus(id, status) {
+        var data = JSON.stringify({id, status});
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 

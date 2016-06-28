@@ -65,4 +65,19 @@ export class AdminFactory {
                 () => console.log('Validation Complete')
             );
     };
+
+    getAdmin(admin) {
+
+        var data =  JSON.stringify({admin});
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'getAdmin',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json());
+    };
 }

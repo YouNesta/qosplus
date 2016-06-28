@@ -31,7 +31,13 @@ router.get('/', function(req, res, next) {
   });
 });
 
-
+router.post('/getAdmin',function(req, res) {
+  if(req.body != 'undefined'){
+    AdminModule.getAdmin(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
 
 
 

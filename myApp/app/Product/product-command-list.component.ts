@@ -86,19 +86,24 @@ export class ProductCommandComponent {
     * */
 
     changeStatus(i) {
-        var command = this.commands[i];
-        command = this.service.changeCommandStatus(command._id).subscribe(
-            res => {
-                if(res.success){
-                    command = res.data;
-                    this.commands[i] = command;
-                }else{
-                    console.log(res);
-                }
-            },
-            err =>  console.log(err),
-            () => console.log('command updated')
-        );
+
+        var commands = this.commands;
+        var service = this.service;
+
+        setTimeout(function() {
+            var command = commands[i];
+            command = service.changeCommandStatus(command._id, command.status).subscribe(
+                res => {
+                    if(res.success){
+                        //nothing
+                    }else{
+                        console.log(res);
+                    }
+                },
+                err =>  console.log(err),
+                () => console.log('command updated')
+            );
+        }, 100);
     }
 
     cancelCommand(i) {

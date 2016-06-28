@@ -86,22 +86,25 @@ export class ProductPaymentComponent {
     * */
 
     changeStatus(i) {
-        var payment = this.payments[i];
-        payment = this.service.changePaymentStatus(payment._id).subscribe(
-            res => {
-                if(res.success){
-                    payment = res.data;
 
-                    this.payments[i] = payment;
+        var service = this.service;
+        var payments = this.payments;
 
+        setTimeout(function() {
+            var payment = payments[i];
+            payment = service.changePaymentStatus(payment._id, payment.status).subscribe(
+                res => {
+                    if(res.success){
+                        //nothing
+                    }else{
+                        console.log(res);
+                    }
+                },
+                err =>  console.log(err),
+                () => console.log('payment updated')
+            );
+        }, 100);
 
-                }else{
-                    console.log(res);
-                }
-            },
-            err =>  console.log(err),
-            () => console.log('payment updated')
-        );
     }
 
 }
