@@ -297,4 +297,10 @@ export class UserFactory {
                 return response;
             })
     };
+
+    getUsers() {
+        return this.authHttp
+            .get(this.apiUrl + 'list')
+            .map(res => res.json())
+    }
 }

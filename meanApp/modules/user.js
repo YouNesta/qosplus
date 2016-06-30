@@ -337,11 +337,59 @@ module.exports = {
             if(error){
                 console.log(error);
                 logger.log('error', error);
-                res.json({ success: false, message: "Payments not Found", data:error});
+                res.json({ success: false, message: "Payments not Found", data: error});
             }
-            res.json({success: true, message: "Payments found", data:payment})
+            res.json({success: true, message: "Payments found", data: payment})
         })
-    }
+    },
 
+    getUsers: function(req, res) {
+        User.find({}, function(err, users) {
+            if(err){
+                console.log(err);
+                logger.log('error', err);
+                res.json({success: false, message:error});
+            }
+            var i = 0;
+            getUsers(users, i);
+        });
+
+        function getUsers(users, i){
+            if(i < users.length){
+                var user = users[i];
+
+                if(user.director != user._id){
+                    User.findOne({_id: user.director}, function(err, director) {
+                        if(err){
+                            console.log(err);
+                            logger.log('error', err);
+                            res.json({success: false, message:error});
+                        }
+                        users[i].director = JSON.stringify(director);
+                        console.log(JSON.parse(users[i].director));
+                        Shop.find({
+                            '_id': { $in: user.associateShop}
+                        }, function(err, shops){
+                            users[i].associateShop = shops;
+                            i++;
+                            getUsers(users, i);
+                        });
+
+                    });
+                }else{
+                    Shop.find({
+                        '_id': { $in: user.associateShop}
+                    }, function(err, shops){
+                        users[i].associateShop = shops;
+                        i++;
+                        getUsers(users, i);
+                    });
+                }
+
+            }else{
+                res.json({success: true, message:"User List Find with success", data: users});
+            }
+        }
+    }
 
 };

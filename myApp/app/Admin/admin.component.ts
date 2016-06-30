@@ -15,6 +15,7 @@ import {AlertService} from "../Tools/alert";
 import {FormValidator} from "../Config/form-validator";
 import {ProductFactory} from "../Product/product.factory";
 import {UserProfileComponent} from "../User/user-profile.component";
+import {AdminUserListComponent} from "./admin-user-list.component";
 
 
 @Component({
@@ -27,6 +28,7 @@ import {UserProfileComponent} from "../User/user-profile.component";
 @RouteConfig([
     { path: "/subscribe", name: "Subscribe", component: AdminSubscribeComponent},
     { path: "/", name: "Dashboard", component: AdminDashBoardComponent},
+    { path: "/list", name: "List", component: AdminUserListComponent},
     { path: "/validation", as: "Validation", component: AdminValidationComponent},
     { path: "/product/...", as: "Product", component: ProductComponent}
 

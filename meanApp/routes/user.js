@@ -190,6 +190,14 @@ router.post('/payments', function(req, res, next){
   }
 });
 
+router.get('/list',function(req, res) {
+  if(req.body != 'undefined'){
+    users.getUsers(req, res);
+  }else{
+    res.sendStatus(500);
+  }
+});
+
 router.get('/getMails', function(req, res) {   // Get user mails
   var model = User;
 

@@ -19,6 +19,12 @@
             </a>
         </li>
         <li>
+           <a [class.active]="router.isRouteActive(router.generate(['Admin', 'List']))"
+                   [routerLink]="['Admin', 'List']">Liste des clients
+               <i class="fa fa-users fa-fw"></i>
+           </a>
+        </li>
+        <li>
            <a [class.active]="router.isRouteActive(router.generate(['Admin', 'Product', 'List']))"
                    [routerLink]="['Admin', 'Product', 'List']">Nos Produits
                <i class="fa fa-list fa-fw"></i>

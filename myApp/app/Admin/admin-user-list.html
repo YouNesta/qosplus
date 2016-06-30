@@ -1,0 +1,201 @@
+<div class="content product-command-list">
+
+    <div class="col-lg-12 collapse-tab">
+        <div class="col-lg-12">
+            <div class="col-lg-4">
+                Nom
+            </div>
+            <div class="col-lg-4">
+                Mail
+            </div>
+            <div class="col-lg-2">
+                Type
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-lg-12 collapse-content">
+        <div class="product col-lg-12"  *ngFor='#user of users; #i = index;'>
+            <div class="collapse-head col-lg-12">
+                <div class="col-lg-4">
+                    <p>{{ user.firstName }} {{ user.lastName }}</p>
+                </div>
+                <div class="col-lg-4">
+                    <p>{{user.mail}}</p>
+                </div>
+                <div class="col-lg-2">
+                    <p>{{user.type.name}}</p>
+                </div>
+                <div class="col-lg-2">
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 collapse-body" [ngClass]="{active: isOpen[i]}">
+                <div class="col-lg-12">
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <label>Téléphone:</label>
+                            <div class="well well-sm">
+                                {{ user.phone }}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>IBAN:</label>
+                            <div class="well well-sm">
+                                {{ user.IBAN }}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>BIC:</label>
+                            <div class="well well-sm">
+                                {{ user.BIC }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <label>Email financier:</label>
+                            <div class="well well-sm">
+                                {{ user.financialMail }}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Mise en place du paiement:</label>
+                            <div class="well well-sm">
+                                <span *ngIf="user.paymentState">Oui</span>
+                                <span *ngIf="!user.paymentState">Non</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label>Enseigne:</label>
+                            <div class="well well-sm">
+                                {{ user.central }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="col-lg-4">
+                            <label>Commentaire:</label>
+                            <div class="well well-sm">
+                                {{ user.comment }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <h3>Magasin(s) associé(s)</h3>
+                        <div class="row shop" *ngFor="#shop of user.associateShop">
+                            <div class="col-xs-12 col-md-12 col-sm-12">
+                                <label>Raison Social</label>
+                                <div class="well well-sm">
+                                    {{shop.socialReason}}
+                                </div>
+                                <label>Nom du magasin</label>
+                                <div class="well well-sm">
+                                    {{shop.name}}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Adresse</label>
+                                <div class="well well-sm">
+                                    {{shop.adress}}
+                                </div>
+                                <label>Adresse 2</label>
+                                <div class="well well-sm">
+                                    {{shop.adress2}}
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Ville</label>
+                                <div class="well well-sm">
+                                    {{shop.city}}
+                                </div>
+                                <label>Code Postal</label>
+                                <div class="well well-sm">
+                                    {{shop.zipCode}}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Numéro de Portable du magasin</label>
+                                <div class="well well-sm">
+                                    {{shop.mobile}}
+                                </div>
+                                <label>Numéro de Téléphone Fix</label>
+                                <div class="well well-sm">
+                                    {{shop.phone}}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Numéro de Fax</label>
+                                <div class="well well-sm">
+                                    {{shop.fax}}
+                                </div>
+                                <label>Email du magasin</label>
+                                <div class="well well-sm">
+                                    {{shop.mail}}
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>TVA</label>
+                                <div class="well well-sm">
+                                    {{shop.tva}}
+                                </div>
+                                <label>Numéro Siret</label>
+                                <div class="well well-sm">
+                                    {{shop.siret}}
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Numéro Adeli</label>
+                                <div class="well well-sm">
+                                    {{shop.adeli}}
+                                </div>
+                                <label>Présence d'un coffre de nuit</label>
+                                <div class="well well-sm">
+                                    <span *ngIf="shop.nightBox">Oui</span>
+                                    <span *ngIf="!shop.nightBox">Non</span>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12 col-md-6 col-sm-6">
+                                <label>Jours d'ouverture</label>
+                                <div class="well well-sm">
+                                    {{shop.openDay}} au {{shop.closeDay}}
+                                </div>
+                                <label>Heures d'ouverture</label>
+                                <div class="well well-sm">
+                                    {{shop.openHour}} au {{shop.closeHour}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" *ngIf="user.director.mail">
+                        <h2>Directeur</h2>
+                        <div class="col-lg-4">
+                            <h3>Nom:</h3>
+                            <div class="well well-sm">
+                                {{user.director.lastName}} {{user.director.firstName}}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>Téléphone:</h3>
+                            <div class="well well-sm">
+                                {{user.director.phone}}
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <h3>Mail:</h3>
+                            <div class="well well-sm">
+                                {{user.director.phone}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
