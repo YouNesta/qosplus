@@ -67,6 +67,12 @@ export class ProductFactory {
             .map(response => response.json())
     }
 
+    getActiveProduct() {
+        return this.authHttp
+            .get(this.apiUrl + 'listActive')
+            .map(response => response.json())
+    }
+
     getPrice() {
         return this.authHttp
             .get(this.apiUrl + 'price/list')
@@ -302,6 +308,19 @@ export class ProductFactory {
 
         return this.authHttp
             .post(this.commandUrl + 'changeCommandStatus',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    changeProductStatus(id, status) {
+        var data = JSON.stringify({id, status});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'changeProductStatus',
                 data, {
                     headers: headers
                 })

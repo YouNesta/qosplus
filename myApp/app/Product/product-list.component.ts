@@ -101,7 +101,32 @@ export class ProductListComponent {
         }
     }
 
+    /*
+     * 0 => paid
+     * 1 => unvalidate
+     * 2 => waiting for payment
+     * */
 
+    changeStatus(i) {
+
+        var products = this.products;
+        var service = this.service;
+
+        setTimeout(function() {
+            var product = products[i];
+            product = service.changeProductStatus(product._id, product.status).subscribe(
+                res => {
+                    if(res.success){
+                        //nothing
+                    }else{
+                        console.log(res);
+                    }
+                },
+                err =>  console.log(err),
+                () => console.log('product updated')
+            );
+        }, 100);
+    }
 
 
     //Edit and Delete should only take one product as argument

@@ -92,7 +92,43 @@ module.exports = {
                     });
 
             }else{
-                res.json({success: true, message:"User List Find with success", data: product});
+                res.json({success: true, message:"Product List Find with success", data: product});
+            }
+        };
+
+    },
+
+    getActiveProducts: function(req, res){
+        Product.find({status: 1}, function(err, product) {
+            if(err){
+                console.log(err);
+                logger.log('error', err);
+                res.json({success: false, message:error});
+            }
+            var i = 0;
+            getItem(product, i);
+        });
+
+        function getItem(product, i){
+            if(i < product.length){
+
+                    Item.find({
+                        '_id': { $in: product[i].item}
+                    }, function(error, item){
+                        if (error) {
+                            console.log(error);
+                            logger.log('error', error);
+                            res.json({success: false, message:error});
+                        }
+                        console.log(item);
+                        delete product[i].item;
+                        product[i].item = item;
+                        i++;
+                        getItem(product, i);
+                    });
+
+            }else{
+                res.json({success: true, message:"Active products List Find with success", data: product});
             }
         };
 
@@ -343,6 +379,30 @@ module.exports = {
 
             res.json({success: true, message:"Products List Find with success", data: products});
 
+        })
+    },
+
+    changeProductStatus: function(req, res) {
+        var id = req.body.id;
+        var status = req.body.status;
+        Product.findOne({_id: id}, function(err, product){
+            if(err) {
+                console.log(err);
+                logger.log('error', err);
+                res.json({success: false, message:err});
+            } else {
+                product.status = status;
+
+                Product.findOneAndUpdate({_id: product._id}, product, { 'new': true }, function(err, product){
+                    if(err) {
+                        console.log(err);
+                        logger.log('error', err);
+                        res.json({success: false, message:err});
+                    } else {
+                        res.json({success: true, message:"Product updated", data: product});
+                    }
+                })
+            }
         })
     },
 

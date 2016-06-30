@@ -45,7 +45,7 @@ export class UserProductsListComponent {
     }
 
     getProducts(){
-        this.service.getProduct()
+        this.service.getActiveProduct()
             .subscribe(
                 response => {
                     if(response.success){

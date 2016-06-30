@@ -17,6 +17,10 @@ router.get('/list', function(req, res, next) {
    product.getProducts(req, res);
 });
 
+router.get('/listActive', function(req, res, next) {
+   product.getActiveProducts(req, res);
+});
+
 router.get('/product/:id', function(req, res, next){
     product.getOneProduct(req, res);
 });
@@ -88,6 +92,14 @@ router.post('/deletes', function(req, res){
 router.get('/list/supplier/asc', function(req, res){
     if(req.body.products != "undefined"){
         product.getProductsBySupplier(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/changeProductStatus',function(req, res) {
+    if(req.body != 'undefined'){
+        product.changeProductStatus(req, res);
     }else{
         res.sendStatus(500);
     }
