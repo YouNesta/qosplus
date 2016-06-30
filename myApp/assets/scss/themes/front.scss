@@ -646,6 +646,13 @@ td {
         }
       }
     }
+    .cart-error {
+      color: #810b10;
+      visibility: hidden;
+      &.visible {
+        visibility: visible;
+      }
+    }
   }
   &.admin-subscribe, &.product-price {
     h2 {

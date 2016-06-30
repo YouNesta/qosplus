@@ -35,6 +35,8 @@ export class UserCartComponent {
     priceType = 0;
     productPrice = [];
     porter = "";
+    no_porter = false;
+    no_shop = false;
 
     public query = '';
     public filteredList = [];
@@ -110,6 +112,20 @@ export class UserCartComponent {
     }
 
     validateCart() {
+
+        if (this.client == null) {
+            this.no_shop = true;
+            return;
+        } else {
+            this.no_shop = false;
+        }
+
+        if (this.porter == "") {
+            this.no_porter = true;
+            return;
+        } else {
+            this.no_porter = false;
+        }
 
         var rightEye = false;
         var leftEye = false;

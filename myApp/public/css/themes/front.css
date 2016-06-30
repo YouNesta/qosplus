@@ -473,6 +473,12 @@ td {
     .content.product-cart .suggestions ul:hover {
       background-color: #E0E4EA; }
 
+.content.product-cart .cart-error {
+  color: #810b10;
+  visibility: hidden; }
+  .content.product-cart .cart-error.visible {
+    visibility: visible; }
+
 .content.admin-subscribe h2, .content.product-price h2 {
   width: 95%;
   margin: auto;
