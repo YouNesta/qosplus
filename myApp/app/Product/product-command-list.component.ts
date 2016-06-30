@@ -83,6 +83,7 @@ export class ProductCommandComponent {
     * 0 => paid
     * 1 => unvalidate
     * 2 => waiting for payment
+    * 3 => canceled
     * */
 
     changeStatus(i) {

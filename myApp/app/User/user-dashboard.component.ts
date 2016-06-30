@@ -219,9 +219,12 @@ export class UserDashboardComponent {
     }
 
     getPrice() {
-        var price = 1537;
-        for (var i = 0; i < this.commands.length; i++) {
-            //stuff
+        var price = 0;
+        for (var i in this.commands) {
+            var command = this.commands[i];
+            if (command.status != 0 && command.status != 3) {
+                price += command.amount;
+            }
         }
         return price;
     }
