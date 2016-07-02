@@ -23,11 +23,15 @@ var PaymentSchema = new mongoose.Schema({
     },
     IBAN:{
         type: Number,
-        required : true
+        required : false
     },
     status: {
         type: Boolean,
         required: false
+    },
+    paymentNumber:{
+        type: Number,
+        required: true
     }
 });
 

@@ -64,6 +64,7 @@ export class ProductCommandComponent {
                     this.loader[i] = true;
                     window.open(command.commandForm, "_blank");
                 }else{
+                    this.loader[i] = true;
                     console.log(res);
                 }
             },
@@ -93,6 +94,7 @@ export class ProductCommandComponent {
 
         setTimeout(function() {
             var command = commands[i];
+
             command = service.changeCommandStatus(command._id, command.status).subscribe(
                 res => {
                     if(res.success){
@@ -104,6 +106,7 @@ export class ProductCommandComponent {
                 err =>  console.log(err),
                 () => console.log('command updated')
             );
+
         }, 100);
     }
 
@@ -112,9 +115,7 @@ export class ProductCommandComponent {
         command = this.service.deleteCommand(command).subscribe(
             res => {
                 if(res.success){
-                    command = res.data;
-                    this.commands.splice(i, 1);
-
+                    this.commands[i].status = 3;
                 }else{
                     console.log(res);
                 }

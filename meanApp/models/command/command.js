@@ -52,6 +52,10 @@ var CommandSchema = new mongoose.Schema({
     amount:{
         type: Number,
         required: true
+    },
+    commandNumber:{
+        type: Number,
+        required: true
     }
 });
 
