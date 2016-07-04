@@ -13,15 +13,26 @@ export class HomeProductsComponent {
 
 
     constructor(public service: ProductFactory){
-
+        this.products = this.getProductsSupplier();
     }
 
     getProductsSupplier(){
-        this.service.getProductBySupplier()
+        this.service.getProduct()
             .subscribe(
                 response => {
                     if(response.success){
+
+                        response.data.sort(compare);
+                        console.log(response.data);
                         this.products = response.data;
+
+                        function compare(a,b) {
+                            if (a.supplier < b.supplier)
+                                return -1;
+                            if (a.supplier > b.supplier)
+                                return 1;
+                            return 0;
+                        }
                     }else{
                         console.log(response);
                     }

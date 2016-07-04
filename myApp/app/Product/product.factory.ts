@@ -296,10 +296,4 @@ export class ProductFactory {
                 })
             .map(response => response.json())
     }
-
-    getProductBySupplier(){
-        return  this.authHttp
-            .get(this.apiUrl+'list/supplier/asc')
-            .map(response => response.json())
-    }
 }

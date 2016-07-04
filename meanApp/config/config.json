@@ -18,6 +18,6 @@ config.corsOptions = {
 };
 
 
-config.freeRoutes = ['/api/v1/client/user/login', '/api/v1/client/user/subscribe', '/api/v1/product/add'];
+config.freeRoutes = ['/api/v1/client/user/login', '/api/v1/client/user/subscribe', '/api/v1/product/add', '/api/v1/product/list'];
 
 module.exports = config;

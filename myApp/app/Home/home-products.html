@@ -10,7 +10,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row product-head">
                     <div class="col-md-12 collapse-tab">
                             <div class="col-md-1">
 
@@ -32,74 +32,23 @@
                             </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="supplier-container">
+                <div class="row product-body">
+                    <div class="supplier-container" *ngFor="#product of products; #i = index">
                         <div class="row">
                             <h1>Bausch and Lomb</h1>
                             <div class="item-container col-md-12" >
                                 <div class="item">
                                     <div class="row">
                                         <div class="col-md-2 item-empty">
-
                                         </div>
                                         <div class="col-md-2 item-picture">
                                             <img src="../../public/img/optical-glass.jpg">
                                         </div>
                                         <div class="col-md-2 item-name" >
-                                            <span>Nom commercial</span>
+                                            <span>{{product.name}}</span>
                                         </div>
                                         <div class="col-md-2 item-price">
-                                            <span>Tafif</span>
-                                        </div>
-                                        <div class="col-md-2 item-reference">
-                                            <span>Reference</span>
-                                        </div>
-                                        <div class="col-md-2 item-action">
-                                            <div class="row">
-                                                <div class="col-md-4"><button class="btn"><li class="fa fa-circle"></li></button></div>
-                                                <div class="col-md-4"><button class="btn"><li class="fa fa-eye"></li></button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-md-2 item-empty">
-
-                                        </div>
-                                        <div class="col-md-2 item-picture">
-                                            <img src="../../public/img/optical-glass.jpg">
-                                        </div>
-                                        <div class="col-md-2 item-name" >
-                                            <span>Nom commercial</span>
-                                        </div>
-                                        <div class="col-md-2 item-price">
-                                            <span>Tafif</span>
-                                        </div>
-                                        <div class="col-md-2 item-reference">
-                                            <span>Reference</span>
-                                        </div>
-                                        <div class="col-md-2 item-action">
-                                            <div class="row">
-                                                <div class="col-md-4"><button class="btn"><li class="fa fa-circle"></li></button></div>
-                                                <div class="col-md-4"><button class="btn"><li class="fa fa-eye"></li></button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-md-2 item-empty">
-
-                                        </div>
-                                        <div class="col-md-2 item-picture">
-                                            <img src="../../public/img/optical-glass.jpg">
-                                        </div>
-                                        <div class="col-md-2 item-name" >
-                                            <span>Nom commercial</span>
-                                        </div>
-                                        <div class="col-md-2 item-price">
-                                            <span>Tafif</span>
+                                            <span>{{product.price[0].price}} €</span>
                                         </div>
                                         <div class="col-md-2 item-reference">
                                             <span>Reference</span>
@@ -114,39 +63,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="supplier-container">
-                        <div class="row">
-                            <h1>Bausch and Lomb</h1>
-                            <div class="item-container col-md-12" >
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-md-2 item-empty">
-
-                                        </div>
-                                        <div class="col-md-2 item-picture">
-                                            <img src="../../public/img/optical-glass.jpg">
-                                        </div>
-                                        <div class="col-md-2 item-name" >
-                                            <span>Nom commercial</span>
-                                        </div>
-                                        <div class="col-md-2 item-price">
-                                            <span>Tafif</span>
-                                        </div>
-                                        <div class="col-md-2 item-reference">
-                                            <span>Reference</span>
-                                        </div>
-                                        <div class="col-md-2 item-action">
-                                            <div class="row">
-                                                <div class="col-md-4"><button class="btn"><li class="fa fa-circle"></li></button></div>
-                                                <div class="col-md-4"><button class="btn"><li class="fa fa-eye"></li></button></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
             </div>
