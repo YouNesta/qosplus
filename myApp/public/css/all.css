@@ -862,10 +862,10 @@ td {
     border-radius: 3px; }
     .content.product-list .collapse-content .product .collapse-head, .content.product-cart .collapse-content .product .collapse-head, .content.product-command-list .collapse-content .product .collapse-head, .content.admin-validation .collapse-content .product .collapse-head, .content.facture-list .collapse-content .product .collapse-head {
       line-height: 80px; }
-    .content.product-list .collapse-content .product .collapse-body, .content.product-cart .collapse-content .product .collapse-body, .content.product-command-list .collapse-content .product .collapse-body, .content.admin-validation .collapse-content .product .collapse-body, .content.facture-list .collapse-content .product .collapse-body {
+    .content.product-list .collapse-content .product .collapse-body.active, .content.product-cart .collapse-content .product .collapse-body.active, .content.product-command-list .collapse-content .product .collapse-body.active, .content.admin-validation .collapse-content .product .collapse-body.active, .content.facture-list .collapse-content .product .collapse-body.active {
       height: 700px !important; }
-      .content.product-list .collapse-content .product .collapse-body .well, .content.product-cart .collapse-content .product .collapse-body .well, .content.product-command-list .collapse-content .product .collapse-body .well, .content.admin-validation .collapse-content .product .collapse-body .well, .content.facture-list .collapse-content .product .collapse-body .well {
-        min-height: 40px; }
+    .content.product-list .collapse-content .product .collapse-body .well, .content.product-cart .collapse-content .product .collapse-body .well, .content.product-command-list .collapse-content .product .collapse-body .well, .content.admin-validation .collapse-content .product .collapse-body .well, .content.facture-list .collapse-content .product .collapse-body .well {
+      min-height: 40px; }
     .content.product-list .collapse-content .product input[type="checkbox"], .content.product-cart .collapse-content .product input[type="checkbox"], .content.product-command-list .collapse-content .product input[type="checkbox"], .content.admin-validation .collapse-content .product input[type="checkbox"], .content.facture-list .collapse-content .product input[type="checkbox"] {
       margin-top: 30%;
       width: 40px;

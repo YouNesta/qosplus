@@ -35,6 +35,8 @@ export class UserCartComponent {
     priceType = 0;
     productPrice = [];
     porter = "";
+    spheres = {};
+    sphereIndexes = [];
 
     public query = '';
     public filteredList = [];
@@ -85,8 +87,8 @@ export class UserCartComponent {
             this.service.getProductsById(productsId).subscribe(
                 res => {
                     if(res.success){
-
-                        this.productPrice = res.data;
+                        console.log(res.data);this.productPrice = res.data;
+                        console.log(res.data);
 
                     }else{
                         this.alertService.addAlert('warning', res.message);

@@ -333,6 +333,7 @@ module.exports = {
     },
 
     getProductsById: function(req, res){
+        console.log('works')
         Product.find({_id: {$in: req.body.productIds}}, function(err, products){
             if(err)
             {
@@ -340,10 +341,32 @@ module.exports = {
                 logger.log('error', err);
                 res.json({success: false, message:err});
             }
+            var i = 0;
+            getItem(products, i);
+        });
 
-            res.json({success: true, message:"Products List Find with success", data: products});
+        function getItem(product, i){
+            if(i < product.length){
 
-        })
+                Item.find({
+                    '_id': { $in: product[i].item}
+                }, function(error, item){
+                    if (error) {
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({success: false, message:error});
+                    }
+                    console.log(item);
+                    delete product[i].item;
+                    product[i].item = item;
+                    i++;
+                    getItem(product, i);
+                });
+
+            }else{
+                res.json({success: true, message:"Product List Find with success", data: product});
+            }
+        };
     },
 
     getProductsBySupplier: function(req, res){
