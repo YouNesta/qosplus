@@ -340,48 +340,31 @@ module.exports = {
                 logger.log('error', err);
                 res.json({success: false, message:err});
             }
-
-            res.json({success: true, message:"Products List Find with success", data: products});
-
-        })
-    },
-
-    getProductsBySupplier: function(req, res){
-        Product.find().sort({supplier: 1}, function(error, product){
-            if(err)
-            {
-                console.log(err);
-                logger.log('error', err);
-                res.json({success: false, message:err});
-            }
-            console.log('win2');
             var i = 0;
-            getItem(product, i);
+            getItem(products, i);
+        });
 
-            function getItem(product, i){
-                if(i < product.length){
+        function getItem(product, i){
+            if(i < product.length){
 
-                    Item.find({
-                        '_id': { $in: product[i].item}
-                    }, function(error, item){
-                        if (error) {
-                            console.log(error);
-                            logger.log('error', error);
-                            res.json({success: false, message:error});
-                        }
-                        delete product[i].item;
-                        product[i].item = item;
-                        i++;
-                        getItem(product, i);
-                    });
+                Item.find({
+                    '_id': { $in: product[i].item}
+                }, function(error, item){
+                    if (error) {
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({success: false, message:error});
+                    }
+                    console.log(item);
+                    delete product[i].item;
+                    product[i].item = item;
+                    i++;
+                    getItem(product, i);
+                });
 
-                }else{
-                    res.json({success: true, message:"User List Find with success", data: product});
-                }
-            };
-        })
-
+            }else{
+                res.json({success: true, message:"Product List Find with success", data: product});
+            }
+        }
     }
-
-  
-}
+};

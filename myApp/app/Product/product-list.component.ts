@@ -19,7 +19,6 @@ export class ProductListComponent {
     spheres = {};
     sphereIndexes = [];
     
-    
     constructor(public service: ProductFactory){
         this.getProducts();
     }

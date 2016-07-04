@@ -59,7 +59,7 @@ var ProductSchema = new mongoose.Schema({
         required: false
     },
     ametropia: {
-        type: Number,
+        type: String,
         required: false
     },
     port: {

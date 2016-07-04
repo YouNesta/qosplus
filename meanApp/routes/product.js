@@ -46,7 +46,6 @@ router.post('/price/update', function(req, res, next) {
 
 router.put('/edit/', function(req, res, next){
     if(req.body.product != 'undefined'){
-        console.log('test');
         product.editProduct(req, res);
     } else {
         res.sendStatus(500);
@@ -80,14 +79,6 @@ router.post('/delete', function(req, res){
 router.post('/deletes', function(req, res){
     if(req.body.products != "undefined"){
         product.deleteProducts(req, res);
-    }else{
-        res.sendStatus(500);
-    }
-});
-
-router.get('/list/supplier/asc', function(req, res){
-    if(req.body.products != "undefined"){
-        product.getProductsBySupplier(req, res);
     }else{
         res.sendStatus(500);
     }

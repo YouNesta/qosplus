@@ -20,13 +20,12 @@
             <product-add-cart [modal]="modalCart" [productCart]="productCart"></product-add-cart>
         </modal-body>
         <modal-footer>
-            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modalCart.dismiss()">Cancel</button>
+            <button type="button" class="btn btn-default" data-dismiss="modalCart" (click)="modalCart.dismiss()">Cancel</button>
             <button type="button" class="btn btn-primary" (click)="modalCart.close()">Ok</button>
         </modal-footer>
     </modal>
 
     <h2>Products</h2>
     <button (click)="modal.open()">Open</button>
-
 
 </div>
