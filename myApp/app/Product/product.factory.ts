@@ -313,7 +313,6 @@ export class ProductFactory {
                 })
             .map(response => response.json())
     }
-
     changeProductStatus(id, status) {
         var data = JSON.stringify({id, status});
         var headers = new Headers();
@@ -332,4 +331,5 @@ export class ProductFactory {
             .get(this.apiUrl+'list/supplier/asc')
             .map(response => response.json())
     }
+
 }

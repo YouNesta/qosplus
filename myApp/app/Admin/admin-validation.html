@@ -202,33 +202,30 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label>Jour d'ouverture</label>
-
-                                    <div>
-                                        <select class="form-control" id="openDay" [(ngModel)]="shop.openDay">
-                                            <option value="Lundi">Lundi</option>
-                                            <option value="Mardi">Mardi</option>
-                                            <option value="Mercredi">Mercredi</option>
-                                            <option value="Jeudi">Jeudi</option>
-                                            <option value="Vendredi">Vendredi</option>
-                                            <option value="Samedi">Samedi</option>
-                                            <option value="Dimanche">Dimanche</option>
-                                        </select>
+                                <div class="col-sm-12">
+                                    <select id="day-selector" #s (change)="changeCurrentDay(s.value)">
+                                        <option *ngFor="#day of days; #j = index" [value]="day.name">{{day.name}}</option>
+                                    </select>
+                                    <div class="row time-display">
+                                        <div class="col-sm-6 timepicker-container">
+                                            <label>Matin</label>
+                                            <timepicker class="timepicker" [(ngModel)]="timepickerDay.data.morning.opening" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]=ismeridian></timepicker>
+                                            <p>à</p>
+                                            <timepicker class="timepicker" [(ngModel)]="timepickerDay.data.morning.closing" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+                                        </div>
+                                        <div class="col-sm-6 timepicker-container">
+                                            <label>Après-Midi</label>
+                                            <timepicker class="timepicker" [(ngModel)]="timepickerDay.data.afternoon.opening" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+                                            <p>à</p>
+                                            <timepicker class="timepicker" [(ngModel)]="timepickerDay.data.afternoon.closing" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+                                        </div>
+                                        <button class="default" (click)="addDay(i)">Valider Horaires</button>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Jour de fermeture</label>
-                                    <div>
-                                        <select class="form-control" id="closeDay" [(ngModel)]="shop.closeDay">
-                                            <option value="Lundi">Lundi</option>
-                                            <option value="Mardi">Mardi</option>
-                                            <option value="Mercredi">Mercredi</option>
-                                            <option value="Jeudi">Jeudi</option>
-                                            <option value="Vendredi">Vendredi</option>
-                                            <option value="Samedi">Samedi</option>
-                                            <option value="Dimanche">Dimanche</option>
-                                        </select>
+                                    <div class="resume-hours" *ngFor="#disponibility of shop.disponibility">
+                                        <h3>{{disponibility.day}}</h3>
+                                        <span>De {{disponibility.data.morning.opening|date:'HHmm'}} à {{disponibility.data.morning.closing|date:'HHmm'}}</span>
+                                        et
+                                        <span>De {{disponibility.data.afternoon.opening|date:'HHmm'}} à {{disponibility.data.afternoon.closing|date:'HHmm'}}</span>
                                     </div>
                                 </div>
                             </div>

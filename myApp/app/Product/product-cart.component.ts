@@ -68,7 +68,9 @@ export class ProductCartComponent {
                     () => console.log('get mail list Complete')
                 );
         }
-        this.getCart();
+        if(localStorage.getItem("cart")){
+            this.getCart();
+        }
     }
     getCart(){
         this.products = JSON.parse(localStorage.getItem("cart"));

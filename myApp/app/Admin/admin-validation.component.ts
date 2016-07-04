@@ -19,20 +19,51 @@ import {AlertService} from "../Tools/alert";
 import {HomeSubscribeComponent} from "../Home/home-subscribe.component";
 import {ProductFactory} from "../Product/product.factory";
 import {MailManager} from "../lib/mail-manager";
+import {Timepicker} from "ng2-bootstrap";
 
 @CanActivate(() => tokenNotExpired('token'))
 
 
 @Component({
     templateUrl: "app/Admin/admin-validation.html",
-    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent],
-    providers: [ AdminFactory],
+    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent, Timepicker],
+    providers: [ AdminFactory ],
     bindings: [MailManager]
 })
 
 
 
 export class AdminValidationComponent {
+    public hstep:number = 1;
+    public mstep:number = 1;
+    public ismeridian:boolean = false;
+    public hour:Array = [];
+    public mytime:Date = new Date();
+
+    public days = [
+        { name: "Lundi" },
+        { name: "Mardi" },
+        { name: "Mercredi" },
+        { name: "Jeudi" },
+        { name: "Vendredi" },
+        { name: "Samedi" },
+        { name: "Dimanche" },
+    ];
+    public selectedDay = "Lundi";
+    public timepickerDay = {
+        day: "",
+        data: {
+            morning: {
+                opening: new Date,
+                closing: new Date
+            },
+            afternoon: {
+                opening: new Date,
+                closing: new Date
+            }
+        }
+    };
+
     model = {
         "_id":"",
         "state":0,
@@ -70,10 +101,6 @@ export class AdminValidationComponent {
                 "adeli":876545678987654,
                 "nightBox":true,
                 "transporteur":"Mathieu",
-                "openDay":"Lun",
-                "closeDay":"Lun",
-                "openHour":"10:30",
-                "closeHour":"10:11",
                 "__v":0
             }
         ],
@@ -175,7 +202,7 @@ export class AdminValidationComponent {
                 response => {
                     if(response.success){
                         this.alertService.addAlert('success', response.message);
-                        this.mailService.validateUser( this.model)
+                        this.mailService.validateUser(this.model)
                             .subscribe(
                                 response => {
                                     if(response.success){
