@@ -344,7 +344,7 @@ module.exports = {
     },
 
     getUsers: function(req, res) {
-        User.find({}, function(err, users) {
+        User.find({state: 1}, function(err, users) {
             if(err){
                 console.log(err);
                 logger.log('error', err);
