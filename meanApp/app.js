@@ -17,7 +17,7 @@ var Admin = require("./models/admin/admin.js").Admin;
 
 app.use(jwt({ secret: config.secret}).unless({path: config.freeRoutes}));
 
-  app.use(bodyParser.json());
+  app.use(bodyParser.json({limit: '50mb'}));
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(cookieParser());
   app.set('view engine', 'jade');
