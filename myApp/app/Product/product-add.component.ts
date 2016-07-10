@@ -52,6 +52,36 @@ export class ProductAddComponent {
         }
     };
 
+    items = [
+        {
+            radius: null,
+            diameter: null,
+            addition: {
+                min: null,
+                max: null,
+                int:null
+            },
+            axis: {
+                min: null,
+                max: null,
+                int:null
+            },
+            cylinder: {
+                min: null,
+                max: null,
+                int:null
+            },
+            sphere: {
+                min: null,
+                max: null,
+                int: null
+            },
+            condition: "30",
+            stock: 0,
+            provider: false
+        }
+    ];
+
     materials= [
         "Verre",
         "Plexiglass"
@@ -109,29 +139,13 @@ export class ProductAddComponent {
         ],
         middlePrice: 0,
         param: {
-            diameter: ["11"],
+            diameter: [],
             addition: [],
-            cylinder: ["12"],
-            radius: ["5"],
-            axis: ["5"],
+            cylinder: [],
+            radius: [],
+            axis: [],
         },
         item:[
-            {
-                radius: null,
-                addition: null,
-                diameter: null,
-                axis: null,
-                addition: null,
-                cylinder: null,
-                sphere: {
-                    min: 0,
-                    max: 0,
-                    int: 0.25
-                },
-                condition: "30",
-                stock: 0,
-                provider: false
-            }
         ]
 
     };
@@ -204,12 +218,24 @@ export class ProductAddComponent {
     }
 
     addProduct() {
-        this.products.item.push({
+        this.items.push({
             radius: null,
             diameter: null,
-            axis: null,
-            addition: null,
-            cylinder: null,
+            addition: {
+                min: 0,
+                max: 0,
+                int:0
+            },
+            axis: {
+                min: 0,
+                max: 0,
+                int:0
+            },
+            cylinder: {
+                min: 0,
+                max: 0,
+                int:0
+            },
             sphere: {
                 min: 0,
                 max: 0,
@@ -220,9 +246,14 @@ export class ProductAddComponent {
             provider: false
         });
     }
+    deleteProduct() {
+        this.items.pop();
+    }
 
 
     save() {
+        this.addItem();
+
         for (var i in this.products.item) {
             if (this.products.item[i].provider) {
                 this.products.item[i].stock = -1;
@@ -247,6 +278,47 @@ export class ProductAddComponent {
                 () => console.log('Product Added')
             );
     }
+
+
+    addItem(){
+
+        for (var i in this.items) {
+            if(this.products.param["diameter"].indexOf(this.items[i].diameter) == -1)
+                this.products.param["diameter"].push(this.items[i].diameter);
+
+            if(this.products.param["radius"].indexOf(this.items[i].diameter) == -1)
+                this.products.param["radius"].push(this.items[i].diameter);
+
+            for (var c = this.items[i].cylinder.min; c <= this.items[i].cylinder.max; c += this.items[i].cylinder.int) {
+                if(this.products.param["cylinder"].indexOf(c) == -1)
+                    this.products.param["cylinder"].push(c);
+
+                for (var a = this.items[i].addition.min; a <= this.items[i].addition.max; a += this.items[i].addition.int) {
+                    if(this.products.param["addition"].indexOf(a) == -1)
+                        this.products.param["addition"].push(a);
+
+                    for (var ax = this.items[i].axis.min; ax <= this.items[i].axis.max; ax += this.items[i].axis.int) {
+                        if(this.products.param["axis"].indexOf(c) == -1)
+                            this.products.param["axis"].push(c);
+                        console.log(this.items[i].sphere)
+                        this.products.item.push({
+                            radius: this.items[i].radius,
+                            diameter: this.items[i].diameter,
+                            addition: a,
+                            axis: ax,
+                            cylinder: c,
+                            sphere: this.items[i].sphere,
+                            condition: "30",
+                            stock: 0,
+                            provider: false
+                        });
+                    }
+                }
+            }
+        }
+
+
+    };
 
 
     dropParams(type) {

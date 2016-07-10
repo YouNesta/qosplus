@@ -35,7 +35,7 @@ export class ProductListComponent {
                 response => {
                     if(response.success){
                         this.products = response.data;
-                        
+                        console.log(this.products);
                         for(var i in this.products){
                             this.isOpen.push(false);
                         }
