@@ -51,8 +51,10 @@ var ProductSchema = new mongoose.Schema({
         required : true
     },
     image: {
-        type: Array,
-        required : true
+        small: String,
+        medium: String,
+        big: String,
+        original: String
     },
     supplier: {
         type: String,
