@@ -1,5 +1,5 @@
 <div class="content product-list">
-    <modal #modal>
+    <modal #modal (onClose)="close()">
         <modal-body>
             <product-add [modal]="modal"></product-add>
         </modal-body>

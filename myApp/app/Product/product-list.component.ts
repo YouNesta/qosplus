@@ -128,7 +128,10 @@ export class ProductListComponent {
         }, 100);
     }
 
-
+    close(){
+        this.getProducts();
+    }
+    
     //Edit and Delete should only take one product as argument
     /*editProduct(product){
         this.service.editProduct(product)
