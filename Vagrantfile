@@ -5,7 +5,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "Younesta/meanbox"
 
-  # config.vm.box_check_update = false
+  config.vm.box_check_update = true
 
 
    config.vm.network "private_network", ip: "192.168.33.10"
@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
  
 
   config.ssh.insert_key = false
-  # config.ssh.private_key_path = "~/.ssh/id_rsa"
+  #config.ssh.private_key_path = "~/.ssh/id_rsa"
   #config.ssh.forward_agent = true
 
   config.ssh.private_key_path = "~/.ssh/id_rsa"
