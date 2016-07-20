@@ -286,8 +286,8 @@ export class ProductAddComponent {
             if(this.products.param["diameter"].indexOf(this.items[i].diameter) == -1)
                 this.products.param["diameter"].push(this.items[i].diameter);
 
-            if(this.products.param["radius"].indexOf(this.items[i].diameter) == -1)
-                this.products.param["radius"].push(this.items[i].diameter);
+            if(this.products.param["radius"].indexOf(this.items[i].radius) == -1)
+                this.products.param["radius"].push(this.items[i].radius);
 
             for (var c = this.items[i].cylinder.min; c <= this.items[i].cylinder.max; c += this.items[i].cylinder.int) {
                 if(this.products.param["cylinder"].indexOf(c) == -1)
