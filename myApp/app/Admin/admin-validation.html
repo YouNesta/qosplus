@@ -1,7 +1,7 @@
 <div class="content admin-validation">
     <button (click)="modalSubscribe.open(lg)" class="add-modale">Add a User</button>
 
-    <modal #modalSubscribe (onClose)="closed()">
+    <modal #modalSubscribe (onClose)="closed()" (onDismiss)="closed()">
         <modal-body>
             <user-subscribe></user-subscribe>
         </modal-body>
