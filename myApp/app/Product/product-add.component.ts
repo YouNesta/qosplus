@@ -34,23 +34,6 @@ export class ProductAddComponent {
         }
     }
 
-    int = {
-        axis : {
-            min: 0,
-            max: 0,
-            int:0
-        },
-        addition : {
-            min: 0,
-            max: 0,
-            int:0
-        },
-        cylinder : {
-            min: 0,
-            max: 0,
-            int:0
-        }
-    };
 
     items = [
         {
@@ -76,44 +59,14 @@ export class ProductAddComponent {
                 max: null,
                 int: null
             },
-            condition: "30",
+            condition: "",
             stock: 0,
             provider: false
         }
     ];
 
-    materials= [
-        "Verre",
-        "Plexiglass"
-    ];
-
-    colors=[
-        "Transparent",
-        "Bleu",
-        "Vert",
-        "Marron"
-        ];
-    conditions = [
-        "10",
-        "30",
-        "60",
-        "90"
-    ];
-
-    intervales = [
-        0.25,
-        0.5,
-        1,
-        1.25,
-        1.5,
-        2,
-        2,25,
-        2.5,
-        3
-    ];
-
     products = {
-        name: "Younesta",
+        name: "",
         status: 1,
         image: {
             original: "public/uploads/no_image.png",
@@ -121,9 +74,13 @@ export class ProductAddComponent {
             medium: "public/uploads/no_image.png",
             big: "public/uploads/no_image.png"
         },
-        hydrophily: 56,
-        material: "Verre",
-        color: "Transparent",
+        type: {
+            toric : false,
+            progressiv: false
+        },
+        hydrophily: 0,
+        material: "",
+        color: "",
         ametropia: "",
         price: [{
             "type": 0,
@@ -203,7 +160,7 @@ export class ProductAddComponent {
         }
     }
 
-    addParams(type){
+/*    addParams(type){
         if(this.int[type].max != 0 && this.int[type].int != 0) {
             var i;
             for (i = this.int[type].min; i <= this.int[type].max;) {
@@ -215,31 +172,35 @@ export class ProductAddComponent {
                  this.int[type][i] = 0
             }
         }
-    }
+    }*/
 
     addProduct() {
         this.items.push({
+            type: {
+                toric : false,
+                progressiv: false
+            },
             radius: null,
             diameter: null,
             addition: {
-                min: 0,
-                max: 0,
-                int:0
+                min:  null,
+                max:  null,
+                int: null
             },
             axis: {
-                min: 0,
-                max: 0,
-                int:0
+                min:  null,
+                max:  null,
+                int: null
             },
             cylinder: {
-                min: 0,
-                max: 0,
-                int:0
+                min:  null,
+                max:  null,
+                int: null
             },
             sphere: {
-                min: 0,
-                max: 0,
-                int: 0.25
+                min:  null,
+                max:  null,
+                int: null
             },
             condition: "30",
             stock: 0,
@@ -289,36 +250,118 @@ export class ProductAddComponent {
             if(this.products.param["radius"].indexOf(this.items[i].radius) == -1)
                 this.products.param["radius"].push(this.items[i].radius);
 
-            for (var c = this.items[i].cylinder.min; c <= this.items[i].cylinder.max; c += this.items[i].cylinder.int) {
-                if(this.products.param["cylinder"].indexOf(c) == -1)
-                    this.products.param["cylinder"].push(c);
-
-                for (var a = this.items[i].addition.min; a <= this.items[i].addition.max; a += this.items[i].addition.int) {
-                    if(this.products.param["addition"].indexOf(a) == -1)
-                        this.products.param["addition"].push(a);
-
-                    for (var ax = this.items[i].axis.min; ax <= this.items[i].axis.max; ax += this.items[i].axis.int) {
-                        if(this.products.param["axis"].indexOf(c) == -1)
-                            this.products.param["axis"].push(c);
-                        console.log(this.items[i].sphere)
-                        this.products.item.push({
-                            radius: this.items[i].radius,
-                            diameter: this.items[i].diameter,
-                            addition: a,
-                            axis: ax,
-                            cylinder: c,
-                            sphere: this.items[i].sphere,
-                            condition: "30",
-                            stock: 0,
-                            provider: false
-                        });
-                    }
+            if(this.products.type.progressiv){
+                if(this.products.type.toric){
+                    this.isFull(i);
+                }else{
+                    this.isProg(i);
+                }
+            }else{
+                if(this.products.type.toric){
+                    this.isToric(i);
+                }else{
+                    this.isEmpty(i);
                 }
             }
         }
 
 
     };
+
+    isToric(i){
+    console.log('istoric');
+    for (var c = this.items[i].cylinder.min; c <= this.items[i].cylinder.max; c += this.items[i].cylinder.int) {
+        if(this.products.param["cylinder"].indexOf(c) == -1)
+            this.products.param["cylinder"].push(c);
+
+        for (var ax = this.items[i].axis.min; ax <= this.items[i].axis.max; ax += this.items[i].axis.int) {
+            if(this.products.param["axis"].indexOf(c) == -1)
+                this.products.param["axis"].push(c);
+
+            console.log(this.items[i].sphere)
+            this.products.item.push({
+                radius: this.items[i].radius,
+                diameter: this.items[i].diameter,
+                addition: null,
+                axis: ax,
+                cylinder: c,
+                sphere: this.items[i].sphere,
+                condition: "30",
+                stock: 0,
+                provider: false
+            });
+
+        }
+    }
+}
+    isProg(i){
+    console.log('isProg');
+    for (var a = this.items[i].addition.min; a <= this.items[i].addition.max; a += this.items[i].addition.int) {
+        if(this.products.param["addition"].indexOf(a) == -1)
+            this.products.param["addition"].push(a);
+
+        console.log(this.items[i].sphere)
+        this.products.item.push({
+            radius: this.items[i].radius,
+            diameter: this.items[i].diameter,
+            addition: a,
+            axis: null,
+            cylinder: null,
+            sphere: this.items[i].sphere,
+            condition: "30",
+            stock: 0,
+            provider: false
+        });
+    }
+}
+    isFull(i){
+
+    console.log('isFull');
+
+    for (var c = this.items[i].cylinder.min; c <= this.items[i].cylinder.max; c += this.items[i].cylinder.int) {
+        if(this.products.param["cylinder"].indexOf(c) == -1)
+            this.products.param["cylinder"].push(c);
+
+        for (var ax = this.items[i].axis.min; ax <= this.items[i].axis.max; ax += this.items[i].axis.int) {
+            if(this.products.param["axis"].indexOf(c) == -1)
+                this.products.param["axis"].push(c);
+
+            for (var a = this.items[i].addition.min; a <= this.items[i].addition.max; a += this.items[i].addition.int) {
+                if(this.products.param["addition"].indexOf(a) == -1)
+                    this.products.param["addition"].push(a);
+
+
+                console.log(this.items[i].sphere)
+                this.products.item.push({
+                    radius: this.items[i].radius,
+                    diameter: this.items[i].diameter,
+                    addition: a,
+                    axis: ax,
+                    cylinder: c,
+                    sphere: this.items[i].sphere,
+                    condition: "30",
+                    stock: 0,
+                    provider: false
+                });
+            }
+        }
+    }
+}
+    isEmpty(i){
+    console.log('isEmpty');
+
+    this.products.item.push({
+        radius: this.items[i].radius,
+        diameter: this.items[i].diameter,
+        addition: null,
+        axis: null,
+        cylinder: null,
+        sphere: this.items[i].sphere,
+        condition: "30",
+        stock: 0,
+        provider: false
+    });
+}
 
 
     dropParams(type) {
@@ -332,7 +375,12 @@ export class ProductAddComponent {
         });
     }
     deleteOwnerPrice(type) {
-        this.products.ownerPrice.pop();
+        if(this.products.ownerPrice.length > 1)
+            this.products.ownerPrice.pop();
+    }
+
+    console(i){
+        console.log(i);
     }
 
     middlePrice(){
