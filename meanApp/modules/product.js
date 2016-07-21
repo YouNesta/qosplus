@@ -16,9 +16,17 @@ module.exports = {
             Product.count({}, function(err, c) {
                 if(i < product.item.length){
                     var sphere = [];
+                    var spheres = [];
                     var r = 0;
                     for (var n = product.item[i].sphere.min; n <= product.item[i].sphere.max; n += product.item[i].sphere.int) {
                         var reference = c+1+'-'+i+'-'+r;
+
+
+                        if(spheres.indexOf(n) == -1)
+                            spheres.push(n);
+
+
+
                         sphere.push({
                             sphere: n,
                             stock: product.item[i].stock,
@@ -28,6 +36,8 @@ module.exports = {
                     }
                     delete product.item[i].sphere;
                     product.item[i].sphere = sphere;
+                    product.item[i].spheres = spheres;
+                    product.param["sphere"] = spheres;
                     var item = new Item(product.item[i]);
                     item.save(function(error, data) {
                         if (error) {

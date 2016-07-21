@@ -25,6 +25,10 @@ var ItemSchema = new mongoose.Schema({
         type: String,
         required : false
     },
+    spheres:{
+        type: Array,
+        required : true
+    },
     sphere:{
         type: Array,
         required : true
