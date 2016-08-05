@@ -36,11 +36,8 @@
                             <option value="true">Payé</option>
                         </select>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-lg-offset-2" *ngIf="payment.amount != 0">
                         <button (click)="printPdf(i)"><i class="fa fa-spinner" [ngClass]="{faFile: loader[i]}" aria-hidden="true"></i></button>
-                    </div>
-                    <div class="col-lg-3">
-                        <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>

@@ -363,51 +363,19 @@ module.exports = {
                 }
 
                 function updateCommandAndPayment(status) {
-                    Command.find({payment: payment._id}, function(err, commands){
+                    var path_facture = "../myApp/public/pdf/"+payment._id+".pdf";
+                    fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
+                        if (!err) fs.unlinkSync(path_facture);
+                    });
+                    Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
                         if(err) {
                             console.log(err);
                             logger.log('error', err);
                             res.json({success: false, message:err});
                         } else {
-
-                            for (var i in commands) {
-
-                                var command = commands[i];
-                                command.status = status;
-
-                                Command.findOneAndUpdate({_id: command._id}, command, { 'new': true }, function(err, command){
-                                    if(err) {
-                                        console.log(err);
-                                        logger.log('error', err);
-                                        res.json({success: false, message:err});
-                                    } else {
-                                        newUpdated();
-                                    }
-                                })
-                            }
-
-                            function newUpdated() {
-                                updated++;
-
-                                if (updated == commands.length) {
-                                    var path_facture = "../myApp/public/pdf/"+payment._id+".pdf";
-                                    fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
-                                        if (!err) fs.unlinkSync(path_facture);
-                                    });
-                                    Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
-                                        if(err) {
-                                            console.log(err);
-                                            logger.log('error', err);
-                                            res.json({success: false, message:err});
-                                        } else {
-                                            res.json({success: true, message:"Payment updated", data: payment});
-                                        }
-                                    })
-                                }
-                            }
-
+                            res.json({success: true, message:"Payment updated", data: payment});
                         }
-                    });
+                    })
                 }
             }
         })
