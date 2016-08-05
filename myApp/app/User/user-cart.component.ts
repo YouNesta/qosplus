@@ -73,34 +73,36 @@ export class UserCartComponent {
     getCart(){
         this.products = JSON.parse(localStorage.getItem("cart"));
 
-        if (this.products.length > 0) {
+        if(this.products){
+            if (this.products.length > 0) {
 
-            for(var i in this.products){
-                this.isOpen.push(false);
+                for(var i in this.products){
+                    this.isOpen.push(false);
+                }
+
+                var productsId = [];
+
+                for (var i in this.products) {
+                    productsId.push(this.products[i]._id);
+                }
+
+
+                this.service.getProductsById(productsId).subscribe(
+                    res => {
+                        if(res.success){
+                            console.log(res.data);this.productPrice = res.data;
+                            console.log(res.data);
+
+                        }else{
+                            this.alertService.addAlert('warning', res.message);
+                        }
+                    },
+                    err => {
+                        this.alertService.addAlert('danger', 500);
+                    },
+                    () => console.log('Prices get')
+                );
             }
-
-            var productsId = [];
-
-            for (var i in this.products) {
-                productsId.push(this.products[i]._id);
-            }
-
-
-            this.service.getProductsById(productsId).subscribe(
-                res => {
-                    if(res.success){
-                        console.log(res.data);this.productPrice = res.data;
-                        console.log(res.data);
-
-                    }else{
-                        this.alertService.addAlert('warning', res.message);
-                    }
-                },
-                err => {
-                    this.alertService.addAlert('danger', 500);
-                },
-                () => console.log('Prices get')
-            );
         }
 
     };
