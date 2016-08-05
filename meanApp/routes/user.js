@@ -20,8 +20,8 @@ router.get('/get', function(req, res) {   // Get user
   if(data.role > 0){
     model = Admin;
   }
-    model.findOne({_id: data._id} ,function(err, user) {
-      if(err){
+    model.findOne({_id: data._id} ,function(error, user) {
+      if(error){
         console.log(error);
         logger.log('error', error);
         res.json({success: false, message:error
@@ -49,18 +49,30 @@ router.post('/login', function(req, res) {   // Login
 
     Admin.findOne({
       mail: req.body.user.mail
-    }, function(err, user) {
+    }, function(error, user) {
 
-      if(err){
+      if(error){
         console.log(error);
         logger.log('error', error);
         res.json({success: false, message:error});
       }
       if (!user) {
+
+        if(Number(req.body.user.mail)){
+          var mail = "";
+          var code = req.body.user.mail;
+        }else{
+          var mail = req.body.user.mail;
+          var code = 00;
+        }
+
         User.findOne({
-          mail: req.body.user.mail
-        }, function(err, user) {
-          if(err){
+          $or:[
+            {mail: mail},
+            {code: code}
+          ]},
+            function(error, user) {
+          if(error){
             console.log(error);
             logger.log('error', error);
             res.json({success: false, message:error});
@@ -78,8 +90,6 @@ router.post('/login', function(req, res) {   // Login
               });
             } else {
               res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-
-
             }
           }
         });
@@ -96,8 +106,6 @@ router.post('/login', function(req, res) {   // Login
           });
         } else {
           res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-
-
         }
       }
     });
@@ -201,8 +209,8 @@ router.get('/list',function(req, res) {
 router.get('/getMails', function(req, res) {   // Get user mails
   var model = User;
 
-  model.find({} ,function(err, users) {
-    if(err){
+  model.find({} ,function(error, users) {
+    if(error){
       console.log(error);
       logger.log('error', error);
       res.json({success: false, message:error
