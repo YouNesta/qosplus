@@ -8,6 +8,11 @@ var UserSchema = new mongoose.Schema({
         type: Number,
         required : false
     },
+    code:{
+        type: Number,
+        required : true,
+        index: true
+    },
     role:{
         type: Number,
         required : false
@@ -18,7 +23,6 @@ var UserSchema = new mongoose.Schema({
     },
     lastName:{
         type: String,
-        index: true,
         required : true
     },
     firstName:{
@@ -27,7 +31,6 @@ var UserSchema = new mongoose.Schema({
     },
     phone:{
         type: String,
-        index: true,
         required : true
     },
     mail:{
@@ -61,8 +64,7 @@ var UserSchema = new mongoose.Schema({
     },
     commercial:{
         type: String,
-        required : false,
-        index: true
+        required : false
     },
     IBAN:{
         type: String,
@@ -75,7 +77,6 @@ var UserSchema = new mongoose.Schema({
     },
     financialMail:{
         type: String,
-        index: true,
         required : false
     },
     paymentState: {
@@ -84,8 +85,7 @@ var UserSchema = new mongoose.Schema({
     },
     central:{
         type: String,
-        required : false,
-        index: true
+        required : false
     },
     comment: {
         type: String,
@@ -93,8 +93,7 @@ var UserSchema = new mongoose.Schema({
     },
     password:{
         type: String,
-        required : false,
-        index: true
+        required : false
     },
     hash: {
         type: String,
