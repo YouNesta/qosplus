@@ -111,11 +111,11 @@ export class UserCommandComponent {
 
         switch(command.status) {
             case 0:
-                return "paid";
-            case 1:
-                return "unvalidate";
+                return "Livrée";
             case 2:
-                return "pending";
+                return "Attente de paiement";
+            case 3:
+                return "Annulée";
             default:
                 return "-";
         }

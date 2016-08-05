@@ -120,6 +120,7 @@ module.exports = {
                     console.log(payment);
                     command.payment = payment._id;
                     command.commandNumber = commands.length + 1;
+                    command.status = 2;
                     command.save(function(error, command){
                         if(error){
                             console.log(error);
