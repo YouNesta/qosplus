@@ -202,8 +202,10 @@ module.exports = {
                             var stock = found_item.sphere[j].stock;
                             found_item.sphere[j].stock = stock - quantity;
                             if (found_item.sphere[j].stock < 0) {
-                                result.push(product.name);
-                                console.log(product.name);
+                                var state = 0;
+
+                                if (stock == -1) state = 1;
+                                result.push([product.name, item._id, state]);
                             }
                         }
                     }
