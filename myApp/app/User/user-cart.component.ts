@@ -22,10 +22,6 @@ export class UserCartComponent {
     products = [];
     alertService: AlertService;
     user = Object;
-    shopMobiles = [];
-    shopPhones = [];
-    shopRS = [];
-    shopNames = [];
     isOpen = [];
     client: {};
     selectedProductCard = [];
@@ -54,13 +50,7 @@ export class UserCartComponent {
                 res => {
                     if(res.success){
                         this.shops = res.data[0];
-                        for (var i in this.shops) {
-                            var shop = this.shops[i];
-                            this.shopMobiles.push(shop.mobile);
-                            this.shopPhones.push(shop.phone);
-                            this.shopRS.push(shop.socialReason);
-                            this.shopNames.push(shop.name);
-                        }
+                        this.client = this.shops[0].owner;
                     }else{
                         console.log(res);
                     }
@@ -205,108 +195,5 @@ export class UserCartComponent {
         }else{
             this.selectedProductCard.push(index);
         }
-    }
-    filter() {
-        if (this.query !== ""){
-            this.filteredList = this.shopMobiles.filter(function(el){
-                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-            }.bind(this));
-            var phones = (this.shopPhones.filter(function(el){
-                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-            }.bind(this)));
-            var rs = (this.shopRS.filter(function(el){
-                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-            }.bind(this)));
-            var names = (this.shopNames.filter(function(el){
-                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-            }.bind(this)));
-            if (phones != null) {
-                for (var i = 0; i < phones.length; i++) {
-                    if (this.filteredList.indexOf(phones[i]) == -1) this.filteredList.push(phones[i]);
-                }
-            }
-            if (rs != null) {
-                for (var i = 0; i < rs.length; i++) {
-                    if (this.filteredList.indexOf(rs[i]) == -1) this.filteredList.push(rs[i]);
-                }
-            }
-            if (names != null) {
-                for (var i = 0; i < names.length; i++) {
-                    if (this.filteredList.indexOf(names[i]) == -1) this.filteredList.push(names[i]);
-                }
-            }
-        }else{
-            this.filteredList = [];
-        }
-    }
-    select(item){
-        this.query = item;
-        this.filteredList = [];
-    }
-    handleClick(event){
-        var clickedComponent = event.target;
-        var inside = false;
-        do {
-            if (clickedComponent === this.elementRef.nativeElement) {
-                inside = true;
-            }
-            clickedComponent = clickedComponent.parentNode;
-        } while (clickedComponent);
-        if(!inside){
-            this.selectShop();
-            this.filteredList = [];
-        }
-    }
-    selectShop() {
-        var type = "";
-        if (this.shopMobiles.indexOf(this.query) != -1) type = "mobile";
-        if (this.shopPhones.indexOf(this.query) != -1) type = "phone";
-        if (this.shopRS.indexOf(this.query) != -1) type = "rs";
-        if (this.shopNames.indexOf(this.query) != -1) type = "name";
-
-        switch (type) {
-            case "mobile":
-                for (var i in this.shops) {
-                    var shop = this.shops[i];
-                    if (shop.mobile == this.query) this.selectedShop = shop;
-                }
-                break;
-            case "phone":
-                for (var i in this.shops) {
-                    var shop = this.shops[i];
-                    if (shop.phone == this.query) this.selectedShop = shop;
-                }
-                break;
-            case "rs":
-                for (var i in this.shops) {
-                    var shop = this.shops[i];
-                    if (shop.socialReason == this.query) this.selectedShop = shop;
-                }
-                break;
-            case "name":
-                for (var i in this.shops) {
-                    var shop = this.shops[i];
-                    if (shop.name == this.query) this.selectedShop = shop;
-                }
-                break;
-            default:
-                console.log('not found');
-        }
-
-        this.userService.getUserById(this.selectedShop.owner)
-            .subscribe(
-                res => {
-                    if(res.success){
-                        this.client = res.data;
-                        if (this.client) {
-                            this.priceType = this.client.type.type;
-                        }
-                    }else{
-                        console.log(res);
-                    }
-                },
-                err =>  console.log(err),
-                () => console.log('get mail list Complete')
-            );
     }
 }

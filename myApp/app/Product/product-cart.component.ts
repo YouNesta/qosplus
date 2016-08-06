@@ -24,6 +24,7 @@ export class ProductCartComponent {
     user = Object;
     shopMobiles = [];
     shopPhones = [];
+    shopCode = [];
     shopRS = [];
     shopNames = [];
     isOpen = [];
@@ -59,6 +60,7 @@ export class ProductCartComponent {
                                 this.shopPhones.push(shop.phone);
                                 this.shopRS.push(shop.socialReason);
                                 this.shopNames.push(shop.name);
+                                this.shopCode.push(""+shop.code);
                             }
                         }else{
                             console.log(res);
@@ -221,6 +223,10 @@ export class ProductCartComponent {
             var names = (this.shopNames.filter(function(el){
                 return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
             }.bind(this)));
+            var codes = (this.shopCode.filter(function(el){
+                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+            }.bind(this)));
+
             if (phones != null) {
                 for (var i = 0; i < phones.length; i++) {
                     if (this.filteredList.indexOf(phones[i]) == -1) this.filteredList.push(phones[i]);
@@ -234,6 +240,11 @@ export class ProductCartComponent {
             if (names != null) {
                 for (var i = 0; i < names.length; i++) {
                     if (this.filteredList.indexOf(names[i]) == -1) this.filteredList.push(names[i]);
+                }
+            }
+            if (codes != null) {
+                for (var i = 0; i < codes.length; i++) {
+                    if (this.filteredList.indexOf(codes[i]) == -1) this.filteredList.push(codes[i]);
                 }
             }
         }else{
@@ -264,6 +275,7 @@ export class ProductCartComponent {
         if (this.shopPhones.indexOf(this.query) != -1) type = "phone";
         if (this.shopRS.indexOf(this.query) != -1) type = "rs";
         if (this.shopNames.indexOf(this.query) != -1) type = "name";
+        if (this.shopCode.indexOf(this.query) != -1) type = "code";
 
         switch (type) {
             case "mobile":
@@ -288,6 +300,12 @@ export class ProductCartComponent {
                 for (var i in this.shops) {
                     var shop = this.shops[i];
                     if (shop.name == this.query) this.selectedShop = shop;
+                }
+                break;
+            case "code":
+                for (var i in this.shops) {
+                    var shop = this.shops[i];
+                    if (shop.code == this.query) this.selectedShop = shop;
                 }
                 break;
             default:

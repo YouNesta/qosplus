@@ -80,6 +80,11 @@ var ShopSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    code:{
+        type: Number,
+        required : true,
+        index: true
+    },
     disponibility: [{
         day: String,
         data: {
