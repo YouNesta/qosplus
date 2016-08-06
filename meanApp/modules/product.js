@@ -177,6 +177,49 @@ module.exports = {
         });
     },
 
+    checkStock: function(req, res){
+
+        var cart = req.body.cart;
+
+        var result = [];
+
+        for (var i in cart) {
+            var product = cart[i];
+
+            var item = product.item;
+            var quantity = product.quantity;
+            var reference = item.reference;
+
+            Item.findOne({_id: item._id}, function (err, found_item) {
+                if (err) {
+                    console.log(err);
+                    logger.log('error', err);
+                    res.json({success: false, message: err});
+                } else {
+
+                    for (var j in found_item.sphere) {
+                        if (found_item.sphere[j].reference == reference) {
+                            var stock = found_item.sphere[j].stock;
+                            found_item.sphere[j].stock = stock - quantity;
+                            if (found_item.sphere[j].stock < 0) {
+                                result.push(product.name);
+                                console.log(product.name);
+                            }
+                        }
+                    }
+
+                    if (i == cart.length - 1) {
+                        sendStock();
+                    }
+                }
+            });
+        }
+
+        function sendStock() {
+            res.json({success: true, message:"Stock get with success", data: result});
+        }
+    },
+
     createPrice: function(req, res){
         var type = new Type(req.body.price);
         type.save(function(error, type){

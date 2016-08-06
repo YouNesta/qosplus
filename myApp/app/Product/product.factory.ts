@@ -189,7 +189,6 @@ export class ProductFactory {
             .map(response => response.json());
     }
 
-
     createPrice(price) {
         var data = JSON.stringify({price});
         var headers = new Headers();
@@ -203,7 +202,6 @@ export class ProductFactory {
             .map(response => response.json())
 
     }
-
 
     createCommand(client, amount, shop, porter) {
         var cart = JSON.parse(localStorage.getItem("cart"));
@@ -243,6 +241,22 @@ export class ProductFactory {
 
         return this.authHttp
             .post(this.commandUrl + 'create',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
+    checkStock() {
+        var cart = JSON.parse(localStorage.getItem("cart"));
+
+        var data = JSON.stringify({cart});
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'checkStock',
                 data, {
                     headers: headers
                 })

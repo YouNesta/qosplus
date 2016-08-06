@@ -251,6 +251,7 @@ export class ProductAddCartComponent  implements  OnChanges{
     }
 
     addProductToCart(product) {
+        this.cartFinal._id = this.product._id;
         this.cartFinal.image = this.product.image;
         //this.cartFinal.reference = this.product.image;
         this.cartFinal.name = this.product.name;

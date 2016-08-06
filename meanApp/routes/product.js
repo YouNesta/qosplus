@@ -47,6 +47,13 @@ router.post('/price/update', function(req, res, next) {
         res.sendStatus(500);
     }
 });
+router.post('/checkStock', function(req, res, next) {
+    if(req.body != 'undefined'){
+        product.checkStock(req, res);
+    } else {
+        res.sendStatus(500);
+    }
+});
 
 router.put('/edit/', function(req, res, next){
     if(req.body.product != 'undefined'){
