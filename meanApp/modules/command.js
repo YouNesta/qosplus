@@ -4,6 +4,8 @@
 
 var Payment = require("../models/command/payment.js").Payment;
 var Command = require("../models/command/command.js").Command;
+var Product = require("../models/product/product.js").Product;
+var Item = require("../models/product/item.js").Item;
 var User = require("../models/user.js").User;
 var pdf = require('phantom-html2pdf');
 var logger = require('winston');
@@ -579,59 +581,64 @@ module.exports = {
             } else {
                 var lastStatus = command.status;
                 command.status = status;
-                if (command.status == 1) {
-                    updatePaymentAndCommand(0);
-                } else if (command.status == 2) {
-                    updatePaymentAndCommand(0);
-                }  else if (command.status == 3) {
-                    updatePaymentAndCommand(0);
+
+                if (command.status == 1 && lastStatus != 1) {
+                    changeQuantity(-1);
+                } else if (command.status != 1 && lastStatus == 1) {
+                    changeQuantity(1);
                 } else {
-                    updatePaymentAndCommand(1);
+                    saveCommand();
                 }
 
-                function updatePaymentAndCommand(status) {
-                    Command.findOneAndUpdate({_id: id}, command, { 'new': true }, function(err, command){
-                        if(err) {
-                            console.log(err);
-                            logger.log('error', err);
-                            res.json({success: false, message:err});
-                        } else {
-                            Payment.findOne({_id: command.payment}, function(err, payment){
-                                if(err){
-                                    console.log(err);
-                                    logger.log('error', err);
-                                    res.json({success: false, message:error});
+                function changeQuantity(moreOrLess) {
+                    for (var i in command.product) {
+                        var item = command.product[i].item;
+                        var quantity = command.product[i].quantity;
+                        var reference = item.reference;
+
+                        Item.findOne({_id: item.id}, function (err, found_item) {
+                            if (err) {
+                                console.log(err);
+                                logger.log('error', err);
+                                res.json({success: false, message: err});
+                            } else {
+
+                                for (var j in found_item.sphere) {
+                                    if (found_item.sphere[j].reference == reference) {
+                                        var stock = found_item.sphere[j].stock;
+                                        if (stock != -1) {
+                                            found_item.sphere[j].stock = stock + (quantity * moreOrLess);
+                                            if (found_item.sphere[j].stock < 0) found_item.sphere[j].stock = 0;
+                                        }
+                                    }
                                 }
-                                var path_facture = "../myApp/public/pdf/"+payment._id+".pdf";
-                                fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
-                                    if (!err) fs.unlinkSync(path_facture);
-                                });
-                                payment.facture = "";
-                                if (command.status == 3) {
-                                    payment.amount -= command.amount;
-                                } else if (lastStatus == 3) {
-                                    payment.amount += command.amount;
-                                }
-                                Payment.findOneAndUpdate({_id: payment._id}, payment, { 'new': true }, function(err, payment){
+
+                                Item.findOneAndUpdate({_id: item.id}, found_item, { 'new': true }, function(err, saved_item){
                                     if(err) {
                                         console.log(err);
                                         logger.log('error', err);
                                         res.json({success: false, message:err});
                                     } else {
-                                        command.save(function(error, command){
-                                            if(error){
-                                                console.log(error);
-                                                logger.log('error', error);
-                                            } else {
-                                                console.log(command);
-                                                res.json({success: true, message:"Command Added with success", data:  []});
-                                            }
-                                        });
+                                        if (i == command.product.length - 1) {
+                                            saveCommand();
+                                        }
                                     }
                                 });
-                            });
+                            }
+                        });
+                    }
+                }
+
+                function saveCommand() {
+                    command.save(function(error, command){
+                        if(error){
+                            console.log(error);
+                            logger.log('error', error);
+                        } else {
+                            console.log(command);
+                            res.json({success: true, message:"Command Added with success", data:  []});
                         }
-                    })
+                    });
                 }
             }
         })
