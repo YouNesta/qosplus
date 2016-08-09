@@ -33,7 +33,7 @@
                     <input  (change)="selectProduct(i)" type="checkbox">
                 </div>
                 <div class="col-lg-2">
-                    <img class="img-responsive" [src]="product.image[0].small" alt="{{product.name}}">
+                    <img class="img-responsive" [src]="product.image.small" alt="{{product.name}}">
                 </div>
                 <div class="col-lg-3">
                     <h3> {{product.name}}</h3>
@@ -64,7 +64,7 @@
 
             <div class="col-lg-12 collapse-body text-center" [ngClass]="{active: isOpen[i]}">
                 <div class="col-lg-4 col-lg-offset-4">
-                    <img class="img-responsive" [src]="product.image[0].medium" alt="{{product.name}}">
+                    <img class="img-responsive" [src]="product.image.medium" alt="{{product.name}}">
                 </div>
                 <div class="col-lg-12">
                     <div class="col-lg-8">
