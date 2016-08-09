@@ -275,8 +275,8 @@ export class ProductAddComponent {
             this.products.param["cylinder"].push(c);
 
         for (var ax = this.items[i].axis.min; ax <= this.items[i].axis.max; ax += this.items[i].axis.int) {
-            if(this.products.param["axis"].indexOf(c) == -1)
-                this.products.param["axis"].push(c);
+            if(this.products.param["axis"].indexOf(ax) == -1)
+                this.products.param["axis"].push(ax);
 
             console.log(this.items[i].sphere)
             this.products.item.push({
@@ -323,7 +323,7 @@ export class ProductAddComponent {
             this.products.param["cylinder"].push(c);
 
         for (var ax = this.items[i].axis.min; ax <= this.items[i].axis.max; ax += this.items[i].axis.int) {
-            if(this.products.param["axis"].indexOf(c) == -1)
+            if(this.products.param["axis"].indexOf(ax) == -1)
                 this.products.param["axis"].push(c);
 
             for (var a = this.items[i].addition.min; a <= this.items[i].addition.max; a += this.items[i].addition.int) {
