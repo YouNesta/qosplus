@@ -26,6 +26,7 @@ export class ProductPaymentComponent {
                         for(var i in this.payments){
                             this.isOpen.push(false);
                             this.loader.push(true);
+                            this.payments[i].date = new Date(this.payments[i].date);
                         }
                     }else{
                         console.log(res);
