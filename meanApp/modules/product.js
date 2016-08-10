@@ -477,5 +477,19 @@ module.exports = {
                 res.json({success: true, message:"Product List Find with success", data: product});
             }
         }
+    },
+
+    editItem: function(req, res){
+        var item = req.body.item;
+
+        Item.findOneAndUpdate({_id: item._id}, {$set: item }, { 'new': true },  function(error, item){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "Subscribe Failed", data:error});
+            }else{
+                res.json({success: true, message: "succesfully updated", data: item});
+            }
+        });
     }
 };
