@@ -73,6 +73,7 @@ export class ProductAddCartComponent  implements  OnChanges{
         },
         item:[
             {
+                _id: null,
                 radius: null,
                 diameter: null,
                 axis: null,
@@ -92,6 +93,7 @@ export class ProductAddCartComponent  implements  OnChanges{
     };
 
     item = {
+        _id: null,
         radius: null,
         diameter: null,
         axis: null,
@@ -238,6 +240,7 @@ export class ProductAddCartComponent  implements  OnChanges{
                         this.sphere[sphereLength - 1].diameter =  this.cartProduct.diameter;
                         this.sphere[sphereLength - 1].radius =  this.cartProduct.radius;
                         this.sphere[sphereLength - 1].addition =  addition;
+                        this.sphere[sphereLength - 1]._id = this.product.item[i]._id;
                     }
                 }
             }

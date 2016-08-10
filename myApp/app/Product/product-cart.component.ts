@@ -74,6 +74,7 @@ export class ProductCartComponent {
             this.getCart();
         }
     }
+
     getCart(){
         this.products = JSON.parse(localStorage.getItem("cart"));
 
@@ -89,22 +90,52 @@ export class ProductCartComponent {
                 productsId.push(this.products[i]._id);
             }
 
+            if (productsId.length > 0) {
+                this.service.getProductsById(productsId).subscribe(
+                    res => {
+                        if(res.success){
 
-            this.service.getProductsById(productsId).subscribe(
-                res => {
-                    if(res.success){
+                            this.productPrice = res.data;
 
-                        this.productPrice = res.data;
+                            this.service.checkStock().subscribe(
+                                res => {
+                                    if(res.success){
+                                        var result = res.data;
 
-                    }else{
-                        this.alertService.addAlert('warning', res.message);
-                    }
-                },
-                err => {
-                    this.alertService.addAlert('danger', 500);
-                },
-                () => console.log('Prices get')
-            );
+                                        for (var i in this.products) {
+                                            for (var j in result) {
+                                                if (result[j][1] == this.products[i].item._id) {
+                                                    if (result[j][2] == 0) {
+                                                        this.products[i].state = "livraison 4-7j";
+                                                    } else {
+                                                        this.products[i].state = "livraison 4-7j";
+                                                    }
+                                                } else {
+                                                    this.products[i].state = "livraison 2-4j";
+                                                }
+                                            }
+                                        }
+
+                                    }else{
+                                        this.alertService.addAlert('warning', res.message);
+                                    }
+                                },
+                                err => {
+                                    this.alertService.addAlert('danger', 500);
+                                },
+                                () => console.log('No stock problem')
+                            );
+
+                        }else{
+                            this.alertService.addAlert('warning', res.message);
+                        }
+                    },
+                    err => {
+                        this.alertService.addAlert('danger', 500);
+                    },
+                    () => console.log('Prices get')
+                );
+            }
         }
 
     };
@@ -136,6 +167,7 @@ export class ProductCartComponent {
         var rightEye = false;
         var leftEye = false;
         var isCommandLegit = true;
+        var stock = false;
 
         for (var i in this.products) {
             if (this.products[i].eye == "droit" ) rightEye = true;
@@ -146,26 +178,69 @@ export class ProductCartComponent {
             isCommandLegit = confirm("Attention, vous n'avez des lentilles que pour un oeil, valider ?");
         }
 
-        if (this.client != null && this.products.length > 0 && isCommandLegit == true) {
-            this.service.createCommand(this.client, this.price, this.selectedShop, this.porter)
-                .subscribe(
-                    res => {
-                        if(res.success){
-                            var cart = [];
-                            localStorage.setItem("cart", JSON.stringify(cart));
-                            this.getCart();
-                            this.alertService.addAlert('success', res.message);
-                        }else{
-                            this.alertService.addAlert('warning', res.message);
-                        }
-                    },
-                    err => {
-                        this.alertService.addAlert('danger', 500);
-                    },
-                    () => console.log('Command Added')
-                );
-        }
+        this.service.checkStock().subscribe(
+            res => {
+                if(res.success){
+                    var result = res.data;
 
+                    console.log(result);
+
+                    if (result.length > 0) {
+                        var products = "";
+
+                        for (var i in result) {
+                            products += "-" + result[i][0] + "\n";
+                        }
+
+                        for (var i in this.products) {
+                            for (var j in result) {
+                                if (result[j][1] == this.products[i].item._id) {
+                                    if (result[j][2] == 0) {
+                                        this.products[i].state = "livraison 4-7j";
+                                    } else {
+                                        this.products[i].state = "livraison 4-7j";
+                                    }
+                                } else {
+                                    this.products[i].state = "livraison 2-4j";
+                                }
+                            }
+                        }
+
+                        stock = confirm("Attention, les articles suivants ne sont plus en stock, le temps de livraison peut donc être allongé: \n" + products);
+                    } else {
+                        stock = true;
+                    }
+
+                    if (this.client != null && this.products.length > 0 && isCommandLegit == true && stock == true) {
+
+                        this.service.createCommand(this.client, this.price, this.selectedShop, this.porter)
+                            .subscribe(
+                                res => {
+                                    if(res.success){
+                                        var cart = [];
+                                        localStorage.setItem("cart", JSON.stringify(cart));
+                                        this.getCart();
+                                        this.alertService.addAlert('success', res.message);
+                                    }else{
+                                        this.alertService.addAlert('warning', res.message);
+                                    }
+                                },
+                                err => {
+                                    this.alertService.addAlert('danger', 500);
+                                },
+                                () => console.log('Command Added')
+                            );
+                    }
+
+                }else{
+                    this.alertService.addAlert('warning', res.message);
+                }
+            },
+            err => {
+                this.alertService.addAlert('danger', 500);
+            },
+            () => console.log('No stock problem')
+        );
     }
 
     getPrice() {
