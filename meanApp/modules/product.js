@@ -270,6 +270,7 @@ module.exports = {
         }
     },
 
+    //not to use
     deleteProduct: function(req, res){
         var i = 0;
 
@@ -331,12 +332,16 @@ module.exports = {
 
         function deleteProduct(product, index) {
                 console.log('test4');
+            if (product.image.original != 'public/uploads/no_image.png'){
+                fs.unlink(product.image.original);
+            }
                 Product.remove({_id: product._id}, function (err, product) {
                     if (err) {
                         console.log(err);
                         logger.log('error', err);
                         res.json({success: false, message: err});
                     } else {
+                        if(product)
                         //res.json({success: true, message: "Product Successfully deleted", data: product});
                     }
                 });
