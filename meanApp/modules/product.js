@@ -314,28 +314,55 @@ module.exports = {
     },
 
     deleteProducts: function(req, res) {
+        console.log('allProducts');
+        console.log(req.body.products);
 
-        var i = 0;
+        req.body.products.forEach(function(product){
+            var i = 0;
+            Product.findOne({_id:product}, function(err, result){
+                console.log(result);
+                if(result.hasOwnProperty('item')){
+                    deleteItem(result, i);
+                }else{
+                    deleteProduct(result, i);
+                }
+            });
+        });
 
-        deleteProduct(req.body.products, i);
-
-        function deleteProduct(index) {
-            console.log(req.body.products[index]);
-            if (i < req.body.products.length) {
-                console.log('lalala');
-                Product.findOneAndRemove({_id: req.body.products[i]}, function (err, product) {
+        function deleteProduct(product, index) {
+                console.log('test4');
+                Product.remove({_id: product._id}, function (err, product) {
                     if (err) {
                         console.log(err);
                         logger.log('error', err);
                         res.json({success: false, message: err});
+                    } else {
+                        //res.json({success: true, message: "Product Successfully deleted", data: product});
                     }
-                    i++;
-                    deleteProduct(i);
-
                 });
-            } else {
-                res.json({success: true, message: "Product Successfully deleted", data: req.body.products});
-            }
+        }
+
+        function deleteItem(product, i){
+                if(i < product.item.length) {
+                    console.log('testPreDel');
+                    delete product.item[i].__v;
+                    console.log('test3');
+                    Item.findOne({_id: product.item[i]}, function(err,item){
+                        if(err)
+                        {
+                            console.log(err);
+                            logger.log('error', err);
+                            res.json({success: false, message:err});
+                        }else{
+                            Item.remove({_id: item._id});
+                        }
+                        i++;
+                        deleteItem(product, i);
+                    });
+                }else{
+                    console.log('testtest');
+                    deleteProduct(product, i);
+                }
         }
     },
 
