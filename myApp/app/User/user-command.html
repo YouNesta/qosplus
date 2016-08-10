@@ -18,7 +18,7 @@
         <div class="product col-lg-12"  *ngFor='#command of commands; #i = index;'>
             <div class="collapse-head col-lg-12">
                 <div class="col-lg-3">
-                    <p>{{ command.date }}</p>
+                    <p>{{ command.date.getDate() }}/{{ command.date.getMonth() + 1 }}/{{ command.date.getFullYear() }}</p>
                 </div>
                 <div class="col-lg-2 text-center">
                     <p>{{ command.product.length }}</p>

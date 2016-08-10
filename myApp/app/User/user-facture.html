@@ -21,7 +21,7 @@
         <div class="product col-lg-12"  *ngFor='#payment of payments; #i = index;'>
             <div class="collapse-head col-lg-12">
                 <div class="col-lg-3">
-                    <p>{{ payment.date }}</p>
+                    <p>{{ payment.date.getDate() }}/{{ payment.date.getMonth() + 1 }}/{{ payment.date.getFullYear() }}</p>
                 </div>
                 <div class="col-lg-3">
                     <p>{{ payment.client }}</p>

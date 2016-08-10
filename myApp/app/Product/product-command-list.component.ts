@@ -26,6 +26,7 @@ export class ProductCommandComponent {
                         for(var i in this.commands){
                             this.isOpen.push(false);
                             this.loader.push(true);
+                            this.commands[i].date = new Date(this.commands[i].date);
                         }
                     }else{
                         console.log(res);
