@@ -491,5 +491,29 @@ module.exports = {
                 res.json({success: true, message: "succesfully updated", data: item});
             }
         });
+    },
+
+    duplicateProduct: function(req, res){
+        var product = req.body.product;
+
+        Product.find({_id: product._id}, function(err, result){
+            if(err){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "Product not found", data:error});
+            }else{
+                var newProduct = result;
+                newProduct._id = mongoose.Types.ObjectId();
+                newProduct.save(function(err, newResult){
+                    if(err){
+                        console.log(error);
+                        logger.log('error', error);
+                        res.json({ success: false, message: "Product not duplicated", data:error});
+                    }else{
+                        res.json({success: true, message: "product duplicated", data: newResult})
+                    }
+                })
+            }
+        })
     }
 };
