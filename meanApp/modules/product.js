@@ -315,13 +315,10 @@ module.exports = {
     },
 
     deleteProducts: function(req, res) {
-        console.log('allProducts');
-        console.log(req.body.products);
 
         req.body.products.forEach(function(product){
             var i = 0;
             Product.findOne({_id:product}, function(err, result){
-                console.log(result);
                 if(result.hasOwnProperty('item')){
                     deleteItem(result, i);
                 }else{
@@ -331,7 +328,6 @@ module.exports = {
         });
 
         function deleteProduct(product, index) {
-                console.log('test4');
             if (product.image.original != 'public/uploads/no_image.png'){
                 fs.unlink(product.image.original);
             }
@@ -341,7 +337,6 @@ module.exports = {
                         logger.log('error', err);
                         res.json({success: false, message: err});
                     } else {
-                        if(product)
                         //res.json({success: true, message: "Product Successfully deleted", data: product});
                     }
                 });
@@ -349,9 +344,7 @@ module.exports = {
 
         function deleteItem(product, i){
                 if(i < product.item.length) {
-                    console.log('testPreDel');
                     delete product.item[i].__v;
-                    console.log('test3');
                     Item.findOne({_id: product.item[i]}, function(err,item){
                         if(err)
                         {
@@ -365,7 +358,6 @@ module.exports = {
                         deleteItem(product, i);
                     });
                 }else{
-                    console.log('testtest');
                     deleteProduct(product, i);
                 }
         }
