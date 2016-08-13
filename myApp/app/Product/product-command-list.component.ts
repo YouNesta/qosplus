@@ -126,4 +126,20 @@ export class ProductCommandComponent {
         );
     }
 
+    generateDiscount(i) {
+        var command = this.commands[i];
+        var percent = 100;
+        this.service.generateDiscount(command, percent).subscribe(
+            res => {
+                if(res.success){
+                    this.commands[i].discount = "true";
+                }else{
+                    console.log(res);
+                }
+            },
+            err =>  console.log(err),
+            () => console.log('command updated')
+        );
+    }
+
 }

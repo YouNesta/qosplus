@@ -5,6 +5,7 @@
 var Payment = require("../models/command/payment.js").Payment;
 var Command = require("../models/command/command.js").Command;
 var Product = require("../models/product/product.js").Product;
+var Discount = require("../models/command/discount.js").Discount;
 var Item = require("../models/product/item.js").Item;
 var User = require("../models/user.js").User;
 var pdf = require('phantom-html2pdf');
@@ -119,10 +120,10 @@ module.exports = {
                     }
 
                     var command = new Command(req.body.command);
-                    console.log(payment);
                     command.payment = payment._id;
                     command.commandNumber = commands.length + 1;
                     command.status = 2;
+                    command.discount = "";
                     command.save(function(error, command){
                         if(error){
                             console.log(error);
@@ -350,14 +351,12 @@ module.exports = {
         var id = req.body.id;
         var status = req.body.status;
         var updated = 0;
-        console.log(id);
         Payment.findOne({_id: id}, function(err, payment){
             if(err) {
                 console.log(err);
                 logger.log('error', err);
                 res.json({success: false, message:err});
             } else {
-                console.log(payment);
                 payment.status = status;
                 if (payment.status == 1) {
                     updateCommandAndPayment(0);
@@ -384,10 +383,50 @@ module.exports = {
         })
     },
 
+    generateDiscount: function(req, res) {
+        var command = req.body.command;
+        var percent = req.body.percent;
+
+        var discount = new Discount();
+        discount.percent = percent;
+        discount.command = command._id;
+
+        Command.findOne({_id: command._id}, function(err, command){
+            if(err) {
+                console.log(err);
+                logger.log('error', err);
+                res.json({success: false, message:err});
+            } else {
+
+                discount.amount = command.amount * (percent / 100);
+                discount.save(function(error, discount){
+                    if(error){
+                        console.log(error);
+                        logger.log('error', error);
+                    } else {
+
+                        command.discount = discount._id;
+
+                        Command.findOneAndUpdate({_id: command._id}, command, function(err, command){
+                            if(err) {
+                                console.log(err);
+                                logger.log('error', err);
+                                res.json({success: false, message:err});
+                            } else {
+                                res.json({success: true, message:"Discount created", data: command});
+                            }
+                        })
+                    }
+                });
+
+            }
+        })
+    },
+
     printFacture: function(req, res) {
         var payment = req.body.payment;
         var id = payment._id;
-        Command.find({payment: id, status: {$in: [0, 2]} }, function(err, command){
+        Command.find({payment: id, status: 0}, function(err, command){
             if(err) {
                 console.log(err);
                 logger.log('error', err);
@@ -635,7 +674,6 @@ module.exports = {
                             console.log(error);
                             logger.log('error', error);
                         } else {
-                            console.log(command);
                             res.json({success: true, message:"Command Added with success", data:  []});
                         }
                     });

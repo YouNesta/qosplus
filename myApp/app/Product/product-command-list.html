@@ -46,8 +46,9 @@
                     <div class="col-lg-2">
                         <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
-                    <div class="col-lg-2">
-                        <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-money" aria-hidden="true"></i></button>
+                    <div class="col-lg-2" *ngIf="command.status == 0">
+                        <button *ngIf="command.discount == ''" (click)="generateDiscount(i)"><i class="fa fa-money" aria-hidden="true"></i></button>
+                        <i *ngIf="command.discount != ''" class="fa fa-money" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>

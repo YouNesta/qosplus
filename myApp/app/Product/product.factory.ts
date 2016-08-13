@@ -47,6 +47,19 @@ export class ProductFactory {
             .map(response => response.json())
     }
 
+    generateDiscount(command, percent) {
+        var data = JSON.stringify({command, percent});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.commandUrl + 'generateDiscount',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+    }
+
     save(products) {
         var data = JSON.stringify({products});
         var headers = new Headers();

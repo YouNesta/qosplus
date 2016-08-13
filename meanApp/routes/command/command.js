@@ -83,6 +83,14 @@ router.post('/changePaymentStatus',function(req, res) {
     }
 });
 
+router.post('/generateDiscount',function(req, res) {
+    if(req.body != 'undefined'){
+        CommandModule.generateDiscount(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
 router.post('/deleteCommand', function(req, res){
     if(req.body.product != "undefined"){
         CommandModule.deleteCommand(req, res);
