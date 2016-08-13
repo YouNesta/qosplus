@@ -58,7 +58,7 @@ var CommandSchema = new mongoose.Schema({
         required: true
     },
     discount:{
-        type: String,
+        type: Number,
         required: false
     }
 });

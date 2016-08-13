@@ -5,7 +5,6 @@
 var Payment = require("../models/command/payment.js").Payment;
 var Command = require("../models/command/command.js").Command;
 var Product = require("../models/product/product.js").Product;
-var Discount = require("../models/command/discount.js").Discount;
 var Item = require("../models/product/item.js").Item;
 var User = require("../models/user.js").User;
 var pdf = require('phantom-html2pdf');
@@ -123,7 +122,7 @@ module.exports = {
                     command.payment = payment._id;
                     command.commandNumber = commands.length + 1;
                     command.status = 2;
-                    command.discount = "";
+                    command.discount = 0;
                     command.save(function(error, command){
                         if(error){
                             console.log(error);
@@ -387,10 +386,6 @@ module.exports = {
         var command = req.body.command;
         var percent = req.body.percent;
 
-        var discount = new Discount();
-        discount.percent = percent;
-        discount.command = command._id;
-
         Command.findOne({_id: command._id}, function(err, command){
             if(err) {
                 console.log(err);
@@ -398,26 +393,17 @@ module.exports = {
                 res.json({success: false, message:err});
             } else {
 
-                discount.amount = command.amount * (percent / 100);
-                discount.save(function(error, discount){
-                    if(error){
-                        console.log(error);
-                        logger.log('error', error);
+                command.discount = percent;
+
+                Command.findOneAndUpdate({_id: command._id}, command, function(err, command){
+                    if(err) {
+                        console.log(err);
+                        logger.log('error', err);
+                        res.json({success: false, message:err});
                     } else {
-
-                        command.discount = discount._id;
-
-                        Command.findOneAndUpdate({_id: command._id}, command, function(err, command){
-                            if(err) {
-                                console.log(err);
-                                logger.log('error', err);
-                                res.json({success: false, message:err});
-                            } else {
-                                res.json({success: true, message:"Discount created", data: command});
-                            }
-                        })
+                        res.json({success: true, message:"Discount created", data: command});
                     }
-                });
+                })
 
             }
         })
@@ -455,6 +441,12 @@ module.exports = {
 
                         if (payment.status == 1) {
                             is_paid = "payée";
+                        }
+
+                        var amount = 0;
+
+                        for (var j = 0; j < command.length; j++) {
+                            amount += command[j].amount - (command[j].amount * (command[j].discount / 100));
                         }
 
                         var months = [
@@ -531,7 +523,7 @@ module.exports = {
                             '</address>'+
                             '<div class="clearfix"></div>'+
                             '<p>Facture N°'+payment.paymentNumber+'</p>' +
-                            '<p>Total: '+payment.amount+'€ (facture '+is_paid+')</p>'+
+                            '<p>Total: '+amount+'€ (facture '+is_paid+')</p>'+
                             //'<p>Porteur: '+command.porter+'</p>'+
                             '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
                             '</div>'+
@@ -550,6 +542,13 @@ module.exports = {
                             for (var i = 0; i < command[j].product.length; i++) {
                                 var product = command[j].product[i];
                                 var command_date = new Date(command[j].date);
+                                var discount = "";
+
+                                if (command[j].discount != 0) {
+                                    var total = command[j].amount * (command[j].discount / 100);
+                                    discount = "(" + total + "€ de réduction)";
+                                }
+
                                 html += '<div class="row">'+
                                     '<div class="col-md-10 text-center">'+
                                     '<table>'+
@@ -565,7 +564,7 @@ module.exports = {
                                     '<td>'+product.name+'</td>'+
                                     '<td>'+product.item.sphere+'</td>'+
                                     '<td>'+product.quantity+'</td>'+
-                                    '<td>'+command[j].amount+'€ </td>'+
+                                    '<td>'+(command[j].amount - (command[j].amount * (command[j].discount / 100)))+'€ '+ discount +'</td>'+
                                     '<td>'+command[j].shop.name+'</td>'+
                                     '<td>'+command_date.getDate()+ ' ' + months[command_date.getMonth()] + ' ' + command_date.getFullYear() + '</td>'+
                                     '</tr>'+

@@ -132,7 +132,7 @@ export class ProductCommandComponent {
         this.service.generateDiscount(command, percent).subscribe(
             res => {
                 if(res.success){
-                    this.commands[i].discount = "true";
+                    this.commands[i].discount = percent;
                 }else{
                     console.log(res);
                 }
