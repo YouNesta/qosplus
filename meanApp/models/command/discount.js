@@ -9,7 +9,7 @@ var DiscountSchema = new mongoose.Schema({
         type: Number,
         required : true
     },
-    command:{
+    facture:{
         type: String,
         required : false
     },

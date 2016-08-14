@@ -94,7 +94,6 @@ module.exports = {
                             logger.log('error', error);
                             res.json({success: false, message:error});
                         }
-                        console.log(item);
                         delete product[i].item;
                         product[i].item = item;
                         i++;
@@ -130,7 +129,6 @@ module.exports = {
                             logger.log('error', error);
                             res.json({success: false, message:error});
                         }
-                        console.log(item);
                         delete product[i].item;
                         product[i].item = item;
                         i++;
@@ -303,7 +301,6 @@ module.exports = {
                         res.json({ success: false, message: "Subscribe Failed", data:error});
                     }
                     product.item[i] = item._id;
-                    console.log(item);
                     i++;
                     updateItem(product, i);
                 });
@@ -365,9 +362,7 @@ module.exports = {
         deleteProduct(req.body.products, i);
 
         function deleteProduct(index) {
-            console.log(req.body.products[index]);
             if (i < req.body.products.length) {
-                console.log('lalala');
                 Product.findOneAndRemove({_id: req.body.products[i]}, function (err, product) {
                     if (err) {
                         console.log(err);
@@ -385,8 +380,6 @@ module.exports = {
     },
 
     getOneProduct: function(req, res){
-        console.log(req.params.id);
-        console.log('win');
         Product.findOne({_id: req.params.id}, function(err, product){
             if(err)
             {
@@ -394,7 +387,6 @@ module.exports = {
                 logger.log('error', err);
                 res.json({success: false, message:err});
             }
-            console.log('win2');
             var i = 0;
             getItem(product, i);
 
@@ -416,7 +408,6 @@ module.exports = {
                     });
 
                 }else{
-                    console.log('testtest');
                     res.json({success: true, message:"User List Find with success", data: product});
                 }
             };
@@ -468,7 +459,6 @@ module.exports = {
                 logger.log('error', err);
                 res.json({success: false, message:err});
             }
-            console.log('win2');
             var i = 0;
             getItem(products, i);
         });
@@ -484,7 +474,6 @@ module.exports = {
                         logger.log('error', error);
                         res.json({success: false, message:error});
                     }
-                    console.log(item);
                     delete product[i].item;
                     product[i].item = item;
                     i++;

@@ -4,6 +4,7 @@
 
 var Payment = require("../models/command/payment.js").Payment;
 var Command = require("../models/command/command.js").Command;
+var Discount = require("../models/command/discount.js").Discount;
 var Product = require("../models/product/product.js").Product;
 var Item = require("../models/product/item.js").Item;
 var User = require("../models/user.js").User;
@@ -122,7 +123,7 @@ module.exports = {
                     command.payment = payment._id;
                     command.commandNumber = commands.length + 1;
                     command.status = 2;
-                    command.discount = 0;
+                    command.discount = "";
                     command.save(function(error, command){
                         if(error){
                             console.log(error);
@@ -384,29 +385,62 @@ module.exports = {
 
     generateDiscount: function(req, res) {
         var command = req.body.command;
-        var percent = req.body.percent;
 
-        Command.findOne({_id: command._id}, function(err, command){
-            if(err) {
-                console.log(err);
-                logger.log('error', err);
-                res.json({success: false, message:err});
+        var discount = new Discount();
+        discount.percent = req.body.percent;
+
+        discount.save(function(error, discount){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
             } else {
-
-                command.discount = percent;
-
-                Command.findOneAndUpdate({_id: command._id}, command, function(err, command){
+                Command.findOne({_id: command._id}, function(err, command){
                     if(err) {
                         console.log(err);
                         logger.log('error', err);
                         res.json({success: false, message:err});
                     } else {
-                        res.json({success: true, message:"Discount created", data: command});
+
+                        discount.amount = command.amount * (discount.percent / 100);
+                        command.discount = discount._id;
+
+                        command.save(function(error, command){
+                            if(error){
+                                console.log(error);
+                                logger.log('error', error);
+                            } else {
+                                Payment.findOne({client: command.client, status: false}, function(err, payment){
+                                    if(err) {
+                                        console.log(err);
+                                        logger.log('error', err);
+                                        res.json({success: false, message:err});
+                                    } else {
+                                        payment.amount -= discount.amount;
+                                        payment.save(function(error, payment){
+                                            if(error){
+                                                console.log(error);
+                                                logger.log('error', error);
+                                            } else {
+                                                discount.facture = payment._id;
+                                                    discount.save(function(error, discount){
+                                                        if(error){
+                                                            console.log(error);
+                                                            logger.log('error', error);
+                                                        } else {
+                                                            res.json({success: true, message:"Discount created", data: command});
+                                                        }
+                                                    });
+                                            }
+                                        });
+                                    }
+                                })
+                            }
+                        });
+
                     }
                 })
-
             }
-        })
+        });
     },
 
     printFacture: function(req, res) {
@@ -419,188 +453,217 @@ module.exports = {
                 res.json({success: false, message:err});
             } else {
 
-                if (command.length == 0) {
-                    res.json({success: false, message:"no commands"});
-                    return;
-                }
-
-                var path = "../myApp/public/pdf/"+id+".pdf";
-                var savedPath = "/public/pdf/"+id+".pdf";
-                var html = "<p>Error</p>";
-                var shop = command[0].shop;
-
-                User.findOne({mail: command[0].client}, function(err, client){
+                Discount.find({facture: id,}, function(err, discounts){
                     if(err) {
                         console.log(err);
                         logger.log('error', err);
                         res.json({success: false, message:err});
                     } else {
-
-                        var date = new Date(payment.date);
-                        var is_paid = "non payée";
-
-                        if (payment.status == 1) {
-                            is_paid = "payée";
+                        if (command.length == 0) {
+                            res.json({success: false, message:"no commands"});
+                            return;
                         }
 
-                        var amount = 0;
+                        var path = "../myApp/public/pdf/"+id+".pdf";
+                        var savedPath = "/public/pdf/"+id+".pdf";
+                        var html = "<p>Error</p>";
+                        var shop = command[0].shop;
 
-                        for (var j = 0; j < command.length; j++) {
-                            amount += command[j].amount - (command[j].amount * (command[j].discount / 100));
-                        }
+                        User.findOne({mail: command[0].client}, function(err, client){
+                            if(err) {
+                                console.log(err);
+                                logger.log('error', err);
+                                res.json({success: false, message:err});
+                            } else {
 
-                        var months = [
-                            "janvier",
-                            "fevrier",
-                            "mars",
-                            "avril",
-                            "mai",
-                            "juin",
-                            "juillet",
-                            "aout",
-                            "septembre",
-                            "octobre",
-                            "novembre",
-                            "décembre"
-                        ];
+                                var date = new Date(payment.date);
+                                var is_paid = "non payée";
 
-                        html = '<html>'+
-                            '<head>'+
-                            '<style type="text/css">'+
-                            'body, table {'+
-                            'font-size: 12px;'+
-                            '}'+
-                            'table {'+
-                            'border-collapse: collapse;'+
-                            'border-spacing: 0;'+
-                            '}'+
-                            '.row {'+
-                            'display: block;'+
-                            'width: 100%;'+
-                            '}'+
-                            '.col-md-5, .col-md-6, .col-md-10 {'+
-                            'display: inline-block;'+
-                            'padding: 20px;'+
-                            '}'+
-                            '.col-md-5 {'+
-                            'width: 32%;'+
-                            '}'+
-                            '.col-md-6 {'+
-                            'width: 50%;'+
-                            '}'+
-                            '.col-md-10 {'+
-                            'width: 83%;'+
-                            '}'+
-                            '.col-md-offset-1 {'+
-                            'margin-left: 8%;'+
-                            '}'+
-                            '.text-center {'+
-                            'text-align: center;'+
-                            '}'+
-                            'td {'+
-                            'border: 1px solid #000;'+
-                            'padding: 10px;'+
-                            '}'+
-                            '.clearfix {'+
-                            'margin-top: 20px;'+
-                            'margin-bottom: 20px;'+
-                            '}' +
-                            'footer {' +
-                            'text-align: center;' +
-                            'font-weight: bold;' +
-                            '}'+
-                            '</style>'+
-                            '</head>'+
-                            '<body>'+
-                            '<div class="content command-pdf">'+
-                            '<div class="row">'+
-                            '<div class="col-md-6">'+
-                            '<address>'+
-                            'X-VISION<br>'+
-                            '54, boulevard Michel<br>'+
-                            '75018 PARIS<br>'+
-                            'Tél. : 01.53.39.19.30 '+
-                            '</address>'+
-                            '<div class="clearfix"></div>'+
-                            '<p>Facture N°'+payment.paymentNumber+'</p>' +
-                            '<p>Total: '+amount+'€ (facture '+is_paid+')</p>'+
-                            //'<p>Porteur: '+command.porter+'</p>'+
-                            '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
-                            '</div>'+
-                            '<div class="col-md-5 text-center">'+
-                            '<address>'+
-                            client.firstName +' '+ client.lastName +'<br>'+
-                            client.mail + '<br><br>'+
-                            shop.name + '<br>'+
-                            shop.adress + '<br>'+
-                            shop.zipCode + ' ' + shop.city + '<br>'+
-                            '</address>'+
-                            '</div>'+
-                            '</div>';
-
-                        for (var j = 0; j < command.length; j++) {
-                            for (var i = 0; i < command[j].product.length; i++) {
-                                var product = command[j].product[i];
-                                var command_date = new Date(command[j].date);
-                                var discount = "";
-
-                                if (command[j].discount != 0) {
-                                    var total = command[j].amount * (command[j].discount / 100);
-                                    discount = "(" + total + "€ de réduction)";
+                                if (payment.status == 1) {
+                                    is_paid = "payée";
                                 }
 
-                                html += '<div class="row">'+
-                                    '<div class="col-md-10 text-center">'+
-                                    '<table>'+
-                                    '<thead>'+
-                                    '<td>Nom</td>'+
-                                    '<td>Sphère</td>'+
-                                    '<td>Qté.</td>'+
-                                    '<td>Prix commande</td>'+
-                                    '<td>Magasin associé</td>'+
-                                    '<td>Date</td>'+
-                                    '</thead>'+
-                                    '<tr>'+
-                                    '<td>'+product.name+'</td>'+
-                                    '<td>'+product.item.sphere+'</td>'+
-                                    '<td>'+product.quantity+'</td>'+
-                                    '<td>'+(command[j].amount - (command[j].amount * (command[j].discount / 100)))+'€ '+ discount +'</td>'+
-                                    '<td>'+command[j].shop.name+'</td>'+
-                                    '<td>'+command_date.getDate()+ ' ' + months[command_date.getMonth()] + ' ' + command_date.getFullYear() + '</td>'+
-                                    '</tr>'+
-                                    '</table>'+
+                                var months = [
+                                    "janvier",
+                                    "fevrier",
+                                    "mars",
+                                    "avril",
+                                    "mai",
+                                    "juin",
+                                    "juillet",
+                                    "aout",
+                                    "septembre",
+                                    "octobre",
+                                    "novembre",
+                                    "décembre"
+                                ];
+
+                                var amount = 0;
+
+                                for (var j = 0; j < command.length; j++) {
+                                    var commands = command[j];
+                                    amount += commands.amount;
+                                }
+
+                                for (var j = 0; j < discounts.length; j++) {
+                                    var discount = discounts[j];
+                                    amount -= discount.amount;
+                                }
+
+                                payment.amount = amount;
+
+                                html = '<html>'+
+                                    '<head>'+
+                                    '<style type="text/css">'+
+                                    'body, table {'+
+                                    'font-size: 12px;'+
+                                    '}'+
+                                    'table {'+
+                                    'border-collapse: collapse;'+
+                                    'border-spacing: 0;'+
+                                    '}'+
+                                    '.row {'+
+                                    'display: block;'+
+                                    'width: 100%;'+
+                                    '}'+
+                                    '.col-md-5, .col-md-6, .col-md-10 {'+
+                                    'display: inline-block;'+
+                                    'padding: 20px;'+
+                                    '}'+
+                                    '.col-md-5 {'+
+                                    'width: 32%;'+
+                                    '}'+
+                                    '.col-md-6 {'+
+                                    'width: 50%;'+
+                                    '}'+
+                                    '.col-md-10 {'+
+                                    'width: 83%;'+
+                                    '}'+
+                                    '.col-md-offset-1 {'+
+                                    'margin-left: 8%;'+
+                                    '}'+
+                                    '.text-center {'+
+                                    'text-align: center;'+
+                                    '}'+
+                                    'td {'+
+                                    'border: 1px solid #000;'+
+                                    'padding: 10px;'+
+                                    '}'+
+                                    '.clearfix {'+
+                                    'margin-top: 20px;'+
+                                    'margin-bottom: 20px;'+
+                                    '}' +
+                                    'footer {' +
+                                    'text-align: center;' +
+                                    'font-weight: bold;' +
+                                    '}'+
+                                    '</style>'+
+                                    '</head>'+
+                                    '<body>'+
+                                    '<div class="content command-pdf">'+
+                                    '<div class="row">'+
+                                    '<div class="col-md-6">'+
+                                    '<address>'+
+                                    'X-VISION<br>'+
+                                    '54, boulevard Michel<br>'+
+                                    '75018 PARIS<br>'+
+                                    'Tél. : 01.53.39.19.30 '+
+                                    '</address>'+
+                                    '<div class="clearfix"></div>'+
+                                    '<p>Facture N°'+payment.paymentNumber+'</p>' +
+                                    '<p>Total: '+amount+'€ (facture '+is_paid+')</p>'+
+                                        //'<p>Porteur: '+command.porter+'</p>'+
+                                    '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
+                                    '</div>'+
+                                    '<div class="col-md-5 text-center">'+
+                                    '<address>'+
+                                    client.firstName +' '+ client.lastName +'<br>'+
+                                    client.mail + '<br><br>'+
+                                    shop.name + '<br>'+
+                                    shop.adress + '<br>'+
+                                    shop.zipCode + ' ' + shop.city + '<br>'+
+                                    '</address>'+
                                     '</div>'+
                                     '</div>';
-                            }
-                        }
 
-                        html += '</div>' +
-                            '<hr>' +
-                            '<footer>' +
-                            shop.name + ', ' + shop.adress + ' ' + shop.zipCode + ' ' + shop.city + '<br>' +
-                            'Siret: ' + shop.siret +
-                            '</footer>'+
-                            '</body>'+
-                            '</html>';
-
-                        var options = {
-                            "html" : html,
-                            "paperSize" : {format: 'A4', orientation: 'portrait', border: '1cm'},
-                            "deleteOnAction" : true
-                        };
-
-                        pdf.convert(options, function(result) {
-                            result.toFile(path, function() {
-                                payment.facture = savedPath;
-                                Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
-                                    if(err){
-                                        console.log(err);
-                                        logger.log('error', err);
-                                        res.json({success: false, message:error});
+                                for (var j = 0; j < command.length; j++) {
+                                    for (var i = 0; i < command[j].product.length; i++) {
+                                        var product = command[j].product[i];
+                                        var command_date = new Date(command[j].date);
+                                        html += '<div class="row">'+
+                                            '<div class="col-md-10 text-center">'+
+                                            '<table>'+
+                                            '<thead>'+
+                                            '<td>Nom</td>'+
+                                            '<td>Sphère</td>'+
+                                            '<td>Qté.</td>'+
+                                            '<td>Prix commande</td>'+
+                                            '<td>Magasin associé</td>'+
+                                            '<td>Date</td>'+
+                                            '</thead>'+
+                                            '<tr>'+
+                                            '<td>'+product.name+'</td>'+
+                                            '<td>'+product.item.sphere+'</td>'+
+                                            '<td>'+product.quantity+'</td>'+
+                                            '<td>'+command[j].amount+'€ </td>'+
+                                            '<td>'+command[j].shop.name+'</td>'+
+                                            '<td>'+command_date.getDate()+ ' ' + months[command_date.getMonth()] + ' ' + command_date.getFullYear() + '</td>'+
+                                            '</tr>'+
+                                            '</table>'+
+                                            '</div>'+
+                                            '</div>';
                                     }
-                                    res.json({success: true, message:"Facture updated", data:  payment});
-                                })
-                            });
+                                }
+
+                                for (var j = 0; j < discounts.length; j++) {
+                                    var discount = discounts[j];
+                                    html += '<div class="row">'+
+                                        '<div class="col-md-10 text-center">'+
+                                        '<table>'+
+                                        '<thead>'+
+                                        '<td>Nom</td>'+
+                                        '<td>Prix</td>'+
+                                        '<td>Pourcentage</td>'+
+                                        '</thead>'+
+                                        '<tr>'+
+                                        '<td>Discount</td>'+
+                                        '<td> -'+discount.amount+'€ </td>'+
+                                        '<td>'+discount.percent+'% </td>'+
+                                        '</tr>'+
+                                        '</table>'+
+                                        '</div>'+
+                                        '</div>';
+                                }
+
+                                html += '</div>' +
+                                    '<hr>' +
+                                    '<footer>' +
+                                    shop.name + ', ' + shop.adress + ' ' + shop.zipCode + ' ' + shop.city + '<br>' +
+                                    'Siret: ' + shop.siret +
+                                    '</footer>'+
+                                    '</body>'+
+                                    '</html>';
+
+                                var options = {
+                                    "html" : html,
+                                    "paperSize" : {format: 'A4', orientation: 'portrait', border: '1cm'},
+                                    "deleteOnAction" : true
+                                };
+
+                                pdf.convert(options, function(result) {
+                                    result.toFile(path, function() {
+                                        payment.facture = savedPath;
+                                        Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
+                                            if(err){
+                                                console.log(err);
+                                                logger.log('error', err);
+                                                res.json({success: false, message:error});
+                                            }
+                                            res.json({success: true, message:"Facture updated", data:  payment});
+                                        })
+                                    });
+                                });
+                            }
                         });
                     }
                 });

@@ -61,7 +61,7 @@ export class ProductPaymentComponent {
                 if(res.success){
                     payment = res.data;
 
-                    this.payments[i] = payment;
+                    this.payments[i].facture = payment.facture;
 
                     this.loader[i] = true;
                     window.open(payment.facture, "_blank");
