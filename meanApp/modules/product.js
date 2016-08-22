@@ -187,6 +187,7 @@ module.exports = {
             var item = product.item;
             var quantity = product.quantity;
             var reference = item.reference;
+            var nbr = 0;
 
             Item.findOne({_id: item._id}, function (err, found_item) {
                 if (err) {
@@ -208,8 +209,10 @@ module.exports = {
                         }
                     }
 
-                    if (i == cart.length - 1) {
+                    if (nbr == cart.length - 1) {
                         sendStock();
+                    } else {
+                        nbr++;
                     }
                 }
             });
