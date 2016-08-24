@@ -22,11 +22,7 @@ export class ProductCartComponent {
     products = [];
     alertService: AlertService;
     user = Object;
-    shopMobiles = [];
-    shopPhones = [];
     shopCode = [];
-    shopRS = [];
-    shopNames = [];
     isOpen = [];
     client: {};
     selectedProductCard = [];
@@ -56,10 +52,6 @@ export class ProductCartComponent {
                             this.shops = res.data;
                             for (var i in this.shops) {
                                 var shop = this.shops[i];
-                                this.shopMobiles.push(shop.mobile);
-                                this.shopPhones.push(shop.phone);
-                                this.shopRS.push(shop.socialReason);
-                                this.shopNames.push(shop.name);
                                 this.shopCode.push(""+shop.code);
                             }
                         }else{
@@ -286,42 +278,9 @@ export class ProductCartComponent {
     }
     filter() {
         if (this.query !== ""){
-            this.filteredList = this.shopMobiles.filter(function(el){
-                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+            this.filteredList = this.shopCode.filter(function(el){
+                return el.toLowerCase().indexOf(this.query.toLowerCase()) == 0;
             }.bind(this));
-            var phones = (this.shopPhones.filter(function(el){
-                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-            }.bind(this)));
-            var rs = (this.shopRS.filter(function(el){
-                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-            }.bind(this)));
-            var names = (this.shopNames.filter(function(el){
-                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-            }.bind(this)));
-            var codes = (this.shopCode.filter(function(el){
-                return el.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-            }.bind(this)));
-
-            if (phones != null) {
-                for (var i = 0; i < phones.length; i++) {
-                    if (this.filteredList.indexOf(phones[i]) == -1) this.filteredList.push(phones[i]);
-                }
-            }
-            if (rs != null) {
-                for (var i = 0; i < rs.length; i++) {
-                    if (this.filteredList.indexOf(rs[i]) == -1) this.filteredList.push(rs[i]);
-                }
-            }
-            if (names != null) {
-                for (var i = 0; i < names.length; i++) {
-                    if (this.filteredList.indexOf(names[i]) == -1) this.filteredList.push(names[i]);
-                }
-            }
-            if (codes != null) {
-                for (var i = 0; i < codes.length; i++) {
-                    if (this.filteredList.indexOf(codes[i]) == -1) this.filteredList.push(codes[i]);
-                }
-            }
         }else{
             this.filteredList = [];
         }
@@ -345,46 +304,9 @@ export class ProductCartComponent {
         }
     }
     selectShop() {
-        var type = "";
-        if (this.shopMobiles.indexOf(this.query) != -1) type = "mobile";
-        if (this.shopPhones.indexOf(this.query) != -1) type = "phone";
-        if (this.shopRS.indexOf(this.query) != -1) type = "rs";
-        if (this.shopNames.indexOf(this.query) != -1) type = "name";
-        if (this.shopCode.indexOf(this.query) != -1) type = "code";
-
-        switch (type) {
-            case "mobile":
-                for (var i in this.shops) {
-                    var shop = this.shops[i];
-                    if (shop.mobile == this.query) this.selectedShop = shop;
-                }
-                break;
-            case "phone":
-                for (var i in this.shops) {
-                    var shop = this.shops[i];
-                    if (shop.phone == this.query) this.selectedShop = shop;
-                }
-                break;
-            case "rs":
-                for (var i in this.shops) {
-                    var shop = this.shops[i];
-                    if (shop.socialReason == this.query) this.selectedShop = shop;
-                }
-                break;
-            case "name":
-                for (var i in this.shops) {
-                    var shop = this.shops[i];
-                    if (shop.name == this.query) this.selectedShop = shop;
-                }
-                break;
-            case "code":
-                for (var i in this.shops) {
-                    var shop = this.shops[i];
-                    if (shop.code == this.query) this.selectedShop = shop;
-                }
-                break;
-            default:
-                console.log('not found');
+        for (var i in this.shops) {
+            var shop = this.shops[i];
+            if (shop.code == this.query) this.selectedShop = shop;
         }
 
         this.userService.getUserById(this.selectedShop.owner)
