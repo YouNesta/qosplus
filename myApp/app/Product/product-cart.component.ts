@@ -91,11 +91,13 @@ export class ProductCartComponent {
 
                             this.service.checkStock().subscribe(
                                 res => {
+                                    console.log(res);
                                     if(res.success){
                                         var result = res.data;
 
                                         for (var i in this.products) {
                                             for (var j in result) {
+                                                console.log(result);
                                                 if (result[j][1] == this.products[i].item._id) {
                                                     if (result[j][2] == 0) {
                                                         this.products[i].state = "livraison 4-7j";

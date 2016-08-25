@@ -189,13 +189,14 @@ module.exports = {
             var reference = item.reference;
             var nbr = 0;
 
+            console.log(product)
             Item.findOne({_id: item._id}, function (err, found_item) {
                 if (err) {
                     console.log(err);
                     logger.log('error', err);
                     res.json({success: false, message: err});
                 } else {
-
+                    console.log(found_item);
                     for (var j in found_item.sphere) {
                         if (found_item.sphere[j].reference == reference) {
                             var stock = found_item.sphere[j].stock;

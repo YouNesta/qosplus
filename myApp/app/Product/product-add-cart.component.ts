@@ -55,41 +55,79 @@ export class ProductAddCartComponent  implements  OnChanges{
     };
 
     product = {
-        _id: "",
-        name: "Younestaaa",
-        status: 1,
-        image: "public/uploads/no_image.png",
-        hydrophily: 56,
-        material: "Verre",
-        color: "Transparent",
-        price: [],
-        param: {
-            diameter: ["11"],
-            addition: ["+25"],
-            cylinder: ["12"],
-            radius: ["5"],
-            axis: ["5"],
-            sphere: ["3"]
+        "_id": "",
+        "name": "",
+        "status": null,
+        "hydrophily": null,
+        "material": "",
+        "color": "",
+        "ametropia": "",
+        "middlePrice": null,
+        "port": "",
+        "portDuration": null ,
+        "reference": null,
+        "image": {
+            "original": "",
+            "small": "",
+            "medium": "",
+            "big": ""
         },
-        item:[
+        "item": [
             {
-                _id: null,
-                radius: null,
-                diameter: null,
-                axis: null,
-                addition: null,
-                cylinder: null,
-                sphere: {
-                    min: 0,
-                    max: 0,
-                    int: 0.25
-                },
-                condition: "30",
-                stock: 0,
-                provider: false
+                "radius": null,
+                "diameter": null,
+                "addition": null,
+                "axis": null,
+                "cylinder": null,
+                "condition":  null,
+                "sphere": [{
+                    "sphere": null,
+                    "stock": null,
+                    "reference": ""
+                }],
+                "spheres": []
             }
-        ]
-
+        ],
+        "param": [
+            {
+                "diameter": [
+                    null
+                ],
+                "addition": [
+                    null
+                ],
+                "cylinder": [
+                    null
+                ],
+                "radius": [
+                    null
+                ],
+                "axis": [
+                    null
+                ],
+                "sphere": [
+                    null
+                ]
+            }
+        ],
+        "ownerPrice": [
+            {
+                "owner": "",
+                "quantity": null,
+                "price": null
+            }
+        ],
+        "price": [
+            {
+                "type": null,
+                "price": "",
+                "name": ""
+            }
+        ],
+        "type": {
+            "toric": false,
+            "progressiv": false
+        }
     };
 
     item = {
@@ -135,120 +173,140 @@ export class ProductAddCartComponent  implements  OnChanges{
         });
     }
 
-    changeDiameter(diameter){
+    changeSphere(sphere){
+        this.diameter = [];
+        this.radius = [];
+        this.cylinder = [];
         this.axis = [];
         this.addition = [];
+
+        this.cartProduct.diameter = null;
+        this.cartProduct.radius = null;
+        this.cartProduct.cylinder = null;
+        this.cartProduct.axis = null;
+        this.cartProduct.addition = null;
+
+        for (var i in this.product.item) {
+            for (var n in this.product.item[i].spheres) {
+                if(this.product.item[i].spheres[n] == sphere){
+                    if(this.diameter.indexOf(this.product.item[i].diameter) == -1){
+                        this.diameter.push(this.product.item[i].diameter);
+                        this.cartProduct.sphere = this.product.item[i].spheres[n];
+                    }
+                }
+            };
+        };
+    }
+
+    changeDiameter(diameter){
+        this.radius = [];
         this.cylinder = [];
-        this.condition = [];
-        this.radius = [];
-        for (var i in this.product.item) {
-            if(this.product.item[i].diameter == diameter){
-                if(this.axis.indexOf(this.product.item[i].axis) == -1){
-                    this.axis.push(this.product.item[i].axis);
-                }
-            }
-        }
-
-    }
-    changeAxis(axis){
-        this.cylinder = [];
-        this.condition = [];
-        this.radius = [];
+        this.axis = [];
         this.addition = [];
 
-        for (var i in this.product.item) {
-            if(this.product.item[i].axis == axis && this.product.item[i].diameter == this.cartProduct.diameter){
-                if(this.cylinder.indexOf(this.product.item[i].cylinder) == -1){
-                    this.cylinder.push(this.product.item[i].cylinder);
-                }
-            }
-        }
-    }
-
-    changeCylinder(cylinder){
-        this.condition = [];
-        this.radius = [];
-        this.addition = [];
-
+        this.cartProduct.radius = null;
+        this.cartProduct.cylinder = null;
+        this.cartProduct.axis = null;
+        this.cartProduct.addition = null;
 
         for (var i in this.product.item) {
-            if(this.product.item[i].cylinder == cylinder
-                && this.product.item[i].diameter == this.cartProduct.diameter
-                && this.product.item[i].axis == this.cartProduct.axis
-            ){
-                console.log('equal');
-                if(this.condition.indexOf(this.product.item[i].condition) == -1){
-                    this.condition.push(this.product.item[i].condition);
+                if(this.product.item[i].diameter == diameter){
+                    for(var n in this.product.item[i].spheres){
+                        if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
+                            if(this.radius.indexOf(this.product.item[i].radius) == -1){
+                                this.radius.push(this.product.item[i].radius);
+                            }
+                        }
+                    }
                 }
-            }
-        }
+        };
     }
 
-
-    changeCondition(condition){
-        this.radius = [];
-        this.addition = [];
-
-        for (var i in this.product.item) {
-            if(this.product.item[i].condition == condition
-                && this.product.item[i].cylinder == this.cartProduct.cylinder
-                && this.product.item[i].diameter == this.cartProduct.diameter
-                && this.product.item[i].axis == this.cartProduct.axis
-            ){
-                if(this.radius.indexOf(this.product.item[i].radius) == -1){
-                    this.radius.push(this.product.item[i].radius);
-                }
-            }
-        }
-
-
-    }
     changeRadius(radius) {
+        this.cylinder = [];
+        this.axis = [];
         this.addition = [];
 
-        for (var i in this.product.item) {
-            if(  this.product.item[i].radius == radius
-                && this.product.item[i].condition == this.cartProduct.condition
-                && this.product.item[i].cylinder == this.cartProduct.cylinder
-                && this.product.item[i].diameter == this.cartProduct.diameter
-                && this.product.item[i].axis == this.cartProduct.axis
-            ){
-                if(this.addition.indexOf(this.product.item[i].addition) == -1){
-                    this.addition.push(this.product.item[i].addition);
-                }
-            }
-        }
-    }
-    changeAddition(addition){
-        this.sphere = [];
+        this.cartProduct.cylinder = null;
+        this.cartProduct.axis = null;
+        this.cartProduct.addition = null;
 
         for (var i in this.product.item) {
-            if( this.product.item[i].addition == addition
-                && this.product.item[i].radius == this.cartProduct.radius
-                && this.product.item[i].condition == this.cartProduct.condition
-                && this.product.item[i].cylinder == this.cartProduct.cylinder
-                && this.product.item[i].diameter == this.cartProduct.diameter
-                && this.product.item[i].axis == this.cartProduct.axis
-            ){
-                if(this.sphere.indexOf(this.product.item[i].sphere) == -1){
-                    for (var n in this.product.item[i].sphere) {
-                        var sphereLength = this.sphere.push(this.product.item[i].sphere[n])
-                        this.sphere[sphereLength - 1].radius =  this.cartProduct.radius;
-                        this.sphere[sphereLength - 1].axis =  this.cartProduct.axis;
-                        this.sphere[sphereLength - 1].condition =  this.cartProduct.condition;
-                        this.sphere[sphereLength - 1].cylinder =  this.cartProduct.cylinder;
-                        this.sphere[sphereLength - 1].diameter =  this.cartProduct.diameter;
-                        this.sphere[sphereLength - 1].radius =  this.cartProduct.radius;
-                        this.sphere[sphereLength - 1].addition =  addition;
-                        this.sphere[sphereLength - 1]._id = this.product.item[i]._id;
+            if(this.product.item[i].diameter == this.cartProduct.diameter
+                && this.product.item[i].radius == radius){
+                for(var n in this.product.item[i].spheres){
+                    if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
+                        if(this.cylinder.indexOf(this.product.item[i].cylinder) == -1){
+                            this.cylinder.push(this.product.item[i].cylinder);
+                        }
                     }
                 }
             }
-        }
+        };
     }
-    changeSphere(i){
-        this.cartFinal.item = this.sphere[i];
+
+    changeCylinder(cylinder){
+        this.axis = [];
+        this.addition = [];
+
+        this.cartProduct.axis = null;
+        this.cartProduct.addition = null;
+
+        for (var i in this.product.item) {
+            if(this.product.item[i].diameter == this.cartProduct.diameter
+                && this.product.item[i].radius == this.cartProduct.radius
+                && this.product.item[i].cylinder == cylinder){
+                for(var n in this.product.item[i].spheres){
+                    if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
+                        if(this.axis.indexOf(this.product.item[i].axis) == -1){
+                            this.axis.push(this.product.item[i].axis);
+                        }
+                    }
+                }
+            }
+        };
     }
+
+    changeAxis(axis){
+        this.addition = [];
+        this.cartProduct.addition = null;
+
+        for (var i in this.product.item) {
+            if(this.product.item[i].diameter == this.cartProduct.diameter
+                && this.product.item[i].radius == this.cartProduct.radius
+                && this.product.item[i].cylinder == this.cartProduct.cylinder
+                && this.product.item[i].axis == axis){
+                for(var n in this.product.item[i].spheres){
+                    if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
+                        if(this.addition.indexOf(this.product.item[i].addition) == -1){
+                            this.addition.push(this.product.item[i].addition);
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+
+    changeAddition(addition){
+        for (var i in this.product.item) {
+            if(this.product.item[i].diameter == this.cartProduct.diameter
+                && this.product.item[i].radius == this.cartProduct.radius
+                && this.product.item[i].cylinder == this.cartProduct.cylinder
+                && this.product.item[i].axis == this.cartProduct.axis
+                && this.product.item[i].addition == addition){
+                for(var n in this.product.item[i].sphere){
+                    if(this.product.item[i].sphere[n].sphere == this.cartProduct.sphere){
+                        this.cartFinal.item = this.cartProduct
+                        this.cartFinal.item._id = this.product.item[i]._id
+                        this.cartFinal.sphere = this.product.item[i].sphere[n]
+                        this.cartFinal.reference = this.product.item[i].sphere[n].reference
+                    }
+                }
+            }
+        };
+    }
+
 
     addProductToCart(product) {
         this.cartFinal._id = this.product._id;
@@ -270,12 +328,30 @@ export class ProductAddCartComponent  implements  OnChanges{
     }
 
     ngOnChanges(changes: {[productCart: string]: SimpleChange}) {
+
+        this.sphere = [];
+        this.diameter = [];
+        this.radius = [];
+        this.cylinder = [];
+        this.axis = [];
+        this.addition = [];
+
+        this.cartProduct = {
+            diameter: null,
+            addition: null,
+            cylinder: null,
+            radius: null,
+            axis: null,
+            sphere: null,
+        };
+
         if(changes['productCart']){
             if (typeof changes['productCart'].currentValue !== "undefined" && changes['productCart'].currentValue !== "undefined") {
                 this.product = JSON.parse(changes['productCart'].currentValue);
-                for (var i in this.product.item) {
-                        if(this.diameter.indexOf(this.product.item[i].diameter) == -1){
-                            this.diameter.push(this.product.item[i].diameter);
+
+                for (var i in this.product.param[0].sphere) {
+                        if(this.sphere.indexOf(this.product.param[0].sphere[i]) == -1){
+                            this.sphere.push(this.product.param[0].sphere[i]);
                         }
                 }
             }
