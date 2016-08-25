@@ -66,7 +66,7 @@ pm2 start /vagrant/meanApp/bin/www;
 ```
 * Access API at  [http://192.168.33.10:8080/][4]
 
-* Install Upload Server 
+* Install Upload Server
 
 ```bash
 apt-get update;

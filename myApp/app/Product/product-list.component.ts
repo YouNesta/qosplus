@@ -75,10 +75,10 @@ export class ProductListComponent {
     }
 
     deleteProducts(){
-        for(var i in this.selectedProduct){
-            this.selectedProduct[i] = this.products[i]._id;
-            console.log(this.selectedProduct[i]);
-            console.log(this.products[i]._id);
+
+        for(var i=0; i< this.selectedProduct.length; i++)
+        {
+            this.selectedProduct[i] = this.products[this.selectedProduct[i]]._id;
         }
 
         this.service.deleteProducts( this.selectedProduct)
@@ -94,8 +94,9 @@ export class ProductListComponent {
                 () => console.log('get product list Complete')
             );
     }
-    selectProduct(index){
-        console.log(index);
+
+    selectProduct(index)
+    {
         var n = this.selectedProduct.indexOf(index);
         if( n != -1){
             this.selectedProduct.splice(n, 1);

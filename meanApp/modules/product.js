@@ -6,6 +6,7 @@ var Product = require("../models/product/product.js").Product;
 var Type = require("../models/types.js").Type;
 var Item = require("../models/product/item.js").Item;
 var logger = require('winston');
+var fs = require('fs');
 module.exports = {
 
     addProduct: function(req, res){
@@ -329,7 +330,7 @@ module.exports = {
 
         function deleteProduct(product, index) {
             if (product.image.original != 'public/uploads/no_image.png'){
-                fs.unlink(product.image.original);
+                deleteImage("../myApp/"+product.image.original);
             }
                 Product.remove({_id: product._id}, function (err, product) {
                     if (err) {
@@ -360,6 +361,17 @@ module.exports = {
                 }else{
                     deleteProduct(product, i);
                 }
+        }
+
+        function deleteImage(imagePath)
+        {
+            var imgType = ['-big', '-small', '-medium'];
+            imgType.forEach(function(type)
+            {
+                fs.unlink(imagePath.slice(0, -4) + type + imagePath.slice(-4));
+            });
+
+            fs.unlink((imagePath));
         }
     },
 
