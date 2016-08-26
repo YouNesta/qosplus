@@ -5,6 +5,18 @@
         </modal-body>
     </modal>
 
+    <modal #editModal (onClose)="close()">
+        <modal-body>
+            <product-edit [modal]="editModal"></product-edit>
+        </modal-body>
+    </modal>
+
+    <modal #duplicateModal (onClose)="close()">
+        <modal-body>
+            <product-duplicate [modal]="duplicateModal"></product-duplicate>
+        </modal-body>
+    </modal>
+
     <modal #modalCart>
         <modal-body>
             <product-add-cart [modal]="modalCart" [productCart]="productCart"></product-add-cart>
@@ -68,11 +80,19 @@
                             <option value="1">En ligne</option>
                         </select>
                     </div>
-                    <div class="col-lg-3">
-                        <button (click)="loadModalProduct(product, modalCart);"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-                    </div>
-                    <div class="col-lg-3">
-                        <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    <div class="col-lg-6">
+                        <div class="col-lg-3">
+                            <button (click)="loadModalProduct(product, modalCart);"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button (click)="loadModalProduct(product, editModal);"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button (click)="loadModalProduct(product, duplicateModal);"><i class="fa fa-clone" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                        </div>
                     </div>
 
                 </div>
