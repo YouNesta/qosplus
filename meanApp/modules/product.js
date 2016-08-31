@@ -7,6 +7,8 @@ var Type = require("../models/types.js").Type;
 var Item = require("../models/product/item.js").Item;
 var logger = require('winston');
 var fs = require('fs');
+var mongoose = require('mongoose');
+
 module.exports = {
 
     addProduct: function(req, res){
@@ -504,25 +506,18 @@ module.exports = {
 
     duplicateProduct: function(req, res){
         var product = req.body.product;
+        var newProduct = new Product(product);
+        //removing the old id to create a new one
+        newProduct._id = mongoose.Types.ObjectId();
 
-        Product.find({_id: product._id}, function(err, result){
+        newProduct.save(function(err, newResult){
             if(err){
-                console.log(error);
-                logger.log('error', error);
-                res.json({ success: false, message: "Product not found", data:error});
+                console.log(err);
+                logger.log('error', err);
+                res.json({ success: false, message: "Product not duplicated", data:err});
             }else{
-                var newProduct = result;
-                newProduct._id = mongoose.Types.ObjectId();
-                newProduct.save(function(err, newResult){
-                    if(err){
-                        console.log(error);
-                        logger.log('error', error);
-                        res.json({ success: false, message: "Product not duplicated", data:error});
-                    }else{
-                        res.json({success: true, message: "product duplicated", data: newResult})
-                    }
-                })
+                res.json({success: true, message: "product duplicated", data: newResult})
             }
-        })
+        });
     }
 };

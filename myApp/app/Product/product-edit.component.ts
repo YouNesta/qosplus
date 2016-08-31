@@ -59,7 +59,7 @@ export class ProductEditComponent extends ProductModalComponent{
         }
     ];
 
-    products = {
+     products = {
         name: "",
         status: 1,
         image: {
