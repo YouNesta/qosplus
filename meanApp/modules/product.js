@@ -509,15 +509,34 @@ module.exports = {
         var newProduct = new Product(product);
         //removing the old id to create a new one
         newProduct._id = mongoose.Types.ObjectId();
+        console.log('test');
+        console.log(newProduct);
 
-        newProduct.save(function(err, newResult){
-            if(err){
-                console.log(err);
-                logger.log('error', err);
-                res.json({ success: false, message: "Product not duplicated", data:err});
-            }else{
-                res.json({success: true, message: "product duplicated", data: newResult})
-            }
+        Product.findOne({}).sort('-reference').exec(function(err, product){
+            console.log('searching');
+           if(err){
+               console.log(err);
+               logger.log('error', err);
+                res.json({success: false, message: "error during getting Max Reference", data:err});
+           }else{
+                newProduct.reference = (product.reference - 0) + 1;
+               var index = 1;
+               newProduct.item.forEach(function(item){
+                   item.reference = newProduct.reference + "-0-" + index;
+                   index++;
+               });
+
+               newProduct.save(function(err, newResult){
+                   console.log('saving');
+                   if(err){
+                       console.log(err);
+                       logger.log('error', err);
+                       res.json({ success: false, message: "Product not duplicated", data:err});
+                   }else{
+                       res.json({success: true, message: "product duplicated", data: newResult})
+                   }
+               });
+           }
         });
     }
 };
