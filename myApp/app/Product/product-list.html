@@ -7,13 +7,13 @@
 
     <modal #editModal (onClose)="close()">
         <modal-body>
-            <product-edit [modal]="editModal"></product-edit>
+            <product-edit [modal]="editModal" [products]="productCart"></product-edit>
         </modal-body>
     </modal>
 
     <modal #duplicateModal (onClose)="close()">
         <modal-body>
-            <product-duplicate [modal]="duplicateModal"></product-duplicate>
+            <product-duplicate [modal]="duplicateModal" [products]="productCart"></product-duplicate>
         </modal-body>
     </modal>
 

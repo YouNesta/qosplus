@@ -11,13 +11,14 @@ import {ProductModalComponent} from "./product-modal.component";
 
 
 @Component({
-    selector: "product-add",
-    templateUrl: "app/Product/product-add.html",
-    directives: [TagInputComponent, UPLOAD_DIRECTIVES]
+    selector: "product-edit",
+    templateUrl: "app/Product/product-edit.html",
+    directives: [TagInputComponent, UPLOAD_DIRECTIVES],
+    input: ['products']
 })
 
 
-export class ProductAddComponent extends ProductModalComponent{
+export class ProductEditComponent extends ProductModalComponent{
     @Input() modal;
     subscribeForm: ControlGroup;
     uploadFile: any;
@@ -101,6 +102,7 @@ export class ProductAddComponent extends ProductModalComponent{
     };
 
     constructor(public service: ProductFactory, fb: FormBuilder, regEx: RegEx,  @Inject(forwardRef(() => AlertService)) alertService){
+        console.log(this.products);
         this.alertService = alertService;
         this.subscribeForm = fb.group({
             'name': ['', Validators.compose([
@@ -112,23 +114,23 @@ export class ProductAddComponent extends ProductModalComponent{
         this.uploadProgress = 0;
         this.uploadResponse = {};
         this.zone = new NgZone({ enableLongStackTrace: false });
-         this.service.countProductPrice()
-                            .subscribe(
-                                res => {
-                                    if(res.success){
-                                        for (var i in res.data) {
-                                           this.products.price.push({type: res.data[i].type, name: res.data[i].name, _id: res.data[i]._id, price: 0});
-                                        }
-                                        this.priceSheet = res.data;
-                                    }else{
-                                        this.alertService.addAlert('warning', res.message);
-                                    }
-                                },
-                                err => {
-                                    this.alertService.addAlert('danger', 500);
-                                },
-                                () => console.log('Product Price get with success')
-                            );
+        this.service.countProductPrice()
+            .subscribe(
+                res => {
+                    if(res.success){
+                        for (var i in res.data) {
+                            this.products.price.push({type: res.data[i].type, name: res.data[i].name, _id: res.data[i]._id, price: 0});
+                        }
+                        this.priceSheet = res.data;
+                    }else{
+                        this.alertService.addAlert('warning', res.message);
+                    }
+                },
+                err => {
+                    this.alertService.addAlert('danger', 500);
+                },
+                () => console.log('Product Price get with success')
+            );
     }
 
     save() {
@@ -146,7 +148,7 @@ export class ProductAddComponent extends ProductModalComponent{
             .subscribe(
                 res => {
                     if(res.success){
-                        this.modal.close()
+                        this.modal.close();
                         this.alertService.addAlert('success', res.message);
                     }else{
                         this.alertService.addAlert('warning', res.message);

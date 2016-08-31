@@ -2,12 +2,13 @@ import {Component} from 'angular2/core';
 import {ProductFactory} from "./product.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ProductAddComponent} from "./product-add.component";
+import {ProductEditComponent} from "./product-edit.component";
 import {ProductAddCartComponent} from "./product-add-cart.component";
 
 @Component({
     providers: [],
     templateUrl: "app/Product/product-list.html",
-    directives: [ MODAL_DIRECTIVES, ProductAddComponent, ProductAddCartComponent]
+    directives: [ MODAL_DIRECTIVES, ProductAddComponent, ProductAddCartComponent, ProductEditComponent]
 
 })
 
