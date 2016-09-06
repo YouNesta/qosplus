@@ -4,6 +4,7 @@ import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ProductAddComponent} from "./product-add.component";
 import {ProductEditComponent} from "./product-edit.component";
 import {ProductAddCartComponent} from "./product-add-cart.component";
+import {ViewChild} from "../../jspm_packages/npm/angular2@2.0.0-beta.15/ts/src/core/metadata";
 
 @Component({
     providers: [],
@@ -13,13 +14,14 @@ import {ProductAddCartComponent} from "./product-add-cart.component";
 })
 
 export class ProductListComponent {
+
     products: Object ;
     productCart: String;
     isOpen = [];
     selectedProduct = [];
     spheres = {};
     sphereIndexes = [];
-    
+
     constructor(public service: ProductFactory){
         this.getProducts();
     }
@@ -138,6 +140,7 @@ export class ProductListComponent {
     }
 
     duplicateProduct(product){
+
         this.service.duplicateProduct(product)
             .subscribe(
                 response => {

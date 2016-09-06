@@ -8,6 +8,7 @@ var Item = require("../models/product/item.js").Item;
 var logger = require('winston');
 var fs = require('fs');
 var mongoose = require('mongoose');
+var crypto = require('crypto');
 
 module.exports = {
 
@@ -509,11 +510,23 @@ module.exports = {
         var newProduct = new Product(product);
         //removing the old id to create a new one
         newProduct._id = mongoose.Types.ObjectId();
-        console.log('test');
-        console.log(newProduct);
+
+        var generatedName = crypto.createHash('md5').update(newProduct.image.original.slice(0, -4)).digest('hex');
+
+        //generating name for new image
+        newProduct.image.original = "public/uploads/"+ generatedName + newProduct.image.original.slice(-4);
+        newProduct.image.small = "public/uploads/"+generatedName + "-small" + newProduct.image.small.slice(-4);
+        newProduct.image.medium = "public/uploads/"+generatedName + "-medium" + newProduct.image.medium.slice(-4);
+        newProduct.image.big = "public/uploads/"+generatedName + "-big" + newProduct.image.big.slice(-4);
+
+        //streaming data from old img to new img
+        fs.createReadStream("../myApp/"+product.image.original).pipe(fs.createWriteStream("../myApp/"+newProduct.image.original));
+        fs.createReadStream("../myApp/"+product.image.small).pipe(fs.createWriteStream("../myApp/"+newProduct.image.small));
+        fs.createReadStream("../myApp/"+product.image.medium).pipe(fs.createWriteStream("../myApp/"+newProduct.image.medium));
+        fs.createReadStream("../myApp/"+product.image.big).pipe(fs.createWriteStream("../myApp/"+newProduct.image.big));
+
 
         Product.findOne({}).sort('-reference').exec(function(err, product){
-            console.log('searching');
            if(err){
                console.log(err);
                logger.log('error', err);
@@ -526,8 +539,8 @@ module.exports = {
                    index++;
                });
 
+
                newProduct.save(function(err, newResult){
-                   console.log('saving');
                    if(err){
                        console.log(err);
                        logger.log('error', err);

@@ -143,6 +143,7 @@ export class ProductModalComponent {
     }
 
     handleUpload(data): void {
+        console.log(data);
         this.uploadFile = data;
         this.zone.run(() => {
             this.uploadProgress = data.progress.percent;
