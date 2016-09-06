@@ -28,8 +28,12 @@ export class ProductListComponent {
 
     loadModalProduct(product, modal) {
         modal.open();
-        console.log(product);
         this.productCart = JSON.stringify(product);
+    }
+
+    loadConfirmationModal(product, modal){
+        modal.open();
+        this.productCart = product;
     }
 
     getProducts(){

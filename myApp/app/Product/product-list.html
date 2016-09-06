@@ -17,6 +17,19 @@
         </modal-body>
     </modal>
 
+    <modal #confirmDuplicate>
+        <modal-header>
+            <h4>Etes vous sur de vouloir dupliquer ce produit?</h4>
+        </modal-header>
+        <modal-body>
+            <product-duplicate-confirm [modal]="confirmDuplicate" [productCart]="productCart"></product-duplicate-confirm>
+        </modal-body>
+        <modal-footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Close</button>
+            <button type="button" class="btn btn-primary" (click)="duplicateProduct(productCart)">Dupliquer</button>
+        </modal-footer>
+    </modal>
+
     <button (click)="modal.open()" class="add-modale">Add a product</button>
 
     <div class="col-lg-12 collapse-tab">
@@ -82,7 +95,7 @@
                             <button (click)="loadModalProduct(product, editModal);"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                         </div>
                         <div class="col-lg-3">
-                            <button (click)="duplicateProduct(product);"><i class="fa fa-clone" aria-hidden="true"></i></button>
+                            <button (click)="loadConfirmationModal(product, confirmDuplicate);"><i class="fa fa-clone" aria-hidden="true"></i></button>
                         </div>
                         <div class="col-lg-3">
                             <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
