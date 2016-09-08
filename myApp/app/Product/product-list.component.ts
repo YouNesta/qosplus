@@ -143,22 +143,23 @@ export class ProductListComponent {
         this.getProducts();
     }
 
-    duplicateProduct(product, modal){
+    duplicateProduct(product){
 
-        this.service.duplicateProduct(product)
-            .subscribe(
-                response => {
-                    if(response.success){
-                        console.log("Product successfully duplicated");
-                        modal.close();
-                        this.getProducts();
-                    }else{
-                        console.log(response);
-                    }
-                },
-                err =>  console.log(err),
-                () => console.log('Product successfully updated')
-            )
+        if(confirm("Etes vous sur de vouloir dupliquer ce produit ?")){
+            this.service.duplicateProduct(product)
+                .subscribe(
+                    response => {
+                        if(response.success){
+                            console.log("Product successfully duplicated");
+                            this.getProducts();
+                        }else{
+                            console.log(response);
+                        }
+                    },
+                    err =>  console.log(err),
+                    () => console.log('Product successfully updated')
+                )
+        }
     }
     
     //Edit and Delete should only take one product as argument
