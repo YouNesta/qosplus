@@ -22,11 +22,11 @@
             <h4>Etes vous sur de vouloir dupliquer ce produit?</h4>
         </modal-header>
         <modal-body>
-            <product-duplicate-confirm [modal]="confirmDuplicate" [productCart]="productCart"></product-duplicate-confirm>
+            <product-duplicate-confirm [modal]="confirmDuplicate" [product]="product"></product-duplicate-confirm>
         </modal-body>
         <modal-footer>
             <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Close</button>
-            <button type="button" class="btn btn-primary" (click)="duplicateProduct(productCart)">Dupliquer</button>
+            <button type="button" class="btn btn-primary" (click)="duplicateProduct(productCart, confirmDuplicate)">Dupliquer</button>
         </modal-footer>
     </modal>
 

@@ -143,13 +143,15 @@ export class ProductListComponent {
         this.getProducts();
     }
 
-    duplicateProduct(product){
+    duplicateProduct(product, modal){
 
         this.service.duplicateProduct(product)
             .subscribe(
                 response => {
                     if(response.success){
                         console.log("Product successfully duplicated");
+                        modal.close();
+                        this.getProducts();
                     }else{
                         console.log(response);
                     }
