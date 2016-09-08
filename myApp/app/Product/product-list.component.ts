@@ -31,11 +31,6 @@ export class ProductListComponent {
         this.productCart = JSON.stringify(product);
     }
 
-    loadConfirmationModal(product, modal){
-        modal.open();
-        this.productCart = product;
-    }
-
     getProducts(){
         this.service.getProduct()
             .subscribe(
@@ -88,18 +83,20 @@ export class ProductListComponent {
             this.selectedProduct[i] = this.products[this.selectedProduct[i]]._id;
         }
 
-        this.service.deleteProducts( this.selectedProduct)
-            .subscribe(
-                response => {
-                    if(response.success){
-                        this.getProducts();
-                    }else{
-                        console.log(response);
-                    }
-                },
-                err =>  console.log(err),
-                () => console.log('get product list Complete')
-            );
+        if(confirm('Etes vous sur de vouloir supprimer ces produits ?')){
+            this.service.deleteProducts( this.selectedProduct)
+                .subscribe(
+                    response => {
+                        if(response.success){
+                            this.getProducts();
+                        }else{
+                            console.log(response);
+                        }
+                    },
+                    err =>  console.log(err),
+                    () => console.log('get product list Complete')
+                );
+        }
     }
 
     selectProduct(index)
