@@ -158,6 +158,8 @@ export class ProductListComponent {
                 )
         }
     }
+
+
     
     //Edit and Delete should only take one product as argument
     /*editProduct(product){

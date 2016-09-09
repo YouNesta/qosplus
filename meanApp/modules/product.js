@@ -341,7 +341,7 @@ module.exports = {
                         logger.log('error', err);
                         res.json({success: false, message: err});
                     } else {
-                        //res.json({success: true, message: "Product Successfully deleted", data: product});
+                        res.json({success: true, message: "Product Successfully deleted", data: product});
                     }
                 });
         }
@@ -369,12 +369,19 @@ module.exports = {
         function deleteImage(imagePath)
         {
             var imgType = ['-big', '-small', '-medium'];
-            imgType.forEach(function(type)
-            {
-                fs.unlink(imagePath.slice(0, -4) + type + imagePath.slice(-4));
+            fs.access(imagePath, function(err){
+               if(err && err.code === "ENOENT"){
+                   logger.log(err);
+               }else{
+                   imgType.forEach(function(type)
+                   {
+                       fs.unlink(imagePath.slice(0, -4) + type + imagePath.slice(-4));
+                   });
+
+                   fs.unlink((imagePath));
+               }
             });
 
-            fs.unlink((imagePath));
         }
     },
 
