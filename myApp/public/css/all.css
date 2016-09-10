@@ -1016,6 +1016,14 @@ td {
 .faFile:before {
   content: "\f016" !important; }
 
+.button-delete-cross {
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  color: #000;
+  font-size: 20px;
+  border: 0; }
+
 @font-face {
   font-family: OpenSans;
   src: url("./fonts/open-sans/OpenSans-Regular.ttf"); }

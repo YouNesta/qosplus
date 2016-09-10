@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Editer un Produit</h1>
+            <div class="row" style="height: 30px;">
+                <div class="col-md-2">
+                    Delete
+                </div>
+                <div class="col-md-1">
+                    Sphère
+                </div>
+                <div class="col-md-2">
+                    Diamètre
+                </div>
+                <div class="col-md-1">
+                    Rayon
+                </div>
+                <div class="col-md-1" *ngIf="items[0].axis != null">
+                    Axe
+                </div>
+                <div class="col-md-2" *ngIf="items[0].cylinder != null">
+                    Cylindre
+                </div>
+                <div class="col-md-2"  *ngIf="items[0].addition != null">
+                    Addition
+                </div>
+            </div>
+            <div *ngFor="#item of items; #i = index" class="row">
+                <div class="col-md-2">
+                    <button (click)="removeItem(i)" class="button-delete-cross"><i class="fa fa-close"></i></button>
+                </div>
+                <div class="col-md-1">
+                    {{item.sphere}}
+                </div>
+                <div class="col-md-2">
+                    {{item.diameter}}
+                </div>
+                <div class="col-md-1">
+                    {{item.radius}}
+                </div>
+                <div class="col-md-1" *ngIf="items[0].axis != null">
+                    {{item.axis}}
+                </div>
+                <div class="col-md-2" *ngIf="items[0].cylinder != null">
+                    {{item.cylinder}}
+                </div>
+                <div class="col-md-2"  *ngIf="items[0].addition != null">
+                    {{item.addition}}
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+

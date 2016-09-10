@@ -556,3 +556,11 @@ td {
 
 .faFile:before {
   content: "\f016" !important; }
+
+.button-delete-cross {
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  color: #000;
+  font-size: 20px;
+  border: 0; }

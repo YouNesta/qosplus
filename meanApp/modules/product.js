@@ -359,6 +359,54 @@ module.exports = {
 
     },
 
+    deleteItem: function(req, res){
+
+        var _id = req.body._id;
+        var reference = req.body.reference;
+
+        Item.findOne({_id: _id}, function(err,item){
+            if(err)
+            {
+                console.log(err);
+                logger.log('error', err);
+                res.json({success: false, message:err});
+            }
+            else {
+
+                var itemSphereToRemove = null;
+                var sphereToRemove = null;
+                var otherSpheres = [];
+
+                for (var i in item.sphere) {
+                    if (item.sphere[i].reference == reference) {
+                        itemSphereToRemove = i;
+                        sphereToRemove = item.sphere[i].sphere;
+                    } else {
+                        if (otherSpheres.indexOf(item.sphere[i].sphere) == -1){
+                            otherSpheres.push(item.sphere[i].sphere);
+                        }
+                    }
+                }
+
+                if (itemSphereToRemove != null) {
+                    item.sphere.splice(itemSphereToRemove, 1);
+                    if (otherSpheres.indexOf(sphereToRemove) != -1){
+                        otherSpheres.splice(otherSpheres.indexOf(sphereToRemove), 1);
+                    }
+                }
+
+                item.save(function (err) {
+                    if (err) {
+                        res.json({success: false, message:err});
+                    } else {
+                        res.json({success: true, message:"Product Successfully deleted", data: item});
+                    }
+                })
+            }
+        });
+
+    },
+
     deleteProducts: function(req, res) {
 
         var i = 0;

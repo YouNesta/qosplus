@@ -11,6 +11,12 @@
         </modal-body>
     </modal>
 
+    <modal #modalEdit>
+        <modal-body>
+            <product-edit [modal]="modalEdit" [productCart]="productCart"></product-edit>
+        </modal-body>
+    </modal>
+
     <button (click)="modal.open()" class="add-modale">Add a product</button>
 
     <div class="col-lg-12 collapse-tab">
@@ -68,13 +74,15 @@
                             <option value="1">En ligne</option>
                         </select>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <button (click)="loadModalProduct(product, modalCart);"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
-
+                    <div class="col-lg-2">
+                        <button (click)="loadModalProduct(product, modalEdit);"><i class="fa fa-cog" aria-hidden="true"></i></button>
+                    </div>
                 </div>
             </div>
 

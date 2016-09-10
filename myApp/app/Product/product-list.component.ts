@@ -3,11 +3,12 @@ import {ProductFactory} from "./product.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ProductAddComponent} from "./product-add.component";
 import {ProductAddCartComponent} from "./product-add-cart.component";
+import {ProductEditComponent} from "./product-edit.component";
 
 @Component({
     providers: [],
     templateUrl: "app/Product/product-list.html",
-    directives: [ MODAL_DIRECTIVES, ProductAddComponent, ProductAddCartComponent]
+    directives: [ MODAL_DIRECTIVES, ProductAddComponent, ProductAddCartComponent, ProductEditComponent]
 
 })
 
@@ -25,7 +26,6 @@ export class ProductListComponent {
 
     loadModalProduct(product, modal) {
         modal.open();
-        console.log(product);
         this.productCart = JSON.stringify(product);
     }
 
@@ -118,7 +118,7 @@ export class ProductListComponent {
                 res => {
                     if(res.success){
                         //nothing
-                    }else{
+                    } else {
                         console.log(res);
                     }
                 },
