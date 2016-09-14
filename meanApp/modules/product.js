@@ -169,7 +169,7 @@ module.exports = {
             if(error){
                 console.log(error);
                 logger.log('error', error);
-                res.json({ success: false, message: "Update Product Price  Failed", data:error});
+                res.json({ success: false, message: "Update Product Price Failed", data:error});
             }
             res.json({success: true, message:"Update Product Price with success", data: data});
         });
@@ -278,7 +278,13 @@ module.exports = {
                     'price': product.price,
                     'reference': product.reference,
                     'item': product.item,
-                    'param': product.param
+                    'param': product.param,
+                    'ametropia': product.ametropia,
+                    'middlePrice': product.middlePrice,
+                    'ownerPrice': product.ownerPrice,
+                    'port': product.port,
+                    'portDuration': product.portDuration,
+                    'type': product.type,
                 }
             }, function(err, product){
                 if(err)
