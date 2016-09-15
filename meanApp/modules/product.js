@@ -539,6 +539,7 @@ module.exports = {
                logger.log('error', err);
                 res.json({success: false, message: "error during getting Max Reference", data:err});
            }else{
+               //workaround to simply convert to integer
                 newProduct.reference = (product.reference - 0) + 1;
                var index = 1;
                newProduct.item.forEach(function(item){

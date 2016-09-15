@@ -142,6 +142,11 @@ export class ProductListComponent {
 
     duplicateProduct(product){
 
+        product.item.forEach(function(i, index){
+            product.item[index] = i._id;
+        });
+
+
         if(confirm("Etes vous sur de vouloir dupliquer ce produit ?")){
             this.service.duplicateProduct(product)
                 .subscribe(
