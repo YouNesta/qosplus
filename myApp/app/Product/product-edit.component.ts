@@ -62,13 +62,13 @@ export class ProductEditComponent {
             }
         ],
         middlePrice: 0,
-        param: {
+        param: [{
             diameter: [],
             addition: [],
             cylinder: [],
             radius: [],
             axis: [],
-        },
+        }],
         item:[
         ]
 
@@ -86,25 +86,16 @@ export class ProductEditComponent {
                 });
     }
 
-    removeItem(i) {
-        var reference = this.items[i].reference;
-        var _id = this.items[i]._id;
-        this.items.splice(i, 1);
+    removeItem(i, s) {
+        var sphere = this.product.item[i].sphere[s].sphere;
+        console.log(sphere)
 
-        if (this.changed.indexOf(_id) == -1) {
-            this.changed.push(_id);
+        if (this.product.item[i].spheres.indexOf(sphere) != -1) {
+            this.product.item[i].spheres.splice(this.product.item[i].spheres.indexOf(sphere), 1);
         }
+        this.product.item[i].sphere.splice(s, 1);
 
-        for (var j in this.product.item) {
-            var item = this.product.item[j];
-            if (item._id == _id) {
-                for (var k in item.sphere) {
-                    if (item.sphere[k].reference == reference) {
-                        this.product.item.splice(j, 1);
-                    }
-                }
-            }
-        }
+        console.log(this.product.item[i])
     }
 
     saveProduct() {
@@ -135,24 +126,7 @@ export class ProductEditComponent {
                 this.items = [];
                 this.changed = [];
 
-                for (var i in this.product.item) {
-                    var item = this.product.item[i];
-                    for (var j in item.sphere) {
-
-                        var sphere = {
-                            _id: item._id,
-                             radius: item.radius,
-                             diameter: item.diameter,
-                             addition: item.addition,
-                             axis: item.axis,
-                             cylinder: item.cylinder,
-                             sphere: item.sphere[j].sphere,
-                             reference: item.sphere[j].reference
-                        };
-
-                        this.items.push(sphere);
-                    }
-                }
+               
             }
         }
     }

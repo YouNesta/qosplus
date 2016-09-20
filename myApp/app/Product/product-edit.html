@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="row" style="height: 30px;">
-                <div class="col-md-2">
+                <div class="col-md-1">
                     Delete
                 </div>
                 <div class="col-md-1">
@@ -86,42 +86,44 @@
                 <div class="col-md-2">
                     Diamètre
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     Rayon
                 </div>
-                <div class="col-md-1" *ngIf="items[0].axis != null">
+                <div class="col-md-2" *ngIf="product.param[0].axis.length > 0">
                     Axe
                 </div>
-                <div class="col-md-2" *ngIf="items[0].cylinder != null">
+                <div class="col-md-2" *ngIf="product.param[0].cylinder.length > 0">
                     Cylindre
                 </div>
-                <div class="col-md-2"  *ngIf="items[0].addition != null">
+                <div class="col-md-2"  *ngIf="product.param[0].addition.length > 0">
                     Addition
                 </div>
             </div>
-            <div *ngFor="#item of items; #i = index" class="row">
-                <div class="col-md-2">
-                    <button (click)="removeItem(i)" class="button-delete-cross"><i class="fa fa-close"></i></button>
+            <div *ngFor="#item of product.item; #i = index" class="container-fluid">
+                <div *ngFor="#sphere of product.item[i].sphere; #s = index" class="row">
+                    <div class="col-md-1">
+                        <button (click)="removeItem(i, s)" class="button-delete-cross"><i class="fa fa-close"></i></button>
+                    </div>
+                    <div class="col-md-1">
+                        {{sphere.sphere}}
+                    </div>
+                    <div class="col-md-2">
+                        {{ product.item[i].diameter}}
+                    </div>
+                    <div class="col-md-2">
+                        {{ product.item[i].radius}}
+                    </div>
+                    <div class="col-md-2" *ngIf="product.param[0].addition.length > 0">
+                        {{ product.item[i].axis}}
+                    </div>
+                    <div class="col-md-2" *ngIf="product.param[0].addition.length > 0">
+                        {{ product.item[i].cylinder}}
+                    </div>
+                    <div class="col-md-2"  *ngIf="product.param[0].addition.length > 0">
+                        {{ product.item[i].addition}}
+                    </div>
+                    <hr>
                 </div>
-                <div class="col-md-1">
-                    {{item.sphere}}
-                </div>
-                <div class="col-md-2">
-                    {{item.diameter}}
-                </div>
-                <div class="col-md-1">
-                    {{item.radius}}
-                </div>
-                <div class="col-md-1" *ngIf="items[0].axis != null">
-                    {{item.axis}}
-                </div>
-                <div class="col-md-2" *ngIf="items[0].cylinder != null">
-                    {{item.cylinder}}
-                </div>
-                <div class="col-md-2"  *ngIf="items[0].addition != null">
-                    {{item.addition}}
-                </div>
-                <hr>
             </div>
         </div>
     </div>
