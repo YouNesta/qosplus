@@ -550,7 +550,6 @@ module.exports = {
                newProduct.reference = parseInt(product.reference, 10) + 1;
 
                var index = 1;
-               var productItem = [];
                console.log(product.item);
                product.item.forEach(function(item, i){
                    console.log('testFirst');
@@ -568,7 +567,7 @@ module.exports = {
                            newItem.save(function(err,result){
                                console.log('itemSave');
                                if(err){
-                                   //console.log(err);
+                                   console.log(err);
                                    logger.log('error', err);
                                }else{
                                    newProduct.item[i] = result._id;
@@ -578,7 +577,6 @@ module.exports = {
                        }
                    });
                });
-
 
                newProduct.save(function(err, newResult){
                    if(err){
