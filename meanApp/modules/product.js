@@ -98,7 +98,6 @@ module.exports = {
                             logger.log('error', error);
                             res.json({success: false, message:error});
                         }
-                        console.log(item);
                         delete product[i].item;
                         product[i].item = item;
                         i++;
@@ -538,7 +537,6 @@ module.exports = {
             fs.createReadStream("../myApp/"+product.image.big).pipe(fs.createWriteStream("../myApp/"+newProduct.image.big));
         }
 
-
         Product.findOne({}).sort('-reference').exec(function(err, product){
            if(err){
                console.log(err);
@@ -548,46 +546,57 @@ module.exports = {
 
                //workaround to simply convert to integer
                newProduct.reference = parseInt(product.reference, 10) + 1;
-
-               var index = 1;
-               console.log(product.item);
-               product.item.forEach(function(item, i){
-                   console.log('testFirst');
-                   console.log(item);
-                   Item.findOne({_id: item}).exec(function(err, item){
-                       if(err){
-                           console.log(err);
-                           logger.log(err);
-                       }else{
-                           console.log('itemFound');
-                           item.reference = newProduct.reference + "-0-" + index;
-                           index++;
-                           var newItem = new Item(item);
-                           newItem._id = mongoose.Types.ObjectId();
-                           newItem.save(function(err,result){
-                               console.log('itemSave');
-                               if(err){
-                                   console.log(err);
-                                   logger.log('error', err);
-                               }else{
-                                   newProduct.item[i] = result._id;
-                                   //productItem.push(result._id);
-                               }
-                           })
-                       }
-                   });
-               });
-
-               newProduct.save(function(err, newResult){
-                   if(err){
-                       console.log(err);
-                       logger.log('error', err);
-                       res.json({ success: false, message: "Product not duplicated", data:err});
-                   }else{
-                       res.json({success: true, message: "product duplicated", data: newResult})
-                   }
-               });
+               var i = 0;
+              duplicateItem(newProduct, i);
            }
         });
+
+        function duplicateProduct(newProduct){
+            newProduct.save(function(err, newResult){
+                if(err){
+                    console.log(err);
+                    logger.log('error', err);
+                    res.json({ success: false, message: "Product not duplicated", data:err});
+                }else{
+                    res.json({success: true, message: "product duplicated", data: newResult})
+                }
+            });
+        }
+
+        function duplicateItem(newProduct, i){
+            if(i < newProduct.item.length) {
+                Item.findOne({_id: newProduct.item[i]}).exec(function (err, item) {
+                    if (err) {
+                        console.log(err);
+                        logger.log(err);
+                    } else {
+                       // item.reference = newProduct.reference + "-0-" + i;
+
+                        for (index in item.sphere) {
+                            var reference = item.sphere[index].reference.split("-")
+                            item.sphere[index].reference = newProduct.reference+"-"+reference[1]+"-"+reference[2]
+                        }
+                        
+                        console.log('qfter')
+                        var newItem = new Item(item);
+                        newItem._id = mongoose.Types.ObjectId();
+                        newItem.save(function (err, result) {
+                            if (err) {
+                                console.log(err);
+                                logger.log('error', err);
+                            } else {
+                                delete newProduct.item[i];
+                                newProduct.item[i] = result._id;
+                                i++;
+                                duplicateItem(newProduct, i);
+                                //productItem.push(result._id);
+                            }
+                        })
+                    }
+                });
+            }else{
+                duplicateProduct(newProduct);
+            }
+        };
     }
 };
