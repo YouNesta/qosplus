@@ -360,16 +360,32 @@ export class ProductFactory {
     }
 
     deleteItem(_id, reference) {
-        var data = JSON.stringify({_id, reference});
+
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
+        var data = JSON.stringify({_id, reference});
         return this.authHttp
             .post(this.apiUrl + 'deleteItem',
                 data, {
                     headers: headers
                 })
             .map(response => response.json())
+
     }
 
+    duplicateProduct(product)
+    {
+        var data = JSON.stringify({product});
+        var headers = new Headers();
+
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'duplicateProduct',
+            data, {
+                headers: headers
+            })
+            .map(response => response.json());
+    }
 }

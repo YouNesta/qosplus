@@ -6,6 +6,10 @@ var Product = require("../models/product/product.js").Product;
 var Type = require("../models/types.js").Type;
 var Item = require("../models/product/item.js").Item;
 var logger = require('winston');
+var fs = require('fs');
+var mongoose = require('mongoose');
+var crypto = require('crypto');
+
 module.exports = {
 
     addProduct: function(req, res){
@@ -322,6 +326,7 @@ module.exports = {
         }
     },
 
+    //not to use
     deleteProduct: function(req, res){
         var i = 0;
 
@@ -415,25 +420,73 @@ module.exports = {
 
     deleteProducts: function(req, res) {
 
-        var i = 0;
+        var processedItems = 0;
+        req.body.products.forEach(function(product, index, array){
+            var i = 0;
+            Product.findOne({_id:product}, function(err, result){
+                if(result.hasOwnProperty('item')){
+                    deleteItem(result, i);
+                }else{
+                    deleteProduct(result, i);
+                }
+            });
 
-        deleteProduct(req.body.products, i);
+            processedItems++;
+            if(processedItems == array.length){
+                res.json({success: true, message: "Product Successfully deleted", data: product});
+            }
+        });
 
-        function deleteProduct(index) {
-            if (i < req.body.products.length) {
-                Product.findOneAndRemove({_id: req.body.products[i]}, function (err, product) {
+
+        function deleteProduct(product, index) {
+            if (product.image.original != 'public/uploads/no_image.png'){
+                deleteImage("../myApp/"+product.image.original);
+            }
+                Product.remove({_id: product._id}, function (err, product) {
                     if (err) {
                         console.log(err);
                         logger.log('error', err);
                         res.json({success: false, message: err});
                     }
-                    i++;
-                    deleteProduct(i);
-
                 });
-            } else {
-                res.json({success: true, message: "Product Successfully deleted", data: req.body.products});
-            }
+        }
+
+        function deleteItem(product, i){
+                if(i < product.item.length) {
+                    delete product.item[i].__v;
+                    Item.findOne({_id: product.item[i]}, function(err,item){
+                        if(err)
+                        {
+                            console.log(err);
+                            logger.log('error', err);
+                            res.json({success: false, message:err});
+                        }else{
+                            Item.remove({_id: item._id});
+                        }
+                        i++;
+                        deleteItem(product, i);
+                    });
+                }else{
+                    deleteProduct(product, i);
+                }
+        }
+
+        function deleteImage(imagePath)
+        {
+            var imgType = ['-big', '-small', '-medium'];
+            fs.access(imagePath, function(err){
+               if(err && err.code === "ENOENT"){
+                   logger.log(err);
+               }else{
+                   imgType.forEach(function(type)
+                   {
+                       fs.unlink(imagePath.slice(0, -4) + type + imagePath.slice(-4));
+                   });
+
+                   fs.unlink((imagePath));
+               }
+            });
+
         }
     },
 
@@ -542,5 +595,103 @@ module.exports = {
                 res.json({success: true, message:"Product List Find with success", data: product});
             }
         }
+    },
+
+    editItem: function(req, res){
+        var item = req.body.item;
+
+        Item.findOneAndUpdate({_id: item._id}, {$set: item }, { 'new': true },  function(error, item){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "Subscribe Failed", data:error});
+            }else{
+                res.json({success: true, message: "succesfully updated", data: item});
+            }
+        });
+    },
+
+    duplicateProduct: function(req, res){
+        var product = req.body.product;
+        var newProduct = new Product(product);
+        //removing the old id to create a new one
+        newProduct._id = mongoose.Types.ObjectId();
+
+        if(newProduct.image.original != 'public/uploads/no_image.png'){
+            var generatedName = crypto.createHash('md5').update(newProduct.image.original.slice(0, -4)).digest('hex');
+
+            //generating name for new image
+            newProduct.image.original = "public/uploads/"+ generatedName + newProduct.image.original.slice(-4);
+            newProduct.image.small = "public/uploads/"+generatedName + "-small" + newProduct.image.small.slice(-4);
+            newProduct.image.medium = "public/uploads/"+generatedName + "-medium" + newProduct.image.medium.slice(-4);
+            newProduct.image.big = "public/uploads/"+generatedName + "-big" + newProduct.image.big.slice(-4);
+
+            //streaming data from old img to new img
+            fs.createReadStream("../myApp/"+product.image.original).pipe(fs.createWriteStream("../myApp/"+newProduct.image.original));
+            fs.createReadStream("../myApp/"+product.image.small).pipe(fs.createWriteStream("../myApp/"+newProduct.image.small));
+            fs.createReadStream("../myApp/"+product.image.medium).pipe(fs.createWriteStream("../myApp/"+newProduct.image.medium));
+            fs.createReadStream("../myApp/"+product.image.big).pipe(fs.createWriteStream("../myApp/"+newProduct.image.big));
+        }
+
+        Product.findOne({}).sort('-reference').exec(function(err, product){
+           if(err){
+               console.log(err);
+               logger.log('error', err);
+                res.json({success: false, message: "error during getting Max Reference", data:err});
+           }else{
+
+               //workaround to simply convert to integer
+               newProduct.reference = parseInt(product.reference, 10) + 1;
+               var i = 0;
+              duplicateItem(newProduct, i);
+           }
+        });
+
+        function duplicateProduct(newProduct){
+            newProduct.save(function(err, newResult){
+                if(err){
+                    console.log(err);
+                    logger.log('error', err);
+                    res.json({ success: false, message: "Product not duplicated", data:err});
+                }else{
+                    res.json({success: true, message: "product duplicated", data: newResult})
+                }
+            });
+        }
+
+        function duplicateItem(newProduct, i){
+            if(i < newProduct.item.length) {
+                Item.findOne({_id: newProduct.item[i]}).exec(function (err, item) {
+                    if (err) {
+                        console.log(err);
+                        logger.log(err);
+                    } else {
+                       // item.reference = newProduct.reference + "-0-" + i;
+
+                        for (index in item.sphere) {
+                            var reference = item.sphere[index].reference.split("-")
+                            item.sphere[index].reference = newProduct.reference+"-"+reference[1]+"-"+reference[2]
+                        }
+                        
+                        var newItem = new Item(item);
+                        newItem._id = mongoose.Types.ObjectId();
+                        newItem.save(function (err, result) {
+                            if (err) {
+                                console.log(err);
+                                logger.log('error', err);
+                            } else {
+                                delete newProduct.item[i];
+                                newProduct.item[i] = result._id;
+                                i++;
+                                duplicateItem(newProduct, i);
+                                //productItem.push(result._id);
+                            }
+                        })
+                    }
+                });
+            }else{
+                duplicateProduct(newProduct);
+            }
+        };
     }
 };

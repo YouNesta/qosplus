@@ -118,4 +118,20 @@ router.post('/changeProductStatus',function(req, res) {
     }
 });
 
+router.post('/editItem', function(req, res){
+    if(req.body != 'undefined'){
+        product.editItem(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
+router.post('/duplicateProduct', function(req, res){
+    if(req.body != 'undefined'){
+        product.duplicateProduct(req, res);
+    }else{
+        res.sendStatus(500);
+    }
+});
+
 module.exports = router;

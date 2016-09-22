@@ -355,7 +355,6 @@ export class ProductAddCartComponent  implements  OnChanges{
                         }
                 }
             }
-
         }
     }
 }

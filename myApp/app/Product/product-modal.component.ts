@@ -10,13 +10,13 @@ import {UPLOAD_DIRECTIVES} from 'ng2-uploader';
 
 
 @Component({
-    selector: "product-add",
-    templateUrl: "app/Product/product-add.html",
+    selector: "product-modal",
+    templateUrl: "app/Product/product-modal.html",
     directives: [TagInputComponent, UPLOAD_DIRECTIVES]
 })
 
 
-export class ProductAddComponent {
+export class ProductModalComponent {
     @Input() modal;
     subscribeForm: ControlGroup;
     uploadFile: any;
@@ -69,10 +69,10 @@ export class ProductAddComponent {
         name: "",
         status: 1,
         image: {
-            original: "public/uploads/no_image.png",
-            small: "public/uploads/no_image.png",
-            medium: "public/uploads/no_image.png",
-            big: "public/uploads/no_image.png"
+            original: null,
+            small: null,
+            medium: null,
+            big: null
         },
         type: {
             toric : false,
@@ -143,6 +143,7 @@ export class ProductAddComponent {
     }
 
     handleUpload(data): void {
+        console.log(data);
         this.uploadFile = data;
         this.zone.run(() => {
             this.uploadProgress = data.progress.percent;
@@ -207,37 +208,14 @@ export class ProductAddComponent {
             provider: false
         });
     }
+
     deleteProduct() {
         this.items.pop();
     }
 
 
     save() {
-        this.addItem();
 
-        for (var i in this.products.item) {
-            if (this.products.item[i].provider) {
-                this.products.item[i].stock = -1;
-            }
-            if(this.products.param["addition"].indexOf(this.products.item[i].addition) == -1)
-                this.products.param["addition"].push(this.products.item[i].addition);
-        }
-        this.products.middlePrice = this.middlePrice();
-        this.service.save(this.products)
-            .subscribe(
-                res => {
-                    if(res.success){
-                        this.modal.close()
-                        this.alertService.addAlert('success', res.message);
-                    }else{
-                        this.alertService.addAlert('warning', res.message);
-                    }
-                },
-                err => {
-                    this.alertService.addAlert('danger', 500);
-                },
-                () => console.log('Product Added')
-            );
     }
 
 
@@ -275,8 +253,8 @@ export class ProductAddComponent {
                 this.products.param["cylinder"].push(c);
 
             for (var ax = this.items[i].axis.min; ax <= this.items[i].axis.max; ax += this.items[i].axis.int) {
-                if(this.products.param["axis"].indexOf(ax) == -1)
-                    this.products.param["axis"].push(ax);
+                if(this.products.param["axis"].indexOf(c) == -1)
+                    this.products.param["axis"].push(c);
 
                 console.log(this.items[i].sphere)
                 this.products.item.push({
@@ -323,7 +301,7 @@ export class ProductAddComponent {
                 this.products.param["cylinder"].push(c);
 
             for (var ax = this.items[i].axis.min; ax <= this.items[i].axis.max; ax += this.items[i].axis.int) {
-                if(this.products.param["axis"].indexOf(ax) == -1)
+                if(this.products.param["axis"].indexOf(c) == -1)
                     this.products.param["axis"].push(c);
 
                 for (var a = this.items[i].addition.min; a <= this.items[i].addition.max; a += this.items[i].addition.int) {

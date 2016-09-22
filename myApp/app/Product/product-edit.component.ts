@@ -79,11 +79,11 @@ export class ProductEditComponent {
     constructor(public service: ProductFactory, fb: FormBuilder,  @Inject(forwardRef(() => AlertService)) alertService){
         this.alertService = alertService;
         this.subscribeForm = fb.group({
-                    'name': ['', Validators.compose([
-                        /* Validators.required,
-                         Validators.maxLength(30)*/
-                    ])],
-                });
+            'name': ['', Validators.compose([
+                /* Validators.required,
+                 Validators.maxLength(30)*/
+            ])],
+        });
     }
 
     removeItem(i, s) {
@@ -101,18 +101,18 @@ export class ProductEditComponent {
     saveProduct() {
         this.service.editProduct(this.product)
             .subscribe(
-            res => {
-                if(res.success){
-                    console.log('yey');
-                }else{
-                    this.alertService.addAlert('warning', res.message);
-                }
-            },
-            err => {
-                this.alertService.addAlert('danger', 500);
-            },
-            () => console.log('Product updated')
-        );
+                res => {
+                    if(res.success){
+                        console.log('yey');
+                    }else{
+                        this.alertService.addAlert('warning', res.message);
+                    }
+                },
+                err => {
+                    this.alertService.addAlert('danger', 500);
+                },
+                () => console.log('Product updated')
+            );
     }
 
     ngOnChanges(changes: {[productCart: string]: SimpleChange}) {
@@ -126,7 +126,7 @@ export class ProductEditComponent {
                 this.items = [];
                 this.changed = [];
 
-               
+
             }
         }
     }
