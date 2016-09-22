@@ -41,6 +41,44 @@
     }
   }
   &.product {
+    .action-button{
+      margin-top:25px;
+    }
+    .status-0 {
+      color: #276d1c;
+    }
+    .status-1 {
+      color: #a70e15;
+    }
+    .status-2 {
+      color: #E9DC51;
+    }
+    .collapse-content{
+      div.product{
+        color: #3e5e76;
+        background: white;
+        padding: 10px 10px 0;
+        margin: 15px 0px;
+        .collapse-head{
+          height: 80px;
+        }
+        .collapse-body {
+
+          height: 0px;
+          overflow: scroll;
+          display: block;
+          transition:height 1s ease;
+          background: #f1f1f1;
+          margin-top: 15px;
+
+          &.active{
+            height: 300px;
+            margin-bottom: 15px;
+          }
+        }
+      }
+
+    }
     .hero{
       background: url("../../public/img/hero-lens-detail2.jpg") no-repeat center;
       background-size: 100% auto;

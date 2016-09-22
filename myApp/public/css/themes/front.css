@@ -36,6 +36,31 @@
     text-align: center;
     color: #FFF;
     background-color: #F5F5F5; }
+    .page.product .action-button {
+      margin-top: 25px; }
+    .page.product .status-0 {
+      color: #276d1c; }
+    .page.product .status-1 {
+      color: #a70e15; }
+    .page.product .status-2 {
+      color: #E9DC51; }
+    .page.product .collapse-content div.product {
+      color: #3e5e76;
+      background: white;
+      padding: 10px 10px 0;
+      margin: 15px 0px; }
+      .page.product .collapse-content div.product .collapse-head {
+        height: 80px; }
+      .page.product .collapse-content div.product .collapse-body {
+        height: 0px;
+        overflow: scroll;
+        display: block;
+        transition: height 1s ease;
+        background: #f1f1f1;
+        margin-top: 15px; }
+        .page.product .collapse-content div.product .collapse-body.active {
+          height: 300px;
+          margin-bottom: 15px; }
     .page.product .hero {
       background: url("../../public/img/hero-lens-detail2.jpg") no-repeat center;
       background-size: 100% auto; }
