@@ -320,7 +320,8 @@ module.exports = {
 
     deleteProducts: function(req, res) {
 
-        req.body.products.forEach(function(product){
+        var processedItems = 0;
+        req.body.products.forEach(function(product, index, array){
             var i = 0;
             Product.findOne({_id:product}, function(err, result){
                 if(result.hasOwnProperty('item')){
@@ -329,6 +330,11 @@ module.exports = {
                     deleteProduct(result, i);
                 }
             });
+
+            processedItems++;
+            if(processedItems == array.length){
+                res.json({success: true, message: "Product Successfully deleted", data: product});
+            }
         });
 
         function deleteProduct(product, index) {
@@ -340,8 +346,6 @@ module.exports = {
                         console.log(err);
                         logger.log('error', err);
                         res.json({success: false, message: err});
-                    } else {
-                        res.json({success: true, message: "Product Successfully deleted", data: product});
                     }
                 });
         }
@@ -518,19 +522,21 @@ module.exports = {
         //removing the old id to create a new one
         newProduct._id = mongoose.Types.ObjectId();
 
-        var generatedName = crypto.createHash('md5').update(newProduct.image.original.slice(0, -4)).digest('hex');
+        if(newProduct.image.original != 'public/uploads/no_image.png'){
+            var generatedName = crypto.createHash('md5').update(newProduct.image.original.slice(0, -4)).digest('hex');
 
-        //generating name for new image
-        newProduct.image.original = "public/uploads/"+ generatedName + newProduct.image.original.slice(-4);
-        newProduct.image.small = "public/uploads/"+generatedName + "-small" + newProduct.image.small.slice(-4);
-        newProduct.image.medium = "public/uploads/"+generatedName + "-medium" + newProduct.image.medium.slice(-4);
-        newProduct.image.big = "public/uploads/"+generatedName + "-big" + newProduct.image.big.slice(-4);
+            //generating name for new image
+            newProduct.image.original = "public/uploads/"+ generatedName + newProduct.image.original.slice(-4);
+            newProduct.image.small = "public/uploads/"+generatedName + "-small" + newProduct.image.small.slice(-4);
+            newProduct.image.medium = "public/uploads/"+generatedName + "-medium" + newProduct.image.medium.slice(-4);
+            newProduct.image.big = "public/uploads/"+generatedName + "-big" + newProduct.image.big.slice(-4);
 
-        //streaming data from old img to new img
-        fs.createReadStream("../myApp/"+product.image.original).pipe(fs.createWriteStream("../myApp/"+newProduct.image.original));
-        fs.createReadStream("../myApp/"+product.image.small).pipe(fs.createWriteStream("../myApp/"+newProduct.image.small));
-        fs.createReadStream("../myApp/"+product.image.medium).pipe(fs.createWriteStream("../myApp/"+newProduct.image.medium));
-        fs.createReadStream("../myApp/"+product.image.big).pipe(fs.createWriteStream("../myApp/"+newProduct.image.big));
+            //streaming data from old img to new img
+            fs.createReadStream("../myApp/"+product.image.original).pipe(fs.createWriteStream("../myApp/"+newProduct.image.original));
+            fs.createReadStream("../myApp/"+product.image.small).pipe(fs.createWriteStream("../myApp/"+newProduct.image.small));
+            fs.createReadStream("../myApp/"+product.image.medium).pipe(fs.createWriteStream("../myApp/"+newProduct.image.medium));
+            fs.createReadStream("../myApp/"+product.image.big).pipe(fs.createWriteStream("../myApp/"+newProduct.image.big));
+        }
 
 
         Product.findOne({}).sort('-reference').exec(function(err, product){
@@ -539,12 +545,38 @@ module.exports = {
                logger.log('error', err);
                 res.json({success: false, message: "error during getting Max Reference", data:err});
            }else{
+
                //workaround to simply convert to integer
-                newProduct.reference = (product.reference - 0) + 1;
+               newProduct.reference = parseInt(product.reference, 10) + 1;
+
                var index = 1;
-               newProduct.item.forEach(function(item){
-                   item.reference = newProduct.reference + "-0-" + index;
-                   index++;
+               var productItem = [];
+               console.log(product.item);
+               product.item.forEach(function(item, i){
+                   console.log('testFirst');
+                   console.log(item);
+                   Item.findOne({_id: item}).exec(function(err, item){
+                       if(err){
+                           console.log(err);
+                           logger.log(err);
+                       }else{
+                           console.log('itemFound');
+                           item.reference = newProduct.reference + "-0-" + index;
+                           index++;
+                           var newItem = new Item(item);
+                           newItem._id = mongoose.Types.ObjectId();
+                           newItem.save(function(err,result){
+                               console.log('itemSave');
+                               if(err){
+                                   //console.log(err);
+                                   logger.log('error', err);
+                               }else{
+                                   newProduct.item[i] = result._id;
+                                   //productItem.push(result._id);
+                               }
+                           })
+                       }
+                   });
                });
 
 
