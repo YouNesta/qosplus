@@ -347,28 +347,6 @@
         .form-buttons {
           text-align: center;
         }
-        .time-display{
-          .timepicker-container{
-            label{
-              display: block;
-            }
-            .timepicker{
-              display: inline-block;
-              .glyphicon{
-                color: #6BDED3;
-              }
-            }
-            p{
-              display: inline-block;
-              vertical-align: middle;
-            }
-          }
-          button{
-            display: block;
-            margin-right: auto;
-            margin-left: auto;
-          }
-        }
         .resume-hours{
           margin-bottom: 10px;
         }
@@ -793,4 +771,27 @@ td {
   color: #000;
   font-size: 20px;
   border: 0;
+}
+
+.time-display{
+  .timepicker-container{
+    label{
+      display: block;
+    }
+    .timepicker{
+      display: inline-block;
+      .glyphicon{
+        color: #6BDED3;
+      }
+    }
+    p{
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  button{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

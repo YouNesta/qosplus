@@ -152,6 +152,154 @@ export class AdminValidationComponent {
         },
         "isCollapsed":false
     };
+    shops = [
+        { "_id" : "56e9eb8076b8f3a707192676", "name" : "Younesta", "socialReason" : "YOUNESTA SARL", "adress" : "43 rue de malabry", "adress2" : "", "city" : "Maisse", "zipCode" : 91720, "mobile" : "06 50 90 12 05", "phone" : "01 60 78 37 94", "fax" : "01 60 78 37 94", "mail" : "younes.boulkaddid@supinternet.fr", "tva" : 0.9, "siret" : 987654567890987, "adeli" : 876545678987654, "nightBox" : true, "transporteur" : "Mathieu",
+            disponibility: [{
+                day: "Lundi",
+                data: {
+                    morning: {
+                        opening: new Date(),
+                        closing: new Date()
+                    },
+                    afternoon: {
+                        opening: new Date(),
+                        closing: new Date()
+                    }
+                }
+            },
+                {
+                    day: "Mardi",
+                    data: {
+                        morning: {
+                            opening: new Date(),
+                            closing: new Date()
+                        },
+                        afternoon: {
+                            opening: new Date(),
+                            closing: new Date()
+                        }
+                    }
+                },
+                {
+                    day: "Mercredi",
+                    data: {
+                        morning: {
+                            opening: new Date(),
+                            closing: new Date()
+                        },
+                        afternoon: {
+                            opening: new Date(),
+                            closing: new Date()
+                        }
+                    }
+                },
+                {
+                    day: "Jeudi",
+                    data: {
+                        morning: {
+                            opening: new Date(),
+                            closing: new Date()
+                        },
+                        afternoon: {
+                            opening: new Date(),
+                            closing: new Date()
+                        }
+                    }
+                },
+                {
+                    day: "Vendredi",
+                    data: {
+                        morning: {
+                            opening: new Date(),
+                            closing: new Date()
+                        },
+                        afternoon: {
+                            opening: new Date(),
+                            closing: new Date()
+                        }
+                    }
+                }],
+            "__v" : 0 },
+        { "_id" : "56e9eb8076b8f3a707192678", "name" : "Younesta", "socialReason" : "YOUNESTA SARL", "adress" : "43 rue de malabry", "adress2" : "", "city" : "Maisse", "zipCode" : 91720, "mobile" : "06 50 90 12 05", "phone" : "01 60 78 37 94", "fax" : "01 60 78 37 94", "mail" : "younes.boulkaddid@supinternet.fr", "tva" : 0.9, "siret" : 987654567890987, "adeli" : 876545678987654, "nightBox" : true, "transporteur" : "Mathieu", "openDay" : "Lun", "closeDay" : "Lun", "openHour" : "1970-01-01T00:00:00Z", "closeHour" : "1970-01-01T00:00:00Z", disponibility: [{
+            day: "Lundi",
+            data: {
+                morning: {
+                    opening: new Date(),
+                    closing: new Date()
+                },
+                afternoon: {
+                    opening: new Date(),
+                    closing: new Date()
+                }
+            }
+        },
+            {
+                day: "Mardi",
+                data: {
+                    morning: {
+                        opening: new Date(),
+                        closing: new Date()
+                    },
+                    afternoon: {
+                        opening: new Date(),
+                        closing: new Date()
+                    }
+                }
+            },
+            {
+                day: "Mercredi",
+                data: {
+                    morning: {
+                        opening: new Date(),
+                        closing: new Date()
+                    },
+                    afternoon: {
+                        opening: new Date(),
+                        closing: new Date()
+                    }
+                }
+            },
+            {
+                day: "Jeudi",
+                data: {
+                    morning: {
+                        opening: new Date(),
+                        closing: new Date()
+                    },
+                    afternoon: {
+                        opening: new Date(),
+                        closing: new Date()
+                    }
+                }
+            },
+            {
+                day: "Vendredi",
+                data: {
+                    morning: {
+                        opening: new Date(),
+                        closing: new Date()
+                    },
+                    afternoon: {
+                        opening: new Date(),
+                        closing: new Date()
+                    }
+                }
+            },
+            {
+                day: "Samedi",
+                data: {
+                    morning: {
+                        opening: new Date(),
+                        closing: new Date()
+                    },
+                    afternoon: {
+                        opening: new Date(),
+                        closing: new Date()
+                    }
+                }
+            }], "__v" : 0 }
+    ];
+
     validateForm: ControlGroup;
     alertService: AlertService;
     mailService: MailManager;
@@ -255,8 +403,10 @@ export class AdminValidationComponent {
                 response => {
                     if(response.success){
                         this.users = response.data;
+                        console.log(response.data);
                         var $this = this;
                         response.data.forEach(function(item, i){
+
                             try
                             {
                                 var director = JSON.parse( $this.users[i].director);
@@ -270,10 +420,13 @@ export class AdminValidationComponent {
                             }
                             $this.users[i].isCollapsed = true;
 
+
+
                         });
                         for(var i in this.users){
                             this.isOpen.push(false);
                         }
+                        this.getShops();
                     }else{
                         console.log(response);
                     }
@@ -285,18 +438,46 @@ export class AdminValidationComponent {
             );
     };
 
+    getShops(){
+        var thus = this;
+        console.log('test');
+        this.users.forEach(function(user, index){
+            console.log("testFE");
+            thus.service.getShops(user.associateShop)
+                .subscribe(
+                res => {
+                    console.log('success');
+                    if(res.success){
+                        console.log("test2");
+                        console.log(res.data);
+                        thus.users[index].associateShop = res.data;
+                        for (var i = 0; i < thus.users[index].associateShop.length; i++) {
+                            for (var j = 0; j < thus.users[index].associateShop[i].disponibility.length; j++) {
+                                console.log('test3');
+                                thus.users[index].associateShop[i].disponibility[j].data.morning.opening = new Date(thus.users[index].associateShop[i].disponibility[j].data.morning.opening);
+                                thus.users[index].associateShop[i].disponibility[j].data.morning.closing = new Date(thus.users[index].associateShop[i].disponibility[j].data.morning.closing);
+                                thus.users[index].associateShop[i].disponibility[j].data.afternoon.opening = new Date(thus.users[index].associateShop[i].disponibility[j].data.afternoon.opening);
+                                thus.users[index].associateShop[i].disponibility[j].data.afternoon.closing = new Date(thus.users[index].associateShop[i].disponibility[j].data.afternoon.closing);
+                            }
+                        }
+                    }else{
+                        console.log(res.message);
+                    }
+                },
+                err => {
+                    console.log("error");
+                }
+            );
+        })
+    }
+
     addDay(i, day){
-        console.log(this.associateShop[i].disponibility);
-        console.log(this.checkDayExist(this.associateShop[i]));
         if(this.timepickerDay.data.morning.closing.getTime() <= this.timepickerDay.data.morning.opening.getTime()){
             alert('La date d\'ouverture du matin doit etre plus tot que la date de fermeture');
-            //this.alertService.addAlert('warning', 'La date d\'ouverture du matin doit etre plus tot que la date de fermeture');
         }else if(this.timepickerDay.data.afternoon.closing.getTime() <= this.timepickerDay.data.afternoon.opening.getTime()){
             alert('La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
-            //this.alertService.addAlert('warning', 'La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
         }else if(this.checkDayExist(this.associateShop[i]) !== false){
-            console.log('test passed!');
-            console.log(this.associateShop[i].disponibility);
+
             this.associateShop[i].disponibility[this.checkDayExist(this.associateShop[i])] = {
                 day: this.selectedDay,
                 data: {
@@ -310,28 +491,8 @@ export class AdminValidationComponent {
                     }
                 }
             };
-            console.log('testtest');
-            console.log(this.associateShop[i].disponibility);
+        }else{
 
-            /*this.associateShop[i].disponibility.forEach(function(disponibility){
-             if(disponibility.day == this.selectedDay){
-             disponibility.push({
-             data: {
-             morning: {
-             opening: this.timepickerDay.data.morning.opening,
-             closing: this.timepickerDay.data.morning.closing
-             },
-             afternoon: {
-             opening: this.timepickerDay.data.afternoon.opening,
-             closing: this.timepickerDay.data.afternoon.closing
-             }
-             }
-             })
-             }
-             });*/
-
-        }
-        else{
             this.associateShop[i].disponibility.push({
                 day: this.selectedDay,
                 data: {
@@ -345,7 +506,6 @@ export class AdminValidationComponent {
                     }
                 }
             });
-            //console.log(this.associateShop[i].disponibility);
         }
     };
 

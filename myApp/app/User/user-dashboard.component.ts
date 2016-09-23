@@ -188,6 +188,14 @@ export class UserDashboardComponent {
                         res => {
                             if(res.success){
                                 this.shops = res.data;
+                                for (var i = 0; i < this.shops.length; i++) {
+                                    for (var j = 0; j < this.shops[i].disponibility.length; j++) {
+                                        this.shops[i].disponibility[j].data.morning.opening = new Date(this.shops[i].disponibility[j].data.morning.opening);
+                                        this.shops[i].disponibility[j].data.morning.closing = new Date(this.shops[i].disponibility[j].data.morning.closing);
+                                        this.shops[i].disponibility[j].data.afternoon.opening = new Date(this.shops[i].disponibility[j].data.afternoon.opening);
+                                        this.shops[i].disponibility[j].data.afternoon.closing = new Date(this.shops[i].disponibility[j].data.afternoon.closing);
+                                    }
+                                }
                             }else{
                                 console.log(res.message);
                             }
