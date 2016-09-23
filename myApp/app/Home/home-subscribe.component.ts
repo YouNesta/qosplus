@@ -232,15 +232,34 @@ export class HomeSubscribeComponent {
     }
 
     addDay(i, day){
+        console.log(this.associateShop[i].disponibility);
+        console.log(this.checkDayExist(this.associateShop[i]));
+        if(this.timepickerDay.data.morning.closing.getTime() <= this.timepickerDay.data.morning.opening.getTime()){
+            alert('La date d\'ouverture du matin doit etre plus tot que la date de fermeture');
+            //this.alertService.addAlert('warning', 'La date d\'ouverture du matin doit etre plus tot que la date de fermeture');
+        }else if(this.timepickerDay.data.afternoon.closing.getTime() <= this.timepickerDay.data.afternoon.opening.getTime()){
+            alert('La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
+            //this.alertService.addAlert('warning', 'La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
+        }else if(this.checkDayExist(this.associateShop[i]) !== false){
+            console.log('test passed!');
+            console.log(this.associateShop[i].disponibility);
+            this.associateShop[i].disponibility[this.checkDayExist(this.associateShop[i])] = {
+                day: this.selectedDay,
+                data: {
+                    morning: {
+                        opening: this.timepickerDay.data.morning.opening,
+                        closing: this.timepickerDay.data.morning.closing
+                    },
+                    afternoon: {
+                        opening: this.timepickerDay.data.afternoon.opening,
+                        closing: this.timepickerDay.data.afternoon.closing
+                    }
+                }
+            };
+            console.log('testtest');
+            console.log(this.associateShop[i].disponibility);
 
-        //
-        if(this.timepickerDay.data.morning.closing.getTime() < this.timepickerDay.data.morning.opening.getTime()){
-            this.alertService.addAlert('warning', 'La date d\'ouverture du matin doit etre plus tot que la date de fermeture');
-        }else if(this.timepickerDay.data.morning.closing.getTime() < this.timepickerDay.data.morning.opening.getTime()){
-            this.alertService.addAlert('warning', 'La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
-        }else if(this.checkDayExist(this.associateShop[i])){
-
-            this.associateShop[i].disponibility.forEach(function(disponibility){
+            /*this.associateShop[i].disponibility.forEach(function(disponibility){
                 if(disponibility.day == this.selectedDay){
                     disponibility.push({
                         data: {
@@ -255,7 +274,7 @@ export class HomeSubscribeComponent {
                         }
                     })
                 }
-            });
+            });*/
 
         }
         else{
@@ -272,12 +291,26 @@ export class HomeSubscribeComponent {
                     }
                 }
             });
-            console.log(this.associateShop[i].disponibility);
+            //console.log(this.associateShop[i].disponibility);
         }
     };
 
     checkDayExist(shop){
-        return shop.disponibility.day === this.selectedDay;
+        var thus = this;
+        var index = 7;
+
+        shop.disponibility.forEach(function(disponibility, i){
+            if(disponibility.day == thus.selectedDay){
+                console.log(disponibility.day);
+                index = i;
+            }
+        });
+
+        if(index < 7){
+            return index;
+        }else{
+            return false;
+        }
     }
 
     changeCurrentDay(value){
