@@ -324,7 +324,7 @@ export class ProductAddComponent {
 
             for (var ax = this.items[i].axis.min; ax <= this.items[i].axis.max; ax += this.items[i].axis.int) {
                 if(this.products.param["axis"].indexOf(ax) == -1)
-                    this.products.param["axis"].push(c);
+                    this.products.param["axis"].push(ax);
 
                 for (var a = this.items[i].addition.min; a <= this.items[i].addition.max; a += this.items[i].addition.int) {
                     if(this.products.param["addition"].indexOf(a) == -1)
