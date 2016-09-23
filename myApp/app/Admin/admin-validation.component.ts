@@ -11,7 +11,7 @@ import {CanActivate} from "angular2/router";
 import {AdminFactory} from "./admin.factory";
 import {ACCORDION_DIRECTIVES} from 'ng2-bootstrap';
 import {FormBuilder, Validators} from "angular2/common";
-import {ControlGroup} from "angular2/common";
+import {ControlGroup, CORE_DIRECTIVES, FORM_DIRECTIVES} from "angular2/common";
 import {FormValidator} from "../Config/form-validator";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {UserFactory} from "../User/user.factory";
@@ -20,18 +20,18 @@ import {HomeSubscribeComponent} from "../Home/home-subscribe.component";
 import {ProductFactory} from "../Product/product.factory";
 import {MailManager} from "../lib/mail-manager";
 import {Timepicker} from "ng2-bootstrap";
+import {Pipe} from "../../jspm_packages/npm/angular2@2.0.0-beta.15/ts/src/core/metadata";
+import {DatePipe} from "../../jspm_packages/npm/angular2@2.0.0-beta.15/src/common/pipes/date_pipe";
 
 @CanActivate(() => tokenNotExpired('token'))
 
 
 @Component({
     templateUrl: "app/Admin/admin-validation.html",
-    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent, Timepicker],
+    directives: [ ACCORDION_DIRECTIVES, MODAL_DIRECTIVES, HomeSubscribeComponent, CORE_DIRECTIVES, FORM_DIRECTIVES, Timepicker],
     providers: [ AdminFactory ],
     bindings: [MailManager]
 })
-
-
 
 export class AdminValidationComponent {
     public hstep:number = 1;
@@ -54,15 +54,35 @@ export class AdminValidationComponent {
         day: "",
         data: {
             morning: {
-                opening: new Date,
-                closing: new Date
+                opening: new Date(),
+                closing: new Date()
             },
             afternoon: {
-                opening: new Date,
-                closing: new Date
+                opening: new Date(),
+                closing: new Date()
             }
         }
     };
+
+    associateShop = [{
+        name: "",
+        socialReason: '',
+        adress: "",
+        adress2: "",
+        city: "",
+        zipCode: "",
+        mobile: "",
+        phone: "",
+        fax: "",
+        mail: "",
+        tva: null,
+        siret: null,
+        adeli: null,
+        nightBox: true,
+        transporteur:'',
+        disponibility: []
+
+    }];
 
     model = {
         "_id":"",
@@ -101,6 +121,7 @@ export class AdminValidationComponent {
                 "adeli":876545678987654,
                 "nightBox":true,
                 "transporteur":"Mathieu",
+                disponibility: [],
                 "__v":0
             }
         ],
@@ -263,5 +284,91 @@ export class AdminValidationComponent {
                 () => console.log('get user list Complete')
             );
     };
+
+    addDay(i, day){
+        console.log(this.associateShop[i].disponibility);
+        console.log(this.checkDayExist(this.associateShop[i]));
+        if(this.timepickerDay.data.morning.closing.getTime() <= this.timepickerDay.data.morning.opening.getTime()){
+            alert('La date d\'ouverture du matin doit etre plus tot que la date de fermeture');
+            //this.alertService.addAlert('warning', 'La date d\'ouverture du matin doit etre plus tot que la date de fermeture');
+        }else if(this.timepickerDay.data.afternoon.closing.getTime() <= this.timepickerDay.data.afternoon.opening.getTime()){
+            alert('La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
+            //this.alertService.addAlert('warning', 'La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
+        }else if(this.checkDayExist(this.associateShop[i]) !== false){
+            console.log('test passed!');
+            console.log(this.associateShop[i].disponibility);
+            this.associateShop[i].disponibility[this.checkDayExist(this.associateShop[i])] = {
+                day: this.selectedDay,
+                data: {
+                    morning: {
+                        opening: this.timepickerDay.data.morning.opening,
+                        closing: this.timepickerDay.data.morning.closing
+                    },
+                    afternoon: {
+                        opening: this.timepickerDay.data.afternoon.opening,
+                        closing: this.timepickerDay.data.afternoon.closing
+                    }
+                }
+            };
+            console.log('testtest');
+            console.log(this.associateShop[i].disponibility);
+
+            /*this.associateShop[i].disponibility.forEach(function(disponibility){
+             if(disponibility.day == this.selectedDay){
+             disponibility.push({
+             data: {
+             morning: {
+             opening: this.timepickerDay.data.morning.opening,
+             closing: this.timepickerDay.data.morning.closing
+             },
+             afternoon: {
+             opening: this.timepickerDay.data.afternoon.opening,
+             closing: this.timepickerDay.data.afternoon.closing
+             }
+             }
+             })
+             }
+             });*/
+
+        }
+        else{
+            this.associateShop[i].disponibility.push({
+                day: this.selectedDay,
+                data: {
+                    morning: {
+                        opening: this.timepickerDay.data.morning.opening,
+                        closing: this.timepickerDay.data.morning.closing
+                    },
+                    afternoon: {
+                        opening: this.timepickerDay.data.afternoon.opening,
+                        closing: this.timepickerDay.data.afternoon.closing
+                    }
+                }
+            });
+            //console.log(this.associateShop[i].disponibility);
+        }
+    };
+
+    checkDayExist(shop){
+        var thus = this;
+        var index = 7;
+
+        shop.disponibility.forEach(function(disponibility, i){
+            if(disponibility.day == thus.selectedDay){
+                console.log(disponibility.day);
+                index = i;
+            }
+        });
+
+        if(index < 7){
+            return index;
+        }else{
+            return false;
+        }
+    }
+
+    changeCurrentDay(value){
+        this.selectedDay = value;
+    }
 }
 

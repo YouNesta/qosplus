@@ -203,10 +203,6 @@ export class HomeSubscribeComponent {
 
     constructor(userFactory: UserFactory, fb: FormBuilder, regEx: RegEx, @Inject(forwardRef(() => AlertService)) alertService){
 
-
-
-
-
         this.service = userFactory;
         this.alertService = alertService;
         this.subscribeForm = fb.group({
