@@ -440,20 +440,15 @@ export class AdminValidationComponent {
 
     getShops(){
         var thus = this;
-        console.log('test');
         this.users.forEach(function(user, index){
-            console.log("testFE");
             thus.service.getShops(user.associateShop)
                 .subscribe(
                 res => {
-                    console.log('success');
                     if(res.success){
-                        console.log("test2");
                         console.log(res.data);
                         thus.users[index].associateShop = res.data;
                         for (var i = 0; i < thus.users[index].associateShop.length; i++) {
                             for (var j = 0; j < thus.users[index].associateShop[i].disponibility.length; j++) {
-                                console.log('test3');
                                 thus.users[index].associateShop[i].disponibility[j].data.morning.opening = new Date(thus.users[index].associateShop[i].disponibility[j].data.morning.opening);
                                 thus.users[index].associateShop[i].disponibility[j].data.morning.closing = new Date(thus.users[index].associateShop[i].disponibility[j].data.morning.closing);
                                 thus.users[index].associateShop[i].disponibility[j].data.afternoon.opening = new Date(thus.users[index].associateShop[i].disponibility[j].data.afternoon.opening);
