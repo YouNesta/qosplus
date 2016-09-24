@@ -411,6 +411,7 @@ export class AdminValidationComponent {
                             {
                                 var director = JSON.parse( $this.users[i].director);
                                 $this.users[i].director = director;
+                                getShopInfos(i);
 
                             }
                             catch(e)
@@ -426,7 +427,6 @@ export class AdminValidationComponent {
                         for(var i in this.users){
                             this.isOpen.push(false);
                         }
-                        this.getShops();
                     }else{
                         console.log(response);
                     }
@@ -436,35 +436,37 @@ export class AdminValidationComponent {
                 },
                 () => console.log('get user list Complete')
             );
-    };
 
-    getShops(){
-        var thus = this;
-        this.users.forEach(function(user, index){
-            thus.service.getShops(user.associateShop)
-                .subscribe(
-                res => {
-                    if(res.success){
-                        console.log(res.data);
-                        thus.users[index].associateShop = res.data;
-                        for (var i = 0; i < thus.users[index].associateShop.length; i++) {
-                            for (var j = 0; j < thus.users[index].associateShop[i].disponibility.length; j++) {
-                                thus.users[index].associateShop[i].disponibility[j].data.morning.opening = new Date(thus.users[index].associateShop[i].disponibility[j].data.morning.opening);
-                                thus.users[index].associateShop[i].disponibility[j].data.morning.closing = new Date(thus.users[index].associateShop[i].disponibility[j].data.morning.closing);
-                                thus.users[index].associateShop[i].disponibility[j].data.afternoon.opening = new Date(thus.users[index].associateShop[i].disponibility[j].data.afternoon.opening);
-                                thus.users[index].associateShop[i].disponibility[j].data.afternoon.closing = new Date(thus.users[index].associateShop[i].disponibility[j].data.afternoon.closing);
+        function getShopInfos(index){
+            var thus = this;
+            if(index < this.users.length) {
+                thus.service.getShops(this.users[index].associateShop)
+                    .subscribe(
+                        res => {
+                            if (res.success) {
+                                console.log(res.data);
+                                thus.users[index].associateShop = res.data;
+                                for (var i = 0; i < thus.users[index].associateShop.length; i++) {
+                                    for (var j = 0; j < thus.users[index].associateShop[i].disponibility.length; j++) {
+                                        thus.users[index].associateShop[i].disponibility[j].data.morning.opening = new Date(thus.users[index].associateShop[i].disponibility[j].data.morning.opening);
+                                        thus.users[index].associateShop[i].disponibility[j].data.morning.closing = new Date(thus.users[index].associateShop[i].disponibility[j].data.morning.closing);
+                                        thus.users[index].associateShop[i].disponibility[j].data.afternoon.opening = new Date(thus.users[index].associateShop[i].disponibility[j].data.afternoon.opening);
+                                        thus.users[index].associateShop[i].disponibility[j].data.afternoon.closing = new Date(thus.users[index].associateShop[i].disponibility[j].data.afternoon.closing);
+                                    }
+                                }
+                                getShopInfos(index);
+                            } else {
+                                console.log(res.message);
                             }
-                        }
-                    }else{
-                        console.log(res.message);
-                    }
-                },
-                err => {
-                    console.log("error");
-                }
-            );
-        })
-    }
+                        },
+                        err => {
+                            console.log("error");
+                        },
+                        () => console.log('get User Shop complete')
+                    );
+            }
+        }
+    };
 
     addDay(i, day){
         if(this.timepickerDay.data.morning.closing.getTime() <= this.timepickerDay.data.morning.opening.getTime()){

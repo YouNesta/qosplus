@@ -666,10 +666,8 @@ module.exports = {
                         console.log(err);
                         logger.log(err);
                     } else {
-                       // item.reference = newProduct.reference + "-0-" + i;
-
                         for (index in item.sphere) {
-                            var reference = item.sphere[index].reference.split("-")
+                            var reference = item.sphere[index].reference.split("-");
                             item.sphere[index].reference = newProduct.reference+"-"+reference[1]+"-"+reference[2]
                         }
                         
@@ -684,7 +682,6 @@ module.exports = {
                                 newProduct.item[i] = result._id;
                                 i++;
                                 duplicateItem(newProduct, i);
-                                //productItem.push(result._id);
                             }
                         })
                     }
