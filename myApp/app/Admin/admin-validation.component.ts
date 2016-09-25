@@ -450,9 +450,9 @@ export class AdminValidationComponent {
             alert('La date d\'ouverture du matin doit etre plus tot que la date de fermeture');
         }else if(this.timepickerDay.data.afternoon.closing.getTime() <= this.timepickerDay.data.afternoon.opening.getTime()){
             alert('La date d\'ouverture de l\'apres-midi doit etre plus tot que la date de fermeture');
-        }else if(this.checkDayExist(this.associateShop[i]) !== false){
-
-            this.associateShop[i].disponibility[this.checkDayExist(this.associateShop[i])] = {
+        }else if(this.checkDayExist(this.model.associateShop[i]) !== false){
+            console.log('test2');
+            this.model.associateShop[i].disponibility[this.checkDayExist(this.model.associateShop[i])] = {
                 day: this.selectedDay,
                 data: {
                     morning: {
@@ -466,8 +466,8 @@ export class AdminValidationComponent {
                 }
             };
         }else{
-
-            this.associateShop[i].disponibility.push({
+            console.log('test3');
+            this.model.associateShop[i].disponibility.push({
                 day: this.selectedDay,
                 data: {
                     morning: {
@@ -486,7 +486,6 @@ export class AdminValidationComponent {
     checkDayExist(shop){
         var thus = this;
         var index = 7;
-
         shop.disponibility.forEach(function(disponibility, i){
             if(disponibility.day == thus.selectedDay){
                 console.log(disponibility.day);
