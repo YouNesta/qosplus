@@ -411,14 +411,6 @@ export class AdminValidationComponent {
                             {
                                 var director = JSON.parse( $this.users[index].director);
                                 $this.users[index].director = director;
-                                for (var i = 0; i < this.users[index].associateShop.length; i++) {
-                                    for (var j = 0; j < this.users[index].associateShop[i].disponibility.length; j++) {
-                                        this.users[index].associateShop[i].disponibility[j].data.morning.opening = new Date(this.users[index].associateShop[i].disponibility[j].data.morning.opening);
-                                        this.users[index].associateShop[i].disponibility[j].data.morning.closing = new Date(this.users[index].associateShop[i].disponibility[j].data.morning.closing);
-                                        this.users[index].associateShop[i].disponibility[j].data.afternoon.opening = new Date(this.users[index].associateShop[i].disponibility[j].data.afternoon.opening);
-                                        this.users[index].associateShop[i].disponibility[j].data.afternoon.closing = new Date(this.users[index].associateShop[i].disponibility[j].data.afternoon.closing);
-                                    }
-                                }
 
                             }
                             catch(e)
@@ -431,8 +423,16 @@ export class AdminValidationComponent {
 
 
                         });
-                        for(var i in this.users){
+                        for(var index in this.users){
                             this.isOpen.push(false);
+                            for (var i = 0; i < this.users[index].associateShop.length; i++) {
+                                for (var j = 0; j < this.users[index].associateShop[i].disponibility.length; j++) {
+                                    this.users[index].associateShop[i].disponibility[j].data.morning.opening = new Date(this.users[index].associateShop[i].disponibility[j].data.morning.opening);
+                                    this.users[index].associateShop[i].disponibility[j].data.morning.closing = new Date(this.users[index].associateShop[i].disponibility[j].data.morning.closing);
+                                    this.users[index].associateShop[i].disponibility[j].data.afternoon.opening = new Date(this.users[index].associateShop[i].disponibility[j].data.afternoon.opening);
+                                    this.users[index].associateShop[i].disponibility[j].data.afternoon.closing = new Date(this.users[index].associateShop[i].disponibility[j].data.afternoon.closing);
+                                }
+                            }
                         }
                     }else{
                         console.log(response);
