@@ -25,10 +25,16 @@ export class AdminUserListComponent {
                 res => {
                     if(res.success){
                         this.users = res.data;
-                        console.log(res.data);
-                        for(var i in this.users){
+                        for(var index in this.users){
                             this.isOpen.push(false);
-                            getShopInfos(i);
+                            for (var i = 0; i < this.users[index].associateShop.length; i++) {
+                                for (var j = 0; j < this.users[index].associateShop[i].disponibility.length; j++) {
+                                    this.users[index].associateShop[i].disponibility[j].data.morning.opening = new Date(this.users[index].associateShop[i].disponibility[j].data.morning.opening);
+                                    this.users[index].associateShop[i].disponibility[j].data.morning.closing = new Date(this.users[index].associateShop[i].disponibility[j].data.morning.closing);
+                                    this.users[index].associateShop[i].disponibility[j].data.afternoon.opening = new Date(this.users[index].associateShop[i].disponibility[j].data.afternoon.opening);
+                                    this.users[index].associateShop[i].disponibility[j].data.afternoon.closing = new Date(this.users[index].associateShop[i].disponibility[j].data.afternoon.closing);
+                                }
+                            }
                         }
                     }else{
                         console.log(res);
@@ -37,36 +43,6 @@ export class AdminUserListComponent {
                 err =>  console.log(err),
                 () => console.log('get user list Complete')
             );
-
-        function getShopInfos(index){
-            var thus = this;
-            if(index < this.users.length) {
-                thus.service.getShops(this.users[index].associateShop)
-                    .subscribe(
-                        res => {
-                            if (res.success) {
-                                console.log(res.data);
-                                thus.users[index].associateShop = res.data;
-                                for (var i = 0; i < thus.users[index].associateShop.length; i++) {
-                                    for (var j = 0; j < thus.users[index].associateShop[i].disponibility.length; j++) {
-                                        thus.users[index].associateShop[i].disponibility[j].data.morning.opening = new Date(thus.users[index].associateShop[i].disponibility[j].data.morning.opening);
-                                        thus.users[index].associateShop[i].disponibility[j].data.morning.closing = new Date(thus.users[index].associateShop[i].disponibility[j].data.morning.closing);
-                                        thus.users[index].associateShop[i].disponibility[j].data.afternoon.opening = new Date(thus.users[index].associateShop[i].disponibility[j].data.afternoon.opening);
-                                        thus.users[index].associateShop[i].disponibility[j].data.afternoon.closing = new Date(thus.users[index].associateShop[i].disponibility[j].data.afternoon.closing);
-                                    }
-                                }
-                                getShopInfos(index);
-                            } else {
-                                console.log(res.message);
-                            }
-                        },
-                        err => {
-                            console.log("error");
-                        },
-                        () => console.log('get User Shop complete')
-                    );
-            }
-        }
     }
 
 }
