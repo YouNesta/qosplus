@@ -102,8 +102,6 @@ export class ProductListComponent {
 
     selectProduct(index)
     {
-        console.log(this.selectedProduct);
-        console.log(index);
         this.selectedProduct.indexOf(index);
 
         var n = this.selectedProduct.indexOf(index);
@@ -112,7 +110,6 @@ export class ProductListComponent {
         }else{
             this.selectedProduct.push(index);
         }
-        console.log('test2');
     }
 
     /*
