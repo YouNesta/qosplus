@@ -227,6 +227,78 @@ export class ProductAddComponent {
             .subscribe(
                 res => {
                     if(res.success){
+                        this.products =  {
+                            name: "",
+                            status: 1,
+                            image: {
+                                original: "public/uploads/no_image.png",
+                                small: "public/uploads/no_image.png",
+                                medium: "public/uploads/no_image.png",
+                                big: "public/uploads/no_image.png"
+                            },
+                            type: {
+                                toric : false,
+                                progressiv: false
+                            },
+                            hydrophily: 0,
+                            material: "",
+                            color: "",
+                            ametropia: "",
+                            price: [{
+                                "type": 0,
+                                "price": 0,
+                                "name": "Catalogue"
+                            }],
+                            ownerPrice: [
+                                {
+                                    owner: null,
+                                    quantity: 0,
+                                    price: 0
+                                }
+                            ],
+                            middlePrice: 0,
+                            param: {
+                                diameter: [],
+                                addition: [],
+                                cylinder: [],
+                                radius: [],
+                                axis: [],
+                            },
+                            item:[
+                            ]
+
+                        };
+
+                        this.items = [
+                            {
+                                radius: null,
+                                diameter: null,
+                                addition: {
+                                    min: null,
+                                    max: null,
+                                    int:null
+                                },
+                                axis: {
+                                    min: null,
+                                    max: null,
+                                    int:null
+                                },
+                                cylinder: {
+                                    min: null,
+                                    max: null,
+                                    int:null
+                                },
+                                sphere: {
+                                    min: null,
+                                    max: null,
+                                    int: null
+                                },
+                                condition: "",
+                                stock: 0,
+                                provider: false
+                            }
+                        ];
+
                         this.modal.close()
                         this.alertService.addAlert('success', res.message);
                     }else{
