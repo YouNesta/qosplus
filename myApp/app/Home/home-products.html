@@ -10,57 +10,147 @@
                         </form>
                     </div>
                 </div>
-                <div class="row product-head">
-                    <div class="col-md-12 collapse-tab">
-                            <div class="col-md-1">
-
-                            </div>
-                            <div class="col-md-2">
-                                <span>Visuel Produit</span>
-                            </div>
-                            <div class="col-md-2">
-                                <span>Nom Commercial</span>
-                            </div>
-                            <div class="col-md-2">
-                                <span>Prix</span>
-                            </div>
-                            <div class="col-md-2">
-                                <span>Réference</span>
-                            </div>
-                            <div class="col-md-2">
-                                <span>Status</span>
-                            </div>
+                <div class="col-lg-12 collapse-tab">
+                    <div class="col-lg-12">
+                        <div class="col-lg-2">
+                            Visuel Produit
+                        </div>
+                        <div class="col-lg-3">
+                            Nom Commercial
+                        </div>
+                        <div class="col-lg-2">
+                            Prix
+                        </div>
+                        <div class="col-lg-1">
+                            Réference
+                        </div>
+                        <div class="col-lg-4">
+                            Status
+                        </div>
                     </div>
                 </div>
-                <div class="row product-body">
-                    <div class="supplier-container" *ngFor="#product of products; #i = index">
-                        <div class="row">
-                            <h1>{{product.supplier}}</h1>
-                            <div class="item-container col-md-12" >
-                                <div class="item">
-                                    <div class="row">
-                                        <div class="col-md-2 item-empty">
-                                        </div>
-                                        <div class="col-md-2 item-picture">
-                                            <img src="../../public/img/optical-glass.jpg">
-                                        </div>
-                                        <div class="col-md-2 item-name" >
-                                            <span>{{product.name}}</span>
-                                        </div>
-                                        <div class="col-md-2 item-price">
-                                            <span>{{product.price[0].price}} €</span>
-                                        </div>
-                                        <div class="col-md-2 item-reference">
-                                            <span>Reference</span>
-                                        </div>
-                                        <div class="col-md-2 item-action">
-                                            <div class="row">
-                                                <div class="col-md-4"><button class="btn"><li class="fa fa-circle"></li></button></div>
-                                                <div class="col-md-4"><button class="btn"><li class="fa fa-eye"></li></button></div>
+                <hr>
+                <div class="col-lg-12 collapse-content">
+                    <div class="product col-lg-12"  *ngFor='#product of products; #i = index;'>
+
+                        <div class="collapse-head col-lg-12">
+                            <div class="col-lg-2">
+                                <img class="img-responsive" [src]="product.image.small" alt="{{product.name}}">
+                            </div>
+                            <div class="col-lg-3">
+                                <h3> {{product.name}}</h3>
+                            </div>
+                            <div class="col-lg-2">
+                                <h3>
+                                    {{product.price[0].price}} €
+                                </h3>
+                            </div>
+                            <div class="col-lg-1">
+                                <h3>
+                                    {{product.reference}}
+                                </h3>
+                            </div>
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-3 action-button">
+                                <div class="col-lg-4">
+                                    <button class="status"><span class="fa fa-circle status-color status-{{product.status}}"></span></button>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 collapse-body text-center" [ngClass]="{active: isOpen[i]}">
+                            <div class="col-lg-4 col-lg-offset-4">
+                                <img class="img-responsive" [src]="product.image.big" alt="{{product.name}}">
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-lg-8">
+                                    <div class="col-lg-12"></div>
+                                    <div class="col-lg-12">
+                                        <h3>Price D'achat Moyen Pondéré</h3>
+                                        <div class="col-lg-3">
+                                            <div class="well well-sm">
+                                                {{product.middlePrice}} €
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <div class="col-lg-4">
+                                        <h3>Hydrophylie:</h3>
+                                        <div class="well well-sm">
+                                            {{product.hydrophily}}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <h3>Teinte:</h3>
+                                        <div class="well well-sm">
+                                            {{product.color}}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <h3>Matériaux:</h3>
+                                        <div class="well well-sm">
+                                            {{product.material}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <table>
+                                    <thead>
+                                    <td>axis</td>
+                                    <td>radius</td>
+                                    <td>diameter</td>
+                                    <td>cylinder</td>
+                                    <td>addition</td>
+                                    </thead>
+                                    <tr>
+                                        <td>
+                                            <ul>
+                                                <li *ngFor="#axis of product.param[0].axis">{{axis}}</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <li *ngFor="#radius of product.param[0].radius">{{radius}}</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <li *ngFor="#diameter of product.param[0].diameter">{{diameter}}</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <li *ngFor="#cylinder of product.param[0].cylinder">{{cylinder}}</li>
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            <ul>
+                                                <li *ngFor="#addition of product.param[0].addition">{{addition}}</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-lg-12">
+                                <h2>spheres</h2>
+                                <table>
+                                    <thead>
+                                    <td *ngFor="#sphereIndex of sphereIndexes[i]">{{sphereIndex}}</td>
+                                    </thead>
+                                    <tr>
+                                        <td *ngFor="#sphereIndex of sphereIndexes[i]">
+                                            <ul>
+                                                <li *ngFor="#sphere of spheres[i][sphereIndex]">{{sphere}}</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>

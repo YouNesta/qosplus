@@ -16,7 +16,7 @@ import {UserFactory} from "../User/user.factory";
 
 export class AdminUserListComponent {
 
-    users: Object ;
+    users = [] ;
     isOpen = [];
     
     constructor(public service: UserFactory){
@@ -25,8 +25,16 @@ export class AdminUserListComponent {
                 res => {
                     if(res.success){
                         this.users = res.data;
-                        for(var i in this.users){
+                        for(var index in this.users){
                             this.isOpen.push(false);
+                            for (var i = 0; i < this.users[index].associateShop.length; i++) {
+                                for (var j = 0; j < this.users[index].associateShop[i].disponibility.length; j++) {
+                                    this.users[index].associateShop[i].disponibility[j].data.morning.opening = new Date(this.users[index].associateShop[i].disponibility[j].data.morning.opening);
+                                    this.users[index].associateShop[i].disponibility[j].data.morning.closing = new Date(this.users[index].associateShop[i].disponibility[j].data.morning.closing);
+                                    this.users[index].associateShop[i].disponibility[j].data.afternoon.opening = new Date(this.users[index].associateShop[i].disponibility[j].data.afternoon.opening);
+                                    this.users[index].associateShop[i].disponibility[j].data.afternoon.closing = new Date(this.users[index].associateShop[i].disponibility[j].data.afternoon.closing);
+                                }
+                            }
                         }
                     }else{
                         console.log(res);
@@ -36,4 +44,5 @@ export class AdminUserListComponent {
                 () => console.log('get user list Complete')
             );
     }
+
 }

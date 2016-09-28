@@ -12,7 +12,7 @@ import {CanActivate} from "angular2/router";
 
 
 @Component({
-    template: "<h1>LOLOLOL</h1>" +
+    template: "" +
     "<router-outlet></router-outlet>",
     directives: [ROUTER_DIRECTIVES]
 })

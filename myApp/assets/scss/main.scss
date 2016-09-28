@@ -33,6 +33,11 @@ html{
               margin: 15px 0px;
               .collapse-head{
                 height: 80px;
+                .col-md-3:last-of-type{
+                  .col-md-6:last-of-type{
+                    width: 16%;
+                  }
+                }
               }
               .collapse-body {
 

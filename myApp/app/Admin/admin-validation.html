@@ -12,7 +12,7 @@
 
     <modal #modal (onDismiss)="closed()">
         <modal-body>
-            <form class="validate-form" [ngFormModel]="validateForm" >
+            <form class="validate-form" [ngFormModel]="validateForm">
                 <div class="row">
                     <div class="col-md-12 userInfo">
                         <h2>Information Client</h2>
@@ -119,7 +119,7 @@
                     <div class="col-md-12">
                         <h2>Magasin Associés</h2>
                         <hr>
-                        <div *ngFor="#shop of model.associateShop">
+                        <div *ngFor="#shop of model.associateShop; #i = index;">
                             <div class="row shop">
                                 <div class="col-md-6">
                                     <div>
@@ -221,25 +221,17 @@
                                         </div>
                                         <button class="default" (click)="addDay(i)">Valider Horaires</button>
                                     </div>
+
                                     <div class="resume-hours" *ngFor="#disponibility of shop.disponibility">
                                         <h3>{{disponibility.day}}</h3>
-                                        <span>De {{disponibility.data.morning.opening|date:'HHmm'}} à {{disponibility.data.morning.closing|date:'HHmm'}}</span>
+
+                                        <span>De {{disponibility.data.morning.opening | date: "HH:mm"}}
+                                        à
+                                        {{disponibility.data.morning.closing | date: "HH:mm"}}</span>
                                         et
-                                        <span>De {{disponibility.data.afternoon.opening|date:'HHmm'}} à {{disponibility.data.afternoon.closing|date:'HHmm'}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div>
-                                        <label for="openHour">Heure d'ouberture</label>
-                                        <input type="time"  [(ngModel)]="shop.openHour" id="openHour" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div>
-                                        <label for="closeHour">Heure de fermeture</label>
-                                        <input  type="time" [(ngModel)]="shop.closeHour" id="closeHour" class="form-control">
+                                        <span>De {{disponibility.data.afternoon.opening | date: "HH:mm"}}
+                                        à
+                                        {{disponibility.data.afternoon.closing | date: "HH:mm"}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -447,16 +439,19 @@
                                 </div>
 
                             </div>
-                            <div class="col-xs-12 col-md-6 col-sm-6">
-                                <label>Jours d'ouverture</label>
-                                <div class="well well-sm">
-                                    {{shop.openDay}} au {{shop.closeDay}}
-                                </div>
-                                <label>Heures d'ouverture</label>
-                                <div class="well well-sm">
-                                    {{shop.openHour}} au {{shop.closeHour}}
-                                </div>
+                            <div class="resume-hours" *ngFor="#disponibility of shop.disponibility">
+                                <h3>{{disponibility.day}}</h3>
+
+                                        <span>De {{disponibility.data.morning.opening | date: "HH:mm"}}
+                                        à
+                                        {{disponibility.data.morning.closing | date: "HH:mm"}}</span>
+                                et
+                                        <span>De {{disponibility.data.afternoon.opening | date: "HH:mm"}}
+                                        à
+                                        {{disponibility.data.afternoon.closing | date: "HH:mm"}}</span>
                             </div>
+
+
                         </div>
                     </div>
                     <div class="col-lg-12" *ngIf="user.director.mail">

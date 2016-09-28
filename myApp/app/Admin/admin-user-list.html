@@ -161,15 +161,16 @@
                                 </div>
 
                             </div>
-                            <div class="col-xs-12 col-md-6 col-sm-6">
-                                <label>Jours d'ouverture</label>
-                                <div class="well well-sm">
-                                    {{shop.openDay}} au {{shop.closeDay}}
-                                </div>
-                                <label>Heures d'ouverture</label>
-                                <div class="well well-sm">
-                                    {{shop.openHour}} au {{shop.closeHour}}
-                                </div>
+                            <div class="resume-hours" *ngFor="#disponibility of shop.disponibility">
+                                <h3>{{disponibility.day}}</h3>
+
+                                        <span>De {{disponibility.data.morning.opening | date: "HH:mm"}}
+                                        à
+                                        {{disponibility.data.morning.closing | date: "HH:mm"}}</span>
+                                et
+                                        <span>De {{disponibility.data.afternoon.opening | date: "HH:mm"}}
+                                        à
+                                        {{disponibility.data.afternoon.closing | date: "HH:mm"}}</span>
                             </div>
                         </div>
                     </div>

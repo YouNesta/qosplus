@@ -82,12 +82,12 @@ export class ProductListComponent {
         {
             this.selectedProduct[i] = this.products[this.selectedProduct[i]]._id;
         }
-
         if(confirm('Etes vous sur de vouloir supprimer ces produits ?')){
             this.service.deleteProducts( this.selectedProduct)
                 .subscribe(
                     response => {
                         if(response.success){
+                            this.selectedProduct=[];
                             this.getProducts();
                         }else{
                             console.log(response);
@@ -101,6 +101,8 @@ export class ProductListComponent {
 
     selectProduct(index)
     {
+        this.selectedProduct.indexOf(index);
+
         var n = this.selectedProduct.indexOf(index);
         if( n != -1){
             this.selectedProduct.splice(n, 1);
@@ -163,37 +165,4 @@ export class ProductListComponent {
                 )
         }
     }
-
-
-    
-    //Edit and Delete should only take one product as argument
-    /*editProduct(product){
-        this.service.editProduct(product)
-            .subscribe(
-                response => {
-                    if(response.success){
-                        console.log("Product successfully updated");
-                    }else{
-                        console.log(response);
-                    }
-                },
-                err =>  console.log(err),
-                () => console.log('Product successfully updated')
-            )
-    }
-
-    deleteProduct(product){
-        this.service.deleteProduct(product)
-            .subscribe(
-                response => {
-                    if(response.success){
-                        console.log("Product successfully deleted");
-                    }else{
-                        console.log(response);
-                    }
-                },
-                err =>  console.log(err),
-                () => console.log('Product successfully deleted')
-            )
-    }*/
 }

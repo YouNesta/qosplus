@@ -424,7 +424,7 @@ module.exports = {
         req.body.products.forEach(function(product, index, array){
             var i = 0;
             Product.findOne({_id:product}, function(err, result){
-                if(result.hasOwnProperty('item')){
+                if(result.item !== 'undefined'){
                     deleteItem(result, i);
                 }else{
                     deleteProduct(result, i);
@@ -454,14 +454,12 @@ module.exports = {
         function deleteItem(product, i){
                 if(i < product.item.length) {
                     delete product.item[i].__v;
-                    Item.findOne({_id: product.item[i]}, function(err,item){
+                    Item.remove({_id: product.item[i]}, function(err,item){
                         if(err)
                         {
                             console.log(err);
                             logger.log('error', err);
                             res.json({success: false, message:err});
-                        }else{
-                            Item.remove({_id: item._id});
                         }
                         i++;
                         deleteItem(product, i);
@@ -666,10 +664,8 @@ module.exports = {
                         console.log(err);
                         logger.log(err);
                     } else {
-                       // item.reference = newProduct.reference + "-0-" + i;
-
                         for (index in item.sphere) {
-                            var reference = item.sphere[index].reference.split("-")
+                            var reference = item.sphere[index].reference.split("-");
                             item.sphere[index].reference = newProduct.reference+"-"+reference[1]+"-"+reference[2]
                         }
                         
@@ -684,7 +680,6 @@ module.exports = {
                                 newProduct.item[i] = result._id;
                                 i++;
                                 duplicateItem(newProduct, i);
-                                //productItem.push(result._id);
                             }
                         })
                     }
