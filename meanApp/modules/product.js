@@ -631,7 +631,7 @@ module.exports = {
             fs.createReadStream("../myApp/"+product.image.big).pipe(fs.createWriteStream("../myApp/"+newProduct.image.big));
         }
 
-        Product.findOne({}).sort('-reference').exec(function(err, product){
+        Product.count({}, function(err, c) {
            if(err){
                console.log(err);
                logger.log('error', err);
@@ -639,7 +639,7 @@ module.exports = {
            }else{
 
                //workaround to simply convert to integer
-               newProduct.reference = parseInt(product.reference, 10) + 1;
+               newProduct.reference = c + 1;
                var i = 0;
               duplicateItem(newProduct, i);
            }

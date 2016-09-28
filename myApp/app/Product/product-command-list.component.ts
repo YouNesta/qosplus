@@ -60,6 +60,7 @@ export class ProductCommandComponent {
                 if(res.success){
                     command = res.data;
 
+                    command.date = new Date(command.date);
                     this.commands[i] = command;
 
                     this.loader[i] = true;
