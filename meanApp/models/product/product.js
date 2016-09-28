@@ -51,7 +51,7 @@ var ProductSchema = new mongoose.Schema({
         required : false
     },
     reference: { 
-        type: String,
+        type: Number,
         required : true
     },
     image: {
