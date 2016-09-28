@@ -121,16 +121,16 @@
                 <div class="col-lg-12">
                     <table>
                         <thead>
-                        <td>axis</td>
+                        <td *ngIf="product.param[0].axis.length >= 1">axis</td>
                         <td>radius</td>
                         <td>diameter</td>
-                        <td>cylinder</td>
-                        <td>addition</td>
+                        <td *ngIf="product.param[0].cylinder.length >= 1">cylinder</td>
+                        <td *ngIf="product.param[0].addition.length >= 1">addition</td>
                         </thead>
                         <tr>
-                            <td>
+                            <td *ngIf="product.param[0].axis.length >= 1">
                                 <ul>
-                                    <li *ngFor="#axis of product.param[0].axis">{{axis}}</li>
+                                    <li *ngFor="#axis of product.param[0].axis" >{{axis}}</li>
                                 </ul>
                             </td>
                             <td>
@@ -143,12 +143,12 @@
                                     <li *ngFor="#diameter of product.param[0].diameter">{{diameter}}</li>
                                 </ul>
                             </td>
-                            <td>
+                            <td *ngIf="product.param[0].cylinder.length >= 1">
                                 <ul>
-                                    <li *ngFor="#cylinder of product.param[0].cylinder">{{cylinder}}</li>
+                                    <li *ngFor="#cylinder of product.param[0].cylinder" >{{cylinder}}</li>
                                 </ul>
                             </td>
-                            <td>
+                            <td *ngIf="product.param[0].addition.length >= 1">
                                 <ul>
                                     <li *ngFor="#addition of product.param[0].addition">{{addition}}</li>
                                 </ul>

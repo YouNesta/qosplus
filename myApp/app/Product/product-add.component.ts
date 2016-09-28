@@ -219,8 +219,7 @@ export class ProductAddComponent {
             if (this.products.item[i].provider) {
                 this.products.item[i].stock = -1;
             }
-            if(this.products.param["addition"].indexOf(this.products.item[i].addition) == -1)
-                this.products.param["addition"].push(this.products.item[i].addition);
+          
         }
         this.products.middlePrice = this.middlePrice();
         this.service.save(this.products)
