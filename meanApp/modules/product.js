@@ -424,7 +424,6 @@ module.exports = {
         req.body.products.forEach(function(product, index, array){
             var i = 0;
             Product.findOne({_id:product}, function(err, result){
-                console.log(result);
                 if(result.item !== 'undefined'){
                     deleteItem(result, i);
                 }else{
@@ -461,8 +460,6 @@ module.exports = {
                             console.log(err);
                             logger.log('error', err);
                             res.json({success: false, message:err});
-                        }else{
-                            console.log(item);
                         }
                         i++;
                         deleteItem(product, i);
