@@ -424,7 +424,8 @@ module.exports = {
         req.body.products.forEach(function(product, index, array){
             var i = 0;
             Product.findOne({_id:product}, function(err, result){
-                if(result.hasOwnProperty('item')){
+                console.log(result);
+                if(result.item !== 'undefined'){
                     deleteItem(result, i);
                 }else{
                     deleteProduct(result, i);
@@ -454,14 +455,14 @@ module.exports = {
         function deleteItem(product, i){
                 if(i < product.item.length) {
                     delete product.item[i].__v;
-                    Item.findOne({_id: product.item[i]}, function(err,item){
+                    Item.remove({_id: product.item[i]}, function(err,item){
                         if(err)
                         {
                             console.log(err);
                             logger.log('error', err);
                             res.json({success: false, message:err});
                         }else{
-                            Item.remove({_id: item._id});
+                            console.log(item);
                         }
                         i++;
                         deleteItem(product, i);

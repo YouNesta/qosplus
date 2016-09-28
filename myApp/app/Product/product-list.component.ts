@@ -82,7 +82,7 @@ export class ProductListComponent {
         {
             this.selectedProduct[i] = this.products[this.selectedProduct[i]]._id;
         }
-
+        console.log(this.selectedProduct);
         if(confirm('Etes vous sur de vouloir supprimer ces produits ?')){
             this.service.deleteProducts( this.selectedProduct)
                 .subscribe(
