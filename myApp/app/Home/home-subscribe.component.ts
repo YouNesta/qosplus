@@ -26,6 +26,8 @@ export class HomeSubscribeComponent {
     public hour:Array = [];
     public mytime:Date = new Date();
 
+    errors = [];
+
     public days = [
         { name: "Lundi" },
         { name: "Mardi" },
@@ -314,7 +316,29 @@ export class HomeSubscribeComponent {
     }
 
     subscribe(){
-        if(this.subscribeForm.valid){
+        this.errors = [];
+
+        if (this.model.lastName == "") {this.errors.push("Le champ Nom ne peut être vide");}
+        if (this.model.firstName == "") {this.errors.push("Le champ Prénom ne peut être vide");}
+        if (this.model.phone == "") {this.errors.push("Le champ Téléphone ne peut être vide");}
+        if (this.model.mail == "") {this.errors.push("Le champ E-mail ne peut être vide");}
+        if (this.model.IBAN == "" || this.model.IBAN == null) {this.errors.push("Le champ IBAN ne peut être vide");}
+        if (this.model.BIC == "" || this.model.BIC == null) {this.errors.push("Le champ BIC ne peut être vide");}
+        if (this.model.central == "") {this.errors.push("Le champ Central ne peut être vide");}
+
+        for (var i in this.associateShop) {
+            var shop = this.associateShop[i];
+            if (shop.socialReason == "") {this.errors.push("Le champ Raison Social ne peut être vide");}
+            if (shop.name == "") {this.errors.push("Le champ Nom du magasin ne peut être vide");}
+            if (shop.adress == "") {this.errors.push("Le champ Adresse ne peut être vide");}
+            if (shop.city == "") {this.errors.push("Le champ Ville ne peut être vide");}
+            if (shop.zipCode == "") {this.errors.push("Le champ Code Postal ne peut être vide");}
+            if (shop.tva == "" || shop.tva == null) {this.errors.push("Le champ TVA ne peut être vide");}
+            if (shop.adeli == "" || shop.adeli == null) {this.errors.push("Le champ Adeli ne peut être vide");}
+            if (shop.siret == "" || shop.siret == null) {this.errors.push("Le champ Siret ne peut être vide");}
+        }
+
+        if(this.subscribeForm.valid && this.error == []){
             this.user = this.model;
             this.user.role = 0;
 
@@ -325,8 +349,6 @@ export class HomeSubscribeComponent {
             }
                 this.service.save(this.user, this.associateShop, this.director, this.isSame);
         }
-
-
     }
 
     addShop(){

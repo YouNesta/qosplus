@@ -227,6 +227,7 @@
                                 </div>
                             </div>
                         </div>
+                        <p *ngFor="#error of errors">{{error}}</p>
                         <div class="form-buttons">
                             <button class="default" (click)="subscribe()" type="button">Envoyer</button>
                         </div>

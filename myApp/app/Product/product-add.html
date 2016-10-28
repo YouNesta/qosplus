@@ -201,6 +201,7 @@
                     </div>
                 </span>
                 <hr>
+                <p *ngFor="#error of errors">{{error}}</p>
                 <div class="row">
                     <div class="col-md-4 col-md-offset-2">
                         <button (click)="addProduct()">add</button>

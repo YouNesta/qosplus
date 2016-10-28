@@ -23,6 +23,7 @@ export class ProductAddComponent {
     uploadProgress: number;
     uploadResponse: Object;
     zone: NgZone;
+    errors = [];
     options: Object = {
         url: 'http://192.168.33.10:2028/upload'
     };
@@ -213,102 +214,66 @@ export class ProductAddComponent {
 
 
     save() {
-        this.addItem();
 
-        for (var i in this.products.item) {
-            if (this.products.item[i].provider) {
-                this.products.item[i].stock = -1;
-            }
-          
+        this.errors = [];
+
+        if (this.products.name == "") {this.errors.push("Le champ Nom ne peut être vide");}
+        if (this.products.material == "") {this.errors.push("Le champ Material ne peut être vide");}
+        if (this.products.color == "") {this.errors.push("Le champ Color ne peut être vide");}
+
+        for (var i in this.products.price) {
+            var price = this.products.price[i];
+            if (price.price == 0) {this.errors.push("Le champ Prix ne peut être égal à 0");}
         }
-        this.products.middlePrice = this.middlePrice();
-        this.service.save(this.products)
-            .subscribe(
-                res => {
-                    if(res.success){
-                        this.products =  {
-                            name: "",
-                            status: 1,
-                            image: {
-                                original: "public/uploads/no_image.png",
-                                small: "public/uploads/no_image.png",
-                                medium: "public/uploads/no_image.png",
-                                big: "public/uploads/no_image.png"
-                            },
-                            type: {
-                                toric : false,
-                                progressiv: false
-                            },
-                            hydrophily: 0,
-                            material: "",
-                            color: "",
-                            ametropia: "",
-                            price: [{
-                                "type": 0,
-                                "price": 0,
-                                "name": "Catalogue"
-                            }],
-                            ownerPrice: [
-                                {
-                                    owner: null,
-                                    quantity: 0,
-                                    price: 0
-                                }
-                            ],
-                            middlePrice: 0,
-                            param: {
-                                diameter: [],
-                                addition: [],
-                                cylinder: [],
-                                radius: [],
-                                axis: [],
-                            },
-                            item:[
-                            ]
 
-                        };
+        if (this.products.ametropia == "") {this.errors.push("Le champ Amétropie ne peut être vide");}
 
-                        this.items = [
-                            {
-                                radius: null,
-                                diameter: null,
-                                addition: {
-                                    min: null,
-                                    max: null,
-                                    int:null
-                                },
-                                axis: {
-                                    min: null,
-                                    max: null,
-                                    int:null
-                                },
-                                cylinder: {
-                                    min: null,
-                                    max: null,
-                                    int:null
-                                },
-                                sphere: {
-                                    min: null,
-                                    max: null,
-                                    int: null
-                                },
-                                condition: "",
-                                stock: 0,
-                                provider: false
-                            }
-                        ];
+        if (this.products.type.toric == true || this.products.type.progressiv) {
+            for (var i in this.items) {
+                var item = this.items[i];
+                if (this.products.type.toric == true) {
+                    if (item.axis.min == "" || item.axis.min == null) {this.errors.push("L'axe nécessite une valeur minimale");}
+                    if (item.axis.max == "" || item.axis.max == null) {this.errors.push("L'axe nécessite une valeur maximale");}
+                    if (item.axis.int == "" || item.axis.int == null) {this.errors.push("L'axe nécessite un interval");}
 
-                        this.modal.close()
-                        this.alertService.addAlert('success', res.message);
-                    }else{
-                        this.alertService.addAlert('warning', res.message);
-                    }
-                },
-                err => {
-                    this.alertService.addAlert('danger', 500);
-                },
-                () => console.log('Product Added')
-            );
+                    if (item.cylinder.min == "" || item.cylinder.min == null) {this.errors.push("Le cylindre nécessite une valeur minimale");}
+                    if (item.cylinder.max == "" || item.cylinder.max == null) {this.errors.push("Le cylindre nécessite une valeur maximale");}
+                    if (item.cylinder.int == "" || item.cylinder.int == null) {this.errors.push("Le cylindre nécessite un interval");}
+                }
+                if (this.products.type.progressiv) {
+                    if (item.addition.min == "" || item.addition.min == null) {this.errors.push("L'addition nécessite une valeur minimale");}
+                    if (item.addition.max == "" || item.addition.max == null) {this.errors.push("L'addition nécessite une valeur maximale");}
+                    if (item.addition.int == "" || item.addition.int == null) {this.errors.push("L'addition nécessite un interval");}
+                }
+            }
+        }
+
+        if (this.errors == []) {
+            this.addItem();
+            for (var i in this.products.item) {
+                if (this.products.item[i].provider) {
+                    this.products.item[i].stock = -1;
+                }
+                if(this.products.param["addition"].indexOf(this.products.item[i].addition) == -1)
+                    this.products.param["addition"].push(this.products.item[i].addition);
+            }
+            this.products.middlePrice = this.middlePrice();
+            this.service.save(this.products)
+                .subscribe(
+                    res => {
+                        if(res.success){
+                            this.modal.close()
+                            this.alertService.addAlert('success', res.message);
+                        }else{
+                            this.alertService.addAlert('warning', res.message);
+                        }
+                    },
+                    err => {
+                        this.alertService.addAlert('danger', 500);
+                    },
+                    () => console.log('Product Added')
+                );
+        }
     }
 
 
