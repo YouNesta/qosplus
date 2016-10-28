@@ -323,7 +323,9 @@ export class HomeSubscribeComponent {
         if (this.model.phone == "") {this.errors.push("Le champ Téléphone ne peut être vide");}
         if (this.model.mail == "") {this.errors.push("Le champ E-mail ne peut être vide");}
         if (this.model.IBAN == "" || this.model.IBAN == null) {this.errors.push("Le champ IBAN ne peut être vide");}
+        else if (isNaN(this.model.IBAN)) {this.errors.push("IBAN invalide");}
         if (this.model.BIC == "" || this.model.BIC == null) {this.errors.push("Le champ BIC ne peut être vide");}
+        else if (isNaN(this.model.BIC)) {this.errors.push("BIC invalide");}
         if (this.model.central == "") {this.errors.push("Le champ Central ne peut être vide");}
 
         for (var i in this.associateShop) {
