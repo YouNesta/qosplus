@@ -24,17 +24,13 @@ export class UserFactory {
         console.log(this.apiUrl);
         headers.append('Content-Type', 'application/json');
 
-        this.authHttp
+       return this.authHttp
             .post(this.apiUrl + 'subscribe',
                 data, {
                     headers: headers
                 })
             .map(response => response.json())
-            .subscribe(
-                response => console.log(response),
-                err =>  console.log(err),
-                () => console.log('Authentication Complete')
-            );
+
     }
 
     user(){

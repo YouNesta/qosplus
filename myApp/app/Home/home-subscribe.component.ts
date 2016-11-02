@@ -27,6 +27,7 @@ export class HomeSubscribeComponent {
     public mytime:Date = new Date();
 
     errors = [];
+    success = [];
 
     public days = [
         { name: "Lundi" },
@@ -317,6 +318,7 @@ export class HomeSubscribeComponent {
 
     subscribe(){
         this.errors = [];
+        this.success = [];
 
         if (this.model.lastName == "") {this.errors.push("Le champ Nom ne peut être vide");}
         if (this.model.firstName == "") {this.errors.push("Le champ Prénom ne peut être vide");}
@@ -340,7 +342,7 @@ export class HomeSubscribeComponent {
             if (shop.siret == "" || shop.siret == null) {this.errors.push("Le champ Siret ne peut être vide");}
         }
 
-        if(this.subscribeForm.valid && this.error == []){
+        if(this.subscribeForm.valid && this.errors.length == 0){
             this.user = this.model;
             this.user.role = 0;
 
@@ -349,7 +351,18 @@ export class HomeSubscribeComponent {
             }else{
                 this.user.financialMail = this.associateShop[0].mail;
             }
-                this.service.save(this.user, this.associateShop, this.director, this.isSame);
+                this.service.save(this.user, this.associateShop, this.director, this.isSame)
+                    .subscribe(
+                        res => {
+                            if(res.success){
+                              this.success.push("Vous avez été enregistré avec succés");
+                              }else{
+                                this.alertService.addAlert('warning', res.message);
+                            }
+                        },
+                        err =>  console.log(err),
+                        () => console.log('Authentication Complete')
+                    );
         }
     }
 

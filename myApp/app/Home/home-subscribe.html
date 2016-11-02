@@ -37,6 +37,7 @@
                                 </div>
                             </div>
                             <div *ngIf="isSame.director == false" class="col-md-12">
+                                <h2>Directeur</h2>
                                 <div class="col-md-6">
                                     <div class="form-group ">
                                         <label for="directorLastName">Nom</label>
@@ -83,7 +84,7 @@
                                             </label>
                                         </div>
                                         <div class="form-group " *ngIf="isSame.financialMail == false">
-                                            <label for="financialMail">BIC</label>
+                                            <label for="financialMail">Mail Financier</label>
                                             <input  [(ngModel)]="model.financialMail" id="financialMail" class="form-control">
                                         </div>
                                     </div>
@@ -227,7 +228,15 @@
                                 </div>
                             </div>
                         </div>
-                        <p *ngFor="#error of errors">{{error}}</p>
+
+                        <div class="alert alert-danger"  *ngFor="#error of errors">
+                            <strong>Attention!</strong> {{error}}
+                        </div>
+
+                        <div class="alert alert-success"  *ngFor="#msg of success">
+                            <strong>Felicitation!</strong> {{msg}}
+                        </div>
+
                         <div class="form-buttons">
                             <button class="default" (click)="subscribe()" type="button">Envoyer</button>
                         </div>

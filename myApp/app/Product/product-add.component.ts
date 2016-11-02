@@ -247,8 +247,8 @@ export class ProductAddComponent {
                 }
             }
         }
-
-        if (this.errors == []) {
+        console.log('ejfbjekrhf')
+        if (this.errors.length == 0) {
             this.addItem();
             for (var i in this.products.item) {
                 if (this.products.item[i].provider) {
