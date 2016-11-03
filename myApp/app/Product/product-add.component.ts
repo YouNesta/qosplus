@@ -67,6 +67,7 @@ export class ProductAddComponent {
     ];
 
     products = {
+        brand: "",
         name: "",
         status: 1,
         image: {

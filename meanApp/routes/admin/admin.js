@@ -21,7 +21,18 @@ router.get('/unvalidate', function(req, res, next) {
 });
 
 router.get('/', function(req, res, next) {
-  Admin.find({}, function(err, users) {
+  Admin.find({role: 1}, function(err, users) {
+    if(err){
+      console.log(err);
+      logger.log('error', err);
+      res.json({success: false, message:error});
+    }
+    res.json({success: true, message:"User List Find with success", data: users});
+  });
+});
+
+router.post('/delete', function(req, res, next) {
+  Admin.remove({mail: req.body.mail}, function(err, users) {
     if(err){
       console.log(err);
       logger.log('error', err);

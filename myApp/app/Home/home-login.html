@@ -17,6 +17,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="alert alert-danger"  *ngFor="#error of errors">
+                    <strong>Attention!</strong> {{error}}
+                </div>
                 <div class="row submit">
                     <div class="col-md-4 col-md-offset-4">
                         <button type="submit" class="btn default" (click)="login()">Submit</button>

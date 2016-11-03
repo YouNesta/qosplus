@@ -14,6 +14,10 @@ var ProductSchema = new mongoose.Schema({
         required : true,
         index: true
     },
+    brand:{ 
+        type: String,
+        required : true
+    },
     status:{
         type: Number,
         required: false
@@ -23,8 +27,7 @@ var ProductSchema = new mongoose.Schema({
         required : true 
     },
     color:{ 
-        type: String, 
-        required : true 
+        type: String
     },
     hydrophily:{ 
         type: Number, 
@@ -73,7 +76,7 @@ var ProductSchema = new mongoose.Schema({
         required: false
     },
     portDuration: {
-        type: Number,
+        type: String,
         required: false
     }
 });

@@ -34,9 +34,16 @@
                         </div>
 
                     </div>
-                    <div class="col-md-4 col-md-offset-4">
-                        <label for="name">Nom</label>
-                        <input  [(ngModel)]="products.name" ngControl="name" id="name" class="form-control">
+                    <div class="col-md-8">
+                        <div class="col-md-12">
+                            <label for="name">Nom</label>
+                            <input  [(ngModel)]="products.name" id="name" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="brand">Marque</label>
+                            <input  [(ngModel)]="products.brand" id="brand" class="form-control">
+                        </div>
+
                     </div>
                 </div>
                 <div class="row">

@@ -24,6 +24,7 @@ export class HomeLoginComponent {
         password: '12345678'
     };
     alertService: AlertService;
+    errors = [];
 
     constructor(fb: FormBuilder, regEx: RegEx, public service: UserFactory, public router: Router, @Inject(forwardRef(() => AlertService)) alertService){
         this.alertService = alertService;
@@ -57,8 +58,8 @@ export class HomeLoginComponent {
                                 this.router.navigateByUrl('/user');
                             }
                         }else{
-                            console.log(res)
-                            this.alertService.addAlert('warning', res.message);
+                            this.errors = []
+                            this.errors.push('Mauvais login ou mot de passe, veuillez ressayer. Si le problème persiste, contactez le service client.');
                         }
                     },
                     err => {

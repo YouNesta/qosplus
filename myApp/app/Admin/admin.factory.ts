@@ -28,6 +28,8 @@ export class AdminFactory {
                     headers: headers
                 })
             .map(response => response.json());
+
+
     };
 
     list(){
@@ -39,6 +41,25 @@ export class AdminFactory {
                 err =>  console.log(err),
                 () => console.log('Subscription Complete')
             );
+    };
+
+    getAdmins(){
+        return  this.authHttp
+            .get(this.apiUrl+'')
+            .map(response => response.json())
+    };
+
+    deleteAdmin(user){
+        var data =  JSON.stringify({mail: user.mail});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.authHttp
+            .post(this.apiUrl + 'delete',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
     };
 
     getUnvalidateUser(){

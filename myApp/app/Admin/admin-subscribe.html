@@ -1,46 +1,85 @@
-<div class="content admin-subscribe">
-    <h2>Subscribe</h2>
-    <hr>
-    <div class="container-fluid">
-        <form [ngFormModel]="subscribeForm" novalidate>
-            <div class="row user">
-                <div class="col-xs-12 col-md-6 col-sm-6">
-                    <div>
-                        <label for="lastName">Nom</label>
-                        <input type="text" [(ngModel)]="model.lastName" ngControl="name" id="lastName" class="form-control">
+<button (click)="modal.open(lg)" class="add-modale">Ajouter un Employé</button>
+<modal #modal (onClose)="close()">
+    <modal-body>
+        <div class="content admin-subscribe">
+            <h2>Ajouter un Employé</h2>
+            <hr>
+            <div class="container-fluid">
+                <form [ngFormModel]="subscribeForm" novalidate>
+                    <div class="row user">
+                        <div class="col-xs-12 col-md-6 col-sm-6">
+                            <div>
+                                <label for="lastName">Nom</label>
+                                <input type="text" [(ngModel)]="model.lastName" ngControl="name" id="lastName" class="form-control">
+                            </div>
+                            <div>
+                                <label for="firstName">Prénom</label>
+                                <input type="text" [(ngModel)]="model.firstName" ngControl="name" id="firstName" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-sm-6">
+                            <div>
+                                <label for="phone">Téléphone</label>
+                                <input type="tel" [(ngModel)]="model.phone" ngControl="phone" id="phone" class="form-control">
+                            </div>
+                            <div>
+                                <label for="mail">E-mail</label>
+                                <input type="email" [(ngModel)]="model.mail" ngControl="mail" id="mail" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12 col-sm-12">
+                            <div>
+                                <label for="password">Mots de Passe</label>
+                                <input type="password"  [(ngModel)]="model.password" ngControl="password" id="password" class="form-control">
+                            </div>
+                            <div>
+                                <label for="passwordCheck">Retappez le mots de passe</label>
+                                <input  type="password" [(ngModel)]="model.passwordCheck" ngControl="passwordCheck" id="passwordCheck" class="form-control">
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label for="firstName">Prénom</label>
-                        <input type="text" [(ngModel)]="model.firstName" ngControl="name" id="firstName" class="form-control">
+                    <div class="alert alert-danger"  *ngFor="#error of errors">
+                        <strong>Attention!</strong> {{error}}
                     </div>
-                </div>
-                <div class="col-xs-12 col-md-6 col-sm-6">
-                    <div>
-                        <label for="phone">Téléphone</label>
-                        <input type="tel" [(ngModel)]="model.phone" ngControl="phone" id="phone" class="form-control">
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-5">
+                            <button class="btn btn-primary" (click)="subscribe(modal)" type="button">Envoyer</button>
+                        </div>
                     </div>
-                    <div>
-                        <label for="mail">E-mail</label>
-                        <input type="email" [(ngModel)]="model.mail" ngControl="mail" id="mail" class="form-control">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-12 col-sm-12">
-                    <div>
-                        <label for="password">Mots de Passe</label>
-                        <input type="password"  [(ngModel)]="model.password" ngControl="password" id="password" class="form-control">
-                    </div>
-                    <div>
-                        <label for="passwordCheck">Retappez le mots de passe</label>
-                        <input  type="password" [(ngModel)]="model.passwordCheck" ngControl="passwordCheck" id="passwordCheck" class="form-control">
-                    </div>
-                </div>
+                </form>
             </div>
-            <div class="row">
-                <div class="col-md-3 col-md-offset-5">
-                    <button class="btn btn-primary" (click)="subscribe()" type="button">Envoyer</button>
-                </div>
-            </div>
-        </form>
-    </div>
+        </div>
+    </modal-body>
+</modal>
 
+<div class="content product-command-list">
+    <div class="col-lg-12 collapse-tab">
+        <div class="col-lg-12">
+            <div class="col-lg-4">
+                Nom
+            </div>
+            <div class="col-lg-4">
+                Mail
+            </div>
+            <div class="col-lg-2">
+                Action
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-lg-12 collapse-content">
+        <div class="product col-lg-12"  *ngFor='#user of admins; #i = index;'>
+            <div class="collapse-head col-lg-12">
+                <div class="col-lg-4">
+                    <p>{{ user.firstName }} {{ user.lastName }}</p>
+                </div>
+                <div class="col-lg-4">
+                    <p>{{user.mail}}</p>
+                </div>
+                <div class="col-lg-4">
+                    <button style="margin: 0" (click)="deleteAdmin(user);"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
