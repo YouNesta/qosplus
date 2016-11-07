@@ -237,8 +237,9 @@ export class ProductAddCartComponent  implements  OnChanges{
                         if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
                             if(this.cylinder.indexOf(this.product.item[i].cylinder) == -1){
                                 console.log('radius')
+                                this.cartProduct.radius = radius;
                                 this.cylinder.push(this.product.item[i].cylinder);
-                                this.changeCylinder(null);
+                                this.changeCylinder(radius);
                             }
                         }
                     }
@@ -248,7 +249,7 @@ export class ProductAddCartComponent  implements  OnChanges{
 
     }
 
-    changeCylinder(cylinder){
+    changeCylinder(radius, cylinder = null){
         this.axis = [];
         this.addition = [];
 
@@ -256,13 +257,13 @@ export class ProductAddCartComponent  implements  OnChanges{
         this.cartProduct.addition = null;
 
             for (var i in this.product.item) {
-                console.log(this.product.item[i].cylinder, null)
+                console.log(this.cartProduct.radius, null)
                 if(this.product.item[i].diameter == this.cartProduct.diameter
-                    && this.product.item[i].radius == this.cartProduct.radius
+                    && this.product.item[i].radius == radius
                     && this.product.item[i].cylinder == cylinder){
-                    console.log(1);
                     for(var n in this.product.item[i].spheres){
                         if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
+
                             if(this.axis.indexOf(this.product.item[i].axis) == -1){
                                 console.log('cylinder')
                                 this.axis.push(this.product.item[i].axis);
@@ -276,14 +277,32 @@ export class ProductAddCartComponent  implements  OnChanges{
     }
 
     changeAxis(axis){
+
         this.addition = [];
         this.cartProduct.addition = null;
             for (var i in this.product.item) {
+                console.log(this.product.item[i].diameter == this.cartProduct.diameter
+                    && this.product.item[i].radius == this.cartProduct.radius
+                    && this.product.item[i].cylinder == this.cartProduct.cylinder
+                    && this.product.item[i].axis == axis)
+                console.log(this.product.item[i].diameter == this.cartProduct.diameter
+                    , this.product.item[i].radius == this.cartProduct.radius
+                    , this.product.item[i].cylinder == this.cartProduct.cylinder
+                    , this.product.item[i].axis == axis)
+                console.log(this.product.item[i].diameter , this.cartProduct.diameter
+                    , this.product.item[i].radius , this.cartProduct.radius
+                    , this.product.item[i].cylinder , this.cartProduct.cylinder
+                    , this.product.item[i].axis , axis)
                 if(this.product.item[i].diameter == this.cartProduct.diameter
                     && this.product.item[i].radius == this.cartProduct.radius
                     && this.product.item[i].cylinder == this.cartProduct.cylinder
                     && this.product.item[i].axis == axis){
                     for(var n in this.product.item[i].spheres){
+                        console.log(1);
+                        console.log(this.product.item[i].spheres[n] == this.cartProduct.sphere);
+                        console.log(this.product.item[i].spheres[n] , this.cartProduct.sphere);
+                        console.log(this.axis.indexOf(this.product.item[i].axis) );
+
                         if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
                             console.log('axis');
 

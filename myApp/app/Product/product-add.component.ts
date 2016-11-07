@@ -25,7 +25,7 @@ export class ProductAddComponent {
     zone: NgZone;
     errors = [];
     options: Object = {
-        url: 'http://192.168.33.10:2028/upload'
+        url: 'http://167.114.235.207:2028/upload'
     };
 
     handleUpload(data): void {
@@ -229,7 +229,7 @@ export class ProductAddComponent {
 
         if (this.products.ametropia == "") {this.errors.push("Le champ Amétropie ne peut être vide");}
 
-        if (this.products.type.toric == true || this.products.type.progressiv) {
+    /*    if (this.products.type.toric == true || this.products.type.progressiv) {
             for (var i in this.items) {
                 var item = this.items[i];
                 if (this.products.type.toric == true) {
@@ -247,7 +247,7 @@ export class ProductAddComponent {
                     if (item.addition.int == "" || item.addition.int == null) {this.errors.push("L'addition nécessite un interval");}
                 }
             }
-        }
+        }*/
         console.log('ejfbjekrhf')
         if (this.errors.length == 0) {
             this.addItem();

@@ -51,7 +51,7 @@
                     <label for="cylinder">
                         Cylindres
                     </label>
-                    <select id="cylinder" #cylinderDOM (change)="changeCylinder(cylinderDOM.value)" [(ngModel)]="cartProduct.cylinder" >
+                    <select id="cylinder" #cylinderDOM (change)="changeCylinder(radiusDOM.value, cylinderDOM.value)" [(ngModel)]="cartProduct.cylinder" >
                         <option *ngFor="#cylinder of cylinder; #i = index" [value]="cylinder">
                             Cylindre: {{cylinder}}
                         </option>

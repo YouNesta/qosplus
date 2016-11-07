@@ -1,1 +1,0 @@
-{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"qosPlus.admins"},{"v":1,"key":{"phone":1},"name":"phone_1","ns":"qosPlus.admins","background":true},{"v":1,"key":{"mail":1},"name":"mail_1","ns":"qosPlus.admins","background":true}]}
