@@ -3,8 +3,8 @@ var smtpConfig = {
     port: 465,
     secure: true, // use SSL
     auth: {
-        user: 'qosplus@gmail.com',
-        pass: 'X-vison101'
+        user: 'xvisioncontact@gmail.com',
+        pass: ''
     }
 };
 
