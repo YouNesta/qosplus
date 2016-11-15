@@ -32,7 +32,7 @@ export class ProductAddCartComponent  implements  OnChanges{
         "60",
         "90"
     ];
-
+    success = [];
     intervales = [
         0.25,
     ];
@@ -339,7 +339,7 @@ export class ProductAddCartComponent  implements  OnChanges{
     }
 
 
-    addProductToCart(product) {
+    addProductToCart() {
         this.cartFinal._id = this.product._id;
         this.cartFinal.image = this.product.image;
         //this.cartFinal.reference = this.product.image;
@@ -354,7 +354,10 @@ export class ProductAddCartComponent  implements  OnChanges{
         if (local != null) {cart = local;}
         cart.push(this.cartFinal);
         localStorage.setItem("cart", JSON.stringify(cart));
-        this.alertService.addAlert('success', "Product successfully added to the cart.");
+        this.success.push("Produit ajouté au panier");
+        setTimeout(function () {
+            this.success = [];
+        }, 5000);
         return "Product added in cart";
     }
 

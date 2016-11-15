@@ -17,11 +17,11 @@ export class HomeLoginComponent {
     loginForm: ControlGroup;
 
     model = {
-        lastName: 'Boulkaddid',
-        firstName: 'Younes',
-        phone: '06.59.90.12.05',
-        mail: 'younes.boulkaddid@supinternet.fr',
-        password: '12345678'
+        lastName: '',
+        firstName: '',
+        phone: '',
+        mail: '',
+        password: ''
     };
     alertService: AlertService;
     errors = [];

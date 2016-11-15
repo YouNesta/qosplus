@@ -84,6 +84,12 @@
                         </label>
                         <input type="number" id="quantity" placeholder="Quantity" [(ngModel)]="cartFinal.quantity">
                     </div>
+                    <div class="col-md-12">
+                        <div class="alert alert-success"  *ngFor="#msg of success">
+                            <strong>Felicitation!</strong> {{msg}}
+                        </div>
+                    </div>
+
                     <div class="col-md-4 col-md-offset-4" align="center">
                         <button class="btn btn-primary" (click)="addProductToCart()">Valider</button>
                     </div>
