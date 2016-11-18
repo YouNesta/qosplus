@@ -82,11 +82,16 @@
                         <label for="quantity">
                             Quantité
                         </label>
-                        <input type="number" id="quantity" placeholder="Quantity" [(ngModel)]="cartFinal.quantity">
+                        <input type="number" id="quantity" placeholder="Quantity" [(ngModel)]="cartProduct.quantity">
                     </div>
                     <div class="col-md-12">
                         <div class="alert alert-success"  *ngFor="#msg of success">
                             <strong>Felicitation!</strong> {{msg}}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="alert alert-warning"  *ngFor="#msg of error">
+                            <strong>Attention!</strong> {{msg}}
                         </div>
                     </div>
 

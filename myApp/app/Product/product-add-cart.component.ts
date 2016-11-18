@@ -33,6 +33,7 @@ export class ProductAddCartComponent  implements  OnChanges{
         "90"
     ];
     success = [];
+    error = [];
     intervales = [
         0.25,
     ];
@@ -52,6 +53,7 @@ export class ProductAddCartComponent  implements  OnChanges{
         radius: null,
         axis: null,
         sphere: null,
+        quantity: null,
     };
 
     product = {
@@ -191,6 +193,7 @@ export class ProductAddCartComponent  implements  OnChanges{
                 if(this.product.item[i].spheres[n] == sphere){
                     if(this.diameter.indexOf(this.product.item[i].diameter) == -1){
                         this.diameter.push(this.product.item[i].diameter);
+                        break
                     }
                 }
             };
@@ -214,6 +217,7 @@ export class ProductAddCartComponent  implements  OnChanges{
                         if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
                             if(this.radius.indexOf(this.product.item[i].radius) == -1){
                                 this.radius.push(this.product.item[i].radius);
+                                break
                             }
                         }
                     }
@@ -236,10 +240,10 @@ export class ProductAddCartComponent  implements  OnChanges{
                     for(var n in this.product.item[i].spheres){
                         if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
                             if(this.cylinder.indexOf(this.product.item[i].cylinder) == -1){
-                                console.log('radius')
                                 this.cartProduct.radius = radius;
                                 this.cylinder.push(this.product.item[i].cylinder);
                                 this.changeCylinder(radius);
+                                break
                             }
                         }
                     }
@@ -257,7 +261,6 @@ export class ProductAddCartComponent  implements  OnChanges{
         this.cartProduct.addition = null;
 
             for (var i in this.product.item) {
-                console.log(this.cartProduct.radius, null)
                 if(this.product.item[i].diameter == this.cartProduct.diameter
                     && this.product.item[i].radius == radius
                     && this.product.item[i].cylinder == cylinder){
@@ -265,9 +268,9 @@ export class ProductAddCartComponent  implements  OnChanges{
                         if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
 
                             if(this.axis.indexOf(this.product.item[i].axis) == -1){
-                                console.log('cylinder')
                                 this.axis.push(this.product.item[i].axis);
                                 this.changeAxis(null);
+                                break
                             }
                         }
                     }
@@ -281,27 +284,11 @@ export class ProductAddCartComponent  implements  OnChanges{
         this.addition = [];
         this.cartProduct.addition = null;
             for (var i in this.product.item) {
-                console.log(this.product.item[i].diameter == this.cartProduct.diameter
-                    && this.product.item[i].radius == this.cartProduct.radius
-                    && this.product.item[i].cylinder == this.cartProduct.cylinder
-                    && this.product.item[i].axis == axis)
-                console.log(this.product.item[i].diameter == this.cartProduct.diameter
-                    , this.product.item[i].radius == this.cartProduct.radius
-                    , this.product.item[i].cylinder == this.cartProduct.cylinder
-                    , this.product.item[i].axis == axis)
-                console.log(this.product.item[i].diameter , this.cartProduct.diameter
-                    , this.product.item[i].radius , this.cartProduct.radius
-                    , this.product.item[i].cylinder , this.cartProduct.cylinder
-                    , this.product.item[i].axis , axis)
                 if(this.product.item[i].diameter == this.cartProduct.diameter
                     && this.product.item[i].radius == this.cartProduct.radius
                     && this.product.item[i].cylinder == this.cartProduct.cylinder
                     && this.product.item[i].axis == axis){
                     for(var n in this.product.item[i].spheres){
-                        console.log(1);
-                        console.log(this.product.item[i].spheres[n] == this.cartProduct.sphere);
-                        console.log(this.product.item[i].spheres[n] , this.cartProduct.sphere);
-                        console.log(this.axis.indexOf(this.product.item[i].axis) );
 
                         if(this.product.item[i].spheres[n] == this.cartProduct.sphere){
                             console.log('axis');
@@ -309,6 +296,7 @@ export class ProductAddCartComponent  implements  OnChanges{
                             if(this.addition.indexOf(this.product.item[i].addition) == -1){
                                 this.addition.push(this.product.item[i].addition);
                                 this.changeAddition(null);
+                                break
                             }
                         }
                     }
@@ -325,7 +313,6 @@ export class ProductAddCartComponent  implements  OnChanges{
                     && this.product.item[i].axis == this.cartProduct.axis
                     && this.product.item[i].addition == addition){
                     for(var n in this.product.item[i].sphere){
-                        console.log('addition')
 
                         if(this.product.item[i].sphere[n].sphere == this.cartProduct.sphere){
                             this.cartFinal.item = this.cartProduct
@@ -340,6 +327,10 @@ export class ProductAddCartComponent  implements  OnChanges{
 
 
     addProductToCart() {
+        var success = true;
+        this.success = [];
+        this.error = [];
+
         this.cartFinal._id = this.product._id;
         this.cartFinal.image = this.product.image;
         //this.cartFinal.reference = this.product.image;
@@ -348,20 +339,41 @@ export class ProductAddCartComponent  implements  OnChanges{
         this.cartFinal.material = this.product.material;
         this.cartFinal.color = this.product.color;
         this.cartFinal.price = this.product.price;
+        this.cartFinal.quantity = this.cartProduct.quantity;
 
-        var cart = [];
-        var local = JSON.parse(localStorage.getItem("cart"));
-        if (local != null) {cart = local;}
-        cart.push(this.cartFinal);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        this.success.push("Produit ajouté au panier");
-        setTimeout(function () {
-            this.success = [];
-        }, 5000);
-        return "Product added in cart";
+        if(this.cartProduct.sphere == null || this.cartProduct.diameter == null || this.cartProduct.radius == null){
+            success = false;
+            this.error.push("Veuillez renseigner tout les parametres demandé");
+        }
+
+        if(this.cartProduct.quantity <= 0 || isNaN(this.cartProduct.quantity)) {
+            success = false;
+            this.error.push("La quantité n'est pas valide");
+        }
+
+        if(this.product.type.progressiv && this.cartProduct.addition == null){
+            success = false;
+            this.error.push("Veuillez renseigner tout les parametres demandé");
+        }
+
+        if(this.product.type.toric && (this.cartProduct.cylinder === null || this.cartProduct.axis === null)){
+            success = false;
+            this.error.push("Veuillez renseigner tout les parametres demandé");
+        }
+
+       if(success){
+           var cart = [];
+           var local = JSON.parse(localStorage.getItem("cart"));
+           if (local != null) {cart = local;}
+           cart.push(this.cartFinal);
+           localStorage.setItem("cart", JSON.stringify(cart));
+           this.success.push("Produit ajouté au panier");
+       }
     }
 
     ngOnChanges(changes: {[productCart: string]: SimpleChange}) {
+        this.success = [];
+        this.error = [];
 
         this.sphere = [];
         this.diameter = [];

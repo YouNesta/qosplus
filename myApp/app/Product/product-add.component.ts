@@ -248,7 +248,7 @@ export class ProductAddComponent {
                 }
             }
         }*/
-        console.log('ejfbjekrhf')
+
         if (this.errors.length == 0) {
             this.addItem();
             for (var i in this.products.item) {
@@ -293,12 +293,10 @@ export class ProductAddComponent {
                 }else{
                     this.isProg(i);
                 }
+            }else if(this.products.type.toric){
+                this.isToric(i);
             }else{
-                if(this.products.type.toric){
-                    this.isToric(i);
-                }else{
-                    this.isEmpty(i);
-                }
+                this.isEmpty(i);
             }
         }
 
