@@ -4,6 +4,7 @@ import {UserFactory} from "./../User/user.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
 import {TagInputComponent} from "angular2-tag-input";
+import {Router} from "angular2/router";
 import {AlertService} from "../Tools/alert";
 
 @Component({
@@ -39,7 +40,7 @@ export class ProductCartComponent {
     public filteredList = [];
     public elementRef;
 
-    constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService, public userService: UserFactory, myElement: ElementRef){
+    constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService, public router: Router, public userService: UserFactory, myElement: ElementRef){
 
         this.elementRef = myElement;
         this.alertService = alertService;
@@ -144,6 +145,11 @@ export class ProductCartComponent {
 
     validateCart() {
 
+        if (this.products.length == 0) {
+            alert("No products in cart");
+            return;
+        }
+
         if (this.client == null) {
             this.no_shop = true;
             return;
@@ -215,6 +221,7 @@ export class ProductCartComponent {
                                         localStorage.setItem("cart", JSON.stringify(cart));
                                         this.getCart();
                                         this.alertService.addAlert('success', res.message);
+                                        this.router.navigateByUrl('/admin/product/command');
                                     }else{
                                         this.alertService.addAlert('warning', res.message);
                                     }

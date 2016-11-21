@@ -489,9 +489,9 @@ td {
 
 .content.product-cart .cart-error {
   color: #810b10;
-  visibility: hidden; }
+  display: none; }
   .content.product-cart .cart-error.visible {
-    visibility: visible; }
+    display: block; }
 
 .content.admin-subscribe h2, .content.product-price h2 {
   width: 95%;

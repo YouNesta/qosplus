@@ -38,13 +38,13 @@
             <div class="col-md-3">
                Nom Commercial
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
                 Prix
             </div>
             <div class="col-md-1">
                 Réference
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 Status
             </div>
         </div>
@@ -63,7 +63,7 @@
                 <div class="col-md-3">
                     <h3> {{product.name}}</h3>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <p>
                         {{product.price[0].price}}€
                     </p>
@@ -73,15 +73,15 @@
                         {{product.reference}}
                     </h3>
                 </div>
-                <div class="col-md-3">
-                    <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="col-md-5">
                         <select [(ngModel)]="product.status" (change)="changeStatus(i)">
                             <option value="0">Sommeil</option>
                             <option value="1">En ligne</option>
                         </select>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <div class="col-md-3">
                             <button (click)="loadModalProduct(product, modalCart);"><i class="fa fa-cart-plus" aria-hidden="true"></i></button>
                         </div>

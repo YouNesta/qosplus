@@ -667,9 +667,9 @@ td {
     }
     .cart-error {
       color: #810b10;
-      visibility: hidden;
+      display: none;
       &.visible {
-        visibility: visible;
+        display: block;
       }
     }
   }
