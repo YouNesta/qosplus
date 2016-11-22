@@ -103,16 +103,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="resume-hours" *ngFor="#disponibility of shop.disponibility">
-                            <h3>{{disponibility.day}}</h3>
-
-                                        <span>De {{disponibility.data.morning.opening|date:'HHmm'}}
-                                        à
-                                        {{disponibility.data.morning.closing|date:'HHmm'}}</span>
-                            et
-                                        <span>De {{disponibility.data.afternoon.opening|date:'HHmm'}}
-                                        à
-                                        {{disponibility.data.afternoon.closing|date:'HHmm'}}</span>
+                        <div class="col-md-12">
+                            <div class="resume-hours" *ngFor="#disponibility of shop.disponibility">
+                                <h3>{{disponibility.day}}</h3>
+                                <span>De {{disponibility.data.morning.opening|date:'HHmm'}} à
+                                {{disponibility.data.morning.closing|date:'HHmm'}}</span> et
+                                <span>De {{disponibility.data.afternoon.opening|date:'HHmm'}} à
+                                {{disponibility.data.afternoon.closing|date:'HHmm'}}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
