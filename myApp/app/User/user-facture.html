@@ -9,10 +9,10 @@
                 Client
             </div>
             <div class="col-lg-2 text-center">
-                Amount
+                Montant
             </div>
             <div class="col-lg-4">
-                Status
+                Statut
             </div>
         </div>
     </div>
@@ -30,13 +30,13 @@
                     <p>{{ payment.amount }}€</p>
                 </div>
                 <div class="col-lg-4">
-                    <div class="col-lg-4">
+                    <div class="col-lg-8">
                         {{paymentState(i)}}
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <button (click)="printPdf(i)"><i class="fa fa-spinner" [ngClass]="{faFile: loader[i]}" aria-hidden="true"></i></button>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
                         <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
                 </div>

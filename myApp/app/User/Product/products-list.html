@@ -17,10 +17,10 @@
                 Prix
             </div>
             <div class="col-lg-2">
-                Réference
+                Référence
             </div>
             <div class="col-lg-3">
-                Status
+                Statut
             </div>
         </div>
     </div>
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <h3>Price D'achat Moyen Pondéré</h3>
+                            <h3>Prix D'achat Moyen Pondéré</h3>
                             <div class="col-lg-3">
                                 <div class="well well-sm">
                                     {{product.middlePrice}} €
@@ -121,10 +121,10 @@
                 <div class="col-lg-12">
                     <table>
                         <thead>
-                        <td *ngIf="product.param[0].axis.length >= 1">axis</td>
-                        <td>radius</td>
-                        <td>diameter</td>
-                        <td *ngIf="product.param[0].cylinder.length >= 1">cylinder</td>
+                        <td *ngIf="product.param[0].axis.length >= 1">axes</td>
+                        <td>rayon</td>
+                        <td>diamètre</td>
+                        <td *ngIf="product.param[0].cylinder.length >= 1">cylindre</td>
                         <td *ngIf="product.param[0].addition.length >= 1">addition</td>
                         </thead>
                         <tr>
@@ -157,7 +157,7 @@
                     </table>
                 </div>
                 <div class="col-lg-12">
-                    <h2>spheres</h2>
+                    <h2>sphères</h2>
                     <table>
                         <thead>
                         <td *ngFor="#sphereIndex of sphereIndexes[i]">{{sphereIndex}}</td>

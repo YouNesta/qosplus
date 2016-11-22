@@ -446,24 +446,21 @@ module.exports = {
     printFacture: function(req, res) {
         var payment = req.body.payment;
         var id = payment._id;
+        console.log(id);
         Command.find({payment: id, status: 0}, function(err, command){
             if(err) {
-                console.log(err);
                 logger.log('error', err);
                 res.json({success: false, message:err});
             } else {
-
-                Discount.find({facture: id,}, function(err, discounts){
+                Discount.find({facture: id}, function(err, discounts){
                     if(err) {
-                        console.log(err);
                         logger.log('error', err);
-                        res.json({success: false, message:err});
+                        res.json({success: false, message: err});
                     } else {
                         if (command.length == 0) {
                             res.json({success: false, message:"no commands"});
                             return;
                         }
-
                         var path = "../myApp/public/pdf/"+id+".pdf";
                         var savedPath = "/public/pdf/"+id+".pdf";
                         var html = "<p>Error</p>";
@@ -471,11 +468,9 @@ module.exports = {
 
                         User.findOne({mail: command[0].client}, function(err, client){
                             if(err) {
-                                console.log(err);
                                 logger.log('error', err);
                                 res.json({success: false, message:err});
                             } else {
-
                                 var date = new Date(payment.date);
                                 var is_paid = "non payée";
 
@@ -509,7 +504,6 @@ module.exports = {
                                     var discount = discounts[j];
                                     amount -= discount.amount;
                                 }
-
                                 payment.amount = amount;
 
                                 html = '<html>'+
@@ -614,7 +608,6 @@ module.exports = {
                                             '</div>';
                                     }
                                 }
-
                                 for (var j = 0; j < discounts.length; j++) {
                                     var discount = discounts[j];
                                     html += '<div class="row">'+
@@ -634,7 +627,6 @@ module.exports = {
                                         '</div>'+
                                         '</div>';
                                 }
-
                                 html += '</div>' +
                                     '<hr>' +
                                     '<footer>' +
@@ -649,7 +641,6 @@ module.exports = {
                                     "paperSize" : {format: 'A4', orientation: 'portrait', border: '1cm'},
                                     "deleteOnAction" : true
                                 };
-
                                 pdf.convert(options, function(result) {
                                     result.toFile(path, function() {
                                         payment.facture = savedPath;

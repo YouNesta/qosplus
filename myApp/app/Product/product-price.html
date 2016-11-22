@@ -10,7 +10,7 @@
         </form>
     </modal-body>
     <modal-footer>
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close()">Cancel</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close()">Annuler</button>
         <button type="button" class="btn btn-primary" (click)="updatePrice(); modal.close()">Ok</button>
     </modal-footer>
 </modal>
@@ -18,7 +18,7 @@
 
 <modal #modalAdd [backdrop]="'static'"  [keyboard]="false">
     <modal-header>
-        <h4 class="modal-title">I'm a modal!</h4>
+        <h4 class="modal-title">Je suis une modale</h4>
     </modal-header>
     <modal-body>
         <div class="form-group">
@@ -29,7 +29,7 @@
             <thead>
             <tr>
                 <th>Nom</th>
-                <th>Reference</th>
+                <th>Référence</th>
                 <th *ngFor="#price of tableHead"> {{price}}</th>
                 <th>{{modelAdd.name}}</th>
             </tr>
@@ -46,7 +46,7 @@
         </table>
     </modal-body>
     <modal-footer>
-        <button type="button" class="btn btn-default" data-dismiss="modalAdd" (click)="dismiss()">Cancel</button>
+        <button type="button" class="btn btn-default" data-dismiss="modalAdd" (click)="dismiss()">Annuler</button>
         <button type="button" class="btn btn-primary" (click)="createPrice(); modalAdd.close()">Ok</button>
     </modal-footer>
 </modal>
@@ -65,7 +65,7 @@
                 <table>
                     <thead>
                         <td>Nom</td>
-                        <td>Reference</td>
+                        <td>Référence</td>
                         <td *ngFor="#price of tableHead"> {{price}}</td>
                         <td></td>
                     </thead>
@@ -74,7 +74,7 @@
                         <td>{{product.reference}}</td>
                         <td *ngFor="#price of product.price"> {{price.price}}</td>
                         <td>
-                            <button  (click)="editPrice(modal, product)">Open</button>
+                            <button  (click)="editPrice(modal, product)">Ouvrir</button>
                         </td>
                     </tr>
                 </table>

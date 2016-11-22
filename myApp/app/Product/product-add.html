@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="file-pb" class="ui small black button right icon upload-button">
-                                    Choose file
+                                    Choisissez un fichier
                                 </label>
                                 <input type="file"
                                        id="file-pb"
@@ -27,7 +27,7 @@
                                 <div *ngIf="uploadFile">
                                     <div class="ui indicating olive progress">
                                         <div class="bar" [style.width]="uploadProgress + '%'"></div>
-                                        <div class="label">Uploading file ({{ uploadProgress }}%)</div>
+                                        <div class="label">Téléchargement ({{ uploadProgress }}%)</div>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="checkbox">
                         <label><input type="checkbox"[(ngModel)]="products.type.toric"><br>Toric</label>
-                        <label><input type="checkbox" [(ngModel)]="products.type.progressiv"><br>Progressiv</label>
+                        <label><input type="checkbox" [(ngModel)]="products.type.progressiv"><br>Progressive</label>
                     </div>
                 </div>
                 <div class="row">
@@ -58,11 +58,11 @@
                             <input type="number" [(ngModel)]="products.hydrophily" id="hydrophily" class="form-control" placeholder="%">
                         </div>
                         <div class="col-md-4">
-                            <label for="material">Material</label>
+                            <label for="material">Materiau</label>
                             <input type="text" [(ngModel)]="products.material" id="material" class="form-control" placeholder="material">
                         </div>
                         <div class="col-md-4">
-                            <label for="color">Color</label>
+                            <label for="color">Couleur</label>
                             <input type="text" [(ngModel)]="products.color" id="color" class="form-control" placeholder="color">
                         </div>
                     </div>
@@ -211,10 +211,10 @@
                 <p *ngFor="#error of errors">{{error}}</p>
                 <div class="row">
                     <div class="col-md-4 col-md-offset-2">
-                        <button (click)="addProduct()">add</button>
+                        <button (click)="addProduct()">Ajouter</button>
                     </div>
                     <div class="col-md-4 ">
-                        <button (click)="deleteProduct()">delete</button>
+                        <button (click)="deleteProduct()">Supprimer</button>
                     </div>
                 </div>
                 <div class="row">
