@@ -81,6 +81,7 @@ export class App  implements OnInit{
     }
     ngOnInit(){
         this.router.subscribe((val) => {
+            console.log(this.routerAuth.routeAuth(val));
             this.routeAuth =  this.routerAuth.routeAuth(val);
         });
     }
