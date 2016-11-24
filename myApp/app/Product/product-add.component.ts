@@ -7,6 +7,7 @@ import {RegEx} from "../lib/regex";
 import {TagInputComponent} from "angular2-tag-input";
 import {AlertService} from "../Tools/alert";
 import {UPLOAD_DIRECTIVES} from 'ng2-uploader';
+import {API} from "../Config/api";
 
 
 @Component({
@@ -24,9 +25,7 @@ export class ProductAddComponent {
     uploadResponse: Object;
     zone: NgZone;
     errors = [];
-    options: Object = {
-        url: 'http://167.114.235.207:2028/upload'
-    };
+    options: Object;
 
     handleUpload(data): void {
         if (data && data.response) {
@@ -113,7 +112,7 @@ export class ProductAddComponent {
 
     priceSheet = [];
 
-    constructor(public service: ProductFactory, fb: FormBuilder, regEx: RegEx,  @Inject(forwardRef(() => AlertService)) alertService){
+    constructor(public service: ProductFactory, api:API, fb: FormBuilder, regEx: RegEx,  @Inject(forwardRef(() => AlertService)) alertService){
         this.alertService = alertService;
         this.subscribeForm = fb.group({
             'name': ['', Validators.compose([
@@ -121,7 +120,9 @@ export class ProductAddComponent {
                  Validators.maxLength(30)*/
             ])],
         });
-
+        this.options = {
+            url:  api.upload
+        }
         this.uploadProgress = 0;
         this.uploadResponse = {};
         this.zone = new NgZone({ enableLongStackTrace: false });
@@ -145,6 +146,7 @@ export class ProductAddComponent {
     }
 
     handleUpload(data): void {
+        console.log(data)
         this.uploadFile = data;
         this.zone.run(() => {
             this.uploadProgress = data.progress.percent;
@@ -153,11 +155,12 @@ export class ProductAddComponent {
         if (resp) {
             resp = JSON.parse(resp);
             this.uploadResponse = resp;
+            console.log(resp)
             this.products.image = {
-                original: 'public/uploads/'+resp.data[0].generatedName,
-                small: 'public/uploads/'+resp.data[0].generatedNameSmall,
-                medium: 'public/uploads/'+resp.data[0].generatedNameMedium,
-                big: 'public/uploads/'+resp.data[0].generatedNameBig
+                original: 'public/uploads/'+resp[0].generatedName,
+                small: 'public/uploads/'+resp[0].generatedNameSmall,
+                medium: 'public/uploads/'+resp[0].generatedNameMedium,
+                big: 'public/uploads/'+resp[0].generatedNameBig
             }
         }
     }

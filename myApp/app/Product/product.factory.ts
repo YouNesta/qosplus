@@ -11,12 +11,10 @@ import {API} from "../Config/api";
 export class ProductFactory {
     http = null;
     apiUrl = "";
-    uploadUrl = "";
     commandUrl = "";
 
     constructor(public authHttp:AuthHttp, public router:Router, api:API) {
         this.apiUrl = api.url + api.product;
-        this.uploadUrl = api.url + api.upload + api.product;
         this.commandUrl = api.url + api.command;
 
     }
@@ -33,6 +31,7 @@ export class ProductFactory {
                 })
             .map(response => response.json())
     }
+
 
     deleteCommand(command) {
         var data = JSON.stringify({command});
