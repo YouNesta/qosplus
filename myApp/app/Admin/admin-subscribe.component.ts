@@ -124,19 +124,22 @@ export class AdminSubscribeComponent {
     }
 
     deleteAdmin(user){
-        this.service.deleteAdmin(user)
-            .subscribe(
-                response => {
-                    if(response.success){
-                        this.getAdmins()
-                    }else{
-                       this.errors.push('Une erreur est survenu veuillez réessayer.')
+        if(confirm("Voulez vous vraiment supprimer cet utilisateur ?")){
+            this.service.deleteAdmin(user)
+                .subscribe(
+                    response => {
+                        if(response.success){
+                            this.getAdmins()
+                        }else{
+                            this.errors.push('Une erreur est survenu veuillez réessayer.')
 
-                    }
-                },
-                err =>  console.log(err),
-                () => console.log('Validation Complete')
-            );
-    }
+                        }
+                    },
+                    err =>  console.log(err),
+                    () => console.log('Validation Complete')
+                );
+        }
+        }
+
 }
 

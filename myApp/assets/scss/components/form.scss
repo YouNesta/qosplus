@@ -69,22 +69,27 @@
     .photo {
       border-radius: 5px;
       border: solid 1px #e0e4ea;
-      width: 100px;
+      width: 200px;
       height: 100px;
       margin-left: 50px;
       overflow: hidden;
       img {
         height: 100%;
+        width: 100%;
+
       }
+    }
+    .upload-info{
+      color: grey;
+      font-size: 85%;
     }
     .upload-button {
       border-radius: 3px;
-      background-color: #48b0f7;
+      background-color: #7570ff;
       padding: 5px;
       color: #FFF;
       width: 80%;
       text-align: center;
-      margin-top: 15%;
     }
     .row {
       margin-bottom: 10px;
