@@ -104,6 +104,25 @@
               height: 100%; }
           .page.product .container .supplier-container .item-container .item .item-action button {
             background-color: #e0e4ea; }
+    .page.product table {
+      border-radius: 3px;
+      text-align: center;
+      margin: auto;
+      width: 80%;
+      margin-left: 5%;
+      margin-top: 20px; }
+      .page.product table thead {
+        background-color: #f8f9fb;
+        border: solid 1px #e0e4ea;
+        font-weight: bold; }
+      .page.product table tr {
+        background-color: #fff;
+        border: solid 1px #e0e4ea; }
+      .page.product table td {
+        height: 42px;
+        border: 0;
+        border-right: 1px solid #e0e4ea;
+        padding: 15px; }
   .page.about .hero {
     background: url("../../public/img/hero-lens-schema.jpg") no-repeat center;
     background-size: 100% auto; }

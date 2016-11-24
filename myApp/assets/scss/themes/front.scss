@@ -142,6 +142,29 @@
         }
       }
     }
+    table {
+      border-radius: 3px;
+      text-align: center;
+      margin: auto;
+      width: 80%;
+      margin-left: 5%;
+      margin-top: 20px;
+      thead {
+        background-color: #f8f9fb;
+        border: solid 1px #e0e4ea;
+        font-weight: bold;
+      }
+      tr {
+        background-color: #fff;
+        border: solid 1px #e0e4ea;
+      }
+      td {
+        height: 42px;
+        border: 0;
+        border-right: 1px solid #e0e4ea;
+        padding: 15px;
+      }
+    }
   }
   &.about {
     .hero{

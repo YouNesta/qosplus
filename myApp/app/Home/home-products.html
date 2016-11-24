@@ -25,7 +25,7 @@
                             Réference
                         </div>
                         <div class="col-lg-4">
-                            Status
+                            Détails
                         </div>
                     </div>
                 </div>
@@ -52,10 +52,7 @@
                             </div>
                             <div class="col-lg-1"></div>
                             <div class="col-lg-3 action-button">
-                                <div class="col-lg-4">
-                                    <button class="status"><span class="fa fa-circle status-color status-{{product.status}}"></span></button>
-                                </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 col-lg-offset-2">
                                     <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                 </div>
                             </div>
@@ -69,10 +66,10 @@
                                 <div class="col-lg-8">
                                     <div class="col-lg-12"></div>
                                     <div class="col-lg-12">
-                                        <h3>Price D'achat Moyen Pondéré</h3>
+                                        <h3>Prix</h3>
                                         <div class="col-lg-3">
                                             <div class="well well-sm">
-                                                {{product.middlePrice}} €
+                                                {{product.price[0].price}} €
                                             </div>
                                         </div>
                                     </div>

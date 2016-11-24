@@ -4,7 +4,7 @@ var smtpConfig = {
   secure: true, // use SSL
   auth: {
     user: 'qosplus@gmail.com',
-    pass: 'X-vison101'
+    pass: '*c78H295_sM'
   }
 };
 

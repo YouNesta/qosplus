@@ -35,7 +35,11 @@ constructor(public service: UserFactory, public router: Router) {
         ],
 
         "user": [
-            { "route": "/", "auth": true }
+            { "route": "/", "auth": true },
+            { "route": "shop", "auth": true },
+            { "route": "cart", "auth": true },
+            { "route": "commands", "auth": true },
+            { "route": "payments", "auth": true }
         ]
     }
 

@@ -4,7 +4,7 @@ var smtpConfig = {
     secure: true, // use SSL
     auth: {
         user: 'xvisioncontact@gmail.com',
-        pass: ''
+        pass: '*c78H295_sM'
     }
 };
 
