@@ -4,12 +4,11 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "fs": "0.0.2",
-    "gm": "^1.22.0",
-    "hapi": "^13.3.0",
-    "inert": "^3.2.0",
-    "md5": "^2.1.0",
-    "multiparty": "^4.1.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "gm": "^1.23.0",
+    "md5": "^2.2.1",
+    "multer": "^1.2.0",
     "path": "^0.12.7"
   },
   "devDependencies": {},
