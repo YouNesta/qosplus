@@ -62,21 +62,24 @@
 .modal-body .new-product .photo {
   border-radius: 5px;
   border: solid 1px #e0e4ea;
-  width: 215px;
-  height: 115px;
+  width: 200px;
+  height: 100px;
   margin-left: 50px;
   overflow: hidden; }
   .modal-body .new-product .photo img {
     height: 100%; }
 
+.modal-body .new-product .upload-info {
+  color: grey;
+  font-size: 85%; }
+
 .modal-body .new-product .upload-button {
   border-radius: 3px;
-  background-color: #48b0f7;
+  background-color: #7570ff;
   padding: 5px;
   color: #FFF;
   width: 80%;
-  text-align: center;
-  margin-top: 15%; }
+  text-align: center; }
 
 .modal-body .new-product .row {
   margin-bottom: 10px; }
