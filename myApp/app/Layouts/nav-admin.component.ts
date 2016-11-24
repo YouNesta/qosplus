@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from "angular2/router";
 import {UserFactory} from "../User/user.factory";
 import {Router} from "angular2/router";
@@ -13,6 +13,7 @@ import {Router} from "angular2/router";
 
 export class NavAdminComponent  {
     public title = "X-vision";
+    @Input() admin: number;
 
     constructor(public router: Router){
     }
