@@ -1,3 +1,3 @@
     <nav *ngIf="routeAuth.auth == false" ></nav>
     <nav-user *ngIf="routeAuth.auth == true && admin == 0"></nav-user>
-    <nav-admin *ngIf="routeAuth.auth == true  && admin > 0"></nav-admin>
+    <nav-admin *ngIf="routeAuth.auth == true  && admin > 0" [admin]="admin"></nav-admin>
