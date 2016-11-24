@@ -1,133 +1,87 @@
-/**
- * Created by Younes on 18/04/2016.
- */
-'use strict';
-
-const Hapi        = require('hapi');
-const Inert       = require('inert');
+const express = require('express');
+const cors = require('cors');
+const multer = require('multer');
+const path = require('path');
 const Md5         = require('md5');
-const Multiparty  = require('multiparty');
-const fs          = require('fs');
-const path        = require('path');
-const server      = new Hapi.Server();
 const gm = require('gm');
 
+const app = express();
+app.use(cors());
 
-
-server.connection({ port: 2028, routes: { cors: true } });
-server.register(Inert, (err) => {});
-
-const upload = {
-        payload: {
-            maxBytes: 209715200,
-            output: 'stream',
-            parse: false
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, '../myApp/public/uploads')
         },
-        handler: (request, reply) => {
-        const form = new Multiparty.Form();
-form.parse(request.payload, (err, fields, files) => {
-    if (err) {
-        return reply({status: false, msg: err});
-    }
-
-    let responseData = [];
-
-files.file.forEach((file) => {
-    let fileData = fs.readFileSync(file.path);
-const originalName = file.originalFilename;
-const generatedName = Md5(new Date().toString() +
-        originalName) + path.extname(originalName);
-
-
-const generatedNameSmall = Md5(new Date().toString() +
-        originalName) +'-small'+ path.extname(originalName);
-
-const generatedNameMedium = Md5(new Date().toString() +
-        originalName) +'-medium'+ path.extname(originalName);
-
-const generatedNameBig = Md5(new Date().toString() +
-        originalName) +'-big'+ path.extname(originalName);
-
-
-
-const filePath = path.resolve('../myApp/public/uploads',
-    generatedName);
-
-const filePathSmall = path.resolve('../myApp/public/uploads',
-    generatedNameSmall);
-
-const filePathMedium = path.resolve('../myApp/public/uploads',
-    generatedNameMedium);
-
-const filePathBig = path.resolve('../myApp/public/uploads',
-    generatedNameBig);
-
-
-fs.writeFileSync(filePath, fileData);
-
-
-gm(filePath)
-    .resize(78, 100)
-    .write(filePathSmall, function (err) {
-        if (!err){
-             console.log(' hooray! ')
-        }else{
-            console.log(err)
-        };
-    });
-
-
-gm(filePath)
-    .resize(234, 300)
-    .write(filePathMedium, function (err) {
-        if (!err){
-             console.log(' hooray! ')
-        }else{
-            console.log(err)
-        };
-    });
-
-
-gm(filePath)
-    .resize(468, 400)
-    .write(filePathBig, function (err) {
-        if (!err){
-             console.log(' hooray! ')
-        }else{
-            console.log(err)
-        };
-    });
-
-
-const data = {
-    originalName: originalName,
-    generatedName: generatedName,
-    generatedNameSmall: generatedNameSmall,
-    generatedNameMedium: generatedNameMedium,
-    generatedNameBig: generatedNameBig
-};
-
-responseData.push(data);
-});
-
-reply({status: true, data: responseData});
-});
-}
-};
-
-const uploads = {
-    handler: {
-        directory: {
-            path: path.resolve('../myApp/public/uploads')
+        filename: function(req, file, cb){
+            const ext = path.extname(file.originalname);
+            console.log(ext)
+            cb(null, Math.random().toString(36).substring(7)+ext);
         }
-    }
-};
+    })
+});
 
-server.route([
-    { method: 'POST', path: '/upload',          config: upload  },
-    { method: 'GET',  path: '/uploads/{path*}', config: uploads }
-]);
+app.post('/upload', upload.any(), function(req, res){
+    res.json(
+        req.files.map(file => {
+            console.log(file)
 
-server.start(() => {
-    console.log('Upload server running at', server.info.uri);
+            var fileInfo = {
+                destination: file.destination,
+                path: file.path,
+                original: file.filename
+            };
+
+            var param = {
+                small: {
+                    size: [134,67],
+                    name: Md5(new Date().toString() + file.original) +'-small'+ path.extname(fileInfo.original)
+                },
+                medium: {
+                    size: [400,200],
+                    name: Md5(new Date().toString() + file.original) +'-medium'+ path.extname(fileInfo.original)
+
+                },
+                big: {
+                    size: [800,400],
+                    name: Md5(new Date().toString() + file.original) +'-big'+ path.extname(fileInfo.original)
+                }
+            };
+
+            resize(0, fileInfo, param);
+            return {
+                generatedName: fileInfo.original,
+                generatedNameSmall: param['small'].name,
+                generatedNameMedium:param['medium'].name,
+                generatedNameBig: param['big'].name
+            }
+
+
+            function resize(i, file, param) {
+                var paramName = ["small", "medium","big"]
+                if(i < 3){
+                    var current =  param[paramName[i]];
+                    var size = current.size;
+                    var destination = file.destination+'/'+ current.name;
+
+                    gm(file.path)
+                        .resize(size[0], size[1])
+                        .write(destination, function (err) {
+                            if (!err){
+                                console.log(' hooray! ')
+                                resize(++i,file,param)
+                            }else{
+                                console.log(err)
+                            };
+                        });
+
+                }
+            }
+
+        })
+    );
+});
+
+app.listen(2028, () => {
+    console.log('ng2-uploader server running on port 2028.');
 });
