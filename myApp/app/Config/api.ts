@@ -7,12 +7,11 @@ import {Injectable} from 'angular2/core';
 @Injectable()
 
 export class API {
-    origin = "http://192.168.33.10"
-    url = this.origin+":8080/api/v1/";
+    url = "http://192.168.33.10:8080/api/v1/";
     admin = 'admin/';
     user = 'client/user/';
     product = 'product/';
-    upload = this.origin+":2028/upload/";
+    upload = 'upload/';
     command = 'command/';
     mail = 'mail/';
 }
