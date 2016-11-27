@@ -4,6 +4,7 @@ import {UserFactory} from "./user.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ACCORDION_DIRECTIVES} from "ng2-bootstrap";
 import {TagInputComponent} from "angular2-tag-input";
+import {Router} from "angular2/router";
 import {AlertService} from "../Tools/alert";
 
 @Component({
@@ -205,6 +206,7 @@ export class UserCartComponent {
                                         localStorage.setItem("cart", JSON.stringify(cart));
                                         this.getCart();
                                         this.alertService.addAlert('success', res.message);
+                                        this.router.navigateByUrl('/user/commands');
                                     }else{
                                         this.alertService.addAlert('warning', res.message);
                                     }
