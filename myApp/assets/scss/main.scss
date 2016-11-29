@@ -33,6 +33,11 @@ html{
               margin: 15px 0px;
               .collapse-head{
                 height: 80px;
+                img{
+                  margin-top: -5px;
+                  width: 200px;
+                  height: 100px;
+                }
                 .col-md-3:last-of-type{
                   .col-md-6:last-of-type{
                     width: 16%;
@@ -47,7 +52,10 @@ html{
                 transition:height 1s ease;
                 background: #f1f1f1;
                 margin-top: 15px;
-
+                img{
+                  width: 800px;
+                  height: 400px;
+                }
                 &.active{
                   height: 300px;
                   margin-bottom: 15px;
