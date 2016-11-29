@@ -19,6 +19,7 @@ export class ProductAddCartComponent  implements  OnChanges{
     @Input() productCart;
 
     subscribeForm: ControlGroup;
+    timeOut = setTimeout(function(){}, 0);
 
     colors=[
         "Transparent",
@@ -327,6 +328,9 @@ export class ProductAddCartComponent  implements  OnChanges{
 
 
     addProductToCart() {
+
+        clearTimeout(this.timeOut);
+
         var success = true;
         this.success = [];
         this.error = [];
@@ -370,7 +374,7 @@ export class ProductAddCartComponent  implements  OnChanges{
            this.success.push("Produit ajouté au panier");
 
            var thus = this
-           setTimeout(function(){
+           this.timeOut = setTimeout(function(){
                 thus.success = [];
                 thus.error = [];
            }, 3500)
