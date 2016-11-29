@@ -368,6 +368,12 @@ export class ProductAddCartComponent  implements  OnChanges{
            cart.push(this.cartFinal);
            localStorage.setItem("cart", JSON.stringify(cart));
            this.success.push("Produit ajouté au panier");
+
+           var thus = this
+           setTimeout(function(){
+                thus.success = [];
+                thus.error = [];
+           }, 3500)
        }
     }
 
