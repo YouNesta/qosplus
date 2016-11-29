@@ -11,7 +11,7 @@ export class API {
     admin = 'admin/';
     user = 'client/user/';
     product = 'product/';
-    upload = 'upload/';
+    upload = 'http://192.168.33.10:2028/upload/';
     command = 'command/';
     mail = 'mail/';
 }
