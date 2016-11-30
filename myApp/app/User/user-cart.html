@@ -3,7 +3,9 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="input-field">
                 <input type="text" [(ngModel)]="porter" class="filter-input" placeholder="Choisir un porteur">
-                <p class="cart-error" [ngClass]="{'visible': no_porter == true}">Merci d'entrer un nom de porteur</p>
+                <div class="cart-error alert alert-warning" [ngClass]="{'visible': no_porter == true}">
+                    <strong>Attention!</strong> Merci d'entrer un porteur
+                </div>
             </div>
         </div>
     </div>

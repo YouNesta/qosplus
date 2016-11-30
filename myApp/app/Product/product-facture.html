@@ -1,5 +1,7 @@
 <div class="content facture-list">
-
+    <div class="error-message alert alert-warning" [ngClass]="{'visible': error == true}">
+        <strong>Attention!</strong> Erreur lors de la génération de la facture: {{errorMessage}}, merci de contacter un administrateur
+    </div>
     <div class="col-lg-12 collapse-tab">
         <div class="col-lg-12">
             <div class="col-lg-3">

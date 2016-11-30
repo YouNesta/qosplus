@@ -18,6 +18,8 @@ export class UserFactureComponent {
     payments: Object ;
     isOpen = [];
     loader = [];
+    error = false;
+    errorMessage = "no error message";
 
     constructor(public service: ProductFactory, public userService: UserFactory){
 
@@ -71,7 +73,8 @@ export class UserFactureComponent {
                     this.loader[i] = true;
                     window.open(payment.facture, "_blank");
                 }else{
-                    console.log(res);
+                    this.errorMessage = res;
+                    this.error = true;
                 }
             },
             err =>  console.log(err),

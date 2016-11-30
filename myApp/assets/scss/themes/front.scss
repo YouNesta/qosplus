@@ -818,3 +818,9 @@ td {
     margin-left: auto;
   }
 }
+.error-message{
+  display: none;
+  &.visible {
+    display: block;
+  }
+}

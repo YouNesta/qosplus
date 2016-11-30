@@ -612,3 +612,8 @@ td {
   display: block;
   margin-right: auto;
   margin-left: auto; }
+
+.error-message {
+  display: none; }
+  .error-message.visible {
+    display: block; }

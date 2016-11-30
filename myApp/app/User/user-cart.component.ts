@@ -51,7 +51,8 @@ export class UserCartComponent {
                 res => {
                     if(res.success){
                         this.shops = res.data[0];
-                        this.client = this.shops[0].owner;
+                        this.selectedShop = this.shops[0];
+                        this.client = this.user;
                     }else{
                         console.log(res);
                     }

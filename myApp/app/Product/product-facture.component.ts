@@ -17,6 +17,9 @@ export class ProductPaymentComponent {
     payments: Object ;
     isOpen = [];
     loader = [];
+    error = false;
+    errorMessage = "no error message";
+
     constructor(public service: ProductFactory){
         this.service.getPayments()
             .subscribe(
@@ -66,7 +69,8 @@ export class ProductPaymentComponent {
                     this.loader[i] = true;
                     window.open(payment.facture, "_blank");
                 }else{
-                    console.log(res);
+                    this.errorMessage = res;
+                    this.error = true;
                 }
             },
             err =>  console.log(err),
