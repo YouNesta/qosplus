@@ -458,7 +458,7 @@ module.exports = {
                         res.json({success: false, message: err});
                     } else {
                         if (command.length == 0) {
-                            res.json({success: false, message:"no commands"});
+                            res.json({success: false, message:"aucune commande associée"});
                             return;
                         }
                         var path = "../myApp/public/pdf/"+id+".pdf";
