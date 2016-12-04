@@ -69,7 +69,7 @@ export class ProductPaymentComponent {
                     this.loader[i] = true;
                     window.open(payment.facture, "_blank");
                 }else{
-                    this.errorMessage = res;
+                    this.errorMessage = res.message;
                     this.error = true;
                 }
             },

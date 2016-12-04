@@ -37,6 +37,10 @@ var CommandSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
+    IBAN:{
+        type: Number,
+        required : false
+    },
     status:{
         type: Number,
         required: true

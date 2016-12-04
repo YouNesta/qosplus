@@ -18,7 +18,6 @@ module.exports = {
     getCommands: function(req, res) {
         Command.find({}, function(err, commands) {
             if(err){
-                console.log(err);
                 logger.log('error', err);
                 res.json({success: false, message:error});
             }
@@ -29,7 +28,6 @@ module.exports = {
     getPayments: function(req, res) {
         Payment.find({}, function(err, payments) {
             if(err){
-                console.log(err);
                 logger.log('error', err);
                 res.json({success: false, message:error});
             }
@@ -41,7 +39,6 @@ module.exports = {
         var user = req.body.user;
         Command.find({client: user.mail}, function(err, commands){
             if(err){
-                console.log(err);
                 logger.log('error', err);
                 res.json({success: false, message:error});
             }
@@ -51,92 +48,24 @@ module.exports = {
 
     addCommand: function(req, res) {
 
-        var payment = req.body.payment;
-        var date = payment.date;
-        var client = payment.client;
-        var IBAN = payment.IBAN;
-        var amount = payment.amount;
-
-        Payment.findOne({client: client, date: date}, function(err, payment){
-            if(err){
-                console.log(err);
+        Command.find({}, function(err, commands) {
+            if (err) {
                 logger.log('error', err);
-                res.json({success: false, message:error});
-            }
-            if (payment == null) {
-
-                Payment.find({}, function(err, payments) {
-                    if (err) {
-                        console.log(err);
-                        logger.log('error', err);
-                        res.json({success: false, message: error});
-                    }
-
-                    payment = new Payment();
-                    payment.amount = amount;
-                    payment.date = date;
-                    payment.client = client;
-                    payment.IBAN = IBAN;
-                    payment.facture = "";
-                    payment.status = false;
-                    payment.paymentNumber = payments.length + 1;
-
-                    payment.save(function(error, payment){
-                        if(error){
-                            console.log(error);
-                            logger.log('error', error);
-                        } else {
-                            createCommand(payment);
-                        }
-                    });
-                });
-
-            } else {
-                var path_facture = "../myApp/public/pdf/"+payment._id+".pdf";
-                fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
-                    if (!err) fs.unlinkSync(path_facture);
-                });
-                payment.facture = "";
-                payment.status = false;
-                payment.amount += amount;
-                Payment.findOneAndUpdate({_id: payment._id}, payment, { 'new': true }, function(err, payment){
-                    if(err) {
-                        console.log(err);
-                        logger.log('error', err);
-                        res.json({success: false, message:err});
-                    } else {
-                        createCommand(payment);
-                    }
-                });
+                res.json({success: false, message: error});
             }
 
-            function createCommand(payment) {
-
-                Command.find({}, function(err, commands) {
-                    if (err) {
-                        console.log(err);
-                        logger.log('error', err);
-                        res.json({success: false, message: error});
-                    }
-
-                    var command = new Command(req.body.command);
-                    command.payment = payment._id;
-                    command.commandNumber = commands.length + 1;
-                    command.status = 2;
-                    command.discount = "";
-                    command.save(function(error, command){
-                        if(error){
-                            console.log(error);
-                            logger.log('error', error);
-                        } else {
-                            console.log(command);
-                            res.json({success: true, message:"Command Added with success", data:  []});
-                        }
-                    });
-                });
-            }
+            var command = new Command(req.body.command);
+            command.commandNumber = commands.length + 1;
+            command.status = 2;
+            command.discount = "";
+            command.save(function(error, command){
+                if(error){
+                    logger.log('error', error);
+                } else {
+                    res.json({success: true, message:"Command Added with success", data:  []});
+                }
+            });
         });
-
     },
 
     printPdf: function(req, res) {
@@ -150,7 +79,6 @@ module.exports = {
 
         User.findOne({mail: command.client}, function(err, client){
             if(err) {
-                console.log(err);
                 logger.log('error', err);
                 res.json({success: false, message:err});
             } else {
@@ -322,7 +250,6 @@ module.exports = {
                         command.commandForm = savedPath;
                         Command.findOneAndUpdate({_id: id}, command, { 'new': true }, function(err, command){
                             if(err){
-                                console.log(err);
                                 logger.log('error', err);
                                 res.json({success: false, message:error});
                             }
@@ -338,7 +265,6 @@ module.exports = {
     getOneCommand: function(req, res) {
         Command.findOne({_id: req.params.id}, function(err, command){
             if(err) {
-                console.log(err);
                 logger.log('error', err);
                 res.json({success: false, message:err});
             } else {
@@ -353,7 +279,6 @@ module.exports = {
         var updated = 0;
         Payment.findOne({_id: id}, function(err, payment){
             if(err) {
-                console.log(err);
                 logger.log('error', err);
                 res.json({success: false, message:err});
             } else {
@@ -371,7 +296,6 @@ module.exports = {
                     });
                     Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
                         if(err) {
-                            console.log(err);
                             logger.log('error', err);
                             res.json({success: false, message:err});
                         } else {
@@ -391,12 +315,10 @@ module.exports = {
 
         discount.save(function(error, discount){
             if(error){
-                console.log(error);
                 logger.log('error', error);
             } else {
                 Command.findOne({_id: command._id}, function(err, command){
                     if(err) {
-                        console.log(err);
                         logger.log('error', err);
                         res.json({success: false, message:err});
                     } else {
@@ -406,25 +328,21 @@ module.exports = {
 
                         command.save(function(error, command){
                             if(error){
-                                console.log(error);
                                 logger.log('error', error);
                             } else {
                                 Payment.findOne({client: command.client, status: false}, function(err, payment){
                                     if(err) {
-                                        console.log(err);
                                         logger.log('error', err);
                                         res.json({success: false, message:err});
                                     } else {
                                         payment.amount -= discount.amount;
                                         payment.save(function(error, payment){
                                             if(error){
-                                                console.log(error);
                                                 logger.log('error', error);
                                             } else {
                                                 discount.facture = payment._id;
                                                     discount.save(function(error, discount){
                                                         if(error){
-                                                            console.log(error);
                                                             logger.log('error', error);
                                                         } else {
                                                             res.json({success: true, message:"Discount created", data: command});
@@ -446,7 +364,6 @@ module.exports = {
     printFacture: function(req, res) {
         var payment = req.body.payment;
         var id = payment._id;
-        console.log(id);
         Command.find({payment: id, status: 0}, function(err, command){
             if(err) {
                 logger.log('error', err);
@@ -646,7 +563,6 @@ module.exports = {
                                         payment.facture = savedPath;
                                         Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
                                             if(err){
-                                                console.log(err);
                                                 logger.log('error', err);
                                                 res.json({success: false, message:error});
                                             }
@@ -665,21 +581,26 @@ module.exports = {
     changeCommandStatus: function(req, res) {
         var id = req.body.id;
         var status = req.body.status;
+        var done = false;
         Command.findOne({_id: id}, function(err, command){
             if(err) {
-                console.log(err);
                 logger.log('error', err);
                 res.json({success: false, message:err});
             } else {
                 var lastStatus = command.status;
                 command.status = status;
+                var date = command.date;
+                var m = date.getMonth();
+                var y = date.getFullYear();
+                if (date.getDate() >= 15) {
+                    m++;
+                }
+                var paymentDate = new Date(y, m, 15);
 
-                if (command.status == 1 && lastStatus != 1) {
+                if (command.status == 0) {
                     changeQuantity(-1);
-                } else if (command.status != 1 && lastStatus == 1) {
-                    changeQuantity(1);
                 } else {
-                    saveCommand();
+                    chooseIfUpdateFacture();
                 }
 
                 function changeQuantity(moreOrLess) {
@@ -688,13 +609,11 @@ module.exports = {
                         var quantity = command.product[i].quantity;
                         var reference = item.reference;
 
-                        Item.findOne({_id: item.id}, function (err, found_item) {
+                        Item.findOne({_id: item._id}, function (err, found_item) {
                             if (err) {
-                                console.log(err);
                                 logger.log('error', err);
                                 res.json({success: false, message: err});
                             } else {
-
                                 for (var j in found_item.sphere) {
                                     if (found_item.sphere[j].reference == reference) {
                                         var stock = found_item.sphere[j].stock;
@@ -705,14 +624,14 @@ module.exports = {
                                     }
                                 }
 
-                                Item.findOneAndUpdate({_id: item.id}, found_item, { 'new': true }, function(err, saved_item){
+                                Item.findOneAndUpdate({_id: found_item._id}, found_item, { 'new': true }, function(err, saved_item){
                                     if(err) {
-                                        console.log(err);
                                         logger.log('error', err);
                                         res.json({success: false, message:err});
                                     } else {
-                                        if (i == command.product.length - 1) {
-                                            saveCommand();
+                                        if (i == command.product.length - 1 && !done) {
+                                            done = true;
+                                            chooseIfUpdateFacture();
                                         }
                                     }
                                 });
@@ -721,10 +640,65 @@ module.exports = {
                     }
                 }
 
+                function chooseIfUpdateFacture() {
+                    if (command.status == 0) {
+                        Payment.findOne({client: command.client, date: paymentDate, status: false}, function(err, payment) {
+                            if (err) {
+                                logger.log('error', err);
+                                res.json({success: false, message: error});
+                            }
+                            if (payment == null) {
+
+                                Payment.find({}, function (err, payments) {
+                                    if (err) {
+                                        logger.log('error', err);
+                                        res.json({success: false, message: error});
+                                    }
+
+                                    payment = new Payment();
+                                    payment.amount = command.amount;
+                                    payment.date = paymentDate;
+                                    payment.client = command.client;
+                                    payment.IBAN = command.IBAN;
+                                    payment.facture = "";
+                                    payment.status = false;
+                                    payment.paymentNumber = payments.length + 1;
+
+                                    payment.save(function (error, payment) {
+                                        if (error) {
+                                            logger.log('error', error);
+                                        } else {
+                                            command.payment = payment._id;
+                                            saveCommand();
+                                        }
+                                    });
+                                });
+
+                            } else {
+                                var path_facture = "../myApp/public/pdf/" + payment._id + ".pdf";
+                                fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
+                                    if (!err) fs.unlinkSync(path_facture);
+                            });
+                                payment.facture = "";
+                                payment.amount += command.amount;
+                                payment.save(function (error, payment) {
+                                    if (error) {
+                                        logger.log('error', error);
+                                    } else {
+                                        command.payment = payment._id;
+                                        saveCommand();
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        saveCommand()
+                    }
+                }
+
                 function saveCommand() {
                     command.save(function(error, command){
                         if(error){
-                            console.log(error);
                             logger.log('error', error);
                         } else {
                             res.json({success: true, message:"Command Added with success", data:  []});
@@ -739,48 +713,51 @@ module.exports = {
         var command = req.body.command;
         Command.findOne({_id: command._id}, function (err, command) {
             if (err) {
-                console.log(err);
                 logger.log('error', err);
                 res.json({success: false, message: err});
             }
+            command.status = 3;
+            command.payment = "";
             var paymentId = command.payment;
             if (paymentId == "") {
-                res.json({success: false, message:"no commands"});
-                return;
-            }
-            Payment.findOne({_id: paymentId}, function (err, payment) {
-                if (err) {
-                    console.log(err);
-                    logger.log('error', err);
-                    res.json({success: false, message: err});
-                } else {
-                    command.status = 3;
-                    command.payment = "";
-                    Command.findOneAndUpdate({_id: command._id}, command, { 'new': true }, function (err, command) {
-                        if (err) {
-                            console.log(err);
-                            logger.log('error', err);
-                            res.json({success: false, message: err});
-                        } else {
-                            var path_facture = "../myApp/public/pdf/"+payment._id+".pdf";
-                            fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
-                                if (!err) fs.unlinkSync(path_facture);
+                Command.findOneAndUpdate({_id: command._id}, command, { 'new': true }, function (err, command) {
+                    if (err) {
+                        logger.log('error', err);
+                        res.json({success: false, message: err});
+                    } else {
+                        res.json({success: true, message:"Command deleted", data: {}});
+                    }
+                });
+            } else {
+                Payment.findOne({_id: paymentId}, function (err, payment) {
+                    if (err) {
+                        logger.log('error', err);
+                        res.json({success: false, message: err});
+                    } else {
+                        Command.findOneAndUpdate({_id: command._id}, command, { 'new': true }, function (err, command) {
+                            if (err) {
+                                logger.log('error', err);
+                                res.json({success: false, message: err});
+                            } else {
+                                var path_facture = "../myApp/public/pdf/"+payment._id+".pdf";
+                                fs.access(path_facture, fs.R_OK | fs.W_OK, (err) => {
+                                    if (!err) fs.unlinkSync(path_facture);
                             });
-                            payment.facture = "";
-                            payment.amount -= command.amount;
-                            Payment.findOneAndUpdate({_id: paymentId}, payment, { 'new': true }, function(err, payment){
-                                if(err) {
-                                    console.log(err);
-                                    logger.log('error', err);
-                                    res.json({success: false, message:err});
-                                } else {
-                                    res.json({success: true, message:"Command deleted", data: {}});
-                                }
-                            })
-                        }
-                    });
-                }
-            });
+                                payment.facture = "";
+                                payment.amount -= command.amount;
+                                Payment.findOneAndUpdate({_id: paymentId}, payment, { 'new': true }, function(err, payment){
+                                    if(err) {
+                                        logger.log('error', err);
+                                        res.json({success: false, message:err});
+                                    } else {
+                                        res.json({success: true, message:"Command deleted", data: {}});
+                                    }
+                                })
+                            }
+                        });
+                    }
+                });
+            }
         });
     }
 };

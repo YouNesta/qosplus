@@ -233,20 +233,11 @@ export class ProductFactory {
             status: 1,
             shop: shop,
             porter: porter,
-            amount: amount
+            amount: amount,
+            IBAN: client.IBAN
         };
 
-        var payment = {
-            date: new Date(y, m, 15),
-            IBAN: client.IBAN,
-            status: 0,
-            client: client.mail,
-            amount: amount
-        };
-
-        console.log(payment);
-
-        var data = JSON.stringify({command, payment});
+        var data = JSON.stringify({command});
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
