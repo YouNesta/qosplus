@@ -53,6 +53,7 @@ export class UserCartComponent {
                         this.shops = res.data[0];
                         this.selectedShop = this.shops[0];
                         this.client = this.user;
+                        this.priceType = this.client.type.type;
                     }else{
                         console.log(res);
                     }
