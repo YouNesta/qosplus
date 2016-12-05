@@ -11,7 +11,8 @@ app.use(cors());
 const upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, '../myApp/public/uploads')
+            const dest = path.join(__dirname, "../myApp/public/uploads")
+            cb(null, dest)
         },
         filename: function(req, file, cb){
             const ext = path.extname(file.originalname);
