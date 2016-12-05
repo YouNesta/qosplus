@@ -43,8 +43,6 @@ module.exports = {
 
     send: function(variables, mail){
         var transporter = nodemailer.createTransport(smtpConfig);
-        console.log(variables);
-        console.log(mail);
         var mailOptions = {
             from: smtpConfig.auth.user, // sender address
             to: mail.data.to, // list of receivers

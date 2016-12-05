@@ -33,7 +33,6 @@ module.exports = {
                              res.json({success: false, message:error});
                         }
                          users[i].director = JSON.stringify(director);
-                        console.log(JSON.parse(users[i].director));
                         Shop.find({
                             '_id': { $in: user.associateShop}
                         }, function(err, shops){

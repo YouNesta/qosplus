@@ -41,7 +41,7 @@ export class UserCartComponent {
     public filteredList = [];
     public elementRef;
 
-    constructor(public service: ProductFactory, @Inject(forwardRef(() => AlertService)) alertService, public userService: UserFactory, myElement: ElementRef){
+    constructor(public service: ProductFactory, private router: Router, @Inject(forwardRef(() => AlertService)) alertService, public userService: UserFactory, myElement: ElementRef){
 
         this.elementRef = myElement;
         this.alertService = alertService;
@@ -199,6 +199,7 @@ export class UserCartComponent {
                     }
 
                     if (this.client != null && this.products.length > 0 && isCommandLegit == true) {
+
                         this.service.createCommand(this.client, this.price, this.selectedShop, this.porter)
                             .subscribe(
                                 res => {

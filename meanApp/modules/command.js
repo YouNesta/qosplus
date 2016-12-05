@@ -598,7 +598,9 @@ module.exports = {
                 var paymentDate = new Date(y, m, 15);
 
                 if (command.status == 0) {
-                    changeQuantity(-1);
+                    chooseIfUpdateFacture();
+
+                    // changeQuantity(-1);
                 } else {
                     chooseIfUpdateFacture();
                 }
@@ -607,7 +609,7 @@ module.exports = {
                     for (var i in command.product) {
                         var item = command.product[i].item;
                         var quantity = command.product[i].quantity;
-                        var reference = item.reference;
+                        var reference = command.product[i].reference;
 
                         Item.findOne({_id: item._id}, function (err, found_item) {
                             if (err) {
