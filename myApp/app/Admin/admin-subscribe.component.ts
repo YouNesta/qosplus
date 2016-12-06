@@ -24,12 +24,12 @@ export class AdminSubscribeComponent {
     admins = [];
 
     model = {
-        lastName: 'Boulkaddid',
-        firstName: 'Younes',
-        phone: '06.59.90.12.05',
-        mail: 'younes.boulkaddid@supinternet.fr',
-        password: '12345678',
-        passwordCheck: '12345678',
+        lastName: '',
+        firstName: '',
+        phone: '',
+        mail: '',
+        password: '',
+        passwordCheck: '',
     };
     errors = [];
     constructor(fb: FormBuilder, regEx: RegEx, adminFactory: AdminFactory, @Inject(forwardRef(() => AlertService)) alertService){
