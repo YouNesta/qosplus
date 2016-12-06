@@ -1,7 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
-**/**.css
-**/**.css.map
-**/**.js
+**.css
+**.css.map
+**.js
+**.pdf
 uploads/**
 
 
@@ -9,5 +10,3 @@ uploads/**
 # Excepts
 
 !**/base/reset.css
-!/pdf/nothing.js
-!uploads/no_image.png
