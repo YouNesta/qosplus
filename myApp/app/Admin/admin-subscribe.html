@@ -33,7 +33,7 @@
                                 <input type="password"  [(ngModel)]="model.password" ngControl="password" id="password" class="form-control">
                             </div>
                             <div>
-                                <label for="passwordCheck">Saisir à nouveau le mot de passe</label>
+                                <label for="passwordCheck">Saisi</label>
                                 <input  type="password" [(ngModel)]="model.passwordCheck" ngControl="passwordCheck" id="passwordCheck" class="form-control">
                             </div>
                         </div>
@@ -55,8 +55,11 @@
 <div class="content product-command-list">
     <div class="col-lg-12 collapse-tab">
         <div class="col-lg-12">
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 Nom
+            </div>
+            <div class="col-lg-2">
+                Téléphone
             </div>
             <div class="col-lg-4">
                 Mail
@@ -70,8 +73,11 @@
     <div class="col-lg-12 collapse-content">
         <div class="product col-lg-12"  *ngFor='#user of admins; #i = index;'>
             <div class="collapse-head col-lg-12">
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <p>{{ user.firstName }} {{ user.lastName }}</p>
+                </div>
+                <div class="col-lg-2">
+                    <p>{{ user.phone }}</p>
                 </div>
                 <div class="col-lg-4">
                     <p>{{user.mail}}</p>
