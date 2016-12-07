@@ -30,8 +30,14 @@ constructor(public service: UserFactory, public router: Router) {
             { "route": "/", "auth": true },
             { "route": "subscribe", "auth": true },
             { "route": "validation", "auth": true },
+            { "route": "list", "auth": true },
             { "route": "product", "auth": true },
+            { "route": "product/cart", "auth": true },
+            { "route": "product/price", "auth": true },
+            { "route": "product/command", "auth": true },
             { "route": "product/command-pdf/:id", "auth": false },
+            { "route": "product/paiements", "auth": true },
+
         ],
 
         "user": [
