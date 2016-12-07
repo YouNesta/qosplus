@@ -6,7 +6,7 @@
                 Nom
             </div>
             <div class="col-lg-4">
-                Mail
+                Code Client
             </div>
             <div class="col-lg-2">
                 Type
@@ -21,7 +21,7 @@
                     <p>{{ user.firstName }} {{ user.lastName }}</p>
                 </div>
                 <div class="col-lg-4">
-                    <p>{{user.mail}}</p>
+                    <p>{{user.associateShop[0].code}}</p>
                 </div>
                 <div class="col-lg-2">
                     <p>{{user.type.name}}</p>
