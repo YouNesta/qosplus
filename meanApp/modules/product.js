@@ -437,7 +437,7 @@ module.exports = {
 
 
         function deleteProduct(product, index) {
-            if (product.image.original != 'public/uploads/no_image.png'){
+            if (product.image.original != 'public/img/no_image.png'){
                 deleteImage("../myApp/"+product.image.original);
             }
                 Product.remove({_id: product._id}, function (err, product) {
@@ -551,7 +551,11 @@ module.exports = {
                         logger.log('error', err);
                         res.json({success: false, message:err});
                     } else {
-                        res.json({success: true, message:"Product updated", data: product});
+                        if(product){
+                            res.json({success: true, message:"Product updated", data: product});
+                        }else{
+                            res.json({success: false, message:"Product not updated"});
+                        }
                     }
                 })
             }
@@ -559,7 +563,7 @@ module.exports = {
     },
 
     getProductsBySupplier: function(req, res){
-        Product.find().sort({supplier: 1}, function(error, product){
+        Product.find().sort({supplier: 1}, function(err, product){
             if(err)
             {
                 console.log(err);
@@ -567,7 +571,7 @@ module.exports = {
                 res.json({success: false, message:err});
             }
             var i = 0;
-            getItem(products, i);
+            getItem(product, i);
         });
 
         function getItem(product, i){
@@ -581,10 +585,16 @@ module.exports = {
                         logger.log('error', error);
                         res.json({success: false, message:error});
                     }
-                    delete product[i].item;
-                    product[i].item = item;
-                    i++;
-                    getItem(product, i);
+
+                    if(item){
+                        delete product[i].item;
+                        product[i].item = item;
+                        i++;
+                        getItem(product, i);
+                    }else{
+                        res.json({ success: false, message: "Item not Found Failed"});
+                    }
+
                 });
 
             }else{
@@ -602,7 +612,11 @@ module.exports = {
                 logger.log('error', error);
                 res.json({ success: false, message: "Subscribe Failed", data:error});
             }else{
-                res.json({success: true, message: "succesfully updated", data: item});
+                if(item){
+                    res.json({success: true, message: "succesfully updated", data: item});
+                }else{
+                    res.json({ success: false, message: "Subscribe Failed"});
+                }
             }
         });
     },
@@ -635,11 +649,12 @@ module.exports = {
                logger.log('error', err);
                 res.json({success: false, message: "error during getting Max Reference", data:err});
            }else{
-
-               //workaround to simply convert to integer
-               newProduct.reference = c + 1;
-               var i = 0;
-              duplicateItem(newProduct, i);
+                if(c){
+                    //workaround to simply convert to integer
+                    newProduct.reference = c + 1;
+                    var i = 0;
+                    duplicateItem(newProduct, i);
+                }
            }
         });
 
@@ -649,35 +664,48 @@ module.exports = {
                     console.log(err);
                     logger.log('error', err);
                     res.json({ success: false, message: "Product not duplicated", data:err});
-                }else{
+                }
+                if(newResult){
                     res.json({success: true, message: "product duplicated", data: newResult})
+                }else{
+                    res.json({success: false, message: "Error product duplicated"})
                 }
             });
         }
 
         function duplicateItem(newProduct, i){
             if(i < newProduct.item.length) {
-                Item.findOne({_id: newProduct.item[i]}).exec(function (err, item) {
+                Item.findById(newProduct.item[i], function (err, item) {
+
                     if (err) {
                         console.log(err);
                         logger.log(err);
-                    } else {
-                        for (index in item.sphere) {
-                            var reference = item.sphere[index].reference.split("-");
-                            item.sphere[index].reference = newProduct.reference+"-"+reference[1]+"-"+reference[2]
+                    } else if(item){
+                        var sphere = item.sphere.toObject();
+
+                        for (var n in sphere) {
+                            console.log(typeof item.sphere, i, n);
+                            var reference = item.sphere[n].reference.split("-");
+                            item.sphere[n].reference = newProduct.reference+"-"+reference[1]+"-"+reference[2]
                         }
-                        
+
+                        item = item.toJSON();
+                        delete item._id;
                         var newItem = new Item(item);
-                        newItem._id = mongoose.Types.ObjectId();
+
                         newItem.save(function (err, result) {
                             if (err) {
                                 console.log(err);
                                 logger.log('error', err);
                             } else {
-                                delete newProduct.item[i];
-                                newProduct.item[i] = result._id;
-                                i++;
-                                duplicateItem(newProduct, i);
+                                if(result){
+                                    delete newProduct.item[i];
+                                    newProduct.item[i] = result._id;
+                                    i++;
+                                    duplicateItem(newProduct, i);
+                                }else{
+                                    res.json({success: false, message: "Error product duplicated"})
+                                }
                             }
                         })
                     }

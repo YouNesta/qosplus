@@ -258,7 +258,7 @@ export class ProductAddComponent {
                 if (this.products.item[i].provider) {
                     this.products.item[i].stock = -1;
                 }
-                if(this.products.param["addition"].indexOf(this.products.item[i].addition) == -1)
+                if(this.products.param["addition"].indexOf(this.products.item[i].addition) == -1 && this.products.item[i].addition != null)
                     this.products.param["addition"].push(this.products.item[i].addition);
             }
             this.products.middlePrice = this.middlePrice();
@@ -301,10 +301,10 @@ export class ProductAddComponent {
                                 name: "",
                                 status: 1,
                                 image: {
-                                    original: "public/uploads/no_image.png",
-                                    small: "public/uploads/no_image.png",
-                                    medium: "public/uploads/no_image.png",
-                                    big: "public/uploads/no_image.png"
+                                    original: "public/img/no_image.png",
+                                    small: "public/img/no_image.png",
+                                    medium: "public/img/no_image.png",
+                                    big: "public/img/no_image.png"
                                 },
                                 type: {
                                     toric : false,

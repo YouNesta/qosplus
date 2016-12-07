@@ -36,10 +36,10 @@ export class ProductEditComponent {
         name: "",
         status: 1,
         image: {
-            original: "public/uploads/no_image.png",
-            small: "public/uploads/no_image.png",
-            medium: "public/uploads/no_image.png",
-            big: "public/uploads/no_image.png"
+            original: "public/img/no_image.png",
+            small: "public/img/no_image.png",
+            medium: "public/img/no_image.png",
+            big: "public/img/no_image.png"
         },
         type: {
             toric : false,
