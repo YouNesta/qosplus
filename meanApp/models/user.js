@@ -62,10 +62,6 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required : false
     },
-    commercial:{
-        type: String,
-        required : false
-    },
     IBAN:{
         type: String,
         required : false
@@ -79,15 +75,23 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required : false
     },
-    paymentState: {
-        type: Boolean,
-        required : false
-    },
     central:{
         type: String,
         required : false
     },
     comment: {
+        type: String,
+        required : false
+    },
+    commercial: {
+        type: String,
+        required : false
+    },
+    lensPoint:{
+        type: String,
+        required : false
+    },
+    giftPoint: {
         type: String,
         required : false
     },

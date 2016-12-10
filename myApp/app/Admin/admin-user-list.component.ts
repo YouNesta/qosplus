@@ -1,25 +1,143 @@
 import {Component, forwardRef, Inject} from 'angular2/core';
 import {FormBuilder, Validators} from "angular2/common";
-import {RegEx} from "../lib/regex";
-import {AdminFactory} from "./admin.factory";
-import {Admin} from "./admin";
 import {ControlGroup} from "angular2/common";
-import {tokenNotExpired} from 'angular2-jwt';
 import {CanActivate} from "angular2/router";
-import {AlertService} from "../Tools/alert";
 import {UserFactory} from "../User/user.factory";
+import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
+import {ProductFactory} from "../Product/product.factory";
 
 
 @Component({
-    templateUrl: "app/Admin/admin-user-list.html"
+    templateUrl: "app/Admin/admin-user-list.html",
+    directives : [MODAL_DIRECTIVES]
 })
 
 export class AdminUserListComponent {
 
     users = [] ;
     isOpen = [];
-    
-    constructor(public service: UserFactory){
+    defaultModel = {
+        "_id":"",
+        "state":0,
+        "role":1,
+        "type":{},
+        "lastName":"",
+        "firstName":"",
+        "phone":"",
+        "mail":"",
+        "averageLens":0,
+        "providerLens":"",
+        "averageGlasses":0,
+        "providerGlasses":"",
+        "IBAN":"",
+        "BIC":"",
+        "financialMail":"",
+        "paymentState":true,
+        "central":"",
+        "type": {
+            "__v": 0,
+            "type": 0,
+            "name": "",
+            "_id": ""
+        },
+        "associateShop":[
+            {
+                "name":"",
+                "socialReason":"",
+                "adress":"",
+                "adress2":"",
+                "city":"",
+                "zipCode":0,
+                "mobile":"",
+                "phone":"",
+                "fax":"",
+                "mail":"",
+                "tva":0,
+                "siret":0,
+                "adeli":0,
+                "nightBox":true,
+                "transporteur":"",
+                "disponibility": [],
+            }
+        ],
+        "director":{
+            "state":0,
+            "role":1,
+            "lastName":"",
+            "firstName":"",
+            "phone":"",
+            "mail":"",
+            "averageLens":0,
+            "providerLens":"",
+            "averageGlasses":0,
+            "providerGlasses":"",
+            "IBAN":0,
+            "BIC":0,
+            "financialMail":"",
+            "paymentState":true,
+            "central":"",
+            "__v":0,
+            "associateShop":[
+                ""
+            ],
+            "director":[
+                ""
+            ]
+        },
+        "isCollapsed":false
+    };
+    model = {};
+    userType: {};
+    currentType = 0;
+
+
+    constructor(public service: UserFactory, public productService: ProductFactory){
+        this.model = this.defaultModel;
+        this.getUsers();
+
+        this.productService.countProductPrice()
+            .subscribe(
+                response => {
+                    if(response.success){
+                        this.userType = response.data;
+                    }
+                },
+                err => {
+                },
+                () => console.log('Authentification')
+            );
+
+    }
+    modifyUser(i){
+        this.model = this.users[i];
+        this.currentType = this.users[i].type.type
+    }
+    closed(){
+        this.getUsers();
+        this.model = this.defaultModel;
+    }
+    updateUser(){
+
+            if(this.userType[this.currentType] != 'undefined'){
+                this.model.type = this.userType[this.currentType-1];
+            }else{
+                this.model.type = this.model.type;
+            }
+
+        this.service.updateUser( this.model)
+            .subscribe(
+                response => {
+                    if(response.success){
+
+                    }else{
+                    }
+                },
+                err => {
+                },
+                () => {this.getUsers()}
+            );
+    }
+    getUsers(){
         this.service.getUsers()
             .subscribe(
                 res => {
@@ -44,5 +162,4 @@ export class AdminUserListComponent {
                 () => console.log('get user list Complete')
             );
     }
-
 }

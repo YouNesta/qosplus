@@ -366,10 +366,16 @@ module.exports = {
             if(err){
                 console.log(err);
                 logger.log('error', err);
-                res.json({success: false, message:error});
+                res.json({success: false, message:err});
+            }else{
+                if(users){
+                    var i = 0;
+                    getUsers(users, i);
+                }
             }
-            var i = 0;
-            getUsers(users, i);
+
+
+
         });
 
         function getUsers(users, i){
@@ -381,25 +387,38 @@ module.exports = {
                         if(err){
                             console.log(err);
                             logger.log('error', err);
-                            res.json({success: false, message:error});
+                            res.json({success: false, message:err});
+                        }else{
+                            if(director){
+                                users[i].director = JSON.stringify(director);
+                                Shop.find({
+                                    '_id': { $in: user.associateShop}
+                                }, function(err, shops){
+                                    users[i].associateShop = shops;
+                                    i++;
+                                    getUsers(users, i);
+                                });
+                            }
                         }
-                        users[i].director = JSON.stringify(director);
-                        Shop.find({
-                            '_id': { $in: user.associateShop}
-                        }, function(err, shops){
-                            users[i].associateShop = shops;
-                            i++;
-                            getUsers(users, i);
-                        });
+
 
                     });
                 }else{
                     Shop.find({
                         '_id': { $in: user.associateShop}
                     }, function(err, shops){
-                        users[i].associateShop = shops;
-                        i++;
-                        getUsers(users, i);
+                        if(err){
+                            console.log(err);
+                            logger.log('error', err);
+                            res.json({success: false, message:err});
+                        }else{
+                            if(shops){
+                                users[i].associateShop = shops;
+                                i++;
+                                getUsers(users, i);
+                            }
+                        }
+
                     });
                 }
 

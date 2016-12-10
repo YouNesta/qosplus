@@ -1,5 +1,230 @@
 <div class="content product-command-list">
 
+    <modal #modal (onDismiss)="closed()">
+        <modal-body>
+            <form class="validate-form">
+                <div class="row">
+                    <div class="col-md-12 userInfo">
+                        <h2>Information Client</h2>
+                        <hr>
+                        <div class="row user">
+                            <div class="col-md-12">
+                                <select [(ngModel)]="currentType">
+                                    <option *ngFor="#type of userType; #i = index" [value]="type.type">{{type.name}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="lastName">Nom</label>
+                                    <input   [(ngModel)]="model.lastName" id="lastName" class="form-control">
+                                </div>
+                                <div>
+                                    <label for="firstName">Prénom</label>
+                                    <input  [(ngModel)]="model.firstName"  id="firstName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="phone">Téléphone</label>
+                                    <input  [(ngModel)]="model.phone"  id="phone" class="form-control">
+                                </div>
+                                <div>
+                                    <label for="mail">E-mail</label>
+                                    <input  [(ngModel)]="model.mail"  id="mail" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="model.director.mail">
+                            <h2>Directeur</h2>
+                            <hr>
+                            <div class="row user director">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="directorLastName">Nom</label>
+                                        <input  [(ngModel)]="model.director.lastName"  id="directorLastName" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="directorFirstName">Prénom</label>
+                                        <input  [(ngModel)]="model.director.firstName"  id="directorFirstName" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="directorPhone">Téléphone</label>
+                                        <input  [(ngModel)]="model.director.phone"  id="directorPhone" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="directorMail">E-mail</label>
+                                        <input  [(ngModel)]="model.director.mail"  id="directorMail" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Banque</h2>
+                        <hr>
+                        <div class="row bankInfo">
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="iban">IBAN</label>
+                                    <input  [(ngModel)]="model.IBAN" id="iban" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="bic">BIC</label>
+                                    <input  [(ngModel)]="model.BIC" id="bic" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="financialMail">Mail Financier</label>
+                                    <input  [(ngModel)]="model.financialMail" id="financialMail" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="central">Central ou Enseigne</label>
+                                    <input  [(ngModel)]="model.central"  id="central" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row userInfo">
+                    <div class="col-md-12">
+                        <h2>Magasin Associés</h2>
+                        <hr>
+                        <div *ngFor="#shop of model.associateShop; #i = index;">
+                            <div class="row shop">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="socialReason">Raison Social</label>
+                                        <input  [(ngModel)]="shop.socialReason"  id="socialReason" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="shopName">Nom du magasin</label>
+                                        <input  [(ngModel)]="shop.name"  id="shopName" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="shopAdress">Adresse</label>
+                                        <input  [(ngModel)]="shop.adress" id="shopAdress" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="shopAdress2">Adresse 2</label>
+                                        <input  [(ngModel)]="shop.adress2" id="shopAdress2" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="shopCity">Ville</label>
+                                        <input  [(ngModel)]="shop.city" id="shopCity" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="shopZipCode">Code Postal</label>
+                                        <input  [(ngModel)]="shop.zipCode"  id="shopZipCode" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="shopMobile">Numéro de Portable du magasin</label>
+                                        <input  [(ngModel)]="shop.mobile"  id="shopMobile" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="shopPhone">Numéro de Téléphone Fix</label>
+                                        <input  [(ngModel)]="shop.phone"  id="shopPhone" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="shopFax">Numéro de Fax</label>
+                                        <input  [(ngModel)]="shop.fax" id="shopFax" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="shopMail">Email du magasin</label>
+                                        <input  [(ngModel)]="shop.mail"  id="shopMail" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="tva">TVA</label>
+                                        <input  [(ngModel)]="shop.tva" id="tva" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label for="siret">Numéro Siret</label>
+                                        <input  [(ngModel)]="shop.siret" id="siret" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <label for="adeli">Numéro Adeli</label>
+                                        <input  [(ngModel)]="shop.adeli" id="adeli" class="form-control">
+                                    </div>
+                                    <div>
+                                        <label >Présence d'un coffre de nuit ?</label><br>
+                                        <label class="radio-inline"><input type="radio" name="nightBox"  (click)="shop.nightBox='true'">Oui</label>
+                                        <label class="radio-inline"><input type="radio" name="nightBox" (click)="shop.nightBox='false'"b>Non</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h2>Infos Administrateur</h2>
+                    <hr>
+                    <div class="col-md-12">
+                        <div class="row adminInfo">
+                            <div class="col-md-4">
+                                <div>
+                                    <label for="commercial">Commercial Associé</label>
+                                    <input  [(ngModel)]="model.commercial"  id="commercial" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <label for="lensPoint">Point Lentille</label>
+                                    <input  [(ngModel)]="model.lensPoint"  id="lensPoint" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div>
+                                    <label for="giftPoint">Point Cadeaux</label>
+                                    <input  [(ngModel)]="model.giftPoint"  id="giftPoint" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row adminComment">
+                            <div class="col-md-12">
+                                <div>
+                                    <label for="comment">Commentaire</label>
+                                    <textarea [(ngModel)]="model.comment"  class="form-control" rows="5" id="comment"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="validate-button">
+                        <button class="btn" (click)="updateUser(model); modal.close()" type="button">Valider</button>
+                    </div>
+                </div>
+            </form>
+        </modal-body>
+    </modal>
+
     <div class="col-lg-12 collapse-tab">
         <div class="col-lg-12">
             <div class="col-lg-4">
@@ -27,7 +252,10 @@
                     <p>{{user.type.name}}</p>
                 </div>
                 <div class="col-lg-2">
-                    <div class="col-lg-4 col-lg-offset-4">
+                    <div class="col-lg-4">
+                        <button (click)="modal.open(); modifyUser(i)"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="col-lg-4">
                         <button (click)="isOpen[i] = !isOpen[i]"><i class="fa fa-eye" aria-hidden="true"></i></button>
                     </div>
                 </div>
