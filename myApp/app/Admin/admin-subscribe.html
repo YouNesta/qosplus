@@ -10,31 +10,31 @@
                         <div class="col-xs-12 col-md-6 col-sm-6">
                             <div>
                                 <label for="lastName">Nom</label>
-                                <input type="text" [(ngModel)]="model.lastName" ngControl="name" id="lastName" class="form-control">
+                                <input type="text" [(ngModel)]="model.lastName" id="lastName" class="form-control">
                             </div>
                             <div>
                                 <label for="firstName">Prénom</label>
-                                <input type="text" [(ngModel)]="model.firstName" ngControl="name" id="firstName" class="form-control">
+                                <input type="text" [(ngModel)]="model.firstName" id="firstName" class="form-control">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6 col-sm-6">
                             <div>
                                 <label for="phone">Téléphone</label>
-                                <input type="tel" [(ngModel)]="model.phone" ngControl="phone" id="phone" class="form-control">
+                                <input type="tel" [(ngModel)]="model.phone" id="phone" class="form-control">
                             </div>
                             <div>
                                 <label for="mail">E-mail</label>
-                                <input type="email" [(ngModel)]="model.mail" ngControl="mail" id="mail" class="form-control">
+                                <input type="email" [(ngModel)]="model.mail" id="mail" class="form-control">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-12 col-sm-12">
                             <div>
                                 <label for="password">Mots de Passe</label>
-                                <input type="password"  [(ngModel)]="model.password" ngControl="password" id="password" class="form-control">
+                                <input type="password"  [(ngModel)]="model.password" id="password" class="form-control">
                             </div>
                             <div>
                                 <label for="passwordCheck">Saisi</label>
-                                <input  type="password" [(ngModel)]="model.passwordCheck" ngControl="passwordCheck" id="passwordCheck" class="form-control">
+                                <input  type="password" [(ngModel)]="model.passwordCheck" id="passwordCheck" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -44,6 +44,49 @@
                     <div class="row">
                         <div class="col-md-3 col-md-offset-5">
                             <button class="btn btn-primary" (click)="subscribe(modal)" type="button">Envoyer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </modal-body>
+</modal>
+
+<modal #modalUpdate (onClose)="close()">
+    <modal-body>
+        <div class="content admin-subscribe">
+            <h2>Modifier un Employé</h2>
+            <hr>
+            <div class="container-fluid">
+                <form [ngFormModel]="subscribeForm" novalidate>
+                    <div class="row user">
+                        <div class="col-xs-12 col-md-6 col-sm-6">
+                            <div>
+                                <label for="lastNameUpdate">Nom</label>
+                                <input type="text" [(ngModel)]="updateModel.lastName" id="lastNameUpdate" class="form-control">
+                            </div>
+                            <div>
+                                <label for="firstNameUpdate">Prénom</label>
+                                <input type="text" [(ngModel)]="updateModel.firstName" id="firstNameUpdate" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-sm-6">
+                            <div>
+                                <label for="phoneUpdate">Téléphone</label>
+                                <input type="tel" [(ngModel)]="updateModel.phone" id="phoneUpdate" class="form-control">
+                            </div>
+                            <div>
+                                <label for="mailUpdate">E-mail</label>
+                                <input type="email" [(ngModel)]="updateModel.mail" id="mailUpdate" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-danger"  *ngFor="#error of errors">
+                        <strong>Attention!</strong> {{error}}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-md-offset-4">
+                            <button class="btn btn-primary" (click)="update(modalUpdate)" type="button">Envoyer</button>
                         </div>
                     </div>
                 </form>
@@ -65,7 +108,7 @@
                 Mail
             </div>
             <div class="col-lg-2">
-                Action
+                Actions
             </div>
         </div>
     </div>
@@ -84,6 +127,7 @@
                 </div>
                 <div class="col-lg-4">
                     <button style="margin: 0" (click)="deleteAdmin(user);"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    <button style="margin: 0" (click)="modalUpdate.open();updateAdmin(i);"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>

@@ -32,6 +32,22 @@ export class AdminFactory {
 
     };
 
+    update = function(admin) {
+
+        var data =  JSON.stringify({admin});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+       return this.authHttp
+            .post(this.apiUrl + 'update',
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json());
+
+
+    };
+
     list(){
       return  this.authHttp
             .get(this.apiUrl+'')

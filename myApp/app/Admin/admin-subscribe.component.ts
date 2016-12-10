@@ -31,6 +31,14 @@ export class AdminSubscribeComponent {
         password: '',
         passwordCheck: '',
     };
+
+    updateModel = {
+        lastName: '',
+        firstName: '',
+        phone: '',
+        mail: ''
+    };
+
     errors = [];
     constructor(fb: FormBuilder, regEx: RegEx, adminFactory: AdminFactory, @Inject(forwardRef(() => AlertService)) alertService){
         this.alertService = alertService;
@@ -113,6 +121,7 @@ export class AdminSubscribeComponent {
     }
     close(){
         this.getAdmins();
+
         this.model = {
             lastName: '',
             firstName: '',
@@ -121,6 +130,48 @@ export class AdminSubscribeComponent {
             password: '',
             passwordCheck: '',
         };
+
+        this.updateModel = {
+            lastName: '',
+            firstName: '',
+            phone: '',
+            mail: ''
+        };
+    }
+
+    updateAdmin(i){
+        this.updateModel = this.admins[i];
+        console.log(this.updateModel);
+    }
+   update(modal){
+       this.errors = [];
+
+       if (this.updateModel.lastName == "") {this.errors.push("Le champ Nom ne peut être vide");}
+       if (this.updateModel.firstName == "") {this.errors.push("Le champ Prénom ne peut être vide");}
+       if (this.updateModel.phone == "") {this.errors.push("Le champ Téléphone ne peut être vide");}
+       if (this.updateModel.mail == "") {this.errors.push("Le champ E-mail ne peut être vide");}
+       if(this.errors.length == 0){
+           this.service.update(this.updateModel)
+               .subscribe(
+                   response => {
+                       if(response.success){
+                           this.alertService.addAlert('success', response.message);
+                           modal.close();
+                       }else{
+                           if(response.message == 'Subscribe failed. User Already exist.'){
+                               this.errors.push('Cette utilisateur est déjà enregistré.');
+                           }else{
+                               this.errors.push('Une erreur est survenu veuillez réessayer.')
+                           }
+                       }
+                   },
+                   err =>  {
+                       this.alertService.addAlert('warning', 500);
+                   },
+                   () => console.log('Subscription Complete')
+               );
+       }
+
     }
 
     deleteAdmin(user){
@@ -139,7 +190,7 @@ export class AdminSubscribeComponent {
                     () => console.log('Validation Complete')
                 );
         }
-        }
+    }
 
 }
 

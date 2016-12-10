@@ -15,6 +15,14 @@ router.post('/subscribe',function(req, res) {
    }
 });
 
+router.post('/update',function(req, res) {
+  if(req.body != 'undefined'){
+    AdminModule.updateAdmin(req, res)
+   }else{
+     res.sendStatus(500);
+   }
+});
+
 
 router.get('/unvalidate', function(req, res, next) {
   AdminModule.getUsers(req, res);

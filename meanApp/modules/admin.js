@@ -68,9 +68,9 @@ module.exports = {
             mail: req.body.admin.mail
         }, function(err, user) {
             if(err){
-                console.log(error);
-                logger.log('error', error);
-                res.json({success: false, message:error});
+                console.log(err);
+                logger.log('error', err);
+                res.json({success: false, message:err});
             }
             if (!user) {
                 admin.save( function(error) {
@@ -88,6 +88,25 @@ module.exports = {
             }
         });
     },
+
+    updateAdmin: function(req, res){
+
+        var admin = req.body.admin;
+
+
+        Admin.findOneAndUpdate({_id: admin._id}, {$set: admin }, { 'new': true },  function(error, data){
+            if(error){
+                console.log(error);
+                logger.log('error', error);
+                res.json({ success: false, message: "Subscribe Failed", data:error});
+            }else{
+                res.json({ success: true, message: "Update Success"});
+            }
+
+        });
+
+    },
+
 
     getAdmin: function(req, res){
         var id = req.body.admin;
