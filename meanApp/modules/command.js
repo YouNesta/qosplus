@@ -60,6 +60,8 @@ module.exports = {
             command.discount = "";
             command.save(function(error, command){
                 if(error){
+		    console.log(error);
+	            res.json({success: false, message:error});
                     logger.log('error', error);
                 } else {
                     res.json({success: true, message:"Command Added with success", data:  []});
