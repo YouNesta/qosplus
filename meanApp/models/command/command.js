@@ -38,7 +38,7 @@ var CommandSchema = new mongoose.Schema({
         required: false
     },
     IBAN:{
-        type: Number,
+        type: String,
         required : false
     },
     status:{
