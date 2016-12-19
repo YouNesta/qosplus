@@ -45,7 +45,7 @@ export class ProductCartComponent {
         this.elementRef = myElement;
         this.alertService = alertService;
         this.user = JSON.parse(localStorage.getItem("user"));
-        if (this.user.role == 1) {
+        if (this.user.role >= 1) {
             userService.getAllShops()
                 .subscribe(
                     res => {
