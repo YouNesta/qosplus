@@ -73,10 +73,10 @@ export class HomeSubscribeComponent {
 
     }];
     director = {
-        lastName: 'ezd,c',
-        firstName: 'ezlkd,',
-        phone: 'dk,q',
-        mail: 'd,qs;',
+        lastName: '',
+        firstName: '',
+        phone: '',
+        mail: '',
     };
     model = {
         role: null,
