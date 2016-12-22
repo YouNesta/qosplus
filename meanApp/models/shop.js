@@ -6,84 +6,55 @@ var mongoose = require("mongoose");
 var ShopSchema = new mongoose.Schema({
 
     name: {
-        type: String,
-        index: true,
-        required : true
+        type: String
     },
     socialReason: {
-        type: String,
-        index: true,
-        required : false
+        type: String
     },
     adress: {
-        type: String,
-        index: true,
-        required : true
+        type: String
     },
     adress2: {
-        type: String,
-        required : false
+        type: String
     },
     city: {
-        type: String,
-        index: true,
-        required : true
+        type: String
     },
     zipCode: {
-        type: Number,
-        index: true,
-        required : true
+        type: Number
     },
     mobile: {
-        type: String,
-        index: true,
-        required : true
+        type: String
     },
     phone: {
-        type: String,
-        index: true,
-        required : false
+        type: String
     },
     fax: {
-        type: String,
-        index: true,
-        required : false
+        type: String
     },
     mail: {
-        type: String,
-        index: true,
-        required : true
+        type: String
     },
     tva: {
-        type: String,
-        required : false
+        type: String
     },
     siret: {
-        type: String,
-        index: true,
-        required : false
+        type: String
     },
     adeli: {
-        type: String,
-        index: true,
-        required : false
+        type: String
     },
     nightBox:  {
-        type: Boolean,
-        required : false
+        type: Boolean
     },
     transporteur: {
-        type: String,
-        required : false
+        type: String
     },
     owner:{
-        type: String,
-        required: false
+        type: String
     },
     code:{
-        type: Number,
-        required : true,
-        index: true
+        type: Number
     },
     disponibility: [{
         day: String,

@@ -330,11 +330,14 @@ export class HomeSubscribeComponent {
 
         for (var i in this.associateShop) {
             var shop = this.associateShop[i];
-            if (shop.socialReason == "") {this.errors.push("Le champ Raison Social ne peut être vide");}
             if (shop.name == "") {this.errors.push("Le champ Nom du magasin ne peut être vide");}
+            if (shop.socialReason == "") {this.errors.push("Le champ Raison Social ne peut être vide");}
             if (shop.adress == "") {this.errors.push("Le champ Adresse ne peut être vide");}
             if (shop.city == "") {this.errors.push("Le champ Ville ne peut être vide");}
             if (shop.zipCode == "") {this.errors.push("Le champ Code Postal ne peut être vide");}
+            if (shop.mobile == "") {this.errors.push("Le champ Numéro de portable du magasin ne peut être vide");}
+            if (shop.phone == "") {this.errors.push("Le champ Numéro de téléphone fix du magasin ne peut être vide");}
+            if (shop.mail == "") {this.errors.push("Le champ Email du magasin du magasin ne peut être vide");}
             if (shop.tva == "" || shop.tva == null) {this.errors.push("Le champ TVA ne peut être vide");}
             if (shop.adeli == "" || shop.adeli == null) {this.errors.push("Le champ Adeli ne peut être vide");}
             if (shop.siret == "" || shop.siret == null) {this.errors.push("Le champ Siret ne peut être vide");}
