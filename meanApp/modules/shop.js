@@ -6,7 +6,6 @@ var SHA256 = require("crypto-js/sha256");
 var User = require("../models/user.js").User;
 var Shop = require("../models/shop.js").Shop;
 var logger = require('winston');
-var mongo = require('mongodb');
 
 module.exports = {
 
