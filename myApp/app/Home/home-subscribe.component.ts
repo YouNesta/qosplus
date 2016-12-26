@@ -342,8 +342,7 @@ export class HomeSubscribeComponent {
             if (shop.adeli == "" || shop.adeli == null) {this.errors.push("Le champ Adeli ne peut être vide");}
             if (shop.siret == "" || shop.siret == null) {this.errors.push("Le champ Siret ne peut être vide");}
         }
-
-        if(this.subscribeForm.valid && this.errors.length == 0){
+        if(this.errors.length == 0){
             this.user = this.model;
             this.user.role = 0;
 
@@ -355,10 +354,11 @@ export class HomeSubscribeComponent {
                 this.service.save(this.user, this.associateShop, this.director, this.isSame)
                     .subscribe(
                         res => {
+                            console.log(res);
                             if(res.success){
                               this.success.push("Vous avez été enregistré avec succés");
                               }else{
-                                this.alertService.addAlert('warning', res.message);
+                                this.errors.push(res.message);
                             }
                         },
                         err =>  console.log(err),
