@@ -8,12 +8,15 @@ import {tokenNotExpired} from 'angular2-jwt';
 import {CanActivate} from "angular2/router";
 import {AlertService} from "../Tools/alert";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
+import {MailManager} from "../lib/mail-manager";
 
 @CanActivate(() => tokenNotExpired('token'))
 
 @Component({
     templateUrl: "app/Admin/admin-subscribe.html",
-    directives: [MODAL_DIRECTIVES]
+    directives: [MODAL_DIRECTIVES],
+    providers: [ MailManager ]
+
 })
 
 export class AdminSubscribeComponent {
@@ -40,7 +43,7 @@ export class AdminSubscribeComponent {
     };
 
     errors = [];
-    constructor(fb: FormBuilder, regEx: RegEx, adminFactory: AdminFactory, @Inject(forwardRef(() => AlertService)) alertService){
+    constructor(fb: FormBuilder, regEx: RegEx, adminFactory: AdminFactory, @Inject(forwardRef(() => AlertService)) alertService, private mailService: MailManager){
         this.alertService = alertService;
         this.service = adminFactory;
         this.getAdmins();
@@ -103,7 +106,20 @@ export class AdminSubscribeComponent {
                     response => {
                         if(response.success){
                             this.alertService.addAlert('success', response.message);
-                            modal.close();
+                            this.mailService.addAdmin(this.model)
+                                .subscribe(
+                                    response => {
+                                        if(response.success){
+                                            console.log(response);
+                                            modal.close();
+
+                                        }
+                                    },
+                                    err => {
+                                        console.log(err);
+                                    },
+                                    () => console.log('Sended')
+                                )
                         }else{
                             if(response.message == 'Subscribe failed. User Already exist.'){
                                 this.errors.push('Cette utilisateur est déjà enregistré.');

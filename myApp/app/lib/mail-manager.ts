@@ -15,14 +15,17 @@ export class MailManager{
     }
 
     validateUser(user){
-        var data = JSON.stringify({mail: {
-            type: 'validateUser',
-            data: {
-                to: user.mail,
-                object: 'X-Vision - Confirmation d\'Inscription'
-            },
-            date: new Date()
-        }});
+        var data = JSON.stringify({
+            mail: {
+                type: 'validateUser',
+                data: {
+                    to: user.mail,
+                    object: 'X-Vision - Confirmation d\'Inscription'
+                },
+                date: new Date()
+            }
+            }
+        );
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -41,7 +44,39 @@ export class MailManager{
                 }
                 return response;
             })
-    }
+    };
+
+    addAdmin(user){
+        var data = JSON.stringify({
+            mail: {
+                type: 'addAdmin',
+                data: {
+                    to: user.mail,
+                    object: 'X-Vision - Confirmation d\'Inscription Employé'
+                },
+                date: new Date()
+            }
+            }
+        );
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.authHttp
+            .post(this.apiUrl + "add",
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .map(response => {
+                if (response) {
+                    console.log(response);
+                    return response
+                }else{
+                    console.log("Error")
+                }
+                return response;
+            })
+    };
 
     sendMails(){
         return this.authHttp

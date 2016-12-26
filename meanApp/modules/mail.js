@@ -32,6 +32,10 @@ module.exports = {
                     });
                     thus.send(password.clear, mail);
                 }
+
+                if(mail.type == 'addAdmin'){
+                    thus.send("Votre compte employé vient d'être créé", mail);
+                }
                 res.json({success: true, message: "Mail saved!"});
             }
         })
