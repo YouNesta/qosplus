@@ -8,7 +8,7 @@ var Discount = require("../models/command/discount.js").Discount;
 var Product = require("../models/product/product.js").Product;
 var Item = require("../models/product/item.js").Item;
 var User = require("../models/user.js").User;
-var pdf = require('phantom-html2pdf');
+var pdf = require('html-pdf');
 var logger = require('winston');
 var http = require('http');
 var fs = require('fs');
@@ -242,13 +242,11 @@ module.exports = {
                     '</html>';
 
                 var options = {
-                    "html" : html,
-                    "paperSize" : {format: 'A4', orientation: 'portrait', border: '1cm'},
-                    "deleteOnAction" : true
+                    "paperSize" : {format: 'Letter', orientation: 'portrait', border: '1cm'}
                 };
 
-                pdf.convert(options, function(result) {
-                    result.toFile(path, function() {
+                pdf.create(html, options).toFile(path, function(err, result) {
+                    if (!err) {
                         command.commandForm = savedPath;
                         Command.findOneAndUpdate({_id: id}, command, { 'new': true }, function(err, command){
                             if(err){
@@ -257,7 +255,9 @@ module.exports = {
                             }
                             res.json({success: true, message:"Command updated", data:  command});
                         })
-                    });
+                    } else {
+                        res.json({success: false, message:"Error", err:  err});
+                    }
                 });
             }
         });
@@ -556,12 +556,11 @@ module.exports = {
                                     '</html>';
 
                                 var options = {
-                                    "html" : html,
-                                    "paperSize" : {format: 'A4', orientation: 'portrait', border: '1cm'},
-                                    "deleteOnAction" : true
+                                    "paperSize" : {format: 'Letter', orientation: 'portrait', border: '1cm'}
                                 };
-                                pdf.convert(options, function(result) {
-                                    result.toFile(path, function() {
+
+                                pdf.create(html, options).toFile(path, function(err, result) {
+                                    if (!err) {
                                         payment.facture = savedPath;
                                         Payment.findOneAndUpdate({_id: id}, payment, { 'new': true }, function(err, payment){
                                             if(err){
@@ -570,7 +569,9 @@ module.exports = {
                                             }
                                             res.json({success: true, message:"Facture updated", data:  payment});
                                         })
-                                    });
+                                    } else {
+                                        res.json({success: false, message:"Error", err: err});
+                                    }
                                 });
                             }
                         });

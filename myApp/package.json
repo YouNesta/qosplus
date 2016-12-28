@@ -11,7 +11,8 @@
   "dependencies": {
     "angular2-jwt": "^0.1.8",
     "live-server": "^0.9.2",
-    "ng2-uploader": "^0.5.1"
+    "ng2-uploader": "^0.5.1",
+    "phantom-html2pdf": "^4.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
