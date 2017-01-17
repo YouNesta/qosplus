@@ -56,8 +56,7 @@ export class ProductCommandPdfComponent {
                 res => {
                     if(res.success){
                         command = res.data;
-
-                        window.open(command.commandForm, "_blank");
+                        setTimeout(function(){window.open(command.commandForm, "_blank")}, 1000);
                     }else{
                         console.log(res);
                     }

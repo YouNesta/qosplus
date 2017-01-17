@@ -12,6 +12,7 @@ var pdf = require('html-pdf');
 var logger = require('winston');
 var http = require('http');
 var fs = require('fs');
+var Path = require('path');
 
 module.exports = {
 
@@ -245,17 +246,20 @@ module.exports = {
                     "paperSize" : {format: 'Letter', orientation: 'portrait', border: '1cm'}
                 };
 
+                path = Path.join(__dirname, '..', path);
                 pdf.create(html, options).toFile(path, function(err, result) {
+
                     if (!err) {
                         command.commandForm = savedPath;
                         Command.findOneAndUpdate({_id: id}, command, { 'new': true }, function(err, command){
                             if(err){
                                 logger.log('error', err);
-                                res.json({success: false, message:error});
+                                res.json({success: false, message:err});
                             }
                             res.json({success: true, message:"Command updated", data:  command});
                         })
                     } else {
+                        console.log(err)
                         res.json({success: false, message:"Error", err:  err});
                     }
                 });
