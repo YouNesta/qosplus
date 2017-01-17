@@ -562,7 +562,7 @@ module.exports = {
                                 var options = {
                                     "paperSize" : {format: 'Letter', orientation: 'portrait', border: '1cm'}
                                 };
-
+                                path = Path.join(__dirname, '..', path);
                                 pdf.create(html, options).toFile(path, function(err, result) {
                                     if (!err) {
                                         payment.facture = savedPath;

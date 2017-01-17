@@ -47,7 +47,7 @@ export class ProductPaymentComponent {
         if (payment.facture != "" && payment.facture) {
             var url = payment.facture;
             if (this.urlExists(url) == true) {
-                window.open(url, "_blank");
+                setTimeout(function(){window.open(url, "_blank")}, 1000);
             } else {
                 this.generatePdf(payment, i);
             }
