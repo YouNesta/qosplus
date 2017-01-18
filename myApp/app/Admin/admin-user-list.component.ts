@@ -162,4 +162,21 @@ export class AdminUserListComponent {
                 () => console.log('get user list Complete')
             );
     }
+
+    resetPassword(i){
+        this.model = this.users[i];
+        this.service.userResetPwd(this.model)
+            .subscribe(
+                res => {
+                    console.log('test');
+                    if(res.success){
+                        alert('Le mot de passe à été réinitialisé avec succès ! un email à été envoyé à l\'utilisateur')
+                    }else{
+                        console.log(res);
+                    }
+                },
+                err => console.log(err),
+                () => console.log('reset password')
+            )
+    }
 }

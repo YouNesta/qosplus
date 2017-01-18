@@ -54,7 +54,7 @@ export class UserFactory {
             .map(response => {
                 if (response) {
                     var user = JSON.stringify(response.data);
-                    localStorage.setItem("user", user)
+                    localStorage.setItem("user", user);
                     return response
                 }else{
                     console.log("Error")
@@ -64,10 +64,8 @@ export class UserFactory {
     }
 
     getUserByMail(mail){
-        console.log(mail);
         var data =  JSON.stringify({mail});
         var headers = new Headers();
-        console.log(headers);
         headers.append('Content-Type', 'application/json');
 
         return this.authHttp
@@ -298,5 +296,27 @@ export class UserFactory {
         return this.authHttp
             .get(this.apiUrl + 'list')
             .map(res => res.json())
+    }
+
+    userResetPwd(user){
+        var data = JSON.stringify({user});
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        console.log(data);
+        return this.authHttp
+            .post(this.apiUrl + "resetpwd",
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .map(response => {
+                if(response){
+                    return response
+                }else{
+                    console.log("Error")
+                }
+                return response;
+            })
     }
 }

@@ -6,15 +6,18 @@ import {UserFactory} from "../User/user.factory";
 import {ControlGroup} from "angular2/common";
 import {Router} from "angular2/router";
 import {AlertService} from "../Tools/alert";
+import {MODAL_DIRECTIVES} from "../../jspm_packages/npm/ng2-bs3-modal@0.5.1/ng2-bs3-modal";
 
 
 @Component({
     templateUrl: "app/Home/home-login.html",
+    directives: [MODAL_DIRECTIVES],
     providers: [RegEx, UserFactory, AlertService]
 })
 
 export class HomeLoginComponent {
     loginForm: ControlGroup;
+    forgottenPasswordForm: ControlGroup;
 
     model = {
         lastName: '',
@@ -23,6 +26,11 @@ export class HomeLoginComponent {
         mail: '',
         password: ''
     };
+
+    modelForgotten = {
+        mail: ''
+    };
+
     alertService: AlertService;
     errors = [];
 
@@ -37,6 +45,9 @@ export class HomeLoginComponent {
             ])],
             'password': ['', Validators.compose([
             ])]
+        });
+        this.forgottenPasswordForm = fb.group({
+            'mail': ['', Validators.compose([])]
         });
     }
 
@@ -68,6 +79,38 @@ export class HomeLoginComponent {
                     () => console.log('Authentification')
                 );
 
+        }
+    }
+
+    subscribe(modal){
+        this.errors = [];
+        console.log(this.modelForgotten);
+        if(this.modelForgotten.mail == "") { this.errors.push("Veuillez remplir le champ") }
+
+        if(this.errors.length == 0){
+            this.service.getUserByMail(this.modelForgotten.mail)
+                .subscribe(
+                    res => {
+                        if (res.success){
+                            var user = JSON.stringify(res.data);
+                            this.service.userResetPwd(user)
+                                .subscribe(
+                                    res => {
+                                        //send mail
+                                        this.alertService.addAlert('success', 'Votre mot de passe à été réinitialisé, vous recevrez un mail avec votre nouveau mot de passe bientot.')
+                                    },
+                                    err => {
+                                        this.alertService.addAlert('danger', 500)
+                                    },
+                                    () => console.log('reset user password')
+                                )
+                        }
+                    },
+                    err => {
+                        this.alertService.addAlert('warning', "cette utilisateur n'existe pas.")
+                    },
+                    () => console.log('get User password')
+                )
         }
     }
 

@@ -234,6 +234,40 @@ router.get('/getMails', function(req, res) {   // Get user mails
   });
 });
 
+router.post('/resetpwd', function(req, res){
+    var model = User;
+    console.log(req);
+    model.find({
+        mail: req.body.user.mail
+    }, function(error, user){
+        if(error){
+            console.log(error);
+            logger.log('error', error);
+            res.json({success: false, message:error});
+        }else{
+            if (!user) {
+                res.json({ success: false, message: 'Authentication failed. User not found.' });
+            } else if (user) {
+                var pwds = users.generateClearPassword();
+                user.password = pwds.password;
+                user.hash = pwds.hash;
+                user.findOneAndUpdate({_id: user._id}, {$set: user }, { 'new': true } ,function(error){
+                    if(error){
+                        if (error) {
+                            console.log(error);
+                            logger.log('error', error);
+                        }
+                    }else{
+                        res.json({success: true,  data: pwds.clear})
+                    }
+                })
+
+            }
+        }
+    })
+
+});
+
 
 
 module.exports = router;

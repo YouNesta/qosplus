@@ -25,7 +25,25 @@
                         <button type="submit" class="btn default" (click)="login()">Envoyer</button>
                     </div>
                 </div>
+                <div class="row forgotten-password">
+                    <span (click)="modal.open()">Mot de passe oublié ?</span>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
+<modal #modal (onClose)="close()">
+    <modal-body>
+        <div class="row forgotten-password">
+            <form [ngFormModel]="forgottenPasswordForm" novalidate>
+                <label for="email">mail</label>
+                <input type="text" [(ngModel)]="modelForgotten.mail" ngControl="mail" id="email" class="form-control">
+                <div>
+                    <button class="btn btn-primary" (click)="subscribe(modal)" type="button">Envoyer</button>
+                </div>
+            </form>
+            <span>Envoyez nous votre email et nous vous contacterons un lien de reinitialisation</span>
+        </div>
+    </modal-body>
+</modal>
