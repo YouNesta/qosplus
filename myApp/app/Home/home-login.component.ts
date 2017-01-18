@@ -7,12 +7,14 @@ import {ControlGroup} from "angular2/common";
 import {Router} from "angular2/router";
 import {AlertService} from "../Tools/alert";
 import {MODAL_DIRECTIVES} from "../../jspm_packages/npm/ng2-bs3-modal@0.5.1/ng2-bs3-modal";
+import {MailManager} from "../lib/mail-manager";
 
 
 @Component({
     templateUrl: "app/Home/home-login.html",
     directives: [MODAL_DIRECTIVES],
-    providers: [RegEx, UserFactory, AlertService]
+    providers: [RegEx, UserFactory, AlertService],
+    bindings: [MailManager]
 })
 
 export class HomeLoginComponent {
@@ -33,9 +35,11 @@ export class HomeLoginComponent {
 
     alertService: AlertService;
     errors = [];
+    mailService: MailManager;
 
-    constructor(fb: FormBuilder, regEx: RegEx, public service: UserFactory, public router: Router, @Inject(forwardRef(() => AlertService)) alertService){
+    constructor(fb: FormBuilder, regEx: RegEx, public service: UserFactory, public router: Router, @Inject(forwardRef(() => AlertService)) alertService, @Inject(forwardRef(() => MailManager)) mailService){
         this.alertService = alertService;
+        this.mailService = mailService
         this.loginForm = fb.group({
             'mail': ['', Validators.compose([
                 /*
@@ -96,8 +100,10 @@ export class HomeLoginComponent {
                             this.service.userResetPwd(user)
                                 .subscribe(
                                     res => {
-                                        //send mail
-                                        this.alertService.addAlert('success', 'Votre mot de passe à été réinitialisé, vous recevrez un mail avec votre nouveau mot de passe bientot.')
+                                        if(res.success){
+                                            this.mailService.changePassword(this.model, res.data);
+                                            this.alertService.addAlert('success', 'Votre mot de passe à été réinitialisé, vous recevrez un mail avec votre nouveau mot de passe bientot.')
+                                        }
                                     },
                                     err => {
                                         this.alertService.addAlert('danger', 500)

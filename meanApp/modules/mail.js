@@ -89,6 +89,35 @@ module.exports = {
                         '<!-- 1 Column Text : BEGIN -->';
                     thus.send(mailBody, mail);
                 }
+
+                if(mail.type == "changePassword"){
+                    var mailBody = ' ' +
+                    '<!-- 1 Column Text : BEGIN --> ' +
+                    '<tr> ' +
+                    '<td bgcolor="#ffffff" style="padding: 40px; text-align: center; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">                 ' +
+                    'Confirmation d\'inscription au site Hephilens:'+
+                    '<br>'+
+                    'votre mots de passe : '+mail.data.variable+
+                    '<br><br>'+
+                    '<!-- Button : Begin -->'+
+                    '<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto">'+
+                    '<tr>'+
+                    '<td style="border-radius: 3px; background: #222222; text-align: center;" class="button-td">'+
+                    '<a href="' +
+                    'http://'+domain+'/login' +
+                    '" style="background: #222222; border: 15px solid #222222; font-family: sans-serif; font-size: 13px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;" class="button-a">'+
+                    '&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ffffff;">Connexion</span>&nbsp;&nbsp;&nbsp;&nbsp;'+
+                    '</a>'+
+                    '</td>'+
+                    '</tr>'+
+                    '</table>'+
+                    '<!-- Button : END -->'+
+                    '</td>'+
+                    '</tr>'+
+                    '<!-- 1 Column Text : BEGIN -->';
+
+                    thus.send(mailBody, mail);
+                }
                 res.json({success: true, message: "Mail saved!"});
             }
         })

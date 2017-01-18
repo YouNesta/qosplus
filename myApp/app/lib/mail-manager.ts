@@ -78,6 +78,39 @@ export class MailManager{
             })
     };
 
+    changePassword(user, password){
+        var data = JSON.stringify({
+                mail: {
+                    type: 'changePassword',
+                    data: {
+                        to: user.mail,
+                        object: 'X-Vision - Confirmation d\'Inscription Employé',
+                        variable: password
+                    },
+                    date: new Date()
+                }
+            }
+        );
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.authHttp
+            .post(this.apiUrl + "add",
+                data, {
+                    headers: headers
+                })
+            .map(response => response.json())
+            .map(response => {
+                if (response) {
+                    console.log(response);
+                    return response
+                }else{
+                    console.log("Error")
+                }
+                return response;
+            })
+    }
+
     sendMails(){
         return this.authHttp
             .get(this.apiUrl + "send")

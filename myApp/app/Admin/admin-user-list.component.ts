@@ -5,11 +5,13 @@ import {CanActivate} from "angular2/router";
 import {UserFactory} from "../User/user.factory";
 import {MODAL_DIRECTIVES} from "ng2-bs3-modal";
 import {ProductFactory} from "../Product/product.factory";
+import {MailManager} from "../lib/mail-manager";
 
 
 @Component({
     templateUrl: "app/Admin/admin-user-list.html",
-    directives : [MODAL_DIRECTIVES]
+    directives : [MODAL_DIRECTIVES],
+    bindings: [MailManager]
 })
 
 export class AdminUserListComponent {
@@ -89,10 +91,12 @@ export class AdminUserListComponent {
     model = {};
     userType: {};
     currentType = 0;
+    mailService: MailManager;
 
 
-    constructor(public service: UserFactory, public productService: ProductFactory){
+    constructor(public service: UserFactory, public productService: ProductFactory, @Inject(forwardRef(() => MailManager)) mailService){
         this.model = this.defaultModel;
+        this.mailService = mailService
         this.getUsers();
 
         this.productService.countProductPrice()
@@ -169,6 +173,7 @@ export class AdminUserListComponent {
             .subscribe(
                 res => {
                     if(res.success){
+                        this.mailService.changePassword(this.model, res.data);
                         alert('Le mot de passe à été réinitialisé avec succès ! un email à été envoyé à l\'utilisateur')
                     }else{
                         console.log(res);

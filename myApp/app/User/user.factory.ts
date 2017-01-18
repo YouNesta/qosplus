@@ -7,6 +7,7 @@ import {AuthHttp, JwtHelper} from 'angular2-jwt';
 import {Router} from "angular2/router";
 import {API} from "../Config/api";
 import {User} from "./user";
+import {MailManager} from "../lib/mail-manager";
 
 @Injectable()
 
@@ -311,6 +312,7 @@ export class UserFactory {
             .map(response => response.json())
             .map(response => {
                 if(response){
+
                     return response
                 }else{
                     console.log("Error")
