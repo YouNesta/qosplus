@@ -235,9 +235,7 @@ router.get('/getMails', function(req, res) {   // Get user mails
 });
 
 router.post('/resetpwd', function(req, res){
-    var model = User;
-    console.log(req);
-    model.find({
+    User.find({
         mail: req.body.user.mail
     }, function(error, user){
         if(error){
@@ -249,16 +247,19 @@ router.post('/resetpwd', function(req, res){
                 res.json({ success: false, message: 'Authentication failed. User not found.' });
             } else if (user) {
                 var pwds = users.generateClearPassword();
+                user = user[0];
                 user.password = pwds.password;
                 user.hash = pwds.hash;
-                user.findOneAndUpdate({_id: user._id}, {$set: user }, { 'new': true } ,function(error){
+                User.findOneAndUpdate({_id: user._id}, {$set: {hash: user.hash, password: user.password} }, { upsert: false } ,function(error, user){
                     if(error){
                         if (error) {
                             console.log(error);
                             logger.log('error', error);
                         }
                     }else{
-                        res.json({success: true,  data: pwds.clear})
+                        console.log(user);
+                        console.log('win');
+                        res.json({success: true, message: 'password succesfully updated', data: pwds.clear})
                     }
                 })
 

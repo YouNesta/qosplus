@@ -303,7 +303,6 @@ export class UserFactory {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        console.log(data);
         return this.authHttp
             .post(this.apiUrl + "resetpwd",
                 data, {

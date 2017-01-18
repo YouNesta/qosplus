@@ -168,7 +168,6 @@ export class AdminUserListComponent {
         this.service.userResetPwd(this.model)
             .subscribe(
                 res => {
-                    console.log('test');
                     if(res.success){
                         alert('Le mot de passe à été réinitialisé avec succès ! un email à été envoyé à l\'utilisateur')
                     }else{
