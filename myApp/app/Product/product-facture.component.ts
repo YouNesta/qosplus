@@ -40,11 +40,11 @@ export class ProductPaymentComponent {
             );
     }
 
-    printPdf(i) {
+    printPdf(i, force) {
 
         var payment = this.payments[i];
 
-        if (payment.facture != "" && payment.facture) {
+        if (payment.facture != "" && payment.facture && force == false) {
             var url = payment.facture;
             if (this.urlExists(url) == true) {
                 setTimeout(function(){window.open(url, "_blank")}, 1000);

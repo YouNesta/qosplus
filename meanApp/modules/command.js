@@ -352,8 +352,7 @@ module.exports = {
                             res.json({success: false, message:"aucune commande associée"});
                             return;
                         }
-                        var path = "../myApp/public/pdf/"+id+".pdf";
-                        var savedPath = "/public/pdf/"+id+".pdf";
+
                         var html = "<p>Error</p>";
                         var shop = command[0].shop;
 
@@ -362,6 +361,19 @@ module.exports = {
                                 logger.log('error', err);
                                 res.json({success: false, message:err});
                             } else {
+
+                                var number = 0;
+                                var doesAlreadyExists = true;
+
+                                while (doesAlreadyExists) {
+                                    var path_facture = "../myApp/public/pdf/" + payment._id + "-" + number + ".pdf";
+                                    if (fs.existsSync(path_facture)) {
+                                        number++;
+                                    } else {
+                                        doesAlreadyExists = false;
+                                    }
+                                }
+
                                 var date = new Date();
                                 var is_paid = "non payée";
 
@@ -448,7 +460,7 @@ module.exports = {
                                     '\nSiret: ' + shop.siret + '</textarea>'+
                                     '<table id="meta"><tr>'+
                                     '<td class="meta-head">Invoice #</td>'+
-                                    '<td><textarea>' + payment.paymentNumber + '</textarea></td>'+
+                                    '<td><textarea>' + payment.paymentNumber + '-' + number + '</textarea></td>'+
                                     '</tr><tr>'+
                                     '<td class="meta-head">Date</td>'+
                                     '<td><textarea id="date">' + date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear() + '</textarea></td>'+
@@ -484,6 +496,9 @@ module.exports = {
                                 }
 
                                 html += '</table></div></body></html>';
+
+                                var path = "../myApp/public/pdf/" + id + "-" + number + ".pdf";
+                                var savedPath = "/public/pdf/" + id + "-" + number + ".pdf";
 
                                 var options = {
                                     "paperSize" : {format: 'Letter', orientation: 'portrait', border: '1cm'}
