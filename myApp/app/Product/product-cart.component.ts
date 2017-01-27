@@ -53,7 +53,7 @@ export class ProductCartComponent {
                             this.shops = res.data;
                             for (var i in this.shops) {
                                 var shop = this.shops[i];
-                                this.shopCode.push(""+shop.code);
+                                this.shopCode.push(shop.name + " (" + shop.code + ")");
                             }
                         }else{
                             console.log(res);
@@ -288,7 +288,7 @@ export class ProductCartComponent {
     filter() {
         if (this.query !== ""){
             this.filteredList = this.shopCode.filter(function(el){
-                return el.toLowerCase().indexOf(this.query.toLowerCase()) == 0;
+                return el.toLowerCase().indexOf(this.query.toLowerCase()) != -1;
             }.bind(this));
         }else{
             this.filteredList = [];
