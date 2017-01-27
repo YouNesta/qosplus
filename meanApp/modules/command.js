@@ -362,7 +362,7 @@ module.exports = {
                                 logger.log('error', err);
                                 res.json({success: false, message:err});
                             } else {
-                                var date = new Date(payment.date);
+                                var date = new Date();
                                 var is_paid = "non payée";
 
                                 if (payment.status == 1) {
