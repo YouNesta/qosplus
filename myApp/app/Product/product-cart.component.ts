@@ -315,7 +315,7 @@ export class ProductCartComponent {
     selectShop() {
         for (var i in this.shops) {
             var shop = this.shops[i];
-            if (shop.code == this.query) this.selectedShop = shop;
+            if (shop.name + " (" + shop.code + ")" == this.query) this.selectedShop = shop;
         }
 
         this.userService.getUserById(this.selectedShop.owner)
