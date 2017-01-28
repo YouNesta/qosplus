@@ -65,7 +65,7 @@ export class UserCommandComponent {
                 if(res.success){
                     command = res.data;
 
-                    this.commands[i] = command;
+                    this.commands[i].commandForm = command.commandForm;
 
                     this.loader[i] = true;
                     window.open(command.commandForm, "_blank");
