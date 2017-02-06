@@ -16,11 +16,11 @@
 </modal>
 
 
-<modal #modalAdd [backdrop]="'static'"  [keyboard]="false">
+<modal #modalAdd  [backdrop]="'static'"  [keyboard]="false">
     <modal-header>
         <h4 class="modal-title">Ajouter un tarif</h4>
     </modal-header>
-    <modal-body>
+    <modal-body style="    overflow: scroll;">
         <div class="form-group">
             <label>Nom</label>
             <input type="text" [(ngModel)]="modelAdd.name" class="form-control">
@@ -44,10 +44,13 @@
             </tr>
             </tbody>
         </table>
+        <div class="alert alert-warning"  *ngFor="#error of errors">
+        {{error}}
+        </div>
     </modal-body>
     <modal-footer>
         <button type="button" class="btn btn-default" data-dismiss="modalAdd" (click)="dismiss()">Annuler</button>
-        <button type="button" class="btn btn-primary" (click)="createPrice(); modalAdd.close()">Ok</button>
+        <button type="button" class="btn btn-primary" (click)="createPrice(modal);">Ok</button>
     </modal-footer>
 </modal>
 

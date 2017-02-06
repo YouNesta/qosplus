@@ -23,6 +23,7 @@ export class ProductPriceComponent {
     products: Array<Object>;
     tableHead = [];
     product = [];
+    errors = [];
     modelAdd = {
         name: '',
         type: 0,
@@ -84,19 +85,33 @@ export class ProductPriceComponent {
 
     }
 
-    createPrice(){
-        this.service.createPrice(this.modelAdd)
-            .subscribe(
-                response => {
-                    if(response.success){
+    createPrice(modal){
+        this.errors = []
+        if(this.modelAdd.name == ""){this.errors.push('Veuillez entrer un nom de tarif')}
+        var lastPriceIndex = this.modelAdd.products[0].price.length - 1;
 
-                    }else{
-                        console.log(response);
-                    }
-                },
-                err =>  console.log(err),
-                () => this.getPrice()
-            );
+        var priceNull = false;
+        for(var i in this.modelAdd.products){
+            if(this.modelAdd.products[i].price[lastPriceIndex].price <= 0){priceNull = true;}
+        }
+
+        if(priceNull){this.errors.push("Vous ne pouvez pas renseigner le prix d'un produit à 0")}
+        console.log(priceNull);
+
+        if(this.errors.length == 0){
+            this.service.createPrice(this.modelAdd)
+                .subscribe(
+                    response => {
+                        if(response.success){
+                            modal.close();
+                        }else{
+                            console.log(response);
+                        }
+                    },
+                    err =>  console.log(err),
+                    () => this.getPrice()
+                );
+        }
 
     }
 
