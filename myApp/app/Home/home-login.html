@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<modal #modal (onClose)="close()">
+<modal #modal>
     <modal-body>
         <div class="row forgotten-password">
             <form [ngFormModel]="forgottenPasswordForm" novalidate>
@@ -43,7 +43,9 @@
                     <button class="btn btn-primary" (click)="subscribe(modal)" type="button">Envoyer</button>
                 </div>
             </form>
-            <span>Envoyez nous votre email et nous vous contacterons un lien de reinitialisation</span>
+            <div class="alert alert-success"  *ngFor="#success of resetAlert">
+                {{success}}
+            </div>
         </div>
     </modal-body>
 </modal>

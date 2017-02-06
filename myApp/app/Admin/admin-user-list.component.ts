@@ -169,11 +169,22 @@ export class AdminUserListComponent {
 
     resetPassword(i){
         this.model = this.users[i];
-        this.service.userResetPwd(this.model)
+        var user = JSON.stringify(this.model);
+        this.service.userResetPwd(user)
             .subscribe(
                 res => {
+                    console.log('sdfkjhsdfjkhfds')
                     if(res.success){
-                        this.mailService.changePassword(this.model, res.data);
+                        this.mailService.changePassword(this.model.mail, res.data)
+                            .subscribe(
+                                res => {
+                                    if(res.success){
+                                    }
+                                },
+                                err => {
+                                },
+                                () => console.log('reset user password')
+                            )
                         alert('Le mot de passe à été réinitialisé avec succès ! un email à été envoyé à l\'utilisateur')
                     }else{
                         console.log(res);

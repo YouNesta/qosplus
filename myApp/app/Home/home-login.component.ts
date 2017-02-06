@@ -1,19 +1,16 @@
 import {Component, forwardRef, Inject} from 'angular2/core';
-import {User} from "../User/user";
 import {FormBuilder, Validators} from "angular2/common";
-import {RegEx} from "../lib/regex";
 import {UserFactory} from "../User/user.factory";
 import {ControlGroup} from "angular2/common";
 import {Router} from "angular2/router";
-import {AlertService} from "../Tools/alert";
 import {MODAL_DIRECTIVES} from "../../jspm_packages/npm/ng2-bs3-modal@0.5.1/ng2-bs3-modal";
 import {MailManager} from "../lib/mail-manager";
 
 
 @Component({
     templateUrl: "app/Home/home-login.html",
+    providers: [UserFactory],
     directives: [MODAL_DIRECTIVES],
-    providers: [RegEx, UserFactory, AlertService],
     bindings: [MailManager]
 })
 
@@ -33,12 +30,11 @@ export class HomeLoginComponent {
         mail: ''
     };
 
-    alertService: AlertService;
     errors = [];
+    resetAlert = [];
     mailService: MailManager;
 
-    constructor(fb: FormBuilder, regEx: RegEx, public service: UserFactory, public router: Router, @Inject(forwardRef(() => AlertService)) alertService, @Inject(forwardRef(() => MailManager)) mailService){
-        this.alertService = alertService;
+    constructor(fb: FormBuilder,  public service: UserFactory, public router: Router, @Inject(forwardRef(() => MailManager)) mailService){
         this.mailService = mailService
         this.loginForm = fb.group({
             'mail': ['', Validators.compose([
@@ -66,7 +62,6 @@ export class HomeLoginComponent {
                             var user = JSON.stringify(res.data);
                             localStorage.setItem("user", user);
                             localStorage.setItem('token',res.token);
-                            this.alertService.addAlert('success', 'Vous vous êtes connecté avec succés');
                             if(res.data.role > 0){
                                 this.router.navigateByUrl('/admin');
                             }else if(res.data.role == 0){
@@ -78,20 +73,18 @@ export class HomeLoginComponent {
                         }
                     },
                     err => {
-                        this.alertService.addAlert('danger', 500)
                     },
                     () => console.log('Authentification')
-                );
+                )
 
         }
     }
 
     subscribe(modal){
-        this.errors = [];
-        console.log(this.modelForgotten);
-        if(this.modelForgotten.mail == "") { this.errors.push("Veuillez remplir le champ") }
+        this.resetAlert = [];
+        if(this.modelForgotten.mail == "") { this.resetAlert.push("Veuillez remplir le champ") }
 
-        if(this.errors.length == 0){
+        if(this.resetAlert.length == 0){
             this.service.getUserByMail(this.modelForgotten.mail)
                 .subscribe(
                     res => {
@@ -100,20 +93,30 @@ export class HomeLoginComponent {
                             this.service.userResetPwd(user)
                                 .subscribe(
                                     res => {
+                                        console.log(res);
                                         if(res.success){
-                                            this.mailService.changePassword(this.model, res.data);
-                                            this.alertService.addAlert('success', 'Votre mot de passe à été réinitialisé, vous recevrez un mail avec votre nouveau mot de passe bientot.')
+                                            this.mailService.changePassword(this.modelForgotten.mail, res.data)
+                                        .subscribe(
+                                                res => {
+                                                    if(res.success){
+                                                        this.model.mail = this.modelForgotten.mail;
+                                                        modal.close();
+                                                    }
+                                                    this.resetAlert.push("Un mail vous a été envoyé sur l'adresse e-mail renseigné");
+                                                },
+                                                err => {
+                                                },
+                                                () => console.log('reset user password')
+                                            )
                                         }
                                     },
                                     err => {
-                                        this.alertService.addAlert('danger', 500)
                                     },
                                     () => console.log('reset user password')
                                 )
                         }
                     },
                     err => {
-                        this.alertService.addAlert('warning', "cette utilisateur n'existe pas.")
                     },
                     () => console.log('get User password')
                 )

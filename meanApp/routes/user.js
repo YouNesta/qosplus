@@ -235,30 +235,30 @@ router.get('/getMails', function(req, res) {   // Get user mails
 });
 
 router.post('/resetpwd', function(req, res){
-    User.find({
-        mail: req.body.user.mail
-    }, function(error, user){
+    User.findOne( req.body.user._id
+    , function(error, user){
         if(error){
             console.log(error);
             logger.log('error', error);
             res.json({success: false, message:error});
         }else{
-            if (!user) {
-                res.json({ success: false, message: 'Authentication failed. User not found.' });
+
+          if (!user) {
+            console.log('Authentication failed. User not found.' );
+            logger.log('error', 'Authentication failed. User not found.' );
+            res.json({ success: false, message: 'Authentication failed. User not found.' });
             } else if (user) {
-                var pwds = users.generateClearPassword();
-                user = user[0];
+            console.log('Authentication. User found.' );
+            var pwds = users.generateClearPassword();
                 user.password = pwds.password;
                 user.hash = pwds.hash;
-                User.findOneAndUpdate({_id: user._id}, {$set: {hash: user.hash, password: user.password} }, { upsert: false } ,function(error, user){
+            User.update({_id: user._id}, user , function(error, user){
                     if(error){
-                        if (error) {
-                            console.log(error);
-                            logger.log('error', error);
-                        }
+                      console.log('lose');
+                      logger.log('error', error);
+                      res.json({ success: false, message: 'No user found' });
                     }else{
                         console.log(user);
-                        console.log('win');
                         res.json({success: true, message: 'password succesfully updated', data: pwds.clear})
                     }
                 })

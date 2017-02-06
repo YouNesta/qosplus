@@ -13,6 +13,7 @@ var mails = require('../modules/mail.js');
 var Token    = require('../modules/jsonwebtoken/module');
 
 router.post('/add', function(req, res){
+    console.log('hhk')
     if(req.body != 'undefined'){
         mails.saveMail(req, res);
     }else{

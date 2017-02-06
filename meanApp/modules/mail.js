@@ -19,7 +19,6 @@ module.exports = {
     saveMail: function(req, res){
         var mail = new Mail(req.body.mail);
         var thus = this;
-
         mail.save(function(error){
             if (error) {
                 console.log(error);
@@ -97,7 +96,7 @@ module.exports = {
                     '<td bgcolor="#ffffff" style="padding: 40px; text-align: center; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;">                 ' +
                     'Confirmation d\'inscription au site Hephilens:'+
                     '<br>'+
-                    'votre mots de passe : '+mail.data.variable+
+                    'votre mots de passe : '+mail.data.variables+
                     '<br><br>'+
                     '<!-- Button : Begin -->'+
                     '<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto">'+

@@ -78,14 +78,16 @@ export class MailManager{
             })
     };
 
-    changePassword(user, password){
+    changePassword(mail, password){
+        console.log('dfjkghftherjkthhh')
+        console.log(mail);
         var data = JSON.stringify({
                 mail: {
                     type: 'changePassword',
                     data: {
-                        to: user.mail,
-                        object: 'X-Vision - Confirmation d\'Inscription Employé',
-                        variable: password
+                        to: mail,
+                        object: 'X-Vision - Confirmation de changement de mots de passe',
+                        variables: password
                     },
                     date: new Date()
                 }
@@ -102,7 +104,6 @@ export class MailManager{
             .map(response => response.json())
             .map(response => {
                 if (response) {
-                    console.log(response);
                     return response
                 }else{
                     console.log("Error")

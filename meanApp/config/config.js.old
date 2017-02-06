@@ -18,6 +18,13 @@ config.corsOptions = {
 };
 
 
-config.freeRoutes = ['/api/v1/client/user/login', '/api/v1/client/user/subscribe', '/api/v1/product/add', '/api/v1/product/list'];
-
+config.freeRoutes = [
+    '/api/v1/client/user/login',
+    '/api/v1/client/user/subscribe',
+    '/api/v1/product/add',
+    '/api/v1/mail/add',
+    '/api/v1/product/list',
+    '/api/v1/client/user/getByMail',
+    '/api/v1/client/user/resetpwd'];
+    
 module.exports = config;
