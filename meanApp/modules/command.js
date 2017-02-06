@@ -116,131 +116,99 @@ module.exports = {
                 }
 
                 var date = new Date(command.date);
-                html = '<html>'+
+                html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'+
+                    '<html xmlns="http://www.w3.org/1999/xhtml">'+
+                    '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'+
                     '<head>'+
                     '<style type="text/css">'+
-                    'body, table {'+
-                    'font-size: 12px;'+
-                    '}'+
-                    'table {'+
-                    'border-collapse: collapse;'+
-                    'border-spacing: 0;'+
-                    '}'+
-                    '.row {'+
-                    'display: block;'+
-                    'width: 100%;'+
-                    '}'+
-                    '.col-md-5, .col-md-6, .col-md-10 {'+
-                    'display: inline-block;'+
-                    'padding: 20px;'+
-                    '}'+
-                    '.col-md-5 {'+
-                    'width: 32%;'+
-                    '}'+
-                    '.col-md-6 {'+
-                    'width: 50%;'+
-                    '}'+
-                    '.col-md-12 {'+
-                    'width: 100%;'+
-                    '}'+
-                    '.text-center {'+
-                    'text-align: center;'+
-                    '}'+
-                    'td {'+
-                    'border: 1px solid #000;'+
-                    'padding: 10px;'+
-                    '}'+
-                    '.clearfix {'+
-                    'margin-top: 20px;'+
-                    'margin-bottom: 20px;'+
-                    '}'+
-                    'footer {' +
-                    'text-align: center;' +
-                    'font-weight: bold;' +
-                    '}'+
+                    '* { margin: 0; padding: 0; }'+
+                    'body { font: 14px/1.4 Georgia, serif; }'+
+                    '#page-wrap { width: 95%; margin: 0 auto; }'+
+                    'textarea { border: 0; font: 14px Georgia, Serif; overflow: hidden; resize: none; }'+
+                    'table { border-collapse: collapse; }'+
+                    'table td, table th { border: 1px solid black; padding: 5px; }'+
+                    '#header { height: 15px; width: 100%; margin: 20px 0; background: #222; text-align: center; color: white; font: bold 15px Helvetica, Sans-Serif; text-decoration: uppercase; letter-spacing: 20px; padding: 8px 0px; }'+
+                    '#address { width: 250px; height: 150px; float: left; }'+
+                    '#customer { overflow: hidden; }'+
+                    '#logo {font-size: 30px; font-weight: bold; text-align: right; float: right; position: relative; margin-top: 25px; max-width: 540px; max-height: 100px; overflow: hidden; }'+
+                    '#customer-title {font-size: 10px; height: 80px; font-weight: bold; float: left; }'+
+                    '#meta { margin-top: 1px; width: 300px; float: right; }'+
+                    '#meta td { text-align: right;  }'+
+                    '#meta td.meta-head { text-align: left; background: #eee; }'+
+                    '#meta td textarea { width: 100%; height: 20px; text-align: right; }'+
+                    '#items { clear: both; width: 100%; margin: 30px 0 0 0; border: 1px solid black; }'+
+                    '#items th { background: #eee; }'+
+                    '#items textarea { width: 80px; height: 50px; }'+
+                    '#items tr.item-row td { border: 0; vertical-align: top; }'+
+                    '#items td.description { width: 300px; }'+
+                    '#items td.item-name { width: 175px; }'+
+                    '#items td.description textarea, #items td.item-name textarea { width: 100%; }'+
+                    '#items td.total-line { border-right: 0; text-align: right; }'+
+                    '#items td.total-value { border-left: 0; padding: 10px; }'+
+                    '#items td.total-value textarea { height: 20px; background: none; }'+
+                    '#items td.balance { background: #eee; }'+
+                    '#items td.blank { border: 0; }'+
                     '</style>'+
                     '</head>'+
                     '<body>'+
-                    '<div class="content command-pdf">'+
-                    '<div class="row">'+
-                    '<div class="col-md-6">'+
-                    '<address>'+
-                    'X-VISION<br>'+
-                    '54, boulevard Michel<br>'+
-                    '75018 PARIS<br>'+
-                    'Tél. : 01.53.39.19.30 '+
-                    '</address>'+
-                    '<div class="clearfix"></div>'+
-                    '<p>Bon N°'+command.commandNumber+'</p>'+
-                    '<p>Porteur: '+command.porter+'</p>'+
-                    '<p>Status: '+status+'</p>'+
-                    '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
-                    '</div>'+
-                    '<div class="col-md-5 text-center">'+
-                    '<address>'+
-                    client.firstName + client.lastName +'<br>'+
-                    client.mail + '<br><br>'+
-                    shop.name + '<br>'+
-                    shop.adress + '<br>'+
-                    shop.zipCode + ' ' + shop.city + '<br>'+
-                    '</address>'+
-                    '</div>'+
-                    '</div>';
+                    '<div id="page-wrap">'+
+                    '<textarea id="header">COMMANDE</textarea>'+
+                    '<div id="identity">'+
+                    '<textarea id="address">X-VISION\n'+
+                    '54, boulevard Michel\n'+
+                    '75018 PARIS\n'+
+                    'Tél. : 01.53.39.19.30</textarea>'+
+                    '<div id="logo">X-Vision</div></div>'+
+                    '<div style="clear:both"></div>'+
+                    '<div id="customer">'+
+                    '<textarea id="customer-title">'+ client.firstName +' '+ client.lastName + ",\n" +
+                    shop.adress + '\n'+
+                    shop.zipCode + ' ' + shop.city +
+                    '\nSiret: ' + shop.siret + '</textarea>'+
+                    '<table id="meta"><tr>'+
+                    '<td class="meta-head">Bon N°</td>'+
+                    '<td><textarea>' + command.commandNumber + '</textarea></td>'+
+                    '</tr><tr>'+
+                    '<td class="meta-head">Date</td>'+
+                    '<td><textarea id="date">' + date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear() + '</textarea></td>'+
+                    '</tr><tr><td class="meta-head">Porteur</td>'+
+                    '<td><textarea id="date">' + command.porter + '</textarea></td>'+
+                    '</tr><tr>'+
+                    '<td class="meta-head">Status</td>'+
+                    '<td><div class="due">' + status + '</div></td>'+
+                    '</tr></table></div><table id="items">'+
+                    '<tr><th>Code Produit</th><th>Nom</th><th>Oeil</th><th>Sphere</th><th>Qté.</th></tr>';
 
                 for (var i = 0; i < command.product.length; i++) {
                     var product = command.product[i];
 
-                    var options = "";
+                    var options = "\n";
                     if (product.item.cylinder != null) {
-                        options += "cylindre: "+ product.item.cylinder + "<br>";
+                        options += "cylindre: "+ product.item.cylinder + "\n";
                     }
                     if (product.item.axis != null) {
-                        options += "axe: "+ product.item.axis + "<br>";
+                        options += "axe: "+ product.item.axis + "\n";
                     }
                     if (product.item.addition != null) {
-                        options += "addition: "+ product.item.addition + "<br>";
+                        options += "addition: "+ product.item.addition + "\n";
                     }
                     if (product.item.diameter != null) {
-                        options += "diameter: "+ product.item.diameter + "<br>";
+                        options += "diameter: "+ product.item.diameter + "\n";
                     }
                     if (product.item.radius != null) {
-                        options += "rayon: "+ product.item.radius + "<br>";
+                        options += "rayon: "+ product.item.radius + "\n";
                     }
 
-
-                    html += '<div class="row">'+
-                        '<div class="col-md-12 text-center">'+
-                        '<table>'+
-                        '<thead>'+
-                        '<td>Code Produit</td>'+
-                        '<td>Nom</td>'+
-                        '<td>Oeil</td>'+
-                        '<td>Sphère</td>'+
-                        '<td>Qté.</td>'+
-                        '</thead>'+
-                        '<tr>'+
-                        '<td>'+product.reference+'</td>'+
-                        '<td>'+product.name+'</td>'+
-                        '<td>'+product.eye+'</td>'+
-                        '<td> sphere: '+product.item.sphere+'<br>' +
-                            options +
-                        'hydrophilie: '+ product.hydrophily+ '<br>' +
-                        '</td>'+
-                        '<td>'+product.quantity+'</td>'+
-                        '</tr>'+
-                        '</table>'+
-                        '</div>'+
-                        '</div>';
+                    html += '<tr class="item-row">'+
+                        '<td class="item-name"><div class="delete-wpr"><textarea>' + product.reference + '</textarea></div></td>'+
+                        '<td class="cost"><textarea>' + product.name + '</textarea></td>'+
+                        '<td><textarea class="description">' + product.eye + '</textarea></td>'+
+                        '<td><textarea class="qty">' + product.item.sphere + options + '\n hydrophilie: '+ product.hydrophily + '</textarea></td>'+
+                        '<td><span class="price">' + product.quantity + '</span></td>'+
+                        '</tr>';
                 }
 
-                html += '</div>'+
-                    '<hr>' +
-                    '<footer>' +
-                    shop.name + ', ' + shop.adress + ' ' + shop.zipCode + ' ' + shop.city + '<br>' +
-                    'Siret: ' + shop.siret +
-                    '</footer>'+
-                    '</body>'+
-                    '</html>';
+                html += '</table></div></body></html>';
 
                 var options = {
                     "paperSize" : {format: 'Letter', orientation: 'portrait', border: '1cm'}
@@ -384,8 +352,7 @@ module.exports = {
                             res.json({success: false, message:"aucune commande associée"});
                             return;
                         }
-                        var path = "../myApp/public/pdf/"+id+".pdf";
-                        var savedPath = "/public/pdf/"+id+".pdf";
+
                         var html = "<p>Error</p>";
                         var shop = command[0].shop;
 
@@ -394,7 +361,20 @@ module.exports = {
                                 logger.log('error', err);
                                 res.json({success: false, message:err});
                             } else {
-                                var date = new Date(payment.date);
+
+                                var number = 0;
+                                var doesAlreadyExists = true;
+
+                                while (doesAlreadyExists) {
+                                    var path_facture = "../myApp/public/pdf/" + payment._id + "-" + number + ".pdf";
+                                    if (fs.existsSync(path_facture)) {
+                                        number++;
+                                    } else {
+                                        doesAlreadyExists = false;
+                                    }
+                                }
+
+                                var date = new Date();
                                 var is_paid = "non payée";
 
                                 if (payment.status == 1) {
@@ -429,135 +409,96 @@ module.exports = {
                                 }
                                 payment.amount = amount;
 
-                                html = '<html>'+
+                                html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'+
+                                    '<html xmlns="http://www.w3.org/1999/xhtml">'+
+                                    '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />'+
                                     '<head>'+
                                     '<style type="text/css">'+
-                                    'body, table {'+
-                                    'font-size: 12px;'+
-                                    '}'+
-                                    'table {'+
-                                    'border-collapse: collapse;'+
-                                    'border-spacing: 0;'+
-                                    '}'+
-                                    '.row {'+
-                                    'display: block;'+
-                                    'width: 100%;'+
-                                    '}'+
-                                    '.col-md-5, .col-md-6, .col-md-10 {'+
-                                    'display: inline-block;'+
-                                    'padding: 20px;'+
-                                    '}'+
-                                    '.col-md-5 {'+
-                                    'width: 32%;'+
-                                    '}'+
-                                    '.col-md-6 {'+
-                                    'width: 50%;'+
-                                    '}'+
-                                    '.col-md-10 {'+
-                                    'width: 83%;'+
-                                    '}'+
-                                    '.col-md-offset-1 {'+
-                                    'margin-left: 8%;'+
-                                    '}'+
-                                    '.text-center {'+
-                                    'text-align: center;'+
-                                    '}'+
-                                    'td {'+
-                                    'border: 1px solid #000;'+
-                                    'padding: 10px;'+
-                                    '}'+
-                                    '.clearfix {'+
-                                    'margin-top: 20px;'+
-                                    'margin-bottom: 20px;'+
-                                    '}' +
-                                    'footer {' +
-                                    'text-align: center;' +
-                                    'font-weight: bold;' +
-                                    '}'+
+                                    '* { margin: 0; padding: 0; }'+
+                                    'body { font: 14px/1.4 Georgia, serif; }'+
+                                    '#page-wrap { width: 95%; margin: 0 auto; }'+
+                                    'textarea { border: 0; font: 14px Georgia, Serif; overflow: hidden; resize: none; }'+
+                                    'table { border-collapse: collapse; }'+
+                                    'table td, table th { border: 1px solid black; padding: 5px; }'+
+                                    '#header { height: 15px; width: 100%; margin: 20px 0; background: #222; text-align: center; color: white; font: bold 15px Helvetica, Sans-Serif; text-decoration: uppercase; letter-spacing: 20px; padding: 8px 0px; }'+
+                                    '#address { width: 250px; height: 150px; float: left; }'+
+                                    '#customer { overflow: hidden; }'+
+                                    '#logo {font-size: 30px; font-weight: bold; text-align: right; float: right; position: relative; margin-top: 25px; max-width: 540px; max-height: 100px; overflow: hidden; }'+
+                                    '#customer-title {font-size: 10px; height: 80px; font-weight: bold; float: left; }'+
+                                    '#meta { margin-top: 1px; width: 300px; float: right; }'+
+                                    '#meta td { text-align: right;  }'+
+                                    '#meta td.meta-head { text-align: left; background: #eee; }'+
+                                    '#meta td textarea { width: 100%; height: 20px; text-align: right; }'+
+                                    '#items { clear: both; width: 100%; margin: 30px 0 0 0; border: 1px solid black; }'+
+                                    '#items th { background: #eee; }'+
+                                    '#items textarea { width: 80px; height: 50px; }'+
+                                    '#items tr.item-row td { border: 0; vertical-align: top; }'+
+                                    '#items td.description { width: 300px; }'+
+                                    '#items td.item-name { width: 175px; }'+
+                                    '#items td.description textarea, #items td.item-name textarea { width: 100%; }'+
+                                    '#items td.total-line { border-right: 0; text-align: right; }'+
+                                    '#items td.total-value { border-left: 0; padding: 10px; }'+
+                                    '#items td.total-value textarea { height: 20px; background: none; }'+
+                                    '#items td.balance { background: #eee; }'+
+                                    '#items td.blank { border: 0; }'+
                                     '</style>'+
                                     '</head>'+
                                     '<body>'+
-                                    '<div class="content command-pdf">'+
-                                    '<div class="row">'+
-                                    '<div class="col-md-6">'+
-                                    '<address>'+
-                                    'X-VISION<br>'+
-                                    '54, boulevard Michel<br>'+
-                                    '75018 PARIS<br>'+
-                                    'Tél. : 01.53.39.19.30 '+
-                                    '</address>'+
-                                    '<div class="clearfix"></div>'+
-                                    '<p>Facture N°'+payment.paymentNumber+'</p>' +
-                                    '<p>Total: '+amount+'€ (facture '+is_paid+')</p>'+
-                                        //'<p>Porteur: '+command.porter+'</p>'+
-                                    '<p>Du le '+ date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear()+'</p>'+
-                                    '</div>'+
-                                    '<div class="col-md-5 text-center">'+
-                                    '<address>'+
-                                    client.firstName +' '+ client.lastName +'<br>'+
-                                    client.mail + '<br><br>'+
-                                    shop.name + '<br>'+
-                                    shop.adress + '<br>'+
-                                    shop.zipCode + ' ' + shop.city + '<br>'+
-                                    '</address>'+
-                                    '</div>'+
-                                    '</div>';
+                                    '<div id="page-wrap">'+
+                                    '<textarea id="header">FACTURE</textarea>'+
+                                    '<div id="identity">'+
+                                    '<textarea id="address">X-VISION\n'+
+                                    '54, boulevard Michel\n'+
+                                    '75018 PARIS\n'+
+                                    'Tél. : 01.53.39.19.30</textarea>'+
+                                    '<div id="logo">X-Vision</div></div>'+
+                                    '<div style="clear:both"></div>'+
+                                    '<div id="customer">'+
+                                    '<textarea id="customer-title">'+ client.firstName +' '+ client.lastName + ",\n" +
+                                    shop.adress + '\n'+
+                                    shop.zipCode + ' ' + shop.city +
+                                    '\nSiret: ' + shop.siret + '</textarea>'+
+                                    '<table id="meta"><tr>'+
+                                    '<td class="meta-head">Invoice #</td>'+
+                                    '<td><textarea>' + payment.paymentNumber + '-' + number + '</textarea></td>'+
+                                    '</tr><tr>'+
+                                    '<td class="meta-head">Date</td>'+
+                                    '<td><textarea id="date">' + date.getUTCDate() +' '+ months[date.getUTCMonth()] +' '+ date.getUTCFullYear() + '</textarea></td>'+
+                                    '</tr><tr>'+
+                                    '<td class="meta-head">Amount Due</td>'+
+                                    '<td><div class="due">' + amount + '€ (facture ' + is_paid + ')</div></td>'+
+                                    '</tr></table></div><table id="items">'+
+                                    '<tr><th>Nom</th><th>Sphere</th><th>Magasin</th><th>Qté.</th><th>Prix</th></tr>';
 
                                 for (var j = 0; j < command.length; j++) {
                                     for (var i = 0; i < command[j].product.length; i++) {
                                         var product = command[j].product[i];
                                         var command_date = new Date(command[j].date);
-                                        html += '<div class="row">'+
-                                            '<div class="col-md-10 text-center">'+
-                                            '<table>'+
-                                            '<thead>'+
-                                            '<td>Nom</td>'+
-                                            '<td>Sphère</td>'+
-                                            '<td>Qté.</td>'+
-                                            '<td>Prix commande</td>'+
-                                            '<td>Magasin associé</td>'+
-                                            '<td>Date</td>'+
-                                            '</thead>'+
-                                            '<tr>'+
-                                            '<td>'+product.name+'</td>'+
-                                            '<td>'+product.item.sphere+'</td>'+
-                                            '<td>'+product.quantity+'</td>'+
-                                            '<td>'+command[j].amount+'€ </td>'+
-                                            '<td>'+command[j].shop.name+'</td>'+
-                                            '<td>'+command_date.getDate()+ ' ' + months[command_date.getMonth()] + ' ' + command_date.getFullYear() + '</td>'+
-                                            '</tr>'+
-                                            '</table>'+
-                                            '</div>'+
-                                            '</div>';
+                                        html += '<tr class="item-row">'+
+                                            '<td class="item-name"><div class="delete-wpr"><textarea>' + product.name + '</textarea></div></td>'+
+                                            '<td class="cost"><textarea>' + product.item.sphere + '</textarea></td>'+
+                                            '<td><textarea class="description">' + command[j].shop.name + '</textarea></td>'+
+                                            '<td><textarea class="qty">' + product.quantity + '</textarea></td>'+
+                                            '<td><span class="price">' + command[j].amount + '€</span></td>'+
+                                            '</tr>';
                                     }
                                 }
                                 for (var j = 0; j < discounts.length; j++) {
                                     var discount = discounts[j];
-                                    html += '<div class="row">'+
+                                    html += '<tr class="item-row">'+
                                         '<div class="col-md-10 text-center">'+
-                                        '<table>'+
-                                        '<thead>'+
-                                        '<td>Nom</td>'+
-                                        '<td>Prix</td>'+
-                                        '<td>Pourcentage</td>'+
-                                        '</thead>'+
-                                        '<tr>'+
-                                        '<td>Discount</td>'+
-                                        '<td> -'+discount.amount+'€ </td>'+
-                                        '<td>'+discount.percent+'% </td>'+
-                                        '</tr>'+
-                                        '</table>'+
-                                        '</div>'+
-                                        '</div>';
+                                        '<td class="item-name"><div class="delete-wpr"><textarea>Discount</textarea></div></td>'+
+                                        '<td class="description"><textarea></textarea></td>'+
+                                        '<td><textarea class="cost"></textarea></td>'+
+                                        '<td><textarea class="qty"></textarea></td>'+
+                                        '<td><span class="price">' + discount.amount + '€ (' + discount.percent + '%)</span></td>'+
+                                        '</tr>';
                                 }
-                                html += '</div>' +
-                                    '<hr>' +
-                                    '<footer>' +
-                                    shop.name + ', ' + shop.adress + ' ' + shop.zipCode + ' ' + shop.city + '<br>' +
-                                    'Siret: ' + shop.siret +
-                                    '</footer>'+
-                                    '</body>'+
-                                    '</html>';
+
+                                html += '</table></div></body></html>';
+
+                                var path = "../myApp/public/pdf/" + id + "-" + number + ".pdf";
+                                var savedPath = "/public/pdf/" + id + "-" + number + ".pdf";
 
                                 var options = {
                                     "paperSize" : {format: 'Letter', orientation: 'portrait', border: '1cm'}
